@@ -1,0 +1,35 @@
+# Full orbital transport study. Two fresh matched arms; learning settings from
+# the measured fast pilot. PANAMA task rewards and observations are unchanged.
+[training]
+learning_rate = 0.001
+gamma = 0.90
+epsilon_decay_steps = 20000
+replay_capacity = 50000
+checkpoint_interval_steps = 25000
+budget_seconds = 43200.0
+shutdown_reserve_seconds = 180.0
+model_broadcast_steps = 16
+validation_interval_episodes = 250
+validation_episodes = 200
+
+[communication]
+profile = "physical"
+mission_route = "uav"
+stale_information = []
+seconds_per_step = 1.0
+leo_timeline = "data/leo/tremblant_full.npz"
+orbital_replay = true
+backhaul_time_offset_seconds = 1000.0
+contention_enabled = false
+handover_enabled = true
+satellite_uplink_mbps = 10.0
+satellite_downlink_mbps = 50.0
+access_uplink_mbps = 50.0
+access_downlink_mbps = 50.0
+# Airtime service aggregation, not a claim that IP packets have this size.
+packet_payload_bytes = 262144
+packet_overhead_bytes = 48
+scheduler_frame_seconds = 0.02
+scheduler_guard_fraction = 0.05
+log_service_chunks = false
+model_distribution = "uav_fanout"

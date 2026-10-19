@@ -1,0 +1,14 @@
+# Real archived OMM geometry, assumed access/backhaul capacities and handshakes.
+[communication]
+profile = "physical"
+mission_route = "cloud"
+stale_information = ["task", "intentions", "priorities"]
+seconds_per_step = 1.0
+leo_timeline = "data/leo/tremblant_6h.npz"
+backhaul_time_offset_seconds = 1000.0
+contention_enabled = false
+handover_enabled = true
+satellite_uplink_mbps = 10.0
+satellite_downlink_mbps = 50.0
+access_uplink_mbps = 50.0
+access_downlink_mbps = 50.0

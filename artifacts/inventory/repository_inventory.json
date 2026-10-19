@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-09-03T02:01:15.931519+00:00",
+  "files": 378,
+  "bytes": 1544554254,
+  "categories": {
+    "active": 179,
+    "artifact": 85,
+    "cache": 15,
+    "legacy": 96,
+    "project": 3
+  },
+  "inventory_csv": "artifacts/inventory/repository_inventory.csv"
+}

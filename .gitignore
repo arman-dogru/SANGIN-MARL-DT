@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+dist/
+build/
+*.egg-info/
+artifacts/runs/**
+!artifacts/runs/.gitkeep
+artifacts/legacy/**
+!artifacts/legacy/.gitkeep
+artifacts/.mplconfig/
+
+# Communication-study outputs and local tools
+/output/
+/tmp/
+/traces/
+/data/leo/
+.venv/
+docs/

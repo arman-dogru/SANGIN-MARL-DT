@@ -1,0 +1,41 @@
+# UAV-PANAMA communication study; remaining defaults are in config.py.
+[map]
+fov_radius = 7
+astar_waypoints = 5
+communicated_path_steps = 5
+communication_range_factor = 2.0
+meters_per_cell = 1.0
+
+[communication]
+profile = "controlled"
+mission_route = "uav"
+stale_information = []
+seconds_per_step = 1.0
+delay_steps = 5.0
+handover_interval_seconds = 15.0
+handover_interruption_seconds = 0.05
+one_way_propagation_seconds = 0.025
+satellite_uplink_mbps = 10.0
+satellite_downlink_mbps = 50.0
+access_uplink_mbps = 50.0
+access_downlink_mbps = 50.0
+
+[training]
+budget_seconds = 10800.0
+shutdown_reserve_seconds = 60.0
+model_broadcast_steps = 16
+validation_interval_episodes = 250
+validation_episodes = 200
+
+[[curriculum.stages]]
+name = "agents-2"
+num_agents = 2
+[[curriculum.stages]]
+name = "agents-4"
+num_agents = 4
+[[curriculum.stages]]
+name = "agents-6"
+num_agents = 6
+[[curriculum.stages]]
+name = "agents-8"
+num_agents = 8

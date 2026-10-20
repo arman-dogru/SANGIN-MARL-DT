@@ -183,6 +183,8 @@ class Transport:
         self.next_handover_index = 1
         self.satellite_assignment = 0
         self.calendar = EventCalendar()
+        self.compute_pools = {}
+        self.agent_rate_caps = {}
         self.links = {
             name: Link(capacity * 1e6)
             for name, capacity in (
@@ -404,12 +406,13 @@ class Transport:
         served = min(queued.remaining_bytes, self.config.packet_payload_bytes) if fragmented else queued.remaining_bytes
         # Chunk-level scheduling aggregates ordinary 1500-byte packets.
         wire_bytes = served + (math.ceil(served/1500)*self.config.packet_overhead_bytes if fragmented else 0)
-        duration = wire_bytes * 8 / link.capacity_bps
+        capacity_bps = min(link.capacity_bps, self.agent_rate_caps.get((agent, name), link.capacity_bps))
+        duration = wire_bytes * 8 / capacity_bps
         guard = 0.0
         if satellite and self.orbit is not None and fragmented:
             offset = self.config.backhaul_time_offset_seconds
             finish, duration, interrupted, guard = self.orbit.service(
-                self.now+offset, wire_bytes*8, name, link.capacity_bps,
+                self.now+offset, wire_bytes*8, name, capacity_bps,
                 self.config.scheduler_frame_seconds, self.config.scheduler_guard_fraction,
                 self.config.orbital_replay, self.config.handover_enabled,
             )
@@ -449,6 +452,7 @@ class Transport:
                 "handover_seconds": queued.interruption_seconds,
                 "frame_guard_seconds": queued.guard_seconds,
                 "propagation_seconds": propagation,
+                "capacity_bps": capacity_bps,
                 "finish": finish,
             }
         )
@@ -503,6 +507,10 @@ class Transport:
             at, _, kind, value = self.calendar.pop()
             self.now = at
             if kind == "clock":
+                continue
+            if kind == "compute_tick":
+                name, token = value
+                self.compute_pools[name].tick(token)
                 continue
             if kind in ("handshake_packet", "orbit_ready"):
                 self.log.append({"event": kind, "time": at, "details": value})

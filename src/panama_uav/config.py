@@ -4,6 +4,7 @@ import tomllib
 from dataclasses import asdict, dataclass, field, replace
 from enum import Enum
 from pathlib import Path
+import math
 
 COMMUNICATION_SCHEMA = 4
 FIXED_MAP = "maps/random-32-32-10.map"
@@ -180,6 +181,44 @@ class EvaluationConfig:
 
 
 @dataclass(frozen=True)
+class ResourceAllocationConfig:
+    enabled: bool = False
+    task_input_bits: int = 100_000
+    cycles_per_bit: float = 1000.0
+    drone_cycles_per_second: float = 1e9
+    cloud_cycles_per_second: float = 1e10
+    robot_power_w: float = 0.2
+    drone_power_w: float = 2.0
+    weight_min: float = 1.0
+    weight_max: float = 4.0
+    policy: str = "priority"
+    energy_coefficient: float = 1.0
+    latency_coefficient: float = 1.0
+    access_bandwidth_hz: float = 20e6
+    noise_psd_w_hz: float = 3.9810717055e-21  # -174 dBm/Hz, assumed thermal floor
+    access_noise_figure_db: float = 7.0
+    terminal_eirp_dbw: float = 35.0
+    decision_budget_seconds: float = 0.1
+    age_reference_seconds: float = 1.0
+    failure_directory: str = "output/allocation_failures"
+
+    def __post_init__(self):
+        positive = (self.task_input_bits, self.cycles_per_bit, self.drone_cycles_per_second,
+                    self.cloud_cycles_per_second, self.robot_power_w, self.drone_power_w,
+                    self.weight_min, self.weight_max, self.access_bandwidth_hz,
+                    self.noise_psd_w_hz, self.age_reference_seconds, self.latency_coefficient)
+        if not all(math.isfinite(v) and v > 0 for v in positive):
+            raise ValueError("Resource parameters must be finite and positive")
+        if self.weight_max < self.weight_min or self.policy not in ("equal", "static", "aoi", "priority"):
+            raise ValueError("Invalid resource weights or policy")
+        for v in (self.energy_coefficient, self.decision_budget_seconds, self.access_noise_figure_db):
+            if not math.isfinite(v) or v < 0:
+                raise ValueError("Invalid resource coefficient or control budget")
+        if not math.isfinite(self.terminal_eirp_dbw):
+            raise ValueError("EIRP must be finite")
+
+
+@dataclass(frozen=True)
 class ProjectConfig:
     project_root: Path
     map: MapConfig = field(default_factory=MapConfig)
@@ -193,6 +232,7 @@ class ProjectConfig:
     uav: UAVConfig = field(default_factory=UAVConfig)
     communication: TransportConfig = field(default_factory=TransportConfig)
     evaluation: EvaluationConfig = field(default_factory=EvaluationConfig)
+    resource_allocation: ResourceAllocationConfig = field(default_factory=ResourceAllocationConfig)
 
     def resolve(self, path):
         path = Path(path)
@@ -238,6 +278,7 @@ def load_config(path="configs/base.toml"):
         "uav",
         "communication",
         "evaluation",
+        "resource_allocation",
     }
     if set(raw) - allowed:
         raise ValueError(
@@ -262,7 +303,14 @@ def load_config(path="configs/base.toml"):
         UAVConfig(**raw.get("uav", {})),
         TransportConfig(**communication),
         EvaluationConfig(**evaluation),
+        ResourceAllocationConfig(**raw.get("resource_allocation", {})),
     )
+    if config.resource_allocation.enabled:
+        selected = set(config.communication.stale_information)
+        if ("intentions" in selected) != ("priorities" in selected):
+            raise ValueError("Paper mode requires intentions and priorities to be delayed together")
+        if config.communication.uplink_trace or config.communication.downlink_trace:
+            raise ValueError("Paper energy/service accounting requires modeled rates, not delay traces")
     if tuple(s.num_agents for s in config.curriculum) != (2, 4, 6, 8) or any(
         s.map_path != FIXED_MAP
         or s.max_episode_steps != 250

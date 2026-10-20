@@ -18,6 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
+optimization = ["cvxpy>=1.6,<2", "clarabel>=0.10,<1"]
 visualization = ["pygame-ce>=2.5"]
 leo = ["sgp4==2.27", "skyfield==1.55", "itur==0.4.0", "psutil>=7.0"]
 

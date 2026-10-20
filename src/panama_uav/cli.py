@@ -116,11 +116,45 @@ def parser():
     sub = commands.add_parser("serve-replay")
     sub.add_argument("--path", required=True)
     sub.add_argument("--port", type=int, default=8765)
+    sub = commands.add_parser("allocation-snapshot", help="Solve and compare a fixed Equation 16 snapshot")
+    sub.add_argument("--input", required=True)
+    sub.add_argument("--output", required=True)
+    sub = commands.add_parser("resource-conditions", help="List resource experiment conditions")
+    sub.add_argument("--primary-only", action="store_true")
+    sub = commands.add_parser("resource-report", help="Rebuild resource summaries and figures")
+    sub.add_argument("--path", required=True)
+    sub = commands.add_parser("resource-study", help="Run paired frozen-policy resource experiments")
+    sub.add_argument("--run-id", required=True)
+    sub.add_argument("--output-root", default="output/resources")
+    sub.add_argument("--model")
+    sub.add_argument("--timeline")
+    sub.add_argument("--device", default="cpu")
+    sub.add_argument("--cases", type=int, default=50)
+    sub.add_argument("--agents", type=int, nargs="+", choices=(2, 4, 6, 8), default=[2, 4, 6, 8])
+    sub.add_argument("--max-steps", type=int, default=250)
+    sub.add_argument("--diagnostic", action="store_true")
+    sub.add_argument("--primary-only", action="store_true")
+    sub.add_argument("--conditions", nargs="+")
     return result
 
 
 def main(argv=None):
     arguments = parser().parse_args(argv)
+    if arguments.command == "allocation-snapshot":
+        from .resource_study import optimize_snapshot
+        result = optimize_snapshot(arguments.input, arguments.output)
+        print(json.dumps({"output": arguments.output, "absolute_gap": result["absolute_gap"]}, indent=2))
+        return 0
+    if arguments.command == "resource-conditions":
+        from .resource_study import conditions
+        config = load_config(arguments.config)
+        print("\n".join(name for name, _, _ in conditions(config, not arguments.primary_only)))
+        return 0
+    if arguments.command == "resource-report":
+        from .resource_study import summarize, plot_results
+        summarize(arguments.path)
+        print("\n".join(plot_results(arguments.path)))
+        return 0
     if arguments.command == "serve-replay":
         serve(arguments.path, arguments.port)
         return 0
@@ -153,6 +187,16 @@ def main(argv=None):
         )
     config = load_config(arguments.config)
     root = Path(arguments.output_root) / arguments.run_id
+    if arguments.command == "resource-study":
+        from .resource_study import run_study
+        if arguments.timeline:
+            config = replace(config, communication=replace(config.communication,
+                leo_timeline=str(Path(arguments.timeline).resolve())))
+        summary = run_study(config, root, arguments.model, arguments.diagnostic,
+            arguments.cases, tuple(arguments.agents), not arguments.primary_only,
+            arguments.conditions, arguments.max_steps, arguments.device)
+        print(f"Measured {len(summary)} resource condition/count summaries in {root}")
+        return 0
     if arguments.command in ("train", "compare-training", "study"):
         config = config.profile(arguments.profile)
         config = replace(

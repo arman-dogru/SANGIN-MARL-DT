@@ -79,3 +79,14 @@ def test_random_heterogeneous_instances():
         tasks = tuple(task(str(i), input_bits=float(rng.uniform(1e4, 2e5)),
             weight=float(rng.uniform(1, 4)), backhaul_bps=float(rng.uniform(1e6, 50e6))) for i in range(n))
         compare_allocations(AllocationSnapshot(tasks))
+
+
+@pytest.mark.parametrize("x", [0, 1])
+def test_zero_work_does_not_reserve_cpu_from_other_jobs(x):
+    snapshot = AllocationSnapshot((task("empty", input_bits=0, fixed_x=x),
+                                   task("working", fixed_x=x)))
+    result = compare_allocations(snapshot)
+    zero, working = result["relaxed"]["tasks"]
+    assert zero["drone_share"] == pytest.approx(0, abs=1e-8)
+    assert zero["cloud_share"] == pytest.approx(0, abs=1e-8)
+    assert working["drone_share" if x else "cloud_share"] == pytest.approx(1, abs=1e-6)

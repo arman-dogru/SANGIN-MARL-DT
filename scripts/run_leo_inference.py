@@ -41,6 +41,9 @@ def utc():
 
 
 def config_from(values):
+    from panama_uav.config import ProjectConfig
+    if hasattr(ProjectConfig, "from_dict"):
+        return ProjectConfig.from_dict(values)
     from panama_uav.config import (ProjectConfig, MapConfig, RewardConfig, TrainingConfig,
         CurriculumStage, UAVConfig, TransportConfig, EvaluationConfig)
     comm = dict(values["communication"])

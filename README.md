@@ -56,6 +56,19 @@ python -m panama_uav serve-replay --path output/communication/stale-smoke-01/rep
 The smoke profile uses 256 generated joint steps and a small replay batch/capacity while retaining the study map, phases, 250-step cap and qualification threshold. Partial episodes remain visible in step telemetry.
 
 Legacy checkpoint families are rejected. Historical artifacts remain archived; they are not inputs to this study.
+
+## Equation 16 resource allocation
+
+The opt-in resource study adds a CVXPY/Clarabel scheduling relaxation, an exact
+whole-task reference, finite drone/cloud processors, per-transmitter energy,
+atomic coordination states and directed FoV inconsistency. Existing configurations
+retain their communication study behavior. See [RESOURCE_ALLOCATION.md](RESOURCE_ALLOCATION.md)
+for the model, assumptions, reproducible diagnostic/paper commands and manuscript updates.
+
+```powershell
+python -m pip install -e ".[dev,optimization,leo]"
+python -m panama_uav allocation-snapshot --input tests/fixtures/allocation_snapshot.json --output output/resources/snapshot.json
+```
 # Fast pilot and LEO data
 
 Hyperparameter screening procedures, curriculum configuration, and the

@@ -78,6 +78,8 @@ def reference_config(root):
         UAVConfig(**values["uav"]), TransportConfig(**comm),
         EvaluationConfig(**evaluation),
     )
+    if hasattr(ProjectConfig, "from_dict"):
+        config = ProjectConfig.from_dict(values)
     actual = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
               for p in (root / "code/panama_uav").glob("*.py")}
     if actual != manifest["code_sha256"]:

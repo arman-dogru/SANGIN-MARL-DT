@@ -120,6 +120,8 @@ def run_worker(root, condition):
         communication=TransportConfig(**communication),
         evaluation=EvaluationConfig(**evaluation),
     )
+    if hasattr(ProjectConfig, "from_dict"):
+        config = ProjectConfig.from_dict(values)
     if json.dumps(config.to_dict(), sort_keys=True) != json.dumps(values, sort_keys=True):
         raise ValueError("Worker configuration differs from the clean reference")
     outcome = train_policy(

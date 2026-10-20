@@ -185,6 +185,7 @@ class Transport:
         self.calendar = EventCalendar()
         self.compute_pools = {}
         self.agent_rate_caps = {}
+        self.transmission_observer = None
         self.links = {
             name: Link(capacity * 1e6)
             for name, capacity in (
@@ -435,6 +436,12 @@ class Transport:
         if queued.first_start is None:
             queued.first_start = self.now
         queued.remaining_bytes -= served
+        if self.transmission_observer is not None:
+            self._event(finish, "transmission_observed", (queued.message, name, dict(
+                time=self.now, finish=finish, wire_bits=wire_bytes*8,
+                transmission_seconds=duration, propagation_seconds=propagation,
+                queue_seconds=self.now-queued.ready_at, interruption_seconds=interrupted,
+                guard_seconds=guard, capacity_bps=capacity_bps, last_chunk=queued.remaining_bytes == 0)))
         if self.config.log_service_chunks or queued.remaining_bytes == 0:
             self.log.append(
             {
@@ -511,6 +518,10 @@ class Transport:
             if kind == "compute_tick":
                 name, token = value
                 self.compute_pools[name].tick(token)
+                continue
+            if kind == "transmission_observed":
+                if self.transmission_observer is not None:
+                    self.transmission_observer(*value)
                 continue
             if kind in ("handshake_packet", "orbit_ready"):
                 self.log.append({"event": kind, "time": at, "details": value})

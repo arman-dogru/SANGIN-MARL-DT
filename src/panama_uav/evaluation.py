@@ -51,9 +51,10 @@ def trace_frame(env, versions):
     }
 
 
-def run_episode(config, model, case, device, model_version=0, *, decision_deadline_seconds=0.0):
+def run_episode(config, model, case, device, model_version=0, *, decision_deadline_seconds=0.0,
+                max_steps=250):
     env = ExperimentEnvironment(
-        config, ExperimentMode.UAV, FIXED_MAP, case["num_agents"], 250, case["seed"]
+        config, ExperimentMode.UAV, FIXED_MAP, case["num_agents"], max_steps, case["seed"]
     )
     observations, _ = env.reset()
     deadline = decision_deadline_seconds
@@ -128,6 +129,9 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
             0.0, env.communication.transport.now
         ),
     }
+    if config.resource_allocation.enabled:
+        trace["resource_tasks"] = env.communication.task_records()
+        row.update(env.communication.energy_bounds())
     return row, trace
 
 

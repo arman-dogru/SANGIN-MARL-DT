@@ -47,6 +47,8 @@ def worker(root,condition,resume=False):
     config=ProjectConfig(Path(v["project_root"]),MapConfig(**v["map"]),RewardConfig(**v["reward"]),
         TrainingConfig(**v["training"]),tuple(CurriculumStage(**s) for s in v["curriculum"]),
         UAVConfig(**v["uav"]),TransportConfig(**comm),EvaluationConfig(**ev))
+    if hasattr(ProjectConfig, "from_dict"):
+        config=ProjectConfig.from_dict(v)
     actual={p.name:digest(p) for p in (root/"code/panama_uav").glob("*.py")}
     if actual!=plan["code_sha256"] or digest(comm["leo_timeline"])!=plan["timeline_sha256"]:
         raise ValueError("Frozen source/data identity mismatch")

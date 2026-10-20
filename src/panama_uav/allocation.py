@@ -119,6 +119,9 @@ def _evaluate(snapshot, x, a, b, mode, elapsed, residual=0.0):
         def compute(fraction, share, capacity):
             if not t.cycles or fraction == 0:
                 return 0.0
+            if share <= 0 or capacity <= 0:
+                raise AllocationFailure("Positive compute work has no allocated CPU", snapshot,
+                    dict(task_id=t.task_id, fraction=float(fraction), share=float(share)))
             return t.cycles/capacity*fraction*fraction/share
         drone_time = compute(xi, ai, snapshot.drone_cycles_per_second)
         cloud_time = compute(1-xi, bi, snapshot.cloud_cycles_per_second)
@@ -193,8 +196,13 @@ def solve_relaxed(snapshot):
             constraints.append(x[i] == allowed[0])
         # ||(2*z, q-u)|| <= q+u represents z^2 <= q*u,
         # including the closed endpoint z=u=q=0.
-        constraints.extend((cp.SOC(qd[i]+a[i], cp.hstack([2*x[i], qd[i]-a[i]])),
-                            cp.SOC(qc[i]+b[i], cp.hstack([2*(1-x[i]), qc[i]-b[i]]))))
+        if t.cycles:
+            constraints.extend((cp.SOC(qd[i]+a[i], cp.hstack([2*x[i], qd[i]-a[i]])),
+                                cp.SOC(qc[i]+b[i], cp.hstack([2*(1-x[i]), qc[i]-b[i]]))))
+        else:
+            # A zero-work task needs no processor even when its route is fixed.
+            # Keeping x^2 <= q*a here would force a spurious positive share.
+            constraints.extend((a[i] == 0, b[i] == 0, qd[i] == 0, qc[i] == 0))
         d_g = t.input_bits/t.access_bps if t.input_bits else 0.0
         d_a = t.input_bits/t.backhaul_bps if t.backhaul_bps else 0.0
         td = t.cycles/snapshot.drone_cycles_per_second if snapshot.drone_cycles_per_second else 0.0
@@ -210,7 +218,7 @@ def solve_relaxed(snapshot):
     if problem.status != "optimal":
         raise AllocationFailure("Relaxation did not solve optimally", snapshot, {"status": problem.status})
     residual = max(float(np.max(c.violation())) for c in constraints)
-    if residual > 1e-6:
+    if not math.isfinite(residual) or residual > 1e-6:
         raise AllocationFailure("Allocation constraint residual exceeded tolerance", snapshot, {"residual": residual})
     xv = np.clip(x.value, 0, 1)
     # Snap only solver endpoints, then recompute feasible resource shares at x.
@@ -244,5 +252,6 @@ def compare_allocations(snapshot):
     if gap < -1e-6*max(1, abs(binary.objective)):
         raise AllocationFailure("Relaxation exceeds binary reference", snapshot)
     return {"snapshot": asdict(snapshot), "relaxed": relaxed.to_dict(),
-            "binary": binary.to_dict(), "absolute_gap": gap,
-            "relative_gap": gap/max(abs(binary.objective), 1e-12)}
+            "binary": binary.to_dict(), "absolute_gap": max(0.0, gap),
+            "raw_objective_difference": gap,
+            "relative_gap": max(0.0, gap)/max(abs(binary.objective), 1e-12)}

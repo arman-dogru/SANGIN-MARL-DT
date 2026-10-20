@@ -198,6 +198,14 @@ class ResourceAllocationConfig:
     noise_psd_w_hz: float = 3.9810717055e-21  # -174 dBm/Hz, assumed thermal floor
     access_noise_figure_db: float = 7.0
     terminal_eirp_dbw: float = 35.0
+    a2s_frequency_hz: float = 14.25e9
+    a2s_bandwidth_hz: float = 20e6
+    assumed_satellite_distance_km: float = 550.0
+    assumed_gateway_distance_km: float = 550.0
+    assumed_atmosphere_db: float = 3.0
+    satellite_receive_gt_db_k: float = -5.0
+    implementation_loss_db: float = 3.0
+    shannon_efficiency: float = 0.5
     decision_budget_seconds: float = 0.1
     age_reference_seconds: float = 1.0
     failure_directory: str = "output/allocation_failures"
@@ -207,15 +215,20 @@ class ResourceAllocationConfig:
                     self.cloud_cycles_per_second, self.robot_power_w, self.drone_power_w,
                     self.weight_min, self.weight_max, self.access_bandwidth_hz,
                     self.noise_psd_w_hz, self.age_reference_seconds, self.latency_coefficient)
+        positive += (self.a2s_frequency_hz, self.a2s_bandwidth_hz, self.assumed_satellite_distance_km,
+                     self.assumed_gateway_distance_km, self.shannon_efficiency)
         if not all(math.isfinite(v) and v > 0 for v in positive):
             raise ValueError("Resource parameters must be finite and positive")
         if self.weight_max < self.weight_min or self.policy not in ("equal", "static", "aoi", "priority"):
             raise ValueError("Invalid resource weights or policy")
-        for v in (self.energy_coefficient, self.decision_budget_seconds, self.access_noise_figure_db):
+        for v in (self.energy_coefficient, self.decision_budget_seconds, self.access_noise_figure_db,
+                  self.assumed_atmosphere_db, self.implementation_loss_db):
             if not math.isfinite(v) or v < 0:
                 raise ValueError("Invalid resource coefficient or control budget")
-        if not math.isfinite(self.terminal_eirp_dbw):
-            raise ValueError("EIRP must be finite")
+        if not all(math.isfinite(v) for v in (self.terminal_eirp_dbw, self.satellite_receive_gt_db_k)):
+            raise ValueError("EIRP and receiver G/T must be finite")
+        if self.shannon_efficiency > 1:
+            raise ValueError("Shannon efficiency must not exceed one")
 
 
 @dataclass(frozen=True)
@@ -264,6 +277,20 @@ class ProjectConfig:
         result = asdict(self)
         result["project_root"] = str(self.project_root)
         return result
+
+    @classmethod
+    def from_dict(cls, values):
+        """Restore a manifest, including optional resource settings in new runs."""
+        communication = dict(values["communication"])
+        communication["stale_information"] = tuple(communication["stale_information"])
+        evaluation = dict(values["evaluation"])
+        for name in ("agent_counts", "delay_steps"):
+            evaluation[name] = tuple(evaluation[name])
+        return cls(Path(values["project_root"]), MapConfig(**values["map"]),
+            RewardConfig(**values["reward"]), TrainingConfig(**values["training"]),
+            tuple(CurriculumStage(**stage) for stage in values["curriculum"]),
+            UAVConfig(**values["uav"]), TransportConfig(**communication), EvaluationConfig(**evaluation),
+            ResourceAllocationConfig(**values.get("resource_allocation", {})))
 
 
 def load_config(path="configs/base.toml"):

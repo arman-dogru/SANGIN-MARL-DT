@@ -164,7 +164,8 @@ class ExperimentEnvironment:
             if agent.ever_reached_goal:
                 agent.priority = settled + agent.id * 1e-6
             else:
-                agent.priority = agent.distance_to_goal + agent.id * 1e-6
+                distance = agent.distance_to_goal if math.isfinite(agent.distance_to_goal) else settled-1
+                agent.priority = distance + agent.id * 1e-6
 
     def _random_starts_and_goals(self) -> tuple[list[Position], list[Position]]:
         cells = [
@@ -212,14 +213,14 @@ class ExperimentEnvironment:
         if self.uav is not None:
             self.uav.reset()
             self.radio_snapshot = self.uav.snapshot()
-        self.communication = MissionCommunication(
-            self.config.communication,
-            self.grid,
-            self.agents,
-            astar_path,
-            self.base_seed if seed is None else seed,
-            self.max_episode_steps,
-        )
+        if self.config.resource_allocation.enabled:
+            from .paper import PaperMissionCommunication
+            self.communication = PaperMissionCommunication(self.config, self.grid, self.agents,
+                astar_path, self.base_seed if seed is None else seed, self.max_episode_steps, self.uav)
+        else:
+            self.communication = MissionCommunication(
+                self.config.communication, self.grid, self.agents, astar_path,
+                self.base_seed if seed is None else seed, self.max_episode_steps)
         finite = [
             agent.initial_distance_to_goal
             for agent in self.agents
@@ -248,8 +249,8 @@ class ExperimentEnvironment:
             if (
                 not received_intentions[other.id]["completed"]
                 and received_priorities[other.id] < received_priorities[agent.id]
-                and manhattan(agent.position, other.position)
-                <= self.communication_range
+                and (self.config.resource_allocation.enabled or
+                     manhattan(agent.position, other.position) <= self.communication_range)
             ):
                 for path_row, path_col in received_intentions[other.id]["path"]:
                     rel_row, rel_col = path_row - row, path_col - col
@@ -272,7 +273,9 @@ class ExperimentEnvironment:
             0.0,
             1.0,
         )
-        vector = [float(normalized_distance), float(agent.ever_reached_goal)]
+        completed = (self.communication.states[agent.id][agent.id].value["completed"]
+                     if self.config.resource_allocation.enabled else agent.ever_reached_goal)
+        vector = [float(normalized_distance), float(completed)]
         waypoint_normalizer = float(max(self.fov_radius, 1))
         for offset in range(1, self.config.map.astar_waypoints + 1):
             if offset < len(path):

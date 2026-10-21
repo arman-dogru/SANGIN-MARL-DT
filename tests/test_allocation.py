@@ -52,6 +52,26 @@ def test_units_and_backhaul_energy():
     assert row["backhaul_energy_j"] == pytest.approx(.02)
 
 
+def test_optional_deadlines_change_cpu_rates_in_both_references():
+    tasks = (task("a", fixed_x=1, deadline_seconds=.122),
+             task("b", weight=16, fixed_x=1))
+    snapshot = AllocationSnapshot(tasks, energy_coefficient=0)
+    for solution in (solve_binary(snapshot), solve_relaxed(snapshot)):
+        assert solution.tasks[0]["latency_seconds"] <= .122+1e-6
+        assert solution.tasks[0]["drone_share"] == pytest.approx(5/6, abs=2e-5)
+    unconstrained = solve_binary(replace(snapshot, tasks=(replace(tasks[0], deadline_seconds=None), tasks[1])))
+    assert unconstrained.tasks[0]["latency_seconds"] > .122
+
+
+def test_deadline_binary_enumeration_and_fractional_bound():
+    snapshot = AllocationSnapshot((task("a", deadline_seconds=.11), task("b", deadline_seconds=.11)))
+    result = compare_allocations(snapshot)
+    assert result["absolute_gap"] >= 0 and result["binary"]["assignments_checked"] == 4
+    for solve in (solve_binary, solve_relaxed):
+        with pytest.raises(AllocationFailure):
+            solve(replace(snapshot, tasks=(task(deadline_seconds=.001),)))
+
+
 @pytest.mark.parametrize("mode", [solve_binary, solve_relaxed])
 def test_unavailable_and_zero_work_routes(mode):
     edge = mode(AllocationSnapshot((task(backhaul_bps=0),), cloud_cycles_per_second=0))

@@ -65,6 +65,7 @@ class Agent:
     previous_distance_to_goal: float = math.inf
     initial_distance_to_goal: float = math.inf
     ever_reached_goal: bool = False
+    first_completion_time: float | None = None
 
     @property
     def at_goal(self) -> bool:
@@ -130,6 +131,9 @@ class ExperimentEnvironment:
         )
         self.communication = None
         self.remote_inference = None
+        self.remote_shadow_inference = None
+        self.model_version = 0
+        self.failure_reason = None
 
     @property
     def observation_shape(self) -> tuple[tuple[int, int, int], int]:
@@ -192,6 +196,7 @@ class ExperimentEnvironment:
         if seed is not None:
             self.rng = np.random.default_rng(seed)
         self.step_count = 0
+        self.failure_reason = None
         if self.scenario is None:
             starts, goals = self._random_starts_and_goals()
         else:
@@ -210,6 +215,7 @@ class ExperimentEnvironment:
             agent.initial_distance_to_goal = agent.distance_to_goal
             if agent.at_goal:
                 agent.ever_reached_goal = True
+                agent.first_completion_time = 0.0
         self._refresh_priorities()
         if self.uav is not None:
             self.uav.reset()
@@ -220,6 +226,8 @@ class ExperimentEnvironment:
                 self.communication = RemoteDTCommunication(self.config, self.grid, self.agents,
                     astar_path, self.base_seed if seed is None else seed, self.max_episode_steps,
                     self.uav, self.remote_inference)
+                self.communication.shadow_inference = self.remote_shadow_inference
+                self.communication.model_version = self.model_version
                 self.communication.update(self.agents, 0.0)
             else:
                 from .paper import PaperMissionCommunication
@@ -385,6 +393,17 @@ class ExperimentEnvironment:
             raise RuntimeError("reset() must be called before step()")
         if self.step_count >= self.max_episode_steps:
             raise RuntimeError("Episode cap reached; reset before stepping again")
+        if self.failure_reason:
+            raise RuntimeError("Episode terminated after a physical collision")
+        remote = (self.config.resource_allocation.enabled
+                  and self.config.resource_allocation.execution_mode == "remote_dt")
+        if remote:
+            if not self.communication.command_contexts or any(
+                c["cycle"] != self.step_count for c in self.communication.command_contexts.values()
+            ):
+                raise RuntimeError("Prepare the current remote decision before robot motion")
+            if actions != self.communication.execution_actions:
+                raise ValueError("Remote motion must use the commands delivered by this cycle's cutoff")
         self._refresh_priorities()
         self.step_count += 1
         reward_cfg = self.config.reward
@@ -397,7 +416,35 @@ class ExperimentEnvironment:
                 continue
             for position in self.communicated_paths.get(other.id, [])[1:]:
                 path_occupancy_before[position].append(other)
-        final, collided = self._resolve_positions(actions, rewards, info)
+        if remote:
+            from .remote_control import conflicts, resolve_delivered
+            intended = {}
+            for agent in self.agents:
+                dr, dc = self.ACTION_DELTAS[actions[agent.id]]
+                target = (agent.position[0]+dr, agent.position[1]+dc)
+                if not self._valid(target):
+                    target = agent.position
+                    rewards[agent.id] += reward_cfg.collision_obstacle
+                    info["collisions_obstacle_step"] += 1
+                intended[agent.id] = target
+            physical_conflicts = conflicts(before, intended)
+            collided = {r for event in physical_conflicts for r in event["robots"]}
+            if physical_conflicts:
+                self.communication._record("physical_collision", cycle=self.step_count-1,
+                    conflicts=physical_conflicts, before=before, intended=intended,
+                    command_contexts=self.communication.command_contexts,
+                    response=self.config.resource_allocation.on_collision)
+            if collided and self.config.resource_allocation.on_collision == "terminate":
+                self.failure_reason = "robot_collision"
+                final = before.copy()
+            else:
+                priorities = {a.id: self.communication.command_contexts[a.id]["resolution_priority"]
+                              for a in self.agents}
+                final = resolve_delivered(before, intended, priorities)
+            info["physical_conflicts"] = physical_conflicts
+            info["failure_reason"] = self.failure_reason
+        else:
+            final, collided = self._resolve_positions(actions, rewards, info)
         info["collisions_agent_agent_step"] = len(collided)
         for agent_id in collided:
             rewards[agent_id] += reward_cfg.collision_agent
@@ -444,6 +491,8 @@ class ExperimentEnvironment:
             if agent.at_goal:
                 if not agent.ever_reached_goal:
                     agent.ever_reached_goal = True
+                    agent.first_completion_time = (self.communication.transport.now if remote else
+                        self.step_count*self.config.communication.seconds_per_step)
                     rewards[agent.id] += reward_cfg.goal
                     arrivals.append(self.step_count)
                     info["targets_reached_step"] += 1
@@ -457,6 +506,12 @@ class ExperimentEnvironment:
                 info["path_conflict_penalty_step"] += 1
 
         self._refresh_priorities()
+        if remote:
+            self.communication._record("motion_event", cycle=self.step_count-1, actions=actions,
+                before=before, after=final, physical={a.id: self.communication._report(a) for a in self.agents},
+                first_completion_times={a.id: a.first_completion_time for a in self.agents},
+                failure_reason=self.failure_reason)
+            self.communication.physical_time = self.communication.transport.now
         self.communication.update(
             self.agents, self.step_count * self.config.communication.seconds_per_step
         )
@@ -476,7 +531,7 @@ class ExperimentEnvironment:
                 **self.communication.snapshot(),
             }
         )
-        terminated = self.all_agents_at_goals
+        terminated = self.all_agents_at_goals or self.failure_reason is not None
         truncated = self.step_count >= self.max_episode_steps and not terminated
         return StepResult(
             self.observations(), rewards, terminated, truncated, dict(info)

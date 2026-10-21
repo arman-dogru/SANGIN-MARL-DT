@@ -148,3 +148,94 @@ def test_reference_scoring_uses_identical_truth_coefficients():
     assert actual_solution.objective == pytest.approx(oracle.objective)  # Native subtraction would be wrong.
     scored = score_allocation(truth, actual_solution.tasks)
     assert scored.objective-oracle.objective == pytest.approx(.45)
+
+
+def corridor_environment(actions, response="terminate", completed=False):
+    from panama_uav.scenarios import Scenario, load_map
+    cfg = remote_config(drone_cycles_per_second=1e11, on_collision=response)
+    cfg = replace(cfg, communication=replace(cfg.communication, profile="perfect"))
+    grid = load_map(cfg.resolve("maps/random-32-32-10.map"))
+    row, col = next((r, c) for r in range(1, 30) for c in range(1, 28)
+                    if not grid[r-1:r+2, c:c+4].any())
+    starts = ((row, col), (row, col+2))
+    goals = (starts[0] if completed else (row, col+3), (row, col))
+    scenario = Scenario(Path("fixture.scen"), cfg.resolve("maps/random-32-32-10.map"), starts, goals)
+    env = ExperimentEnvironment(cfg, ExperimentMode.UAV, "maps/random-32-32-10.map", 2, 250, 123, scenario)
+    env.remote_inference = lambda location, robot, observation: actions[robot]
+    env.reset()
+    return env
+
+
+def test_physical_vertex_collision_terminates_without_an_oracle_winner():
+    env = corridor_environment({0: 3, 1: 2})
+    env.prepare_decision(.1)
+    before = [a.position for a in env.agents]
+    result = env.step(env.communication.execution_actions.copy())
+    assert result.terminated and result.info["failure_reason"] == "robot_collision"
+    assert [a.position for a in env.agents] == before
+    events = [e for e in env.communication.remote_events if e["event"] == "physical_collision"]
+    assert len(events) == 1 and events[0]["conflicts"][0]["kind"] == "vertex"
+
+
+def test_optional_conflict_resolution_uses_delivered_dt_priorities():
+    env = corridor_environment({0: 3, 1: 2}, "dt_resolve")
+    env.prepare_decision(.1)
+    before = [a.position for a in env.agents]
+    # Force the delivered order to disagree with current physical priorities.
+    env.communication.command_contexts[0]["resolution_priority"] = 100
+    env.communication.command_contexts[1]["resolution_priority"] = 0
+    env.agents[0].priority, env.agents[1].priority = 0, 100
+    result = env.step(env.communication.execution_actions.copy())
+    assert result.info["physical_conflicts"] and env.failure_reason is None
+    assert env.agents[0].position == before[0]
+    assert env.agents[1].position == (before[1][0], before[1][1]-1)
+
+
+def test_edge_swap_logged_and_resolution_handles_stationary_cascades():
+    from panama_uav.remote_control import conflicts, resolve_delivered
+    before = {0: (1, 1), 1: (1, 2), 2: (1, 3)}
+    swap = {0: (1, 2), 1: (1, 1), 2: (1, 3)}
+    assert conflicts(before, swap)[0]["kind"] == "edge_swap"
+    assert resolve_delivered(before, swap, {0: 1, 1: 2, 2: 3}) == before
+    cascade = {0: (1, 2), 1: (1, 3), 2: (1, 3)}
+    assert resolve_delivered(before, cascade, {0: 1, 1: 2, 2: 3}) == before
+
+
+def test_completed_robot_yields_returns_and_never_gets_new_compute_tasks():
+    env = corridor_environment({0: 4, 1: 4}, completed=True)
+    original = env.agents[0].position
+    env.prepare_decision(.1)
+    assert env.communication.execution_actions[0] != 4
+    assert env.communication.command_contexts[0]["completed_local_control"]
+    env.step(env.communication.execution_actions.copy())
+    assert env.agents[0].position != original and env.agents[0].ever_reached_goal
+    assert not any(j["agent"] == 0 for j in env.communication.jobs.values())
+    # Peer intentions no longer occupy the goal; local sensing permits return.
+    cache = env.communication.states[0][1]
+    cache.value["path"] = [env.agents[1].position]
+    env.prepare_decision(.1)
+    env.step(env.communication.execution_actions.copy())
+    assert env.agents[0].position == original
+    final = [e for e in env.communication.remote_events
+             if e["event"] == "message_sent" and e["kind"] == "remote_completion"]
+    assert len(final) == 1 and env.agents[0].first_completion_time == 0
+
+
+def test_remote_motion_cannot_bypass_command_cutoff():
+    env = environment()
+    with pytest.raises(RuntimeError, match="Prepare"):
+        env.step({0: 4, 1: 4})
+    env.prepare_decision(.1)
+    with pytest.raises(ValueError, match="delivered"):
+        env.step({0: 3, 1: 3})
+
+
+def test_task_deadline_monitoring_is_separate_from_command_cutoff():
+    env = environment(remote_config(drone_cycles_per_second=1e5, cloud_cycles_per_second=1e5,
+        task_deadline_seconds=.5))
+    env.prepare_decision(.1)
+    records = env.communication.task_records()
+    assert all(r["task_deadline_enabled"] and not r["task_deadline_missed"] for r in records)
+    assert all(c["command_cutoff_missed"] for c in env.communication.command_contexts.values())
+    env.communication.transport.advance(1, env.communication._receive)
+    assert all(r["task_deadline_missed"] and r["deadline_censored"] for r in env.communication.task_records())

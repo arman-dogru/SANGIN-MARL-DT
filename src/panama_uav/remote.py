@@ -28,6 +28,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
             raise ValueError("Remote DT execution requires an explicit frozen inference callback")
         super().__init__(project, grid, agents, pathfinder, seed, cap, uav)
         self.inference = inference
+        self.shadow_inference = None
+        self.model_version = 0
         self.remote_events, self.oracle_events = [], []
         self.event_checksum = "0"*64
         self.replicas = {name: DTReplica(name) for name in ("drone", "cloud")}
@@ -203,7 +205,9 @@ class RemoteDTCommunication(PaperMissionCommunication):
             t.links["satellite_up"].capacity_bps = radio["applied_bps"] or self.config.satellite_uplink_mbps*1e6
         task = AllocationTask(job["job_id"], p.task_input_bits, p.cycles_per_bit,
             weights[job["agent"]], payload["access_radio"]["applied_bps"], radio["applied_bps"],
-            radio["round_trip_seconds"], p.robot_power_w, p.drone_power_w)
+            radio["round_trip_seconds"], p.robot_power_w, p.drone_power_w,
+            deadline_seconds=(job["deadline_at"]-t.now+p.task_input_bits/payload["access_radio"]["applied_bps"]
+                              if p.enforce_task_deadlines else None))
         tasks = [task]
         remaining = {r["job_id"]: r["remaining_cycles"] for pool in t.compute_pools.values() for r in pool.snapshot()}
         for previous in self.jobs.values():
@@ -211,7 +215,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 continue
             tasks.append(AllocationTask(previous["job_id"], 0, 0, previous["weight"], 1, 1, 0,
                 p.robot_power_w, p.drone_power_w, fixed_x=previous["executed_x"],
-                required_cycles=remaining.get(previous["job_id"], previous["required_cycles"])))
+                required_cycles=remaining.get(previous["job_id"], previous["required_cycles"]),
+                deadline_seconds=previous["deadline_at"]-t.now if p.enforce_task_deadlines else None))
         snapshot = AllocationSnapshot(tuple(tasks), p.drone_cycles_per_second, p.cloud_cycles_per_second,
             p.energy_coefficient, p.latency_coefficient, p.drone_kappa, p.include_robot_upload_in_objective)
         try:
@@ -297,9 +302,28 @@ class RemoteDTCommunication(PaperMissionCommunication):
         event = self._record("remote_inference", job_id=job_id, robot_id=job["agent"], location=job["location"],
             observation={k: v.tolist() for k, v in obs.items()}, observation_hash=observation_hash(obs),
             sources=sources, source_min=source_min(sources), dt_versions=versions, dt_priorities=priorities,
-            action=action, model_version=0)
+            action=action, model_version=self.model_version)
         job["inference_wall_seconds"] = wall  # Measurement only; never advances virtual service.
         job["inference_event"] = event["event_id"]
+        if self.parameters.oracle_shadow and self.shadow_inference is not None:
+            # Evaluation-only fresh replica built from physical state at this
+            # instant. It is never installed at either actual processor.
+            shadow_replica = DTReplica("cloud")
+            source_time = getattr(self, "physical_time", 0.0)
+            for agent in self._agents:
+                fresh_report = self._sense(agent, self._agents, report.cycle, source_time)
+                fresh = self._state_for_report(fresh_report, t.now, report.cycle)
+                shadow_replica.accept(fresh, t.now, f"oracle:{report.cycle}:{agent.id}")
+            fresh_report = self._sense(self._agents[job["agent"]], self._agents, report.cycle, source_time)
+            fresh_own = self._state_for_report(fresh_report, t.now, report.cycle)
+            oracle_obs, oracle_sources, _, _ = remote_observation(fresh_report, fresh_own, shadow_replica,
+                self.project.map.fov_radius, self.project.map.astar_waypoints,
+                self.project.map.communicated_path_steps, max(self.grid.shape))
+            oracle_action = int(self.shadow_inference(job["location"], job["agent"], oracle_obs))
+            self.oracle_events.append(dict(event="action_shadow", time=t.now, job_id=job_id,
+                actual_action=action, oracle_action=oracle_action, disagrees=action != oracle_action,
+                observation={k: v.tolist() for k, v in oracle_obs.items()},
+                observation_hash=observation_hash(oracle_obs), sources=oracle_sources))
         command = ActionCommand(job["agent"], report.cycle, action, t.now,
             report.cycle*self.config.seconds_per_step+self.parameters.decision_budget_seconds,
             job["version"], job["location"], sources, job_id, observation_hash(obs), versions, priorities)
@@ -341,6 +365,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
             job_id = f"{self.current_cycle}:{agent.id}"
             self.jobs[job_id] = dict(job_id=job_id, agent=agent.id, report=report.payload(), version=self.current_cycle,
                 source_time=now, stage="access", input_bits=self.parameters.task_input_bits,
+                deadline_at=(now+self.parameters.task_deadline_seconds
+                             if self.parameters.task_deadline_seconds is not None else None),
                 cycles_per_bit=self.parameters.cycles_per_bit,
                 required_cycles=self.parameters.task_input_bits*self.parameters.cycles_per_bit,
                 access_radio=radio, robot_energy_j=0.0, backhaul_energy_j=0.0, drone_compute_energy_j=0.0,
@@ -360,6 +386,15 @@ class RemoteDTCommunication(PaperMissionCommunication):
             delivered = self.inboxes[agent.id].decision(cycle, cutoff)
             command, arrival = delivered if delivered else (None, None)
             action = command.action if command is not None and not agent.ever_reached_goal else 4
+            local_sources, local_details = None, None
+            own_priority = self.states[agent.id][agent.id].value["priority"]
+            if agent.ever_reached_goal:
+                from .remote_control import completed_action
+                local_report = self._sense(agent, agents, cycle, cutoff)
+                # Completion is known locally; never promote it from a stale self cache.
+                own_priority = self.grid.size+agent.id*1e-6
+                action, local_sources, local_details = completed_action(
+                    local_report, self.states[agent.id], own_priority)
             self.execution_actions[agent.id] = action
             context = dict(robot_id=agent.id, cycle=cycle, cutoff_time=cutoff,
                 action=action, command=command.payload() if command else None, arrived_at=arrival,
@@ -367,6 +402,9 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 stale_source=command is not None and source_min(command.sources) < cycle_start-1e-12,
                 timeout_reason="no_current_command" if command is None and not agent.ever_reached_goal else None,
                 completed_local_control=agent.ever_reached_goal)
+            context.update(local_sources=local_sources, local_control=local_details,
+                resolution_priority=(command.dt_priorities.get(agent.id, own_priority)
+                                     if command is not None and not agent.ever_reached_goal else own_priority))
             self.command_contexts[agent.id] = context
             self._record("decision_event", **context)
             if command is not None:
@@ -381,6 +419,16 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 replicas={name: dict(replica.state_ids) for name, replica in self.replicas.items()},
                 receivers=self.receiver_refs), command_contexts=self.command_contexts)
         return result
+
+    def task_records(self):
+        records = super().task_records()
+        for record in records:
+            bound = record.get("deadline_at")
+            record["task_deadline_enabled"] = bound is not None
+            record["task_deadline_missed"] = (bound is not None and
+                record.get("delivered_at", self.transport.now) > bound+1e-12)
+            record["deadline_censored"] = bound is not None and "delivered_at" not in record
+        return records
 
     def energy_bounds(self):
         result = super().energy_bounds()

@@ -65,6 +65,8 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
         def remote_inference(location, agent, observation):
             return select_action(model, observation, 0.0, np.random.default_rng(0), device)
         env.remote_inference = remote_inference
+        env.remote_shadow_inference = remote_inference if config.resource_allocation.oracle_shadow else None
+        env.model_version = model_version
         decision_deadline_seconds = config.resource_allocation.decision_budget_seconds
     observations, _ = env.reset()
     deadline = decision_deadline_seconds
@@ -119,9 +121,10 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
     row = {
         **case,
         "steps": env.step_count,
-        "success": result.terminated,
-        "successful_makespan": env.step_count if result.terminated else None,
-        "par2": env.step_count if result.terminated else 500,
+        "success": result.terminated and env.failure_reason is None,
+        "failure_reason": env.failure_reason,
+        "successful_makespan": env.step_count if result.terminated and env.failure_reason is None else None,
+        "par2": env.step_count if result.terminated and env.failure_reason is None else 500,
         "completion_fraction": sum(a.at_goal for a in env.agents) / env.num_agents,
         "ever_completion_fraction": sum(a.ever_reached_goal for a in env.agents)
         / env.num_agents,

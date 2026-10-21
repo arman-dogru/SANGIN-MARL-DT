@@ -1,4 +1,4 @@
-"""Equation 16 with fixed radio/powers, no deadlines, and explicit units.
+"""Equation 16 with fixed radio/powers and explicit units.
 
 The fractional result is a scheduling lower bound, not a split-job runtime.
 CVXPY is deliberately imported lazily so legacy studies need no new dependency.
@@ -28,6 +28,7 @@ class AllocationTask:
     drone_power_w: float = 2.0
     fixed_x: int | None = None
     required_cycles: float | None = None  # remaining work for already assigned jobs
+    deadline_seconds: float | None = None  # optional analytical snapshot latency bound
 
     @property
     def cycles(self):
@@ -45,6 +46,8 @@ class AllocationTask:
             raise ValueError("fixed_x must be None, 0 (cloud), or 1 (drone)")
         if self.required_cycles is not None and (not math.isfinite(self.required_cycles) or self.required_cycles < 0):
             raise ValueError("Required cycles must be finite and nonnegative")
+        if self.deadline_seconds is not None and not math.isfinite(self.deadline_seconds):
+            raise ValueError("A deadline must be finite; omit it for no hard deadline")
 
 
 @dataclass(frozen=True)
@@ -194,6 +197,9 @@ def _evaluate(snapshot, x, a, b, mode, elapsed, residual=0.0):
         drone_time = compute(xi, ai, snapshot.drone_cycles_per_second)
         cloud_time = compute(1-xi, bi, snapshot.cloud_cycles_per_second)
         latency = access+(1-xi)*(backhaul+t.propagation_round_trip_seconds)+drone_time+cloud_time
+        if t.deadline_seconds is not None and latency > t.deadline_seconds+1e-6*max(1, abs(t.deadline_seconds)):
+            raise AllocationFailure("Recovered allocation violates snapshot deadline", snapshot,
+                dict(task_id=t.task_id, latency=latency, deadline=t.deadline_seconds))
         robot_energy = t.robot_power_w*access
         backhaul_energy = t.drone_power_w*(1-xi)*backhaul
         drone_energy = (snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2*ai**2/xi
@@ -233,6 +239,27 @@ def solve_binary(snapshot):
     choices = [_allowed(snapshot, t) for t in snapshot.tasks]
     if any(not c for c in choices):
         raise AllocationFailure("No available execution route", snapshot)
+    if any(t.deadline_seconds is not None for t in snapshot.tasks):
+        # Optional hard bounds invalidate the unconstrained closed-form CPU KKT
+        # rates. Enumerate the same assignments, solving each convex CPU problem.
+        best, checked = None, 0
+        for assignment in product(*choices):
+            from dataclasses import replace
+            candidate = replace(snapshot, tasks=tuple(replace(t, fixed_x=x)
+                for t, x in zip(snapshot.tasks, assignment)))
+            checked += 1
+            try:
+                result = solve_relaxed(candidate)
+            except AllocationFailure as exc:
+                if exc.details.get("status") in ("infeasible", "infeasible_inaccurate"):
+                    continue
+                raise
+            if best is None or result.objective < best.objective:
+                best = result
+        if best is None:
+            raise AllocationFailure("No assignment satisfies snapshot deadlines", snapshot, {"status": "infeasible"})
+        best.mode, best.solve_seconds, best.assignments_checked = "binary_exact", perf_counter()-start, checked
+        return best
     cycles = np.array([t.cycles for t in snapshot.tasks])
     weights = np.array([t.weight for t in snapshot.tasks])
     x = np.array(list(product(*choices)), dtype=float).reshape(-1, len(cycles)) if len(cycles) else np.empty((1, 0))
@@ -257,7 +284,7 @@ def solve_binary(snapshot):
 
 
 @lru_cache(maxsize=24)
-def _conic_template(n, zero_work, dvfs, allowed_routes):
+def _conic_template(n, zero_work, dvfs, allowed_routes, deadline_indices=()):
     """Reusable DPP graph; every snapshot still performs a fresh numerical solve."""
     import cvxpy as cp
     x, a, b = (cp.Variable(n) for _ in range(3))
@@ -265,6 +292,7 @@ def _conic_template(n, zero_work, dvfs, allowed_routes):
     ed = cp.Variable(n, nonneg=True) if dvfs else None
     coefficients = cp.Parameter((4, n), nonneg=True)
     lower, upper = cp.Parameter(n, nonneg=True), cp.Parameter(n, nonneg=True)
+    deadline_bounds, deadline_backhaul = cp.Parameter(n), cp.Parameter(n, nonneg=True)
     constraints = [x >= lower, x <= upper, a >= 0, b >= 0, a <= x, b <= 1-x,
                    cp.sum(a) <= 1, cp.sum(b) <= 1]
     for i in range(n):
@@ -284,12 +312,14 @@ def _conic_template(n, zero_work, dvfs, allowed_routes):
                 constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*coefficients[3,i]*a[i], ed[i]-x[i]])))
             else:
                 constraints.append(ed[i] == 0)
+        if i in deadline_indices:
+            constraints.append(qd[i]+qc[i]+deadline_backhaul[i]*(1-x[i]) <= deadline_bounds[i])
     objective = coefficients[0] @ (1-x)+cp.sum(qd+qc)
     if ed is not None:
         objective += cp.sum(ed)
     problem = cp.Problem(cp.Minimize(objective), constraints)
     assert problem.is_dcp(dpp=True)
-    return problem, constraints, x, a, b, coefficients, lower, upper
+    return problem, constraints, x, a, b, coefficients, lower, upper, deadline_bounds, deadline_backhaul
 
 
 def _refine_cpu(snapshot, x):
@@ -343,8 +373,9 @@ def solve_relaxed(snapshot):
     if any(not routes for routes in allowed_routes):
         raise AllocationFailure("No available execution route", snapshot)
     try:
-        problem, constraints, x, a, b, coefficients, lower, upper = _conic_template(
-            n, tuple(i for i, t in enumerate(snapshot.tasks) if not t.cycles), bool(snapshot.drone_kappa), allowed_routes)
+        problem, constraints, x, a, b, coefficients, lower, upper, bounds, backhaul = _conic_template(
+            n, tuple(i for i, t in enumerate(snapshot.tasks) if not t.cycles), bool(snapshot.drone_kappa), allowed_routes,
+            tuple(i for i, t in enumerate(snapshot.tasks) if t.deadline_seconds is not None))
     except ImportError as exc:
         raise AllocationFailure("Install the optimization extra (CVXPY/Clarabel)", snapshot) from exc
     values, lows, highs, constant = [], [], [], 0.0
@@ -367,6 +398,10 @@ def solve_relaxed(snapshot):
     scaled[1:] = np.sqrt(scaled[1:])
     coefficients.value = scaled
     lower.value, upper.value = np.asarray(lows), np.asarray(highs)
+    bounds.value = [snapshot.latency_coefficient*t.weight*(t.deadline_seconds-(t.input_bits/t.access_bps if t.input_bits else 0))
+                    if t.deadline_seconds is not None else 0 for t in snapshot.tasks]
+    backhaul.value = [snapshot.latency_coefficient*t.weight*((t.input_bits/t.backhaul_bps if t.backhaul_bps else 0)
+                     +t.propagation_round_trip_seconds) for t in snapshot.tasks]
     attempts = []
     for tolerance in (1e-8, 1e-7):
         try:
@@ -395,7 +430,10 @@ def solve_relaxed(snapshot):
         allowed = _allowed(snapshot, t)
         if len(allowed) == 1:
             xv[i] = allowed[0]
-    av, bv = _refine_cpu(snapshot, xv)
+    if any(t.deadline_seconds is not None for t in snapshot.tasks):
+        av, bv = np.maximum(0, a.value), np.maximum(0, b.value)
+    else:
+        av, bv = _refine_cpu(snapshot, xv)
     result = _evaluate(snapshot, xv, av, bv, "relaxed", perf_counter()-start, residual)
     result.solver_attempts = attempts
     if not math.isfinite(result.objective) or abs(result.objective-problem.value-constant) > 1e-6*max(1, abs(problem.value+constant)):

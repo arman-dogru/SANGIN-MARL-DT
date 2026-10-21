@@ -61,6 +61,12 @@ def _archive_episode(row, trace, directory, case):
     return row, trace["resource_tasks"], [e for e in trace["transport_events"] if e["event"] == "paper_allocation"]
 
 
+def _append_records(path, rows):
+    with Path(path).open("a", encoding="utf-8") as stream:
+        for row in rows:
+            stream.write(json.dumps(row, allow_nan=False, separators=(",", ":"))+"\n")
+
+
 def _case_config(config, case):
     if "orbital_offset_seconds" not in case:
         return config
@@ -371,8 +377,8 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         raise ValueError("Use 1--50 cases and populations 2/4/6/8")
     if not 1 <= max_steps <= 250:
         raise ValueError("Episode cap must be 1--250")
-    if not 1 <= workers <= 8:
-        raise ValueError("Use 1--8 independent worker processes")
+    if not 1 <= workers <= 32:
+        raise ValueError("Use 1--32 independent worker processes")
     if not diagnostic and (cases != 50 or tuple(counts) != (2, 4, 6, 8) or max_steps != 250):
         raise ValueError("Paper results require 50 cases, all populations, and 250 steps")
     if not diagnostic and (model_path is None or config.communication.leo_timeline is None):
@@ -469,9 +475,10 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
             previous["numerical_revisions"] = manifest["numerical_revisions"]
         manifest = previous
     write_json(output/"manifest.json", manifest)
-    write_json(output/"status.json", dict(status="running", completed_episodes=0))
     completed = sum(len((output/name/"episodes.jsonl").read_text(encoding="utf-8").splitlines())
                     for name, _, _ in choices if (output/name/"episodes.jsonl").exists()) if resume else 0
+    write_json(output/"status.json", dict(status="running", completed_episodes=completed,
+        planned_episodes=len(bank)*len(choices)))
     executor = (ProcessPoolExecutor(max_workers=workers, initializer=_worker_initialize,
         initargs=(str(Path(model_path).resolve()) if model_path else None, config.to_dict(), diagnostic, device_name))
         if workers > 1 else None)
@@ -494,10 +501,10 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
             for case, (row, tasks, allocations) in zip(pending, results):
                 row.update(condition=name, diagnostic=diagnostic, policy_model_sha256=model_identity["sha256"], **tags)
                 append_jsonl(directory/"episodes.jsonl", row)
-                for job in tasks:
-                    append_jsonl(directory/"tasks.jsonl", dict(case_id=case["case_id"], **job))
-                for event in allocations:
-                    append_jsonl(directory/"allocations.jsonl", dict(case_id=case["case_id"], **event))
+                if tasks:
+                    _append_records(directory/"tasks.jsonl", (dict(case_id=case["case_id"], **job) for job in tasks))
+                if allocations:
+                    _append_records(directory/"allocations.jsonl", (dict(case_id=case["case_id"], **event) for event in allocations))
                 completed += 1
                 write_json(output/"status.json", dict(status="running", condition=name,
                     completed_episodes=completed, planned_episodes=len(bank)*len(choices)))

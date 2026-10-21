@@ -57,3 +57,16 @@ The expanded full suite passes 110 checks. Completed episodes and interrupted
 allocation-log tails are verified against their complete compressed traces before
 resume. The complete sweep remains active; publication tables are gated on its
 completion and exact case/record counts.
+
+Stage 4 completes and verifies the 1,000-episode nominal-resource comparison.
+It contains 487,862 generated tasks, 483,862 delivered tasks and 74,092 allocation
+snapshots. An independent audit reproduced 1,760 PANAMA decisions in 20 sampled
+traces. A separate full-grid repeat matched all 1,000 nominal episodes' physical
+metrics. The tracked baseline report includes paired confidence intervals and
+does not claim directional mission-success gains where the intervals cross zero.
+
+An architecture audit found that the existing implementation offloads guidance
+and coordination support, while the action network consumes local sensing and
+received caches at decision epochs. The manuscript now consistently describes
+that qualified implementation. A serialized remote action network would require
+a separate workload, transport and timing experiment.

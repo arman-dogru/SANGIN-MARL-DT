@@ -25,6 +25,8 @@ COLORS = dict(equal="#3b6280", static="#a26825", aoi="#6e5891", priority="#18786
 def save_figure(fig, directory, name):
     for suffix in ("png", "svg", "pdf"):
         fig.savefig(directory/f"{name}.{suffix}", dpi=220, bbox_inches="tight")
+    svg = directory/f"{name}.svg"
+    svg.write_text("\n".join(line.rstrip() for line in svg.read_text(encoding="utf-8").splitlines())+"\n", encoding="utf-8")
     plt.close(fig)
 
 
@@ -36,7 +38,7 @@ def overview(rows, figures):
         ("xi_fov", "Mean episode FoV error (%)", 100),
         ("waiting_steps", "Stationary active-agent steps", 1),
         ("sum_path_costs", "Sum of first-arrival costs (steps)", 1)]
-    fig, axes = plt.subplots(2, 4, figsize=(13, 6.6), constrained_layout=True)
+    fig, axes = plt.subplots(4, 2, figsize=(7.2, 7.8), constrained_layout=True)
     for ax, (metric, label, scale) in zip(axes.flat, metrics):
         for policy in (*POLICIES, "fresh"):
             group = sorted([r for r in rows if r["policy"] == policy and
@@ -59,7 +61,7 @@ def overview(rows, figures):
 
 def grid_effects(rows, figures):
     factors = [.25, 1., 4.]
-    fig, axes = plt.subplots(2, 4, figsize=(12.5, 6), constrained_layout=True)
+    fig, axes = plt.subplots(2, 4, figsize=(7.2, 4.8), constrained_layout=True)
     for row_index, (metric, label, scale) in enumerate((("xi_fov", "FoV error (%)",100),
                                                        ("mean_task_latency_seconds", "Task latency (s)",1))):
         values = [r[metric]*scale for r in rows if r["num_agents"]==8 and r.get("kind")=="primary" and r[metric] is not None]
@@ -82,10 +84,10 @@ def grid_effects(rows, figures):
 
 def paired_effects(rows,figures):
     group=[r for r in rows if r["num_agents"]==8 and r["policy"]=="priority"]
-    fig,axes=plt.subplots(1,3,figsize=(13,max(4,len(group)*.19)),constrained_layout=True)
-    for ax,(metric,label,scale) in zip(axes,(("success","Success difference (percentage points)",100),
-                                           ("mean_task_latency_seconds","Task latency difference (s)",1),
-                                           ("xi_fov","FoV error difference (percentage points)",100))):
+    fig,axes=plt.subplots(1,3,figsize=(7.2,max(4,len(group)*.22)),constrained_layout=True)
+    for ax,(metric,label,scale) in zip(axes,(("success","Success difference\n(percentage points)",100),
+                                           ("mean_task_latency_seconds","Task latency\ndifference (s)",1),
+                                           ("xi_fov","FoV error difference\n(percentage points)",100))):
         for i,r in enumerate(group):
             result=r["paired_equal"].get(metric)
             if result:
@@ -99,24 +101,24 @@ def paired_effects(rows,figures):
 
 def ordering_components(rows,figures):
     group=sorted([r for r in rows if r["variant"]=="up-1-cpu-1" and r["policy"]=="priority"],key=lambda r:r["num_agents"])
-    fig,axes=plt.subplots(1,2,figsize=(8,3.3),constrained_layout=True)
+    fig,axes=plt.subplots(2,1,figsize=(3.4,3.4),constrained_layout=True)
     x=np.arange(len(group))
     for shift,(metric,label,color) in enumerate((("xi_fov_uplink","Uplink","#3b6280"),
                                                 ("xi_fov_downlink","Delivery","#a26825"),("xi_fov","End to end","#187860"))):
         axes[0].bar(x+(shift-1)*.23,[r[metric]*100 for r in group],width=.23,label=label,color=color)
-    axes[0].set(xticks=x,xticklabels=[r["num_agents"] for r in group],xlabel="Robots",ylabel="Mean episode FoV error (%)")
+    axes[0].set(xticks=x,xticklabels=[r["num_agents"] for r in group],xlabel="Robots",ylabel="FoV ordering error (%)")
     axes[0].legend(frameon=False,fontsize=8)
     for metric,label in (("mean_drone_cpu_utilization","Drone"),("mean_cloud_cpu_utilization","Cloud")):
         axes[1].plot([r["num_agents"] for r in group],[r[metric] for r in group],"o-",label=label)
-    axes[1].set(xlabel="Robots",ylabel="Time-average CPU utilization",ylim=(0,1),xticks=[2,4,6,8]); axes[1].legend(frameon=False)
+    axes[1].set(xlabel="Robots",ylabel="CPU utilization",ylim=(0,1),xticks=[2,4,6,8]); axes[1].legend(frameon=False)
     for ax in axes: ax.grid(axis="y",alpha=.2)
     save_figure(fig,figures,"ordering_and_utilization")
 
 
-def latex_results(rows, paper, manifest, totals):
+def latex_results(rows, paper, manifest, totals, full_grid=True):
     baseline=[r for r in rows if r["variant"]=="up-1-cpu-1"]
     lines=[r"\subsection{Measured Comparative Results}",
-        f"The completed study contains {totals['episodes']:,} qualified-policy episodes and "
+        f"The completed {'full-grid study' if full_grid else 'nominal-resource comparison'} contains {totals['episodes']:,} qualified-policy episodes and "
         f"{totals['allocation_snapshots']:,} allocation snapshots. All conditions use 50 cases per population. "
         "The primary and secondary results are generated directly from saved records; no missing task latency is replaced by zero.",
         r"\begin{table*}[t]\centering\caption{Nominal uplink/CPU condition: per-episode means over 50 held-out cases. Energy covers delivered tasks only; unfinished counts and full energy bounds accompany the machine-readable tables.}\label{tab:measured_baseline}\scriptsize",
@@ -133,9 +135,14 @@ def latex_results(rows, paper, manifest, totals):
         r"\caption{Eight robots: primary uplink/CPU grid. Both FoV inconsistency and observed task delay are measured outcomes.}\label{fig:grid}\end{figure*}",
         r"\begin{figure*}[t]\centering\includegraphics[width=\textwidth]{figures/paired_priority_minus_equal.pdf}",
         r"\caption{Eight robots: paired PANAMA-priority minus equal-weight differences across the primary and secondary conditions, with pointwise 95\% bootstrap intervals. A lower latency/error difference and a higher success difference are favorable. Intervals crossing zero do not establish a directional advantage.}\label{fig:paired}\end{figure*}",
-        r"\begin{figure*}[t]\centering\includegraphics[width=.8\textwidth]{figures/ordering_and_utilization.pdf}",
-        r"\caption{Nominal PANAMA-priority condition: UL, delivery and E2E ordering errors are separate quantities; CPU utilization includes idle intervals and unfinished service.}\label{fig:components}\end{figure*}"]
+        r"\begin{center}\begin{minipage}{\columnwidth}\centering\includegraphics[width=\columnwidth]{figures/ordering_and_utilization.pdf}",
+        r"\captionof{figure}{Nominal PANAMA-priority condition: UL, delivery and E2E ordering errors are separate quantities; CPU utilization includes idle intervals and unfinished service.}\label{fig:components}\end{minipage}\end{center}"]
     r=next(r for r in baseline if r["num_agents"]==8 and r["policy"]=="priority")
+    if not full_grid:
+        start=lines.index(r"\begin{figure*}[t]\centering\includegraphics[width=\textwidth]{figures/rate_compute_grid.pdf}")
+        end=lines.index(r"\begin{center}\begin{minipage}{\columnwidth}\centering\includegraphics[width=\columnwidth]{figures/ordering_and_utilization.pdf}")
+        del lines[start:end]
+        lines.insert(2,"The full 97-condition sensitivity grid is still running. The measured comparisons in this subsection cover only the nominal resources and the fresh reference; unfinished sensitivities are not represented by invented values.")
     parts=[]
     for metric,label,scale in (("success","completion probability",100),("mean_task_latency_seconds","mean task latency",1),("xi_fov","mean episode FoV inconsistency",100)):
         paired=r["paired_equal"][metric]; lo,hi=np.array(paired['ci95'])*scale
@@ -155,6 +162,10 @@ def publish(study,paper,output):
     manifest=json.loads((study/"manifest.json").read_text())
     if status["status"]!="complete" or manifest["diagnostic"]:
         raise ValueError("Only a completed qualified study can populate the paper results")
+    full_grid=len(manifest["conditions"])==97
+    if not full_grid and not (len(manifest["conditions"])==5 and
+        {c["tags"]["variant"] for c in manifest["conditions"]}=={"fresh","up-1-cpu-1"}):
+        raise ValueError("Paper reporting supports the completed nominal comparison or all 97 conditions")
     bank=json.loads((study/"held_out_cases.json").read_text()); ids={r["case_id"] for r in bank}
     totals=dict(episodes=0,tasks=0,delivered_tasks=0,allocation_snapshots=0)
     for condition in manifest["conditions"]:
@@ -177,8 +188,10 @@ def publish(study,paper,output):
     rows=summarize(study)
     plt.rcParams.update({"font.size":8,"axes.titlesize":9,"svg.fonttype":"none","pdf.fonttype":42})
     figures=paper/"figures"; figures.mkdir(exist_ok=True)
-    overview(rows,figures); grid_effects(rows,figures); paired_effects(rows,figures); ordering_components(rows,figures)
-    latex_results(rows,paper,manifest,totals)
+    overview(rows,figures); ordering_components(rows,figures)
+    if full_grid:
+        grid_effects(rows,figures); paired_effects(rows,figures)
+    latex_results(rows,paper,manifest,totals,full_grid)
     output.mkdir(parents=True,exist_ok=True)
     for filename in ("summary.json","summary.csv","manifest.json","held_out_cases.json","status.json"):
         shutil.copyfile(study/filename,output/filename)

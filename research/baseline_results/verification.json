@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "episodes": 1000,
+  "tasks": 487862,
+  "delivered_tasks": 483862,
+  "allocation_snapshots": 74092,
+  "conditions": 5,
+  "checkpoint_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "timeline_sha256": "8681dd5a974b86e54f4de26f39802ee7f098ca229512c6630da11bab9eb5cba0",
+  "study_path": "D:\\Projects\\SANGIN-dev\\output\\resources\\paper-baseline-20261021",
+  "manifest_sha256": "ccd9d2869dee8cdb81b2b588688fc90c99f993ca6a5a368c130cab5a65671a8f"
+}

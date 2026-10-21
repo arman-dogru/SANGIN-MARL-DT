@@ -29,6 +29,7 @@ After completion:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\audit_resource_loop.py --study output\resources\paper-allocation-20261021 --output research\full_loop_audit.json
+.\.venv\Scripts\python.exe scripts\verify_resource_records.py --study output\resources\paper-allocation-20261021 --output research\full_record_audit.json
 .\.venv\Scripts\python.exe scripts\report_paper_results.py --study output\resources\paper-allocation-20261021
 .\.venv\Scripts\python.exe scripts\paper_diagrams.py
 ```
@@ -43,3 +44,17 @@ Open `paper/` in the LaTeX editor, or compile `paper/main.tex` with a standard L
 distribution. This workstation also uses the official portable Tectonic 0.17.0
 binary under ignored `tmp/tools/tectonic/`. Bibliographic citations link to the
 original author preprints and to the implemented ITU-R P.618-13 revision.
+
+The completed nominal comparison is reproducible with the same resource-study
+command and a new run ID, adding `--conditions up-1-cpu-1__equal
+up-1-cpu-1__static up-1-cpu-1__aoi up-1-cpu-1__priority`. The fresh reference is
+included automatically. This gives 1,000 episodes. Publish it with
+`--study output/resources/<nominal-run-id> --output research/baseline_results`.
+`scripts/compare_resource_repeats.py` compares physical outcomes between repeated
+case banks, excluding host-dependent solver wall time. Current validation matches
+all 1,000 nominal episodes against their independent full-grid repeats.
+
+Worker count changes throughput only; this workstation uses 24 of 36 logical
+cores for the full study. Keep the configuration and frozen model fixed. The
+action policy executes at robot decision epochs using local sensing and delivered
+caches; finite-CPU offloaded jobs generate guidance/coordination support.

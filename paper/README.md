@@ -18,7 +18,13 @@ the missing original `li2019energy` bibliography entry is not guessed.
 
 Figures and result tables are generated from source scripts and recorded runs.
 The complete run uses 97 conditions, 50 held-out cases per population and 250 steps.
-Before completion, the generated results subsection explicitly states that the
-study is running. It contains no fabricated measurements.
+The completed 1,000-episode nominal comparison is already included, with paired
+confidence intervals and an independent repeat audit. The generated subsection
+explicitly distinguishes those results from the running full sensitivity grid.
+
+The action network uses local sensing and received caches; offloaded finite-CPU
+jobs provide guidance and coordination states. The manuscript consistently scopes
+its claims to this qualified implementation. Remote action inference is a separate
+extension requiring its own workload and transport timing.
 
 Reproduction commands and asset hashes are maintained in `../research/`.

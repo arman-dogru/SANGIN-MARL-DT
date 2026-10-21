@@ -4,6 +4,8 @@ The experiments use the fixed MovingAI \texttt{random-32-32-10} map, with 32 by 
 The clean frozen PANAMA checkpoint qualified on 200 episodes at each population: success rates were 97\%, 96\%, 95.5\%, and 95\% for 2, 4, 6, and 8 robots. Evaluation uses 50 separate held-out cases per population and a 250-step cap. All treatments share policy weights, starts, goals, seeds and orbital offsets. Hashes identify the checkpoint, map, case bank, channel archive and source code. Map compatibility permits exact LF/CRLF conversion only.
 
 The 100 ms control observation budget determines which cached information is available before an action. It is not a hard task deadline. One logical coordination task is generated per robot per cycle after the initial fresh briefing. The task size and CPU demand below are simulation assumptions, not profiled neural-inference workloads or measured processor performance. Whole tasks retain their execution site once assigned; the finite processors account for existing work and recompute priority-aware sharing on arrivals and completions. CPU service is work-conserving in the latency-only case and may intentionally idle under the DVFS objective. Actual dynamic CPU energy integrates $\kappa_D f_i(t)^3$ over service.
+\paragraph{Scope of the current implementation}
+The offloaded jobs provide guidance and coordination-state support. The frozen PANAMA action network is evaluated at robot decision epochs using local sensing and the received infrastructure caches. These results validate the allocation--freshness--decision feedback loop. A separately serialized remote action network would need its own observation transport, inference workload and action-return timing experiment.
 
 \begin{table}[t]
 \centering\caption{Nominal access, computation and timing assumptions.}
@@ -54,6 +56,13 @@ Association-average full-route RTT & 24.92--29.60 ms\\\bottomrule
 \end{table}
 
 The full route is robot--UAV--LEO--gateway--ground cloud and its reverse, with no inter-satellite hop. Each direction is limited by both its terminal and gateway link budgets. Conducted transmitter power, rather than EIRP, determines transmission energy. Propagation includes one outbound and one return contribution; fragmentation does not multiply propagation by the number of fragments. Actual response serialization is simulated even though it is omitted from the analytical latency expression. Solver wall time is measured separately from logical task CPU time.
+The A2S expression is the ideal Shannon reference. The engineering service model applies the tabulated implementation loss and efficiency before the allocated-capacity ceiling. For each terminal or gateway link,
+\begin{align}
+ \Gamma_{\mathrm{dB}}={}&\mathrm{EIRP}+(G/T)_{\mathrm{rx}}-L-\xi_{\mathrm{atm}}\nonumber\\
+ &-L_{\mathrm{impl}}-10\log_{10}(k_B B),\\
+ R={}&\min\{R_{\mathrm{cap}},\beta B\log_2(1+10^{\Gamma_{\mathrm{dB}}/10})\}.
+\end{align}
+Here the receive noise temperature is represented by $G/T$, and the deterministic antenna gains are not additional sampled fading. The uplink route uses the smaller terminal-uplink/gateway-downlink bound; the reverse route uses the smaller gateway-uplink/terminal-downlink bound.
 
 \subsection{Validation, Baselines and Metrics}
 Six predictable sanity cases cover large satellite delay, fast cloud/slow drone, unavailable backhaul, unavailable drone CPU, fixed-route priority differentiation and a DVFS optimum with idle CPU. Every expected assignment is checked using an independent primal CVXPY formulation and exhaustive enumeration. The earlier supplied four-robot MATLAB validation inputs are also preserved, including the original infinite deadlines and the separate Case E feasibility test; execution here uses the approved CVXPY equivalent.
@@ -63,5 +72,6 @@ The primary grid combines uplink and common CPU multipliers $\{0.25,1,4\}$ under
 Task outcomes include observed and snapshot-predicted latency, prediction error, the 95th latency percentile, unfinished-task counts, stage service times, and modeled energy by transmitter and processor. Mission outcomes include completion, capped mission duration, successful makespan, sum of time-to-first-arrival costs, stationary steps (including blocked moves), and collision attempts. Unfinished missions remain censored at 250 steps; PAR-2 assigns them 500. Directed inconsistency is recorded with UL/DL/E2E decomposition, square-FoV relevance, source-time AoI and raw numerator/denominator counts. Mean per-episode inconsistency and pooled relevant-pair ratios are labelled separately. A zero relevance denominator gives zero.
 
 Each comparison uses the same held-out case in both conditions. We report paired mean differences and seeded 2,000-resample 95\% bootstrap intervals, with the number of usable pairs for metrics affected by censoring. The intervals are pointwise across the sensitivity grid and are not family-wise multiple-comparison guarantees. Conditional successful makespans are secondary to completion and PAR-2. Snapshot optimality and a lower relaxed objective do not imply an improvement in every mission outcome.
+Tasks are not drained after mission termination: final-cycle requests and any older unfinished work remain counted. Delivered-task delay and energy means are conditional on delivery, with unfinished counts and whole-mission energy bounds reported alongside them. The FoV metric uses conflicts predicted by the receiver's available intentions; it does not establish collision freedom or capture conflicts absent from those cached intentions. Physical collision attempts and mission outcomes are evaluated separately.
 
 \input{generated/results}

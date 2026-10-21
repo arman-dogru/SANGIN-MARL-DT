@@ -151,7 +151,7 @@ def test_reference_scoring_uses_identical_truth_coefficients():
     assert scored.objective-oracle.objective == pytest.approx(.45)
 
 
-def corridor_environment(actions, response="terminate", completed=False):
+def corridor_environment(actions, response="terminate", completed=False, goal_steps=3):
     from panama_uav.scenarios import Scenario, load_map
     cfg = remote_config(drone_cycles_per_second=1e11, on_collision=response)
     cfg = replace(cfg, communication=replace(cfg.communication, profile="perfect"))
@@ -159,7 +159,7 @@ def corridor_environment(actions, response="terminate", completed=False):
     row, col = next((r, c) for r in range(1, 30) for c in range(1, 28)
                     if not grid[r-1:r+2, c:c+4].any())
     starts = ((row, col), (row, col+2))
-    goals = (starts[0] if completed else (row, col+3), (row, col))
+    goals = (starts[0] if completed else (row, col+goal_steps), (row, col))
     scenario = Scenario(Path("fixture.scen"), cfg.resolve("maps/random-32-32-10.map"), starts, goals)
     env = ExperimentEnvironment(cfg, ExperimentMode.UAV, "maps/random-32-32-10.map", 2, 250, 123, scenario)
     env.remote_inference = lambda location, robot, observation: actions[robot]
@@ -220,6 +220,28 @@ def test_completed_robot_yields_returns_and_never_gets_new_compute_tasks():
     final = [e for e in env.communication.remote_events
              if e["event"] == "message_sent" and e["kind"] == "remote_completion"]
     assert len(final) == 1 and env.agents[0].first_completion_time == 0
+
+
+def test_fresh_reference_refreshes_atomic_robot_caches_after_motion_and_completion():
+    env = corridor_environment({0: 3, 1: 4}, "dt_resolve", goal_steps=1)
+    comm = env.communication
+    env.prepare_decision(.1)
+    env.step(comm.execution_actions.copy())
+    # Goal completion and post-goal positions must also reach every cache in
+    # the ideal reference, even after a robot stops submitting inference jobs.
+    assert env.agents[0].ever_reached_goal
+    env.prepare_decision(.1)
+    env.step(comm.execution_actions.copy())
+    env.prepare_decision(.1)
+    for receiver, states in comm.states.items():
+        for peer, cache in states.items():
+            assert tuple(cache.value["position"]) == env.agents[peer].position
+            assert cache.value["completed"] == env.agents[peer].ever_reached_goal
+            assert cache.source_timestamps == {peer: 2.}
+            assert comm.events_by_id[comm.receiver_refs[receiver][peer]]["ideal_reference"]
+    snapshot = comm._consistency()
+    assert snapshot["ordering_errors"] == snapshot["fov_errors"] == 0
+    assert snapshot["missed_physical_conflicts"] == snapshot["false_positive_conflicts"] == 0
 
 
 def test_remote_motion_cannot_bypass_command_cutoff():

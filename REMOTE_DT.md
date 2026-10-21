@@ -32,7 +32,9 @@ Updates computed at the UAV are usable there immediately and reach the cloud
 through modeled synchronization. Cloud updates cannot appear at the UAV before
 delivery. Both stores begin with an explicitly logged fresh briefing; neither
 has free physical refresh after initialization. The `fresh` ideal reference is
-the explicit exception: fresh replicas and zero communication/compute delay.
+the explicit exception: fresh replicas and robot coordination caches at each
+epoch, with zero communication/compute delay. These ideal cache refreshes are
+logged and replayed explicitly, including completed robots' current states.
 
 Each active robot senses its obstacle/occupancy FoV and own position/goal at
 `n * seconds_per_step`. This raw sensing report is distinct from the DQN input.

@@ -383,6 +383,20 @@ class RemoteDTCommunication(PaperMissionCommunication):
                     event = self._record("dt_state_event", location=location, state=fresh.payload(),
                         available_at=now, ideal_reference=True)
                     replica.accept(fresh, now, event["event_id"])
+                # Zero-delay inference republishes the same state/version, so
+                # _publish correctly rejects it as a duplicate. Refresh robot
+                # caches explicitly as part of the ideal-reference exception.
+                for receiver, states in self.states.items():
+                    accepted = states[agent.id].accept(now, fresh.payload(), self.current_cycle,
+                        dict(fresh.sources))
+                    received = self._record("received_state_event", receiver=receiver, peer=agent.id,
+                        state_event=self.replicas["cloud"].state_ids[agent.id], state=fresh.payload(),
+                        arrived_at=now, generated_at=now, source_min=fresh.source_time,
+                        sources=fresh.sources, version=self.current_cycle, accepted=accepted,
+                        rejection_reason=None if accepted else "obsolete_source_or_order", ideal_reference=True)
+                    if accepted:
+                        self.receiver_refs[receiver][agent.id] = received["event_id"]
+                        self._sync(receiver)
         for agent in agents:
             self.position_history[agent.id].append((now, tuple(agent.position)))
             if agent.ever_reached_goal and agent.id in self.completion_sent:

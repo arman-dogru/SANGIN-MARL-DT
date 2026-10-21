@@ -1,4 +1,5 @@
 import copy
+from dataclasses import replace
 import json
 
 import pytest
@@ -10,17 +11,19 @@ from panama_uav.remote_audit import replay_trace
 from test_remote_execution import remote_config
 
 
-def episode(shadow=True):
+def episode(shadow=True, profile="physical"):
     config = remote_config(drone_cycles_per_second=1e11, oracle_shadow=shadow)
+    config = replace(config, communication=replace(config.communication, profile=profile))
     torch.manual_seed(42)
     model = DQN((3, 15, 15), config.vector_length).eval()
     row, trace = run_episode(config, model, case_bank(config, 1, (2,))[0], torch.device("cpu"), max_steps=3)
     return model, row, trace
 
 
-def test_archive_replay_rebuilds_tensors_stores_actions_pairs_and_outcome():
+@pytest.mark.parametrize("profile", ["physical", "perfect"])
+def test_archive_replay_rebuilds_tensors_stores_actions_pairs_and_outcome(profile):
     import numpy as np
-    model, row, trace = episode()
+    model, row, trace = episode(profile=profile)
     restored = json.loads(json.dumps(trace, allow_nan=False))
     def infer(location, agent, observation):
         return select_action(model, observation, 0, np.random.default_rng(0), torch.device("cpu"))

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "completed_utc": "2026-10-21T12:54:49.619710+00:00",
+  "base_commit": "b7efb37daa89896a90c5e7787804162fe9403b98",
+  "tests": {
+    "tests": 121,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 36.379,
+  "pytest_command": ".\\.venv\\Scripts\\python.exe -m pytest -q --basetemp tmp\\pytest-code-confirm-20261021 --junitxml output\\validation\\code-confirmation.xml",
+  "sanity_command": ".\\.venv\\Scripts\\python.exe -m panama_uav allocation-sanity --output research\\solver-sanity-20261021",
+  "cvxpy_version": "1.9.3",
+  "clarabel_version": "0.11.1",
+  "sanity_cases": 10,
+  "maximum_independent_objective_difference": 7.526550493963668e-10,
+  "maximum_sanity_residual": 2.0457615601543466e-09,
+  "hand_checks": [
+    "single-task RTT 0/79/81/5000 ms around 80 ms threshold",
+    "two equal processors split four equal jobs 2+2",
+    "weights 4:1 give CPU shares 2:1"
+  ],
+  "task_deadline": "not imposed",
+  "source_sha256_normalized_lf": {
+    "src/panama_uav/allocation.py": "0f5381746c89ed8d3a122061de4b5421952473f2bebbb63b623a2a1a39c40787",
+    "src/panama_uav/compute.py": "ce59c3b16b67a0ef42481bc17e20c8afd3014694c08db4f18b6a7c765442a3e3",
+    "src/panama_uav/validation.py": "94406142b7582853f4c02344a40d19785a72a8c5ab96dfcbedf0bd6cc7f6d5b1",
+    "tests/test_obvious_allocation.py": "c5e6e57708fbf20ad53ea53ecc62994a03355933f0a131f076f180e924860ea8"
+  }
+}

@@ -17,8 +17,15 @@ def sanity_scenarios():
             propagation_round_trip_seconds=5) for t in tasks)), [1, 1, 1, 1]),
         ("fast_cloud_slow_drone", replace(base, drone_cycles_per_second=1e6,
             tasks=tuple(replace(t, propagation_round_trip_seconds=0) for t in tasks)), [0, 0, 0, 0]),
+        ("slow_backhaul", replace(base, tasks=tuple(replace(t,
+            backhaul_bps=1e3) for t in tasks)), [1, 1, 1, 1]),
+        ("slow_cloud_cpu", replace(base, cloud_cycles_per_second=1e6), [1, 1, 1, 1]),
         ("unavailable_backhaul", replace(base, tasks=tuple(replace(t, backhaul_bps=0) for t in tasks)), [1, 1, 1, 1]),
         ("unavailable_drone", replace(base, drone_cycles_per_second=0), [0, 0, 0, 0]),
+        ("single_task_low_propagation", replace(base, tasks=(replace(tasks[0],
+            propagation_round_trip_seconds=.01),)), [0]),
+        ("single_task_high_propagation", replace(base, tasks=(replace(tasks[0],
+            propagation_round_trip_seconds=1),)), [1]),
         ("bounded_priority_fixed_drone", replace(base, tasks=(replace(tasks[0], weight=4, fixed_x=1),
             replace(tasks[1], weight=1, fixed_x=1))), [1, 1]),
         ("dvfs_idle_capacity", AllocationSnapshot((replace(tasks[0], fixed_x=1),),
@@ -82,6 +89,10 @@ def run_sanity(output):
             assert result["binary"]["tasks"][0]["drone_share"] < .1
         write_json(output/f"{name}.json", dict(result=result, independent=independent, expected=expected))
         rows.append(dict(scenario=name, expected=expected, actual=actual, status="passed",
+            relaxed_x=[t["x"] for t in result["relaxed"]["tasks"]],
+            drone_shares=[t["drone_share"] for t in result["binary"]["tasks"]],
+            cloud_shares=[t["cloud_share"] for t in result["binary"]["tasks"]],
+            is_dcp=result["relaxed"]["is_dcp"], residual=result["relaxed"]["residual"],
             objective=result["binary"]["objective"], independent_objective=independent["objective"],
             difference=difference, relaxation_gap=result["absolute_gap"]))
     write_json(output/"summary.json", rows)

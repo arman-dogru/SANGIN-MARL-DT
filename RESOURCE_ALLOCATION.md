@@ -22,11 +22,12 @@ A short, explicitly untrained diagnostic requires no checkpoint or orbit downloa
 python -m panama_uav --config configs/resource_study.toml resource-study --run-id resource-diagnostic-01 --diagnostic --cases 1 --agents 2 4 6 8 --max-steps 6 --primary-only
 ```
 
-For the orbital paper study, provide the qualified clean checkpoint and archived
-full-route timeline. Choose a new run ID; existing output directories are rejected.
+For the orbital paper study, prepare the qualified clean checkpoint and archived
+full-route timeline using `research/REPRODUCE.md`. Choose a new run ID; existing
+output directories are rejected unless explicitly resuming the same case bank.
 
 ```powershell
-python -m panama_uav --config configs/resource_study.toml resource-study --run-id resource-paper-01 --model output/qualified/clean/final_model.pt --timeline data/leo/tremblant_full.npz
+python -m panama_uav --config configs/paper_study.toml resource-study --run-id resource-paper-01 --model artifacts/inputs/final_model.pt --workers 8
 python -m panama_uav resource-report --path output/resources/resource-paper-01
 ```
 
@@ -45,14 +46,24 @@ is 16c, and Equation 18 is the closed-form drone allocation. The implementation
 removes the task-deadline constraint and fixes transmit powers and radio rates for
 each scheduling snapshot. Cloud computing is on the ground, reached through LEO.
 
-For task i, let C_i=s_i*c_i, d_G,i=s_i/R_G,i, and d_A,i=s_i/R_A,i. The objective is
+For task i, let C_i=s_i*c_i, d_G,i=s_i/R_G,i, and d_A,i=s_i/R_A,i. The original
+transmit-energy objective is
 
     sum_i [omega_E * (P_i*d_G,i + P_D*(1-x_i)*d_A,i) + omega_T*pi_i*T_i].
 
 The first energy term is robot-upload energy and is constant in a fixed snapshot.
 The second is drone backhaul transmit energy. Powers are conducted watts, not EIRP.
-Propagation and idle time do not consume transmit energy in this model. Propulsion,
-receive, electronics, and processor energy are outside this transmit-energy model.
+Propagation and idle time do not consume transmit energy. The editable manuscript
+also includes drone dynamic CPU energy, so `configs/paper_study.toml` adds
+
+    E_D,i = x_i*kappa_D*C_i*f_D,i^2,
+
+with kappa_D=1e-28. In the relaxation its closed perspective is
+kappa_D*C_i*F_D^2*a_i^2/x_i. The default kappa=0 retains the original
+transmit-only model. Robot-upload energy is recorded in every mode; paper mode
+omits this constant from the objective through `include_robot_upload_in_objective=false`.
+Propulsion, receive electronics, static CPU power and cloud electricity remain
+outside the modeled energy. These are simulation assumptions, not hardware data.
 
 For the scheduling relaxation, define a_i=x_i*f_D,i/F_D and
 b_i=(1-x_i)*f_C,i/F_C. Then
@@ -75,9 +86,17 @@ in bits, bits/s, cycles, cycles/s, seconds, watts, and joules. Objective referen
 units are 1 J and 1 s; both coefficients default to 1 and latency weight stays positive.
 
 The exact binary reference enumerates at most eight undecided tasks (256 routes).
-For each route, each pool uses the Equation 18/19 share proportional to
-sqrt(pi_i*C_i). Already assigned unfinished tasks may also be present; their routes
-remain fixed. The continuous solution is a lower bound for this same frozen
+For each route, latency-only pools use the Equation 18/19 share proportional to
+sqrt(pi_i*C_i). With drone dynamic energy, the unique positive rates instead obey
+
+    -omega_T*pi_i*C_i/f_D,i^2 + 2*omega_E*kappa_D*C_i*f_D,i + lambda_D = 0,
+
+with nonnegative capacity multiplier and complementary slackness. A scalar
+multiplier search solves the bounded CPU subproblem. Capacity can remain idle:
+forcing full utilization would increase the DVFS objective in that case. Cloud
+energy is unmodeled, so its square-root allocation still applies. Existing
+unfinished tasks may also be present; their routes remain fixed. The continuous
+solution is a lower bound for this same frozen
 snapshot, including the fixed previous assignments. It is not a guarantee about
 the optimality of an entire dynamic mission or its realized latency.
 
@@ -98,6 +117,12 @@ cycles stay in allocation snapshots. Outstanding work cannot repeatedly receive 
 fresh full CPU budget. Pool completions use cancellation tokens to invalidate
 events superseded by new sharing rates.
 
+The qualified implementation offloads guidance/coordination support. The frozen
+action network consumes local sensing and received caches at each robot decision
+epoch. This is the complete PANAMA--priority--allocation--delivery--PANAMA feedback
+loop. Fully remote action inference needs a separate observation/action transport
+experiment; the measured results do not establish its timing or performance.
+
 Each completed task generates guidance G_i and a bundled S_i=(I_i,rho_i,g_i).
 Guidance returns to its robot; S_i is sent to all receivers, including itself.
 Cloud responses traverse satellite downlink and robot access. Results are actually
@@ -112,7 +137,8 @@ share one source state. Available intentions are clipped cell by cell to the squ
 FoV, without the legacy Manhattan peer-distance gate. Observation tensor shapes
 and neural weights remain unchanged. This is a frozen-policy sensitivity study.
 
-Initial assumptions in `configs/resource_study.toml`:
+Initial assumptions in `configs/paper_study.toml` (the older
+`configs/resource_study.toml` retains transmit-only energy):
 
 | Quantity | Value |
 | --- | --- |
@@ -120,6 +146,7 @@ Initial assumptions in `configs/resource_study.toml`:
 | Work per input bit | 1,000 cycles/bit |
 | Drone / cloud processors | 1e9 / 1e10 cycles/s |
 | Robot / drone transmit power | 0.2 / 2 W |
+| Drone dynamic CPU coefficient | 1e-28 |
 | Access uplink / downlink ceilings | 50 / 50 Mbit/s |
 | Satellite uplink / downlink ceilings | 10 / 50 Mbit/s |
 | Bounded resource weights | 1 to 4 |
@@ -140,8 +167,13 @@ parameterization. A 35 dBW terminal EIRP and 2 W conducted power imply approxima
 The configured one-way full-route delay is 25 ms: space legs are reported separately
 using assumed 550 km drone and gateway ranges and the remainder is ground delay.
 
-Orbital runs instead reuse the archived ITU-R/geometry budgets and existing service
-integration, including gateway bottlenecks, guard intervals and interruptions.
+Orbital paper runs use an association-average derivative of the archived
+ITU-R/geometry timeline. Range and dB attenuation are averaged per serving
+association/scheduling interval and path loss/SNR/rates are recomputed; rates
+themselves are not averaged. Original interruption windows, gateway bottlenecks,
+guard intervals and the raw archive remain available. The archived attenuation
+uses ITU-Rpy 0.4.0 and its P.618-13 default, with a fixed long-term exceedance
+quantile rather than sampled instantaneous weather or small-scale fading.
 Changing EIRP requires rebuilding that timeline. Effective rates are capped by the
 configured allocation. Full-route one-way propagation includes both space legs and
 ground delay. It is applied once outbound and once inbound, not doubled again on
@@ -161,8 +193,12 @@ weights retain the floor under every policy.
 Equations 28--36 are evaluated per directed receiver-peer pair. Vertex/edge
 conflicts use cached self and peer intention segments and the receiver's current
 square FoV. The horizon includes the current cell plus five future cells; short
-paths repeat their final cell. Ordering error compares cached priorities with
-current reference priorities. AoI weighting uses the larger cached operand age
+paths repeat their final cell. Ordering errors separately compare generated DT
+priorities with physical priorities (UL), receiver priorities with generated DT
+priorities (DL), and receiver priorities with physical priorities (E2E). Both
+operands use the same directed relation. UL and DL errors may cancel, and E2E
+never exceeds their sum. Physical truth is reserved for evaluation.
+AoI weighting uses the larger cached operand age
 and a 1 s reference. Store raw ordering errors, relevant-pair counts, relevant
 errors, and pair-level source ages; a zero relevant-pair denominator gives zero.
 This metric is measured and does not enter the allocation objective.
@@ -187,6 +223,8 @@ can have consumed some energy; mission totals therefore expose lower/upper bound
 using its reserved airtime rather than presenting an invented exact total. Pending
 and delivered task counts accompany latency/energy averages to expose censoring.
 Solver wall time is logged separately and is not added to simulated task CPU time.
+Drone CPU energy integrates kappa_D*f_i(t)^3, including elapsed unfinished service;
+CPU utilization includes idle intervals.
 
 The acceptance suite covers conic feasibility and binary bounds, closed-form CPU
 shares, unavailable routes, energy units, fragmentation, asymmetric/full-route
@@ -208,7 +246,8 @@ event simulator retains it.
 In Section III, remove the optimization over P and constraints 16b--16c. Add drone
 backhaul transmission energy to E_tx. Present binary execution and the continuous
 scheduling bound separately, together with the conic substitution above. Retain
-Equations 18--21 for fixed route/rate computation sharing. Equation 22 may remain
+Equations 18--21 as the latency-only special case of fixed route/rate sharing,
+and add the DVFS KKT rule above. Equation 22 may remain
 as an analytical deadline-feasibility observation, but is not enforced or evaluated
 in this study. Do not claim the entire relaxed mission is globally optimal.
 
@@ -217,5 +256,8 @@ unfinished-task counts, and the fraction of control decisions using previous-cyc
 sources. Add the assumed workload/RF parameter table, per-transmitter energy,
 relaxation gap, realized compute contention, FoV-relevant errors, and paired equal
 allocation comparisons. Describe orbital results and fixed-geometry diagnostics
-separately. The supplied PDF is retained unchanged; these replacement passages are
-provided because its editable manuscript source is not in this repository.
+separately. The supplied PDF is retained unchanged. The later supplied editable
+TeX is now revised under `paper/`; its exact original source is preserved under
+`paper/original/`. The tracked PDF, tables and plots are generated from recorded
+runs. `research/BASELINE_RESULTS.md` documents the completed nominal comparison;
+`research/REPRODUCE.md` provides the complete sweep and independent audit commands.

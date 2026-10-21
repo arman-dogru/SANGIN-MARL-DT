@@ -121,6 +121,11 @@ def parser():
     sub.add_argument("--output", required=True)
     sub = commands.add_parser("allocation-sanity", help="Run predictable independently verified allocation cases")
     sub.add_argument("--output", required=True)
+    sub = commands.add_parser("remote-audit", help="Rebuild and verify a remote-DT event archive")
+    sub.add_argument("--input", required=True)
+    sub.add_argument("--output")
+    sub.add_argument("--model", help="Also verify frozen DQN actions with this checkpoint")
+    sub.add_argument("--device", default="cpu")
     sub = commands.add_parser("resource-conditions", help="List resource experiment conditions")
     sub.add_argument("--primary-only", action="store_true")
     sub = commands.add_parser("resource-report", help="Rebuild resource summaries and figures")
@@ -144,6 +149,26 @@ def parser():
 
 def main(argv=None):
     arguments = parser().parse_args(argv)
+    if arguments.command == "remote-audit":
+        from .remote_audit import audit_archive
+        inference = None
+        if arguments.model:
+            import numpy as np
+            from .training import load_model
+            from .models import choose_device, select_action
+            config, device = load_config(arguments.config), choose_device(arguments.device)
+            model, _ = load_model(arguments.model, config, device, require_qualified=False)
+            def inference(location, robot, observation):
+                return select_action(model, observation, 0.0, np.random.default_rng(0), device)
+        from .records import sha256
+        result = audit_archive(arguments.input, inference, sha256(arguments.model) if arguments.model else None)
+        # Full directed records can be exported, while terminal output stays compact.
+        compact = {k: v for k, v in result.items() if k not in ("pair_consistency", "assignments")}
+        if arguments.output:
+            from .records import write_json
+            write_json(arguments.output, result)
+        print(json.dumps(compact, indent=2))
+        return 0
     if arguments.command == "allocation-sanity":
         from .validation import run_sanity
         rows = run_sanity(arguments.output)

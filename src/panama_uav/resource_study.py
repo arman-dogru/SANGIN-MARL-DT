@@ -17,6 +17,7 @@ import numpy as np
 from .allocation import AllocationFailure, AllocationSnapshot, compare_allocations
 from .config import FIXED_MAP
 from .records import append_jsonl, export_csv, sha256, write_json
+from .remote_metrics import REMOTE_METRICS
 
 
 def _worker_initialize(model_path, configuration, diagnostic, device_name):
@@ -54,6 +55,13 @@ def _archive_episode(row, trace, directory, case):
     if trace["frames"][0]["positions"] != case["starts"]:
         raise AssertionError("Paired case starts changed")
     row = episode_metrics(row, trace)
+    if trace.get("remote_schema"):
+        manifest = json.loads((Path(directory).parent/"manifest.json").read_text(encoding="utf-8"))
+        trace["provenance"] = {k: manifest[k] for k in ("git_commit", "code_sha256", "model", "map_sha256",
+            "timeline_sha256", "case_bank_sha256", "packages", "diagnostic", "loop_schema")}
+        from .remote_audit import replay_trace
+        audit = replay_trace(trace)
+        trace["audit"] = {k: v for k, v in audit.items() if k not in ("pair_consistency", "assignments")}
     # Encode once; streaming json.dump into gzip incurs one write per token.
     encoded = json.dumps(trace, allow_nan=False, separators=(",", ":")).encode("utf-8")
     with gzip.open(Path(directory)/f"{case['case_id']}.json.gz", "wb", compresslevel=4) as stream:
@@ -199,7 +207,8 @@ def episode_metrics(row, trace):
                     metrics["waiting_steps"] += 1
                 else:
                     metrics["travel_steps"] += 1
-    snapshots = [f["consistency"] for f in frames]
+    snapshots = ([e["summary"] for e in trace["remote_events"] if e["event"] == "consistency_event"]
+                 if trace.get("remote_schema") else [f["consistency"] for f in frames])
     relevant = sum(s["relevant_pairs"] for s in snapshots)
     errors = sum(s["fov_errors"] for s in snapshots)
     allocations = [e for e in trace["transport_events"] if e["event"] == "paper_allocation"]
@@ -226,6 +235,9 @@ def episode_metrics(row, trace):
         area = sum((min(duration, events[i+1]["time"] if i+1 < len(events) else duration)-event["time"])
                    *event["utilization"] for i, event in enumerate(events))
         metrics[f"mean_{pool}_cpu_utilization"] = area/duration if duration else 0.0
+    if trace.get("remote_schema"):
+        from .remote_metrics import remote_metrics
+        metrics.update(remote_metrics(trace))
     return {**row, **metrics}
 
 
@@ -239,6 +251,7 @@ METRICS = ("par2", "success", "waiting_steps", "sum_path_costs", "xi_fov", "mean
            "drone_compute_energy_j", "modeled_energy_lower_j", "modeled_energy_upper_j", "collision_attempts",
            "voluntary_wait_steps", "travel_steps", "completed_task_robot_energy_j", "completed_task_backhaul_energy_j",
            "completed_task_compute_energy_j", "mean_drone_cpu_utilization", "mean_cloud_cpu_utilization")
+METRICS += REMOTE_METRICS
 
 
 def paired_metrics(rows, reference, samples=2000):
@@ -307,7 +320,10 @@ def plot_results(root):
     import matplotlib.pyplot as plt
     root = Path(root)
     rows = json.loads((root/"summary.json").read_text(encoding="utf-8"))
-    diagnostic = json.loads((root/"manifest.json").read_text(encoding="utf-8"))["diagnostic"]
+    manifest = json.loads((root/"manifest.json").read_text(encoding="utf-8"))
+    diagnostic = manifest["diagnostic"]
+    if manifest.get("execution_mode") == "remote_dt":
+        return _plot_remote_results(root, rows, diagnostic)
     counts = sorted({r["num_agents"] for r in rows})
     if not counts:
         return []
@@ -377,6 +393,39 @@ def plot_results(root):
         fig.savefig(target, dpi=170)
         paths.append(str(target))
     plt.close(fig)
+    return paths
+
+
+def _plot_remote_results(root, rows, diagnostic):
+    """Nominal acceptance comparisons; do not imply an unrun rate/CPU sweep."""
+    import matplotlib.pyplot as plt
+    counts = sorted({r["num_agents"] for r in rows})
+    output = root/"figures"
+    output.mkdir(exist_ok=True)
+    paths = []
+    for metric, label in (("task_latency_p95_seconds", "Task latency p95 (s)"),
+                          ("command_cutoff_misses", "Commands missing the cutoff / episode"),
+                          ("modeled_energy_lower_j", "Modeled energy lower bound (J)"),
+                          ("xi_fov", "Cached FoV ordering error fraction")):
+        fig, axes = plt.subplots(1, len(counts), figsize=(5*len(counts), 3.8), squeeze=False)
+        for ax, count in zip(axes[0], counts):
+            group = [r for r in rows if r["num_agents"] == count and r.get(metric) is not None]
+            values = [r[metric] for r in group]
+            lower = [max(0, r[metric]-r.get(metric+"_ci95", [r[metric]])[0]) for r in group]
+            upper = [max(0, r.get(metric+"_ci95", [r[metric]])[-1]-r[metric]) for r in group]
+            ax.bar(range(len(group)), values, yerr=[lower, upper], capsize=3)
+            ax.set(xticks=range(len(group)), xticklabels=[r["policy"] for r in group],
+                ylabel=label, title=f"{count} robots", ylim=(0, 1 if metric == "xi_fov" else None))
+            ax.tick_params(axis="x", rotation=35)
+            ax.grid(axis="y", alpha=.25)
+        if diagnostic:
+            fig.suptitle("DIAGNOSTIC - bounded remote DT check; not paper results", fontsize=10)
+        fig.tight_layout()
+        for suffix in ("png", "svg"):
+            target = output/f"remote_{metric}.{suffix}"
+            fig.savefig(target, dpi=170)
+            paths.append(str(target))
+        plt.close(fig)
     return paths
 
 

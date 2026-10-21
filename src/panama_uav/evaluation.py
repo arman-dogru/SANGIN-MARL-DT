@@ -70,7 +70,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
         decision_deadline_seconds = config.resource_allocation.decision_budget_seconds
     observations, _ = env.reset()
     deadline = decision_deadline_seconds
-    if deadline:
+    if deadline or remote:
         observations = env.prepare_decision(deadline)
     versions = {a: 0 for a in observations}
     display_versions = {a: model_version for a in observations}
@@ -96,7 +96,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
                 input_cache_sources=env.communication.snapshot()["coordination_sources"]))
         result = env.step(actions)
         observations = result.observations
-        if deadline and not (result.terminated or result.truncated):
+        if (deadline or remote) and not (result.terminated or result.truncated):
             observations = env.prepare_decision(deadline)
         collisions += result.info.get("collisions_obstacle_step", 0) + result.info.get(
             "collisions_agent_agent_step", 0
@@ -159,6 +159,15 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
             trace["remote_events"] = env.communication.remote_events
             trace["oracle_events"] = env.communication.oracle_events
             row["execution_mode"] = "remote_dt"
+            trace["remote_settings"] = dict(radius=config.map.fov_radius,
+                horizon=config.map.communicated_path_steps, waypoints=config.map.astar_waypoints,
+                map_extent=max(env.grid.shape), age_reference=config.resource_allocation.age_reference_seconds,
+                meters_per_cell=config.map.meters_per_cell,
+                seconds_per_step=config.communication.seconds_per_step,
+                cutoff_seconds=config.resource_allocation.decision_budget_seconds,
+                on_collision=config.resource_allocation.on_collision)
+            trace["outcome"] = dict(success=row["success"], failure_reason=env.failure_reason,
+                steps=env.step_count, final_positions={a.id: list(a.position) for a in env.agents})
     return row, trace
 
 

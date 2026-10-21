@@ -64,3 +64,10 @@ def test_remote_tensor_and_mixed_source_provenance():
     assert min(sources.values()) == .5 and versions[1]["state_event"] == "peer"
     assert observation_hash(obs) == observation_hash({k: v.tolist() for k, v in obs.items()})
     assert priorities == {0: 2, 1: 1}
+
+
+def test_all_dependencies_must_exist_before_generation_not_just_oldest():
+    with pytest.raises(ValueError, match="sources"):
+        command(generation=.02, sources={0: 0, 1: .03})
+    with pytest.raises(ValueError, match="causality"):
+        replace(state(), sources={0: 0, 1: 1})

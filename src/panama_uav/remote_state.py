@@ -55,6 +55,12 @@ class DTState:
     sources: dict
     report_id: str
 
+    def __post_init__(self):
+        source_min(self.sources)
+        if (self.version < 0 or not math.isfinite(self.priority) or not math.isfinite(self.generated_at)
+            or self.generated_at < 0 or max(map(float, self.sources.values())) > self.generated_at+1e-12):
+            raise ValueError("DT timestamp causality or priority violated")
+
     @property
     def source_time(self):
         return source_min(self.sources)
@@ -101,7 +107,11 @@ class ActionCommand:
     def __post_init__(self):
         if self.action not in range(5) or self.location not in ("drone", "cloud"):
             raise ValueError("Invalid remote movement command")
-        if source_min(self.sources) > self.generated_at+1e-12:
+        if self.cycle < 0 or self.version < 0 or not all(math.isfinite(t) and t >= 0
+                for t in (self.generated_at, self.expires_at)):
+            raise ValueError("Invalid command epoch or timestamp")
+        source_min(self.sources)
+        if max(map(float, self.sources.values())) > self.generated_at+1e-12:
             raise ValueError("Command generated before its dynamic sources")
 
     def payload(self):
@@ -164,7 +174,8 @@ def remote_observation(report, own_state, replica, radius, waypoints, horizon=5,
             if abs(dr) <= radius and abs(dc) <= radius:
                 intentions[dr+radius, dc+radius] = 1
     normalizer = report.initial_distance if report.initial_distance > 0 and math.isfinite(report.initial_distance) else map_extent
-    distance = max(0, len(own_state.path)-1) if own_state.path else math.inf
+    distance = (len(own_state.path)-1 if own_state.path and (
+        len(own_state.path) > 1 or tuple(report.position) == tuple(report.goal)) else math.inf)
     vector = [float(np.clip(distance/normalizer, 0, 1)), float(report.completed)]
     path = own_state.path
     for k in range(1, waypoints+1):

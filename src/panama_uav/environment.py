@@ -225,7 +225,7 @@ class ExperimentEnvironment:
                 from .remote import RemoteDTCommunication
                 self.communication = RemoteDTCommunication(self.config, self.grid, self.agents,
                     astar_path, self.base_seed if seed is None else seed, self.max_episode_steps,
-                    self.uav, self.remote_inference)
+                    self.uav, self.remote_inference, self.model_version)
                 self.communication.shadow_inference = self.remote_shadow_inference
                 self.communication.model_version = self.model_version
                 self.communication.update(self.agents, 0.0)
@@ -430,7 +430,8 @@ class ExperimentEnvironment:
             physical_conflicts = conflicts(before, intended)
             collided = {r for event in physical_conflicts for r in event["robots"]}
             if physical_conflicts:
-                self.communication._record("physical_collision", cycle=self.step_count-1,
+                self.communication._record("physical_collision" if self.config.resource_allocation.on_collision == "terminate"
+                    else "physical_conflict", cycle=self.step_count-1,
                     conflicts=physical_conflicts, before=before, intended=intended,
                     command_contexts=self.communication.command_contexts,
                     response=self.config.resource_allocation.on_collision)
@@ -441,6 +442,7 @@ class ExperimentEnvironment:
                 priorities = {a.id: self.communication.command_contexts[a.id]["resolution_priority"]
                               for a in self.agents}
                 final = resolve_delivered(before, intended, priorities)
+            info["actual_agent_overlap_after_resolution"] = len(conflicts(before, final))
             info["physical_conflicts"] = physical_conflicts
             info["failure_reason"] = self.failure_reason
         else:
@@ -512,9 +514,11 @@ class ExperimentEnvironment:
                 first_completion_times={a.id: a.first_completion_time for a in self.agents},
                 failure_reason=self.failure_reason)
             self.communication.physical_time = self.communication.transport.now
-        self.communication.update(
-            self.agents, self.step_count * self.config.communication.seconds_per_step
-        )
+        if remote:
+            self.communication.update(self.agents, self.step_count*self.config.communication.seconds_per_step,
+                generate_tasks=not (self.all_agents_at_goals or self.failure_reason or self.step_count >= self.max_episode_steps))
+        else:
+            self.communication.update(self.agents, self.step_count*self.config.communication.seconds_per_step)
         # UAV positioning sees only successfully received access reports.
         positions = [
             tuple(self.communication.reports[a.id]["position"]) for a in self.agents

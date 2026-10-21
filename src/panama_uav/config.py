@@ -215,7 +215,7 @@ class ResourceAllocationConfig:
     command_cutoff_seconds: float | None = None
     timeout_action: int = 4
     dt_replica_sync: str = "network"
-    on_collision: str = "terminate"
+    on_collision: str = "dt_resolve"
     oracle_shadow: bool = True
     equal_weight_mode: str = "legacy"
     task_deadline_seconds: float | None = None

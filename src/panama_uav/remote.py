@@ -14,6 +14,7 @@ import numpy as np
 from .allocation import (AllocationTask, AllocationSnapshot, AllocationFailure, compare_allocations,
                          priority_weights, score_allocation, solve_binary)
 from .information import InformationCache
+from .consistency import consistency_snapshot
 from .paper import PaperMissionCommunication
 from .paper_radio import access_budget, backhaul_budget
 from .records import write_json
@@ -23,20 +24,22 @@ from .transport import encode
 
 
 class RemoteDTCommunication(PaperMissionCommunication):
-    def __init__(self, project, grid, agents, pathfinder, seed, cap, uav, inference):
+    def __init__(self, project, grid, agents, pathfinder, seed, cap, uav, inference, model_version=0):
         if inference is None:
             raise ValueError("Remote DT execution requires an explicit frozen inference callback")
         super().__init__(project, grid, agents, pathfinder, seed, cap, uav)
         self.inference = inference
         self.shadow_inference = None
-        self.model_version = 0
+        self.model_version = model_version
         self.remote_events, self.oracle_events = [], []
+        self.events_by_id = {}
         self.event_checksum = "0"*64
         self.replicas = {name: DTReplica(name) for name in ("drone", "cloud")}
         self.inboxes = {a.id: CommandInbox() for a in agents}
         self.receiver_refs = {a.id: {} for a in agents}
         self.physical_refs = {}
         self.execution_actions, self.command_contexts = {}, {}
+        self.latest_commands = {}
         self.completion_sent = set()
         self.radio_energy_j = 0.0
         self.control_energy_j = 0.0
@@ -49,17 +52,28 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 event = self._record("dt_state_event", location=location, state=state.payload(),
                     available_at=0.0, bootstrap=True, accepted=True)
                 replica.accept(state, 0, event["event_id"])
+        for receiver, states in self.states.items():
+            for peer, cache in states.items():
+                event = self._record("received_state_event", receiver=receiver, peer=peer,
+                    state_event=self.replicas["cloud"].state_ids[peer], state=cache.value,
+                    arrived_at=0.0, generated_at=0.0, source_min=0.0, sources={peer: 0.0},
+                    version=0, accepted=True, rejection_reason=None, bootstrap=True)
+                self.receiver_refs[receiver][peer] = event["event_id"]
         self.dt_states = self.replicas["cloud"].states
         self._record("bootstrap", assumption="Fresh initial briefing at both replicas and robot caches; no free commands",
-            model_version=0, synthetic_cpu_cycles=True)
+            model_version=self.model_version, synthetic_cpu_cycles=True)
 
     def _record(self, event_name, **values):
         event = dict(schema=REMOTE_SCHEMA, event=event_name, event_id=f"rdt:{len(self.remote_events)}",
             time=self.transport.now, previous_checksum=self.event_checksum, **values)
+        # Freeze nested payloads and normalize JSON key types before hashing.
+        # Later cache/controller changes cannot rewrite historical evidence.
+        event = json.loads(json.dumps(event, allow_nan=False))
         canonical = json.dumps(event, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
         self.event_checksum = hashlib.sha256(canonical).hexdigest()
         event["checksum"] = self.event_checksum
         self.remote_events.append(event)
+        self.events_by_id[event["event_id"]] = event
         return event
 
     def _sense(self, agent, agents, cycle, now):
@@ -114,6 +128,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
                     job["uplink_"+quantity] += details[quantity]
                 if link == "satellite_up" and details["last_chunk"]:
                     job["backhaul_transmission_finish"] = details["finish"]
+            stage = job.setdefault("service_stages", {}).setdefault(f"{packet.kind}:{link}",
+                dict(transmission_seconds=0.0, queue_seconds=0.0, guard_seconds=0.0, interruption_seconds=0.0))
+            for key in ("transmission_seconds", "queue_seconds", "guard_seconds", "interruption_seconds"):
+                stage[key] += details[key]
+            stage["last_transmission_finish"] = details["finish"]
+            wire_key = "access_wire_bits" if link == "access_up" else "backhaul_wire_bits" if link == "satellite_up" else "response_wire_bits"
+            job[wire_key] = job.get(wire_key, 0)+details["wire_bits"]
         category = ("synchronization" if packet.kind == "remote_dt_sync" else
                     "upload" if packet.kind.endswith("observation") else "response")
         self.transport.log.append(dict(event="remote_transmit", job_id=payload.get("job_id"),
@@ -126,7 +147,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
         accepted = self.replicas[location].accept(short, self.transport.now, event["event_id"])
         self._record("dt_state_acceptance", state_event=event["event_id"], accepted=accepted)
         if not accepted:
-            return
+            return event["event_id"]
         other = "cloud" if location == "drone" else "drone"
         common = dict(job_id=job_id, state=short.payload(), state_event=event["event_id"])
         self._send_remote(state.robot_id, "remote_dt_sync", dict(common, destination=other),
@@ -134,11 +155,14 @@ class RemoteDTCommunication(PaperMissionCommunication):
         down = ("access_down",) if location == "drone" else ("satellite_down", "access_down")
         for receiver in self.goals:
             self._send_remote(receiver, "remote_state", common, down, version=state.version)
+        return event["event_id"]
 
     def _receive(self, packet):
         payload, t = packet.payload, self.transport
         if packet.kind in ("remote_robot_observation", "remote_completion"):
             report = PhysicalReport(**payload["report"])
+            if report.sensed_at > t.now+1e-12:
+                raise ValueError("Report arrived before sensing")
             if report.sensed_at >= self.report_timestamps[report.robot_id]:
                 self.reports[report.robot_id] = {**self.reports[report.robot_id], "position": report.position}
                 self.report_timestamps[report.robot_id] = report.sensed_at
@@ -164,12 +188,15 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 state=payload["state"], arrived_at=t.now, accepted=accepted, packet_id=packet.id)
         elif packet.kind == "remote_state":
             state = DTState(**payload["state"])
+            if state.generated_at > t.now+1e-12:
+                raise ValueError("State arrived before generation")
             cache = self.states[packet.agent][state.robot_id]
             accepted = False
             if state.source_time >= source_min(cache.source_timestamps):
                 accepted = cache.accept(state.generated_at, state.payload(), state.version, dict(state.sources))
             event = self._record("received_state_event", receiver=packet.agent, peer=state.robot_id,
-                state_event=payload["state_event"], arrived_at=t.now, accepted=accepted,
+                state_event=payload["state_event"], state=state.payload(), sources=state.sources,
+                arrived_at=t.now, accepted=accepted,
                 generated_at=state.generated_at, source_min=state.source_time, version=state.version,
                 rejection_reason=None if accepted else "obsolete_source_or_order", packet_id=packet.id)
             if accepted:
@@ -178,6 +205,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
         elif packet.kind == "remote_action_command":
             command = ActionCommand(**payload["command"])
             accepted, reason = self.inboxes[packet.agent].accept(command, t.now)
+            if accepted:
+                self.latest_commands[packet.agent] = command
             job = self.jobs[command.job_id]
             job.update(delivered_at=t.now, observed_latency_seconds=t.now-job["source_time"],
                 command_accepted=accepted, response_seconds=t.now-job["compute_completed_at"])
@@ -236,7 +265,9 @@ class RemoteDTCommunication(PaperMissionCommunication):
             self._allocation_shadow(snapshot, comparison["binary"], job["job_id"])
         self._record("allocation_event", job_id=job["job_id"], allocation_version=self.allocations,
             new_vs_fixed={x.task_id: x.fixed_x is None for x in tasks},
-            priority_versions=event["priority_versions"], transport_allocation_index=self.allocations)
+            priority_versions=event["priority_versions"], transport_allocation_index=self.allocations,
+            assignments=comparison["binary"]["tasks"], snapshot=asdict(snapshot),
+            dt_priorities=event["received_priorities"], resource_weights=weights)
         binary = next(r for r in comparison["binary"]["tasks"] if r["task_id"] == job["job_id"])
         relaxed = next(r for r in comparison["relaxed"]["tasks"] if r["task_id"] == job["job_id"])
         job.update(executed_x=int(binary["x"]), relaxed_x=relaxed["x"], weight=task.weight,
@@ -292,10 +323,11 @@ class RemoteDTCommunication(PaperMissionCommunication):
         report = PhysicalReport(**job["report"])
         own = self._state_for_report(report, t.now, job["version"])
         # Own generated state is causal at completion; peer state remains replica-specific.
-        self._publish(own, job["location"], job_id)
+        own_event = self._publish(own, job["location"], job_id)
         obs, sources, versions, priorities = remote_observation(report, own, self.replicas[job["location"]],
             self.project.map.fov_radius, self.project.map.astar_waypoints,
             self.project.map.communicated_path_steps, max(self.grid.shape))
+        versions[job["agent"]]["state_event"] = own_event
         start = perf_counter()
         action = int(self.inference(job["location"], job["agent"], obs))
         wall = perf_counter()-start
@@ -309,7 +341,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
             # Evaluation-only fresh replica built from physical state at this
             # instant. It is never installed at either actual processor.
             shadow_replica = DTReplica("cloud")
-            source_time = getattr(self, "physical_time", 0.0)
+            source_time = t.now  # Ideal evaluation-only sensing at the shadow decision instant.
             for agent in self._agents:
                 fresh_report = self._sense(agent, self._agents, report.cycle, source_time)
                 fresh = self._state_for_report(fresh_report, t.now, report.cycle)
@@ -331,7 +363,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
             ("access_down",) if job["location"] == "drone" else ("satellite_down", "access_down"),
             version=job["version"])
 
-    def update(self, agents, now):
+    def update(self, agents, now, generate_tasks=True):
         self._agents = agents
         self.truth = {a.id: self._report(a) for a in agents}
         self.positions = {a.id: tuple(a.position) for a in agents}
@@ -357,10 +389,14 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 self._send_remote(agent.id, "remote_completion", dict(report=report.payload()),
                     ("access_up",), version=self.current_cycle)
                 continue
+            if not generate_tasks:
+                continue
             xy = self.uav.positions_to_xy_m([tuple(agent.position)])[0]
             horizontal = float(np.linalg.norm(xy-self.uav.position[:2]))
             loss = float(self.uav.model.path_loss_db(self.uav.position[2], horizontal))
             radio = access_budget(loss, self.parameters, self.config.access_uplink_mbps*1e6)
+            radio.update(height_m=float(self.uav.position[2]), horizontal_distance_m=horizontal,
+                los_probability=float(self.uav.model.los_probability(self.uav.position[2]/max(horizontal, 1e-6))))
             self.transport.agent_rate_caps[(agent.id, "access_up")] = radio["applied_bps"]
             job_id = f"{self.current_cycle}:{agent.id}"
             self.jobs[job_id] = dict(job_id=job_id, agent=agent.id, report=report.payload(), version=self.current_cycle,
@@ -395,6 +431,22 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 own_priority = self.grid.size+agent.id*1e-6
                 action, local_sources, local_details = completed_action(
                     local_report, self.states[agent.id], own_priority)
+                if self.parameters.oracle_shadow:
+                    fresh = {}
+                    for peer, physical in self.truth.items():
+                        cache = InformationCache()
+                        cache.accept(cutoff, self._state(physical), cycle, {peer: cutoff})
+                        fresh[peer] = cache
+                    shadow_action, _, _ = completed_action(local_report, fresh, own_priority)
+                    from .remote_control import DELTAS
+                    def goal_distance(selected):
+                        dr, dc = DELTAS[selected]
+                        return abs(agent.position[0]+dr-agent.goal[0])+abs(agent.position[1]+dc-agent.goal[1])
+                    distance = goal_distance(4)
+                    self.oracle_events.append(dict(event="local_control_shadow", time=cutoff,
+                        robot_id=agent.id, cycle=cycle, actual_action=action, oracle_action=shadow_action,
+                        wrong_yield=goal_distance(action) > distance and goal_distance(shadow_action) <= distance,
+                        unnecessary_wait=action == 4 and shadow_action != 4))
             self.execution_actions[agent.id] = action
             context = dict(robot_id=agent.id, cycle=cycle, cutoff_time=cutoff,
                 action=action, command=command.payload() if command else None, arrived_at=arrival,
@@ -411,9 +463,31 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 self.jobs[command.job_id]["used_at"] = cutoff
         self.decision = dict(cycle_start=cycle_start, at=cutoff, budget_seconds=deadline_seconds,
             initial_briefing=cycle == 0, remote=True, inputs=self.command_contexts)
+        consistency = self._consistency()
+        self._record("consistency_event", cycle=cycle,
+            summary={k: v for k, v in consistency.items() if k != "pairs"},
+            consistency_sha256=hashlib.sha256(json.dumps(consistency, sort_keys=True,
+                separators=(",", ":"), allow_nan=False).encode()).hexdigest())
+
+    def _consistency(self):
+        views = {}
+        for receiver, context in self.command_contexts.items():
+            command = context["command"]
+            if command is None or context["cycle"] != self.current_cycle:
+                continue
+            priorities = {int(k): v for k, v in command["dt_priorities"].items()}
+            states = {int(peer): self.events_by_id[value["state_event"]]["state"]
+                      for peer, value in command["dt_versions"].items()}
+            views[receiver] = dict(priorities=priorities, states=states)
+        metadata = {receiver: {peer: self.events_by_id[ref] for peer, ref in refs.items()}
+                    for receiver, refs in self.receiver_refs.items()}
+        return consistency_snapshot(self.positions, self.truth, self.states, self.transport.now,
+            self.project.map.fov_radius, self.project.map.communicated_path_steps,
+            self.parameters.age_reference_seconds, self.dt_states, views, metadata)
 
     def snapshot(self):
         result = super().snapshot()
+        result["consistency"] = self._consistency()
         result.update(remote_schema=REMOTE_SCHEMA, execution_mode="remote_dt", event_checksum=self.event_checksum,
             remote_refs=dict(physical=dict(self.physical_refs),
                 replicas={name: dict(replica.state_ids) for name, replica in self.replicas.items()},
@@ -429,6 +503,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
                 record.get("delivered_at", self.transport.now) > bound+1e-12)
             record["deadline_censored"] = bound is not None and "delivered_at" not in record
         return records
+
+    def ages(self):
+        result = super().ages()
+        for receiver, fields in result.items():
+            command = self.latest_commands.get(receiver)
+            fields["task"] = self.transport.now-source_min(command.sources) if command else self.transport.now
+        return result
 
     def energy_bounds(self):
         result = super().energy_bounds()

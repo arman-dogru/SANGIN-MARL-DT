@@ -14,12 +14,13 @@ def access_budget(path_loss_db, parameters, ceiling_bps):
     return dict(path_loss_db=float(path_loss_db), bandwidth_hz=bandwidth,
         noise_psd_w_hz=parameters.noise_psd_w_hz, noise_figure_db=parameters.access_noise_figure_db,
         transmit_power_w=parameters.robot_power_w, snr_db=10*math.log10(snr),
-        rate_bound_bps=bound, applied_bps=min(bound, ceiling_bps))
+        rate_bound_bps=bound, configured_cap_bps=ceiling_bps, applied_bps=min(bound, ceiling_bps))
 
 
 def backhaul_budget(transport, parameters):
     config = transport.config
     result = dict(available=True, applied_bps=config.satellite_uplink_mbps*1e6,
+        configured_cap_bps=config.satellite_uplink_mbps*1e6,
         downlink_applied_bps=config.satellite_downlink_mbps*1e6,
         one_way_seconds=config.one_way_propagation_seconds,
         air_to_space_one_way_seconds=None, satellite_gateway_one_way_seconds=None,

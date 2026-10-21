@@ -239,3 +239,45 @@ def test_task_deadline_monitoring_is_separate_from_command_cutoff():
     assert all(c["command_cutoff_missed"] for c in env.communication.command_contexts.values())
     env.communication.transport.advance(1, env.communication._receive)
     assert all(r["task_deadline_missed"] and r["deadline_censored"] for r in env.communication.task_records())
+
+
+def test_pending_replica_packet_influences_only_inference_after_delivery():
+    from panama_uav.remote_state import DTState
+    outputs = {}
+    for delay in (.03, .099, .101):
+        cfg = remote_config(drone_cycles_per_second=4e7, cloud_cycles_per_second=1e4)
+        env = environment(cfg)
+        comm = env.communication
+        state = DTState(**{**comm.replicas["cloud"].states[1].value, "priority": 999., "version": 100})
+        origin = comm._record("dt_state_event", location="cloud", state=state.payload(), available_at=0.)
+        accepted = comm.replicas["cloud"].accept(state, 0., origin["event_id"])
+        comm._record("dt_state_acceptance", state_event=origin["event_id"], accepted=accepted)
+        # Inject controlled delivery timing; no receiver can inspect this queue.
+        comm.transport.send(1, "remote_dt_sync", dict(destination="drone", state=state.payload(),
+            state_event=origin["event_id"]), route=(f"process:{delay}",), generated_at=0, version=100)
+        env.prepare_decision(.1)
+        inference = next(e for e in comm.remote_events if e["event"] == "remote_inference" and e["robot_id"] == 0)
+        allocation = next(e for e in comm.remote_events if e["event"] == "allocation_event")
+        outputs[delay] = (inference, allocation, comm.execution_actions.copy())
+    assert outputs[.03][0]["dt_priorities"]["1"] == 999
+    assert outputs[.099][0] == outputs[.101][0]  # Delivery before cutoff still cannot rewrite completed inference.
+    assert all(outputs[d][1] == outputs[.03][1] for d in outputs)
+    assert outputs[.099][2] == outputs[.101][2]
+
+
+def test_remote_overlap_preserves_routes_remaining_work_and_capacity():
+    env = environment(remote_config(drone_cycles_per_second=3e7, cloud_cycles_per_second=3e7, cycles_per_bit=1000))
+    for _ in range(3):
+        env.prepare_decision(.1)
+        env.step(env.communication.execution_actions.copy())
+    events = env.communication.transport.log
+    allocations = [e for e in events if e["event"] == "paper_allocation"]
+    assert any(any(t["fixed_x"] is not None and t["required_cycles"] < 1e8
+                   for t in e["snapshot"]["tasks"]) for e in allocations)
+    for event in events:
+        if event["event"] == "compute_allocation":
+            assert event["utilization"] <= 1+1e-10
+    routes = {}
+    for event in allocations:
+        for task in event["binary"]["tasks"]:
+            assert task["x"] == routes.setdefault(task["task_id"], task["x"])

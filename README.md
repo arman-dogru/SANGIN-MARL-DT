@@ -65,6 +65,13 @@ atomic coordination states and directed FoV inconsistency. Existing configuratio
 retain their communication study behavior. See [RESOURCE_ALLOCATION.md](RESOURCE_ALLOCATION.md)
 for the model, assumptions, reproducible study commands and validation checks.
 
+The new `configs/paper_remote_dt.toml` runs frozen PANAMA at the selected UAV or
+ground-cloud DT processor after uploaded work finishes. Robots execute commands
+delivered by the 100 ms cutoff, with WAIT on a miss. Conflicts are logged and
+resolved using delivered DT priorities. See [REMOTE_DT.md](REMOTE_DT.md) for the
+causal timeline, audit command, acceptance gates and remaining author decisions.
+The historical support-mode configuration remains unchanged.
+
 ```powershell
 python -m pip install -e ".[dev,optimization,leo]"
 python -m panama_uav allocation-snapshot --input tests/fixtures/allocation_snapshot.json --output output/resources/snapshot.json

@@ -1,5 +1,13 @@
 # Equation 16 resource allocation and paper-mode experiments
 
+The original support-mode experiment described below retains local DQN action
+selection. The separate remote execution mode is documented in
+[REMOTE_DT.md](REMOTE_DT.md). Use `configs/paper_remote_dt.toml` for that mode;
+its outcomes must be regenerated and labelled separately. It admits each report
+on arrival, executes remote DQN after finite CPU service, synchronizes DT replicas
+over the network, and delivers versioned action commands. No manuscript files or
+generated experiment results are version controlled.
+
 ## Running the implementation
 
 Use Python 3.11+ and install the declared extras:

@@ -102,7 +102,8 @@ def test_new_configuration_is_separate_and_full_runs_are_gated(tmp_path):
     from panama_uav.resource_study import conditions, run_study
     cfg = load_config(ROOT/"configs/paper_remote_dt.toml")
     assert cfg.resource_allocation.execution_mode == "remote_dt"
-    assert cfg.resource_allocation.task_deadline_seconds is None
+    assert cfg.resource_allocation.task_deadline_seconds == .1
+    assert not cfg.resource_allocation.enforce_task_deadlines
     assert load_config(ROOT/"configs/paper_study.toml").resource_allocation.execution_mode == "support"
     assert len(conditions(cfg)) == 6
     assert "up-1-cpu-1__equal_legacy" in {name for name, _, _ in conditions(cfg)}

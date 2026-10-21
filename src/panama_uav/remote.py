@@ -21,6 +21,7 @@ from .records import write_json
 from .remote_state import (REMOTE_SCHEMA, ActionCommand, CommandInbox, DTReplica, DTState,
                            PhysicalReport, observation_hash, remote_observation, source_min)
 from .transport import encode
+from .task_deadlines import command_deadline_fields
 
 
 class RemoteDTCommunication(PaperMissionCommunication):
@@ -208,8 +209,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
             if accepted:
                 self.latest_commands[packet.agent] = command
             job = self.jobs[command.job_id]
-            job.update(delivered_at=t.now, observed_latency_seconds=t.now-job["source_time"],
-                command_accepted=accepted, response_seconds=t.now-job["compute_completed_at"])
+            # A duplicate must not turn an on-time first arrival into a late
+            # completion or erase a previously accepted logical command.
+            if "delivered_at" not in job:
+                job.update(delivered_at=t.now, observed_latency_seconds=t.now-job["source_time"],
+                    response_seconds=t.now-job["compute_completed_at"])
+            job["command_accepted"] = job.get("command_accepted", False) or accepted
+            job["command_arrival_count"] = job.get("command_arrival_count", 0)+1
             self._record("command_arrived", robot_id=packet.agent, command=command.payload(),
                 arrived_at=t.now, accepted=accepted, reason=reason, packet_id=packet.id)
 
@@ -526,12 +532,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
 
     def task_records(self):
         records = super().task_records()
+        decisions = {(e["cycle"], e["robot_id"]): e for e in self.remote_events if e["event"] == "decision_event"}
         for record in records:
-            bound = record.get("deadline_at")
-            record["task_deadline_enabled"] = bound is not None
-            record["task_deadline_missed"] = (bound is not None and
-                record.get("delivered_at", self.transport.now) > bound+1e-12)
-            record["deadline_censored"] = bound is not None and "delivered_at" not in record
+            record.update(command_deadline_fields(record, self.transport.now))
+            decision = decisions.get((record["version"], record["agent"]))
+            record["command_cutoff_at"] = decision["cutoff_time"] if decision else None
+            record["cutoff_induced_wait"] = (decision["command_cutoff_missed"] and decision["action"] == 4
+                                             if decision else None)
         return records
 
     def ages(self):

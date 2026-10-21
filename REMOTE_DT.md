@@ -131,23 +131,58 @@ receiver electronics and static processor power are outside this energy model.
 | Orbital source | Local archived `data/leo/tremblant_full.npz` |
 | Packet model | 65,536-byte payload ceiling and 48-byte chunk overhead |
 | Physical conflicts | Log, then resolve using delivered DT priorities |
-| Task deadline tau | Omitted by default; independent of command cutoff |
+| Measured end-to-end task deadline | 0.1 s from sensing to complete command arrival |
+| Hard optimizer deadline constraints | Disabled (`enforce_task_deadlines=false`) |
 
 These are numerical simulation assumptions, not hardware or network measurements.
 Actual wire bits, all resolved configuration fields and asset hashes are saved in
 each run. Retaining priority semantics does not imply qualifying this new control
 architecture from the old policy's training performance.
 
-`task_deadline_seconds` optionally enables a separate observed-deadline monitor.
-With `enforce_task_deadlines=true`, both conic and enumerated binary references
-also enforce analytical snapshot latency bounds. For those optional bounds,
-binary enumeration solves a convex CPU problem for each fixed assignment;
-unconstrained KKT rates are no longer sufficient. Historical elapsed access time
-is removed from the remaining budget, and pending committed work retains its
-remaining budget. Such constraints are scheduling-snapshot feasibility checks:
-future arrivals, orbital interruptions, synchronization and response queues can
-still cause observed deadline misses. Expired work is recorded, never silently
-dropped. Default runs preserve the requested no-hard-deadline interpretation.
+`configs/paper_remote_dt.toml` sets `task_deadline_seconds=0.1`, matching its
+decision and command cutoffs. This is a **measured end-to-end deadline**:
+`first_complete_command_arrival_at_robot - task_sensing_time <= 0.1 s`.
+Arrivals exactly at 100 ms are on time (1 ps floating-point comparison tolerance).
+The sensing-to-arrival span includes access uplink, all queueing and compute
+service, cloud backhaul where selected, propagation, and downlink serialization.
+Compute completion, command generation, command acceptance, and command use are
+separate events; none substitutes for arrival at the robot. The start timestamp
+is the task's own sensing time, not the oldest peer source used in its observation.
+
+The optimizer's `predicted_latency_seconds` is the fixed-input analytical
+scheduling estimate. Actual queues, changing processor shares, orbital service,
+synchronization traffic and response serialization can make measured latency
+different. A prediction below 100 ms does not establish measured deadline
+compliance. `enforce_task_deadlines=false` keeps hard solver constraints off;
+binary allocation, processor service, radio scheduling, PANAMA, oracle diagnostics
+and motion are unchanged. The pre-existing opt-in solver-deadline capability is
+not used by this configuration. Other configurations retain their existing
+optional deadline setting; the generic default remains unmonitored.
+
+Each logical task has exactly one `deadline_status`: `on_time`, `late`, or
+`undelivered` when monitoring is enabled, and `disabled` otherwise. The first
+complete command arrival fixes its delivered outcome; duplicate arrivals cannot
+overwrite that timestamp or count as extra completed tasks. `commands_delivered`
+retains its historical message-arrival count; `commands_delivered_unique` and
+`duplicate_command_arrivals` make that distinction explicit.
+
+`deadline_commands_on_time + deadline_commands_late + deadline_commands_undelivered`
+equals `deadline_tasks_monitored`. Undelivered tasks have right-censored latency:
+before their deadline they are pending, with `deadline_met=null`; once the
+observation horizon reaches the deadline without an arrival, they are known
+deadline misses even though final latency remains unknown. Late arrivals move
+from the undelivered category to late; they do not create another missed task.
+`task_deadline_misses` equals late arrivals plus overdue undelivered tasks.
+`deadline_compliance_rate` divides on-time tasks by all assessed tasks (on-time,
+late, and overdue undelivered), excluding still-pending tasks. No monitor means
+the on-time/late category counts and compliance rate are null, not assumed zero.
+
+`cutoff_induced_wait` and `command_cutoff_at` join each task to its actual decision
+epoch. WAITs and `deadline_censored` are additional tags, not extra deadline
+failures: a task that causes a timeout WAIT and arrives late is still one missed
+task. `deadline_cutoff_wait_tasks`, `deadline_censored_tasks`, pending tasks and
+overdue undelivered tasks are reported separately. Expired/unfinished work remains
+in the transport and compute accounting; monitoring never cancels or reroutes it.
 
 ## Motion and completion
 
@@ -247,7 +282,8 @@ The supplied TeX/PDF defines vertex-plus-edge relevance. The user subsequently
 specified preserving that metric and adding a separate exploratory vertex-only
 variant. Both are recorded; this does not claim an author's confirmed revision.
 Full research comparisons still await acceptance of the revised implementation.
-The code follows the requested no-hard-deadline default and both UAV/cloud DT
+The code monitors the requested 100 ms end-to-end deadline without hard solver
+constraints and supports both UAV/cloud DT
 execution sites. The manuscript's cloud-only descriptions, task-deadline claims,
 robot-applied ordering interpretation, analytical omission of download bytes and
 separate learning-study narrative require author review later. No new LaTeX or

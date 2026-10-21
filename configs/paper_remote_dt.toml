@@ -52,9 +52,10 @@ dt_replica_sync = "network"
 on_collision = "dt_resolve"
 oracle_shadow = true
 equal_weight_mode = "matched_active_mean"
+task_deadline_seconds = 0.1
 enforce_task_deadlines = false
 remote_acceptance_approved = false
-# task_deadline_seconds is intentionally omitted; command cutoff is not tau_i.
+# Measure sensing-to-command arrival; the optimizer has no hard task deadline.
 age_reference_seconds = 1.0
 access_bandwidth_hz = 20e6
 noise_psd_w_hz = 3.9810717055e-21

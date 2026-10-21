@@ -1,5 +1,6 @@
 """Remote-command accounting with explicit accepted/used/censored populations."""
 import numpy as np
+from .task_deadlines import command_deadline_metrics
 
 REMOTE_METRICS = ("tasks_attempted", "tasks_computed", "commands_generated", "commands_delivered",
     "commands_accepted", "commands_used", "commands_rejected_obsolete", "tasks_accepted", "tasks_used",
@@ -17,7 +18,11 @@ REMOTE_METRICS = ("tasks_attempted", "tasks_computed", "commands_generated", "co
     "physical_distance_m", "mean_first_completion_time_seconds",
     "decision_action_shadow_comparisons", "decision_action_shadow_disagreements",
     "decision_action_shadow_cutoff_miss_comparisons", "decision_action_shadow_cutoff_miss_disagreements",
-    "decision_action_shadow_unnecessary_wait_steps", "decision_action_shadow_disagreement_rate")
+    "decision_action_shadow_unnecessary_wait_steps", "decision_action_shadow_disagreement_rate",
+    "commands_delivered_unique", "duplicate_command_arrivals", "deadline_tasks_monitored",
+    "deadline_tasks_assessed", "deadline_commands_on_time", "deadline_commands_late",
+    "deadline_commands_undelivered", "deadline_undelivered_overdue_tasks", "deadline_pending_tasks",
+    "deadline_cutoff_wait_tasks", "deadline_compliance_rate")
 
 
 def remote_metrics(trace):
@@ -42,8 +47,8 @@ def remote_metrics(trace):
         command_cutoff_misses=sum(e["command_cutoff_missed"] for e in decisions),
         stale_source_commands_used=sum(e["stale_source"] for e in used),
         completed_local_control_steps=sum(e["completed_local_control"] for e in decisions),
-        task_deadline_misses=sum(t["task_deadline_missed"] for t in tasks),
-        deadline_censored_tasks=sum(t["deadline_censored"] for t in tasks),
+        commands_delivered_unique=len({e["command"]["job_id"] for e in arrivals}),
+        duplicate_command_arrivals=len(arrivals)-len({e["command"]["job_id"] for e in arrivals}),
         mean_command_source_age_seconds=mean([e["cutoff_time"]-min(e["command"]["sources"].values()) for e in used]),
         mean_peer_source_age_seconds=mean([p["mean_peer_source_age_seconds"] for p in pairs]),
         missed_physical_conflicts=sum(p["missed_physical_conflicts"] for p in pairs),
@@ -95,4 +100,5 @@ def remote_metrics(trace):
         metrics[f"{name}_rf_limited_fraction"] = mean([float(b["rate_bound_bps"] < b["configured_cap_bps"]-1e-6)
             for b in valid])
         metrics[f"{name}_rf_budget_samples"] = len(valid)
+    metrics.update(command_deadline_metrics(tasks, trace["frames"][-1]["time"]))
     return metrics

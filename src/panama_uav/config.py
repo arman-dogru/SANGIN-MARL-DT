@@ -211,6 +211,16 @@ class ResourceAllocationConfig:
     decision_budget_seconds: float = 0.1
     age_reference_seconds: float = 1.0
     failure_directory: str = "output/allocation_failures"
+    execution_mode: str = "support"
+    command_cutoff_seconds: float | None = None
+    timeout_action: int = 4
+    dt_replica_sync: str = "network"
+    on_collision: str = "terminate"
+    oracle_shadow: bool = True
+    equal_weight_mode: str = "legacy"
+    task_deadline_seconds: float | None = None
+    enforce_task_deadlines: bool = False
+    remote_acceptance_approved: bool = False
 
     def __post_init__(self):
         positive = (self.task_input_bits, self.cycles_per_bit, self.drone_cycles_per_second,
@@ -231,6 +241,25 @@ class ResourceAllocationConfig:
             raise ValueError("EIRP and receiver G/T must be finite")
         if self.shannon_efficiency > 1:
             raise ValueError("Shannon efficiency must not exceed one")
+        if self.execution_mode not in ("support", "remote_dt"):
+            raise ValueError("Unknown DT execution mode")
+        if self.timeout_action != 4 or self.dt_replica_sync != "network":
+            raise ValueError("Remote DT requires WAIT on timeout and networked replica synchronization")
+        if self.on_collision not in ("terminate", "dt_resolve"):
+            raise ValueError("Unknown physical collision outcome")
+        if self.equal_weight_mode not in ("legacy", "matched_active_mean"):
+            raise ValueError("Unknown equal-weight comparison mode")
+        if self.command_cutoff_seconds is not None and (
+            not math.isfinite(self.command_cutoff_seconds) or self.command_cutoff_seconds < 0
+            or self.command_cutoff_seconds != self.decision_budget_seconds
+        ):
+            raise ValueError("Command cutoff must equal the configured decision budget")
+        if self.task_deadline_seconds is not None and (
+            not math.isfinite(self.task_deadline_seconds) or self.task_deadline_seconds <= 0
+        ):
+            raise ValueError("Task deadline must be positive and finite, or omitted")
+        if self.enforce_task_deadlines and self.task_deadline_seconds is None:
+            raise ValueError("Hard task deadlines require an explicit task_deadline_seconds")
 
 
 @dataclass(frozen=True)

@@ -32,6 +32,53 @@ def save_figure(fig, directory, name):
     plt.close(fig)
 
 
+def export_review_records(study, manifest, episodes, output):
+    """Pushable case-level data and trace-backed examples; full traces stay local."""
+    output.mkdir(parents=True,exist_ok=True)
+    fields=list(dict.fromkeys(k for row in episodes for k in row))
+    with (output/"episodes.csv").open("w",newline="",encoding="utf-8") as stream:
+        writer=csv.DictWriter(stream,fieldnames=fields); writer.writeheader()
+        writer.writerows({k:json.dumps(v) if isinstance(v,(list,dict)) else v for k,v in row.items()}
+                         for row in episodes)
+    allocations,tasks,coordination=[],[],[]
+    for condition in manifest["conditions"]:
+        for count in manifest["counts"]:
+            case=f"agents-{count}-case-000"
+            path=study/condition["name"]/f"{case}.json.gz"
+            with gzip.open(path,"rt",encoding="utf-8") as stream: trace=json.load(stream)
+            assert trace["case"]["case_id"]==case
+            identity=dict(condition=condition["name"],case_id=case,trace_sha256=sha256(path))
+            events=[e for e in trace["transport_events"] if e["event"]=="paper_allocation"]
+            if events: allocations.append(dict(identity,event=events[0]))
+            jobs=trace["resource_tasks"]
+            selected={}
+            for job in jobs:
+                if "delivered_at" in job:
+                    selected[job["job_id"]]=job
+                    break
+            if jobs: selected[jobs[-1]["job_id"]]=jobs[-1]
+            transmissions={key:[] for key in selected}
+            for event in trace["transport_events"]:
+                if event["event"]=="paper_transmit" and event["job_id"] in transmissions:
+                    transmissions[event["job_id"]].append(event)
+            tasks.extend(dict(identity,task=job,transmissions=transmissions[job["job_id"]])
+                         for job in selected.values())
+            decisions=trace["allocation_loop"]
+            index=next((i for i,f in enumerate(trace["frames"][:len(decisions)])
+                        if f["consistency"]["relevant_pairs"]),min(1,len(decisions)-1))
+            assert trace["frames"][index]["step"]==decisions[index]["step"]
+            coordination.append(dict(identity,frame=trace["frames"][index],policy_decision=decisions[index]))
+    exports={}
+    for name,rows in (("episodes",episodes),("allocation_samples",allocations),
+                      ("task_samples",tasks),("coordination_samples",coordination)):
+        path=output/f"{name}.jsonl.gz"
+        with gzip.open(path,"wt",encoding="utf-8",compresslevel=6) as stream:
+            for row in rows: stream.write(json.dumps(row,allow_nan=False,separators=(",",":"))+"\n")
+        exports[path.name]=dict(records=len(rows),sha256=sha256(path))
+    exports["episodes.csv"]=dict(records=len(episodes),sha256=sha256(output/"episodes.csv"))
+    return exports
+
+
 def overview(rows, figures):
     metrics = [("success", "Mission success (%)", 100), ("par2", "PAR-2 (steps)", 1),
         ("mean_task_latency_seconds", "Observed task latency (s)", 1),
@@ -189,11 +236,13 @@ def publish(study,paper,output):
         raise ValueError("Paper reporting supports the completed nominal comparison or all 97 conditions")
     bank=json.loads((study/"held_out_cases.json").read_text()); ids={r["case_id"] for r in bank}
     totals=dict(episodes=0,tasks=0,delivered_tasks=0,allocation_snapshots=0)
+    episode_rows=[]
     for condition in manifest["conditions"]:
         directory=study/condition["name"]
         episodes=[json.loads(s) for s in (directory/"episodes.jsonl").read_text().splitlines()]
         if len(episodes)!=len(ids) or {r["case_id"] for r in episodes}!=ids:
             raise ValueError(f"Incomplete/duplicate case bank: {condition['name']}")
+        episode_rows.extend(episodes)
         for r in episodes:
             assert r["policy_model_sha256"]==manifest["model"]["sha256"] and not r["diagnostic"]
             assert r["tasks_generated"]==r["tasks_delivered"]+r["tasks_unfinished"]
@@ -207,6 +256,7 @@ def publish(study,paper,output):
             if count!=expected:
                 raise ValueError(f"Intermediate record count mismatch: {condition['name']}/{filename}")
     rows=summarize(study)
+    exports=export_review_records(study,manifest,episode_rows,output)
     plt.rcParams.update({"font.size":8,"axes.titlesize":9,"svg.fonttype":"none","pdf.fonttype":42,
                          "svg.hashsalt":"panama-allocation-paper"})
     figures=paper/"figures"; figures.mkdir(exist_ok=True)
@@ -219,7 +269,7 @@ def publish(study,paper,output):
         shutil.copyfile(study/filename,output/filename)
     write_json(output/"verification.json",dict(status="passed",**totals,conditions=len(manifest["conditions"]),
         checkpoint_sha256=manifest["model"]["sha256"],timeline_sha256=manifest["timeline_sha256"],
-        study_path=str(study.resolve()),manifest_sha256=sha256(study/"manifest.json"),
+        study_path=str(study.resolve()),manifest_sha256=sha256(study/"manifest.json"),record_exports=exports,
         report_code_sha256={str(p.relative_to(ROOT)):sha256(p) for p in
             (Path(__file__).resolve(),ROOT/"src/panama_uav/resource_study.py")}))
     baseline=[r for r in rows if r["variant"]=="up-1-cpu-1"]

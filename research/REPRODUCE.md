@@ -41,6 +41,14 @@ data, case seeds, full configuration/provenance and verification are copied into
 `research/results/`; compact scientific plots are saved in PNG, SVG and PDF under
 `paper/figures/`. Full raw traces remain local because of their size.
 
+The pushed report includes every episode in `episodes.csv` and compressed JSONL.
+It also includes first-case-per-population/condition allocation, task/transmission
+and coordination/decision examples. Each sample names the complete source trace
+and its SHA-256. Gzip JSONL can be read with Python's standard `gzip.open(path,
+'rt', encoding='utf-8')`, one JSON record per line. `verification.json` records
+export counts and hashes. These compact review files accompany the complete local
+task/allocation logs and compressed traces rather than replacing them.
+
 Open `paper/` in the LaTeX editor, or compile `paper/main.tex` with a standard LaTeX
 distribution. This workstation also uses the official portable Tectonic 0.17.0
 binary under ignored `tmp/tools/tectonic/`. Bibliographic citations link to the

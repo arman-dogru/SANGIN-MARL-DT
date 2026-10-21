@@ -94,3 +94,10 @@ reject running/incomplete case banks and record their own source/manifest hashes
 The nominal sample also independently verifies normalized CPU capacities,
 individual route/share bounds, binary execution and DCP certification. Its largest
 reported solver residual is 1.282e-8 against the 1e-6 acceptance threshold.
+
+Stage 6 verifies all 1,000 weight-policy identity comparisons: ratio-one policies
+and the equal policy under ratio 16 reproduce nominal equal-policy physical
+execution. Review exports now include every episode's metrics and compressed
+trace-backed allocation, task/transmission and coordination/decision samples.
+Their counts and hashes accompany each report. The remaining energy-coefficient
+conditions are running; the full study is not yet labelled complete.

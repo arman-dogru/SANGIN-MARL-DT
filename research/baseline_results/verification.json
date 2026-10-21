@@ -9,8 +9,30 @@
   "timeline_sha256": "8681dd5a974b86e54f4de26f39802ee7f098ca229512c6630da11bab9eb5cba0",
   "study_path": "D:\\Projects\\SANGIN-dev\\output\\resources\\paper-baseline-20261021",
   "manifest_sha256": "ccd9d2869dee8cdb81b2b588688fc90c99f993ca6a5a368c130cab5a65671a8f",
+  "record_exports": {
+    "episodes.jsonl.gz": {
+      "records": 1000,
+      "sha256": "376d46894d6d30796976ed5514c8a78ce96ead1bb74a2ae074dd256afb4e94c9"
+    },
+    "allocation_samples.jsonl.gz": {
+      "records": 16,
+      "sha256": "4a8076673f95eb043389f3f7df2f562e2359a38dd105b0b428870df89e9ef80c"
+    },
+    "task_samples.jsonl.gz": {
+      "records": 32,
+      "sha256": "5de03d38681a11b05db7d216aac56857bc5c7faa7130ebe5f8e0c11260cb8059"
+    },
+    "coordination_samples.jsonl.gz": {
+      "records": 20,
+      "sha256": "5208b32437ccd741e02193449b4ca0c0e1d9b9f11905a843fe454a370fc145c3"
+    },
+    "episodes.csv": {
+      "records": 1000,
+      "sha256": "7e503a612394fd5dd9ef0116435e9db4f921b3c42d36e3d6d364ceeccd022dc5"
+    }
+  },
   "report_code_sha256": {
-    "scripts\\report_paper_results.py": "b50275f3a489cfe026fad777366ff790eb117743cc547874f7b7e3507b1d7657",
+    "scripts\\report_paper_results.py": "18057b578b518e3a8a16b3ef92229d7372b6378dcbc2b00e4bc36203c1df7f14",
     "src\\panama_uav\\resource_study.py": "5abad42f65b0d6b34680979b49578a97f612ad10e02202f95cd0821c1d2e53dc"
   }
 }

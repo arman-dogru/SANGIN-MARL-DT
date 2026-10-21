@@ -35,7 +35,8 @@ Other populations and policies remain visible in the full tables and plots.
 Equal weights are all 1; priority/AoI policies use their configured 1--4 range.
 Weights are not normalized to the same sum, so these comparisons change aggregate
 latency-versus-energy emphasis alongside relative prioritization. The full grid's
-weight-ratio-one identity control will independently check the common-weight limit.
+weight-ratio controls now independently reproduce equal-policy physical execution
+across all 1,000 paired identity comparisons; see `weight_identity_audit.json`.
 
 The archived model was qualified under fresh information. These experiments use
 its frozen weights under delayed guidance and coordination; they do not retrain
@@ -58,3 +59,7 @@ Its unfinished conditions are not presented as completed results. Raw nominal
 traces remain at `output/resources/paper-baseline-20261021/`; tracked summaries,
 case seeds, parameters and verification are in `baseline_results/`. The manuscript
 already includes the completed nominal tables and scientific figures.
+
+Every nominal episode's metrics are pushed in `baseline_results/episodes.csv`
+and compressed JSONL. Trace-backed allocation, task/transmission and coordination/
+decision samples are also included, with source-trace and export hashes.

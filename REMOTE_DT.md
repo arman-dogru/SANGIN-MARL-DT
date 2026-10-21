@@ -181,6 +181,31 @@ are fresh A* intentions, not knowledge of future DQN actions. Only the completed
 local controller consumes robot-cached ordering for yielding; remote action
 differences alone do not prove a robot-cache ordering effect.
 
+The additional **exploratory vertex-only variant** preserves that original metric.
+For each directed pair at the decision cutoff, let `zeta_vertex` indicate a cached
+vertex conflict inside the same square FoV and horizon. Its contributions are
+`vertex_e2e_error = zeta_vertex * E2E_ordering_error` and
+`vertex_aoi_weighted_error = vertex_e2e_error * max(self_AoI, peer_AoI) / age_reference`.
+`xi_vertex_e2e` and `xi_vertex_aoi` divide their respective contribution sums by
+the number of vertex-relevant directed pairs. Empty denominators return zero
+with an explicit zero-denominator flag. The AoI-weighted value can exceed one.
+Episode metrics pool the numerators and vertex denominators across decision
+epochs, rather than borrowing the original vertex-plus-edge denominator.
+
+The three indicators (`current_order`, `digital_twin_order`, `cached_order`) and
+three errors (`uplink_ordering_error`, `downlink_ordering_error`, `e2e_ordering_error`)
+are retained and verified from their raw physical/DT/cached priorities at every
+cutoff. Cached order always compares cached self with cached peer. Raw intentions
+and source/generation/arrival timestamps remain available. Vertex missed-conflict
+and false-positive counts are separate from the original union-of-vertex-and-edge
+counts. Pair counts assess existence within the horizon; step counts compare
+`(step, cell)` predictions, also exposing a conflict predicted at the wrong cell.
+
+Derived consistency records use schema 2. Replay verifies schema-1 archives against
+their original checksums, then derives the new metrics without rewriting evidence.
+This vertex-only variant is an implementation diagnostic requested by the user;
+it is not presented as the author's confirmed revised equation.
+
 Replay rebuilds delivered stores, DQN observations, dependency provenance, action
 inboxes, local completion control, physical resolution, directed consistency,
 source AoI, routes and final positions. Every episode is replay-audited before
@@ -207,10 +232,10 @@ experiments while `remote_acceptance_approved=false`; no old 97-condition sweep
 or archived outputs are overwritten. Full runs still require a qualified model,
 archived timeline, 50 paired cases per population and a 250-step cap.
 
-The supplied plan mentions a revised vertex-only metric without its equation.
-The supplied TeX/PDF still defines vertex-plus-edge relevance. Raw records support
-the revision, but no unseen formula is claimed as implemented. The equation has
-been requested; full research comparisons await that definition and acceptance.
+The supplied TeX/PDF defines vertex-plus-edge relevance. The user subsequently
+specified preserving that metric and adding a separate exploratory vertex-only
+variant. Both are recorded; this does not claim an author's confirmed revision.
+Full research comparisons still await acceptance of the revised implementation.
 The code follows the requested no-hard-deadline default and both UAV/cloud DT
 execution sites. The manuscript's cloud-only descriptions, task-deadline claims,
 robot-applied ordering interpretation, analytical omission of download bytes and

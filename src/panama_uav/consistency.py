@@ -1,10 +1,36 @@
-"""Directed square-FoV ordering errors, Equations 28--36 of the paper."""
+"""Paper vertex-plus-edge metrics and a separate exploratory vertex variant."""
+
+CONSISTENCY_SCHEMA = 2
+
+
+def verify_ordering_quantities(pair):
+    """Verify the three ordering indicators and three errors from raw priorities.
+
+    Smaller PANAMA rho means higher application priority. The cached indicator
+    compares cached peer AND cached self, never fresh physical self priority.
+    """
+    physical = int(pair["physical_peer_priority"] < pair["physical_self_priority"])
+    twin = int(pair["digital_twin_peer_priority"] < pair["digital_twin_self_priority"])
+    cached = int(pair["peer_priority"] < pair["self_priority"])
+    expected = dict(current_order=physical, digital_twin_order=twin, cached_order=cached,
+        uplink_ordering_error=int(physical != twin), downlink_ordering_error=int(twin != cached),
+        e2e_ordering_error=int(physical != cached))
+    for key, value in expected.items():
+        if pair[key] != value:
+            raise ValueError(f"Ordering equation mismatch: {key}")
+    if pair["ordering_error"] != expected["e2e_ordering_error"]:
+        raise ValueError("Ordering error alias disagrees with E2E error")
+    if pair["e2e_ordering_error"] > pair["uplink_ordering_error"]+pair["downlink_ordering_error"]:
+        raise ValueError("Ordering error decomposition violated")
+    return True
 
 
 def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age_reference=1.0,
-                         dt_states=None, action_views=None, cache_metadata=None):
+                         dt_states=None, action_views=None, cache_metadata=None, *, schema_version=CONSISTENCY_SCHEMA):
     if radius < 0 or horizon < 0 or age_reference <= 0:
         raise ValueError("Invalid FoV, prediction horizon, or age reference")
+    if schema_version not in (1, CONSISTENCY_SCHEMA):
+        raise ValueError("Unknown consistency schema")
     pairs = []
 
     def path(state):
@@ -83,12 +109,45 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
                 self_version=own.version, peer_version=cached.version,
                 self_pre_age_seconds=own.timestamp-self_source, self_post_age_seconds=now-own.timestamp,
                 peer_pre_age_seconds=cached.timestamp-peer_source, peer_post_age_seconds=now-cached.timestamp)
+            if schema_version >= 2:
+                twin_self = dt_states[receiver].value if dt_states is not None else truth[receiver]
+                twin_peer = dt_states[peer].value if dt_states is not None else truth[peer]
+                vertex_relevant = int(bool(vertex))
+                # Compare predicted (step, cell) events, not just existence of
+                # any vertex conflict somewhere in the horizon.
+                missed_steps = [k for k in pv if k not in vertex or physical_self[k] != own_path[k]]
+                false_steps = [k for k in vertex if k not in pv or physical_self[k] != own_path[k]] if physical_known else None
+                def twin_time(robot):
+                    if dt_states is None:
+                        return None
+                    cache = dt_states[robot]
+                    return dict(source_time=min(cache.source_timestamps.values()) if cache.source_timestamps else cache.timestamp,
+                        generation_time=cache.timestamp, version=cache.version)
+                def raw_path(state):
+                    return [tuple(cell) for cell in state["path"]] if "path" in state else None
+                pair.update(evaluated_at=now, vertex_relevant=vertex_relevant,
+                    vertex_e2e_error=vertex_relevant*error,
+                    vertex_aoi_weighted_error=vertex_relevant*error*age/age_reference,
+                    physical_vertex_relevant=int(bool(pv)) if physical_known else None,
+                    missed_vertex_conflict=int(bool(pv) and not vertex_relevant) if physical_known else None,
+                    false_positive_vertex_conflict=int(vertex_relevant and not pv) if physical_known else None,
+                    missed_vertex_conflict_steps=missed_steps if physical_known else None,
+                    false_positive_vertex_conflict_steps=false_steps,
+                    digital_twin_available=dt_states is not None,
+                    digital_twin_self_priority=twin_self["priority"], digital_twin_peer_priority=twin_peer["priority"],
+                    digital_twin_self_path=path(twin_self) if "path" in twin_self else None,
+                    digital_twin_peer_path=path(twin_peer) if "path" in twin_peer else None,
+                    digital_twin_self_timestamps=twin_time(receiver), digital_twin_peer_timestamps=twin_time(peer),
+                    raw_intentions=dict(physical_self=raw_path(truth[receiver]), physical_peer=raw_path(truth[peer]),
+                        digital_twin_self=raw_path(twin_self), digital_twin_peer=raw_path(twin_peer),
+                        cached_self=raw_path(own.value), cached_peer=raw_path(cached.value)))
+                pair["ordering_equations_verified"] = verify_ordering_quantities(pair)
             pairs.append(pair)
     relevant = sum(p["relevant"] for p in pairs)
     errors = sum(p["fov_error"] for p in pairs)
     uplink = sum(p["fov_uplink_error"] for p in pairs)
     downlink = sum(p["fov_downlink_error"] for p in pairs)
-    return dict(pairs=pairs, directed_pairs=len(pairs),
+    result = dict(pairs=pairs, directed_pairs=len(pairs),
         ordering_errors=sum(p["ordering_error"] for p in pairs),
         relevant_pairs=relevant, fov_errors=errors,
         uplink_errors=sum(p["uplink_ordering_error"] for p in pairs),
@@ -108,3 +167,18 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
         xi_fov_uplink=uplink/max(1, relevant), xi_fov_downlink=downlink/max(1, relevant),
         xi_fov=errors/max(1, relevant),
         xi_aoi=sum(p["aoi_weighted_error"] for p in pairs)/max(1, relevant))
+    if schema_version >= 2:
+        vertices = result["vertex_relevant_pairs"]
+        vertex_errors = sum(p["vertex_e2e_error"] for p in pairs)
+        vertex_aoi = sum(p["vertex_aoi_weighted_error"] for p in pairs)
+        result.update(consistency_schema=CONSISTENCY_SCHEMA,
+            ordering_pairs_verified=sum(p["ordering_equations_verified"] for p in pairs),
+            vertex_e2e_errors=vertex_errors, vertex_aoi_error_sum=vertex_aoi,
+            xi_vertex_e2e=vertex_errors/max(1, vertices), xi_vertex_aoi=vertex_aoi/max(1, vertices),
+            zero_vertex_relevant_pair_case=vertices == 0,
+            physical_vertex_relevant_pairs=sum(p["physical_vertex_relevant"] or 0 for p in pairs),
+            missed_vertex_conflicts=sum(p["missed_vertex_conflict"] or 0 for p in pairs),
+            false_positive_vertex_conflicts=sum(p["false_positive_vertex_conflict"] or 0 for p in pairs),
+            missed_vertex_conflict_step_count=sum(len(p["missed_vertex_conflict_steps"] or []) for p in pairs),
+            false_positive_vertex_conflict_step_count=sum(len(p["false_positive_vertex_conflict_steps"] or []) for p in pairs))
+    return result

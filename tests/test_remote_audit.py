@@ -100,3 +100,59 @@ def test_censored_tasks_keep_cutoff_and_deadline_misses_and_energy_bounds():
     assert metrics["deadline_censored_tasks"] == metrics["task_deadline_misses"] == 2
     assert metrics["commands_delivered"] == metrics["commands_used"] == 0
     assert metrics["modeled_energy_upper_j"] >= metrics["modeled_energy_lower_j"] > 0
+
+
+def test_vertex_metrics_and_six_quantity_checks_are_recorded_at_every_cutoff():
+    _, row, trace = episode()
+    epochs = [e for e in trace["remote_events"] if e["event"] == "consistency_event"]
+    assert len(epochs) == row["steps"]
+    for event in epochs:
+        assert event["time"] == pytest.approx(event["cycle"]+.1)
+        assert event["consistency_schema"] == event["summary"]["consistency_schema"] == 2
+        assert event["summary"]["ordering_pairs_verified"] == 2
+        assert "xi_vertex_e2e" in event["summary"] and "xi_vertex_aoi" in event["summary"]
+    audit = replay_trace(trace)
+    assert audit["ordering_pairs_verified"] == 2*row["steps"]
+
+
+def test_new_observational_metrics_cannot_change_commands_allocations_or_motion(monkeypatch):
+    import panama_uav.remote as remote
+    from panama_uav.consistency import consistency_snapshot
+    with monkeypatch.context() as patch:
+        def old_snapshot(*args, **kwargs):
+            return consistency_snapshot(*args, **kwargs, schema_version=1)
+        patch.setattr(remote, "consistency_snapshot", old_snapshot)
+        patch.setattr(remote, "CONSISTENCY_SCHEMA", 1)
+        _, old_row, old = episode()
+    _, new_row, new = episode()
+    def controls(trace):
+        return [{k: v for k, v in e.items() if k not in ("previous_checksum", "checksum")}
+                for e in trace["remote_events"] if e["event"] != "consistency_event"]
+    assert controls(new) == controls(old)
+    assert new["outcome"] == old["outcome"] and new_row == old_row
+    old_metrics = [e["summary"] for e in old["remote_events"] if e["event"] == "consistency_event"]
+    new_metrics = [e["summary"] for e in new["remote_events"] if e["event"] == "consistency_event"]
+    assert [{k: n[k] for k in o} for n, o in zip(new_metrics, old_metrics)] == old_metrics
+    replay = replay_trace(json.loads(json.dumps(old)))
+    assert replay["derived_consistency_schema"] == 2 and replay["ordering_pairs_verified"] > 0
+
+
+def test_vertex_episode_metrics_pool_counts_instead_of_averaging_denominators():
+    from panama_uav.resource_study import episode_metrics
+    from test_consistency_vertex import EDGE, VERTEX, fixture, snapshot
+    _, row, trace = episode()
+    paths = [EDGE[0], EDGE[1], [(1, 1), (0, 1)]]
+    inputs = [fixture(EDGE), fixture(paths, physical_priorities=(1, 2, 3), dt_priorities=(1, 2, 3),
+        cached_priorities=(1, 2, 0)), fixture(VERTEX)]
+    epochs = [e for e in trace["remote_events"] if e["event"] == "consistency_event"]
+    assert len(epochs) == len(inputs)
+    for event, values in zip(epochs, inputs):
+        event["summary"] = {k: v for k, v in snapshot(values).items() if k != "pairs"}
+    metrics = episode_metrics(row, trace)
+    assert metrics["vertex_relevant_pairs"] == metrics["vertex_e2e_errors"] == 4
+    assert metrics["xi_vertex_e2e"] == 1 and metrics["xi_vertex_aoi"] == 2
+    assert metrics["xi_fov"] == .75 and metrics["zero_vertex_relevant_pair_decisions"] == 1
+    for event, values in zip(epochs, inputs):
+        event["summary"] = {k: v for k, v in snapshot(values, schema_version=1).items() if k != "pairs"}
+    old = episode_metrics(row, trace)
+    assert old["xi_vertex_e2e"] is None and old["xi_vertex_aoi"] is None

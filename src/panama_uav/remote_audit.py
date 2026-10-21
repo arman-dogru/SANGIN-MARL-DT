@@ -12,7 +12,7 @@ import json
 import numpy as np
 
 from .allocation import AllocationSnapshot, score_allocation
-from .consistency import consistency_snapshot
+from .consistency import CONSISTENCY_SCHEMA, consistency_snapshot
 from .environment import astar_path
 from .information import InformationCache
 from .remote_state import (REMOTE_SCHEMA, ActionCommand, CommandInbox, DTReplica, DTState,
@@ -142,9 +142,15 @@ def replay_trace(trace, inference=None):
                     views[robot] = dict(priorities={int(k): v for k, v in command["dt_priorities"].items()},
                         states={int(k): by_id[v["state_event"]]["state"] for k, v in command["dt_versions"].items()})
             snapshot = consistency_snapshot(positions, physical, caches, now,
-                settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata)
+                settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata,
+                schema_version=event.get("consistency_schema", 1))
             require(digest(snapshot) == event["consistency_sha256"], "Consistency/AoI replay mismatch")
             require(digest({k: v for k, v in snapshot.items() if k != "pairs"}) == digest(event["summary"]), "Consistency summary mismatch")
+            if snapshot.get("consistency_schema", 1) < CONSISTENCY_SCHEMA:
+                # Old evidence keeps its original checksums. New observational
+                # metrics are derived from the same reconstructed epoch only.
+                snapshot = consistency_snapshot(positions, physical, caches, now,
+                    settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata)
             consistencies.append(snapshot)
         elif kind == "motion_event":
             require({int(k): tuple(v) for k, v in event["before"].items()} == positions, "Motion starts from unknown physical state")
@@ -172,13 +178,22 @@ def replay_trace(trace, inference=None):
     if outcome:
         require(positions == {int(k): tuple(v) for k, v in outcome["final_positions"].items()}, "Outcome position mismatch")
         require(failure == outcome["failure_reason"], "Outcome failure mismatch")
-    return dict(schema=REMOTE_SCHEMA, status="passed", events=len(by_id), final_checksum=previous,
+    vertex_pairs = sum(s["vertex_relevant_pairs"] for s in consistencies)
+    vertex_errors = sum(s["vertex_e2e_errors"] for s in consistencies)
+    vertex_aoi = sum(s["vertex_aoi_error_sum"] for s in consistencies)
+    return dict(schema=REMOTE_SCHEMA, derived_consistency_schema=CONSISTENCY_SCHEMA,
+        status="passed", events=len(by_id), final_checksum=previous,
         rebuilt_inferences=inference_count, model_actions_verified=verified_actions,
         decisions=sum(e["event"] == "decision_event" for e in trace["remote_events"]),
         allocations=len(assignments), consistency_decisions=len(consistencies),
         relevant_pairs=sum(s["relevant_pairs"] for s in consistencies),
         fov_errors=sum(s["fov_errors"] for s in consistencies),
         missed_physical_conflicts=sum(s["missed_physical_conflicts"] for s in consistencies),
+        ordering_pairs_verified=sum(s["ordering_pairs_verified"] for s in consistencies),
+        vertex_relevant_pairs=vertex_pairs, vertex_e2e_errors=vertex_errors, vertex_aoi_error_sum=vertex_aoi,
+        xi_vertex_e2e=vertex_errors/max(1, vertex_pairs), xi_vertex_aoi=vertex_aoi/max(1, vertex_pairs),
+        missed_vertex_conflicts=sum(s["missed_vertex_conflicts"] for s in consistencies),
+        false_positive_vertex_conflicts=sum(s["false_positive_vertex_conflicts"] for s in consistencies),
         assignments=assignments, final_positions=positions, failure_reason=failure,
         pair_consistency=consistencies)
 

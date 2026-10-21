@@ -219,6 +219,20 @@ def episode_metrics(row, trace):
         allocation_solves=len(allocations),
         mean_relaxation_gap=float(np.mean([a["absolute_gap"] for a in allocations])) if allocations else 0,
         solver_seconds=sum(a["relaxed"]["solve_seconds"]+a["binary"]["solve_seconds"] for a in allocations))
+    vertex_fields = ("vertex_e2e_errors", "vertex_aoi_error_sum", "physical_vertex_relevant_pairs",
+        "missed_vertex_conflicts", "false_positive_vertex_conflicts", "missed_vertex_conflict_step_count",
+        "false_positive_vertex_conflict_step_count", "ordering_pairs_verified")
+    if all("xi_vertex_e2e" in s for s in snapshots):
+        vertex_pairs = sum(s["vertex_relevant_pairs"] for s in snapshots)
+        metrics.update({key: sum(s[key] for s in snapshots) for key in vertex_fields})
+        metrics.update(vertex_relevant_pairs=vertex_pairs,
+            xi_vertex_e2e=metrics["vertex_e2e_errors"]/max(1, vertex_pairs),
+            xi_vertex_aoi=metrics["vertex_aoi_error_sum"]/max(1, vertex_pairs),
+            zero_vertex_relevant_pair_decisions=sum(s["zero_vertex_relevant_pair_case"] for s in snapshots))
+    else:
+        # Historical records without this observation must not acquire fake zeros.
+        metrics.update({key: None for key in (*vertex_fields, "xi_vertex_e2e", "xi_vertex_aoi",
+                                            "zero_vertex_relevant_pair_decisions")})
     metrics.update(fov_uplink_errors=sum(s.get("fov_uplink_errors", 0) for s in snapshots),
         fov_downlink_errors=sum(s.get("fov_downlink_errors", 0) for s in snapshots),
         xi_fov_uplink=sum(s.get("fov_uplink_errors", 0) for s in snapshots)/max(1, relevant),
@@ -252,6 +266,10 @@ METRICS = ("par2", "success", "waiting_steps", "sum_path_costs", "xi_fov", "mean
            "voluntary_wait_steps", "travel_steps", "completed_task_robot_energy_j", "completed_task_backhaul_energy_j",
            "completed_task_compute_energy_j", "mean_drone_cpu_utilization", "mean_cloud_cpu_utilization")
 METRICS += REMOTE_METRICS
+METRICS += ("xi_vertex_e2e", "xi_vertex_aoi", "vertex_e2e_errors", "vertex_aoi_error_sum",
+    "physical_vertex_relevant_pairs", "missed_vertex_conflicts", "false_positive_vertex_conflicts",
+    "missed_vertex_conflict_step_count", "false_positive_vertex_conflict_step_count",
+    "zero_vertex_relevant_pair_decisions", "ordering_pairs_verified")
 
 
 def paired_metrics(rows, reference, samples=2000):

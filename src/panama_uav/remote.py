@@ -14,7 +14,7 @@ import numpy as np
 from .allocation import (AllocationTask, AllocationSnapshot, AllocationFailure, compare_allocations,
                          priority_weights, score_allocation, solve_binary)
 from .information import InformationCache
-from .consistency import consistency_snapshot
+from .consistency import CONSISTENCY_SCHEMA, consistency_snapshot
 from .paper import PaperMissionCommunication
 from .paper_radio import access_budget, backhaul_budget
 from .records import write_json
@@ -464,7 +464,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
         self.decision = dict(cycle_start=cycle_start, at=cutoff, budget_seconds=deadline_seconds,
             initial_briefing=cycle == 0, remote=True, inputs=self.command_contexts)
         consistency = self._consistency()
-        self._record("consistency_event", cycle=cycle,
+        self._record("consistency_event", cycle=cycle, consistency_schema=CONSISTENCY_SCHEMA,
             summary={k: v for k, v in consistency.items() if k != "pairs"},
             consistency_sha256=hashlib.sha256(json.dumps(consistency, sort_keys=True,
                 separators=(",", ":"), allow_nan=False).encode()).hexdigest())

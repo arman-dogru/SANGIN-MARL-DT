@@ -22,3 +22,10 @@ artifacts/.mplconfig/
 /artifacts/inputs/
 .venv/
 docs/
+
+# Manuscript drafts and generated experiment evidence stay local.
+/paper/
+/research/
+/scripts/paper_diagrams.py
+/scripts/report_paper_results.py
+/cvx_solvers/*_RESULTS.md

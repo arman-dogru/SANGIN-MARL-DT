@@ -22,8 +22,10 @@ A short, explicitly untrained diagnostic requires no checkpoint or orbit downloa
 python -m panama_uav --config configs/resource_study.toml resource-study --run-id resource-diagnostic-01 --diagnostic --cases 1 --agents 2 4 6 8 --max-steps 6 --primary-only
 ```
 
-For the orbital paper study, prepare the qualified clean checkpoint and archived
-full-route timeline using `research/REPRODUCE.md`. Choose a new run ID; existing
+For an orbital resource study, prepare the qualified clean checkpoint and archived
+full-route timeline with `scripts/prepare_paper_inputs.py`. Pass the checkpoint
+and timeline paths using `--checkpoint` and `--timeline`. These large inputs and
+their generated provenance records remain local. Choose a new run ID; existing
 output directories are rejected unless explicitly resuming the same case bank.
 
 ```powershell
@@ -248,45 +250,27 @@ propagation, overlapping and overloaded processors, atomic and out-of-order cach
 delivery, stale self state, completed priority, FoV boundaries and paired reporting.
 Neither beneficial policy differences nor monotonic mission improvement are forced.
 
-## Paper text changes
+## Validation and output locations
 
-In Section II-A, replace the task tuple with T_i={s_i,c_i}; retain C_i=s_i*c_i.
-Describe the 100 ms control observation budget separately from task latency.
+Run the predictable scenarios and regression suite from the project root:
 
-In Section II-D, retain Equations 8--9 as conditional processor latencies. Define
-T_prop as the outbound-plus-return full cloud-route propagation. The simplification
-2*d_sat/c0 applies only when gateway and terrestrial contributions are explicitly
-neglected. Explain that analytical result serialization is neglected while the
-event simulator retains it.
+```powershell
+python -m panama_uav allocation-sanity --output output/sanity-new
+python -m pytest -q --basetemp tmp/pytest-new
+```
 
-In Section III, remove the optimization over P and constraints 16b--16c. Add drone
-backhaul transmission energy to E_tx. Present binary execution and the continuous
-scheduling bound separately, together with the conic substitution above. Retain
-Equations 18--21 as the latency-only special case of fixed route/rate sharing,
-and add the DVFS KKT rule above. Equation 22 may remain
-as an analytical deadline-feasibility observation, but is not enforced or evaluated
-in this study. Do not claim the entire relaxed mission is globally optimal.
+Use a new output and temporary directory for each invocation. Predictable cases
+cover high propagation delay, slow finite backhaul, slow finite cloud CPU,
+unavailable routes, priority-weighted CPU sharing and energy-aware CPU idling.
+The independent primal CVXPY reference enumerates binary assignments without
+using the production conic substitution or KKT helpers. Hand-calculated tests
+cover the single-task 80 ms routing threshold, equal-processor load balancing
+and the 2:1 CPU ratio for weights 4:1 with equal work. These are controlled
+test inputs, not hardware or mission-performance measurements.
 
-In Section V, replace deadline-violation probability with task-delay distributions,
-unfinished-task counts, and the fraction of control decisions using previous-cycle
-sources. Add the assumed workload/RF parameter table, per-transmitter energy,
-relaxation gap, realized compute contention, FoV-relevant errors, and paired equal
-allocation comparisons. Describe orbital results and fixed-geometry diagnostics
-separately. The supplied PDF is retained unchanged. The later supplied editable
-TeX is now revised under `paper/`; its exact original source is preserved under
-`paper/original/`. The tracked PDF, tables and plots are generated from recorded
-runs. `research/BASELINE_RESULTS.md` documents the completed nominal comparison;
-`research/REPRODUCE.md` provides the complete sweep and independent audit commands.
-
-The full 97-condition study is complete: 19,400 episodes, 10,177,608 generated
-tasks and 1,714,431 allocation snapshots. `research/RESULTS.md` documents the
-measured comparisons and their limits. Every episode's metrics and trace-backed
-allocation/task/coordination examples are published under `research/results/`;
-complete raw logs remain local under `output/resources/paper-allocation-20261021/`.
-
-The expanded solver checks are documented in `research/SOLVER_VALIDATION.md`.
-Ten predictable cases include high satellite propagation, slow finite backhaul,
-slow finite cloud CPU and the single-task routing switch. Hand-calculated tests
-also verify the 80 ms switching threshold, balanced processor loading and the
-2:1 CPU ratio for weights 4:1 with equal work. Both the scheduling relaxation and
-whole-task reference are checked. No task deadline is imposed in these cases.
+The repository retains source code, configurations, supplied input scenarios and
+curated regression fixtures. Run logs, allocation snapshots, solver reports,
+figures and manuscript drafts remain local under ignored output directories.
+The existing `paper/`, `research/` and `cvx_solvers/results/` directories are not
+versioned. No experimental results or custom manuscript are required to run the
+implementation or its tests.

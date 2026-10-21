@@ -63,7 +63,7 @@ The opt-in resource study adds a CVXPY/Clarabel scheduling relaxation, an exact
 whole-task reference, finite drone/cloud processors, per-transmitter energy,
 atomic coordination states and directed FoV inconsistency. Existing configurations
 retain their communication study behavior. See [RESOURCE_ALLOCATION.md](RESOURCE_ALLOCATION.md)
-for the model, assumptions, reproducible diagnostic/paper commands and manuscript updates.
+for the model, assumptions, reproducible study commands and validation checks.
 
 ```powershell
 python -m pip install -e ".[dev,optimization,leo]"
@@ -81,6 +81,9 @@ archived-orbit/empirical-delay methodology will be documented. The tuned run use
 Generated records, figures, reports and presentation exports remain local under
 `output/`, which is ignored by Git. The repository retains the scripts and
 methodology needed to generate them.
+Manuscript drafts under `paper/` and generated research evidence under `research/`
+also remain local and are excluded from version control. Solver implementations,
+input scenarios, regression fixtures and tests remain tracked.
 
 | Script | Purpose |
 | --- | --- |

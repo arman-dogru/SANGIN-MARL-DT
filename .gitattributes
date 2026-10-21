@@ -1,4 +1,0 @@
-# Generated experiment output is local and ignored by Git.
-# Published research data retain exact bytes so recorded hashes survive checkout.
-/research/baseline_results/** -text whitespace=cr-at-eol
-/research/results/** -text whitespace=cr-at-eol

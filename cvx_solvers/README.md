@@ -34,7 +34,8 @@ This uses infinite tau for A-D and F. Case E uses `1.10*solC.T`, computed from
 Case C during the same run, exactly as in the supplied test script. Results go
 to `results/user_validation_original_tau`; the earlier large-tau results remain
 in `results/user_validation`. JSON encodes infinity as the string `"Infinity"`;
-MAT exports retain numeric infinity. See [the original-tau results](ORIGINAL_TAU_RESULTS.md).
+MAT exports retain numeric infinity. Generated reports remain in the ignored local
+results directory.
 
 The earlier fixtures are available only with `--benchmarks`.
 `parameters.json` specifies those synthetic fixtures using the project's prior settings:
@@ -54,8 +55,8 @@ Results for the supplied scenarios are local under `results/user_validation`:
 `summary.csv`, `summary.json`, `summary.md`, `per_task.csv`, individual
 input/solution JSON and MAT files, every assignment's solver status and residual,
 and a manifest identifying both original hashes and the numerical backend.
-See [the recorded results](VALIDATION_RESULTS.md). Earlier synthetic fixture
-results remain separate under `results/cvxpy`.
+Earlier synthetic fixture results remain separate under `results/cvxpy`.
+Generated results and result summaries are excluded from version control.
 
 To execute the actual `.m` files later, configure MATLAB, CVX and its integer-capable
 MOSEK solver, then run from MATLAB:

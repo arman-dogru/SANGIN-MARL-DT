@@ -16,6 +16,40 @@ from panama_uav.records import sha256, write_json
 from panama_uav.training import load_model
 
 
+def check_task_accounting(job, config):
+    """Check physical identities from saved measurements, without solver helpers."""
+    close = lambda a,b: np.isclose(a,b,rtol=1e-7,atol=1e-8)
+    assert close(job["required_cycles"], job["input_bits"]*job["cycles_per_bit"])
+    stages=job.get("service_stages", {})
+    access=stages.get("paper_input:access_up", {}).get("transmission_seconds",0)
+    backhaul=stages.get("paper_cloud_input:satellite_up", {}).get("transmission_seconds",0)
+    assert close(job["robot_energy_j"], config.resource_allocation.robot_power_w*access)
+    assert close(job["backhaul_energy_j"], config.resource_allocation.drone_power_w*backhaul)
+    if "predicted_allocation" in job:
+        p=job["predicted_allocation"]
+        assert p["x"] in (0,1)
+        assert close(p["access_seconds"], job["input_bits"]/job["access_radio"]["applied_bps"])
+        assert close(p["latency_seconds"], sum(p[k] for k in ("access_seconds","backhaul_seconds",
+            "propagation_seconds","drone_compute_seconds","cloud_compute_seconds")))
+        if p["x"]:
+            assert close(p["drone_compute_seconds"],job["required_cycles"]/p["drone_cycles_per_second"])
+            assert close(p["drone_compute_energy_j"],config.resource_allocation.drone_kappa*
+                job["required_cycles"]*p["drone_cycles_per_second"]**2)
+        else:
+            radio=job["backhaul_radio"]
+            assert close(p["backhaul_seconds"],job["input_bits"]/radio["applied_bps"])
+            assert close(p["cloud_compute_seconds"],job["required_cycles"]/p["cloud_cycles_per_second"])
+            assert close(p["propagation_seconds"],radio["round_trip_seconds"])
+            assert close(radio["round_trip_seconds"],2*(radio["air_to_space_one_way_seconds"]+
+                radio["satellite_gateway_one_way_seconds"]+radio["ground_one_way_seconds"]))
+    if "delivered_at" in job:
+        elapsed=sum(job["uplink_"+k] for k in ("transmission_seconds","queue_seconds",
+            "propagation_seconds","interruption_seconds","guard_seconds"))
+        elapsed+=job["batch_wait_seconds"]+job["compute_elapsed_seconds"]+job["response_seconds"]
+        assert close(job["observed_latency_seconds"],job["delivered_at"]-job["source_time"])
+        assert close(job["observed_latency_seconds"],elapsed), (job["job_id"],elapsed,job["observed_latency_seconds"])
+
+
 def audit(study, output, cases_per_population=1):
     study, output = Path(study), Path(output)
     manifest = json.loads((study/"manifest.json").read_text())
@@ -47,6 +81,7 @@ def audit(study, output, cases_per_population=1):
                 for pair in consistency["pairs"]:
                     assert pair["e2e_ordering_error"] <= pair["uplink_ordering_error"]+pair["downlink_ordering_error"]
             for job in trace["resource_tasks"]:
+                check_task_accounting(job, config)
                 if "allocation_at" in job:
                     assert job["source_time"] <= job["access_arrived_at"] <= job["allocation_at"]
                     assert job["executed_x"] in (0, 1)
@@ -59,7 +94,8 @@ def audit(study, output, cases_per_population=1):
                 tasks=len(trace["resource_tasks"]), trace_sha256=sha256(file), status="passed"))
     report = dict(status="passed", checkpoint_sha256=manifest["model"]["sha256"],
         episodes_audited=len(rows), decisions_replayed=sum(r["decisions_replayed"] for r in rows),
-        allocation_snapshots=sum(r["allocation_snapshots"] for r in rows), rows=rows)
+        allocation_snapshots=sum(r["allocation_snapshots"] for r in rows),
+        task_accounting_checks=sum(r["tasks"] for r in rows), rows=rows)
     write_json(output, report)
     return report
 

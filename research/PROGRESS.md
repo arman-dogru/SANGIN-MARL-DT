@@ -70,3 +70,8 @@ and coordination support, while the action network consumes local sensing and
 received caches at decision epochs. The manuscript now consistently describes
 that qualified implementation. A serialized remote action network would require
 a separate workload, transport and timing experiment.
+
+The expanded independent replay audit verifies physical accounting for 10,944
+saved nominal tasks: s/R, C/f, P times measured airtime, the complete two-way
+propagation decomposition, and the sum of observed per-stage delay components.
+These checks use saved measurements rather than allocation implementation helpers.

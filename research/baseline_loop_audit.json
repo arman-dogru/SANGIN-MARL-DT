@@ -4,6 +4,7 @@
   "episodes_audited": 20,
   "decisions_replayed": 1760,
   "allocation_snapshots": 1600,
+  "task_accounting_checks": 10944,
   "rows": [
     {
       "condition": "fresh",

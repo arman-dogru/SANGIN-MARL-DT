@@ -8,7 +8,10 @@ The raw records contain 487,862 generated support tasks, 483,862 delivered tasks
 and 74,092 allocation snapshots. All case, task and snapshot counts passed the
 publisher's checks. Independent replay reproduced 1,760 recorded PANAMA decisions
 across 20 sampled traces and verified source-time causality, binary execution and
-the UL/DL/E2E ordering-error inequality. See `baseline_loop_audit.json`.
+the UL/DL/E2E ordering-error inequality. It also independently checked 10,944 saved
+tasks for bit/cycle identities, predicted computation and transmission times,
+transmitter energy, full-route round-trip propagation and observed stage sums.
+See `baseline_loop_audit.json`.
 
 At eight robots, current-priority versus equal weights gives:
 

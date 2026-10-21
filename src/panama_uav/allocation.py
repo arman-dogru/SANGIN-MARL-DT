@@ -5,10 +5,11 @@ CVXPY is deliberately imported lazily so legacy studies need no new dependency.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from itertools import product
 from functools import lru_cache
 import math
+import warnings
 from time import perf_counter
 
 import numpy as np
@@ -83,6 +84,7 @@ class AllocationResult:
     residual: float = 0.0
     is_dcp: bool = True
     assignments_checked: int = 1
+    solver_attempts: list[dict] = field(default_factory=list)
 
     def to_dict(self):
         return asdict(self)
@@ -93,6 +95,10 @@ class AllocationFailure(RuntimeError):
         super().__init__(message)
         self.snapshot = asdict(snapshot)
         self.details = details or {}
+
+    def __reduce__(self):
+        # Preserve the snapshot when an exception crosses a process boundary.
+        return (type(self), (str(self), AllocationSnapshot.from_dict(self.snapshot), self.details))
 
 
 def priority_weights(priorities, completed, minimum=1.0, maximum=4.0):
@@ -251,7 +257,7 @@ def solve_binary(snapshot):
 
 
 @lru_cache(maxsize=24)
-def _conic_template(n, zero_work, dvfs):
+def _conic_template(n, zero_work, dvfs, allowed_routes):
     """Reusable DPP graph; every snapshot still performs a fresh numerical solve."""
     import cvxpy as cp
     x, a, b = (cp.Variable(n) for _ in range(3))
@@ -263,19 +269,69 @@ def _conic_template(n, zero_work, dvfs):
                    cp.sum(a) <= 1, cp.sum(b) <= 1]
     for i in range(n):
         if i not in zero_work:
-            constraints.extend((cp.SOC(qd[i]+a[i], cp.hstack([2*x[i], qd[i]-a[i]])),
-                                cp.SOC(qc[i]+b[i], cp.hstack([2*(1-x[i]), qc[i]-b[i]]))))
+            if 1 in allowed_routes[i]:
+                constraints.append(cp.SOC(qd[i]+a[i], cp.hstack([2*coefficients[1,i]*x[i], qd[i]-a[i]])))
+            else:
+                constraints.extend((a[i] == 0, qd[i] == 0))
+            if 0 in allowed_routes[i]:
+                constraints.append(cp.SOC(qc[i]+b[i], cp.hstack([2*coefficients[2,i]*(1-x[i]), qc[i]-b[i]])))
+            else:
+                constraints.extend((b[i] == 0, qc[i] == 0))
         else:
             constraints.extend((a[i] == 0, b[i] == 0, qd[i] == 0, qc[i] == 0))
         if ed is not None:
-            constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*a[i], ed[i]-x[i]])))
-    objective = cp.sum(cp.multiply(coefficients[0], 1-x)+cp.multiply(coefficients[1], qd)
-                       +cp.multiply(coefficients[2], qc))
+            if 1 in allowed_routes[i]:
+                constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*coefficients[3,i]*a[i], ed[i]-x[i]])))
+            else:
+                constraints.append(ed[i] == 0)
+    objective = coefficients[0] @ (1-x)+cp.sum(qd+qc)
     if ed is not None:
-        objective += coefficients[3] @ ed
+        objective += cp.sum(ed)
     problem = cp.Problem(cp.Minimize(objective), constraints)
     assert problem.is_dcp(dpp=True)
     return problem, constraints, x, a, b, coefficients, lower, upper
+
+
+def _refine_cpu(snapshot, x):
+    """Exact feasible CPU minimizer at the conic x, without minimum allocations."""
+    from scipy.optimize import brentq
+    C = np.array([t.cycles for t in snapshot.tasks])
+    w = snapshot.latency_coefficient*np.array([t.weight for t in snapshot.tasks])
+    def pool(A, B, limits):
+        active = (A > 0) & (limits > 0)
+        if not active.any():
+            return np.zeros_like(A)
+        free = np.where(B > 0, np.cbrt(np.divide(A, 2*B, out=np.zeros_like(A), where=B > 0)), limits)
+        def allocate(multiplier):
+            value = np.minimum(limits, free)
+            if multiplier:
+                value = np.minimum(value, np.sqrt(A/multiplier))
+            for _ in range(24):
+                derivative = 6*B*value**2+2*multiplier*value
+                change = np.divide(2*B*value**3+multiplier*value**2-A, derivative,
+                                   out=np.zeros_like(value), where=(derivative > 0) & active)
+                updated = np.minimum(limits, np.maximum(0, value-change))
+                if np.max(np.abs(updated-value)) < 1e-13:
+                    break
+                value = updated
+            return np.where(active, value, 0)
+        value = allocate(0)
+        if value.sum() > 1:
+            scale = np.sum(np.sqrt(A))**2
+            edge = allocate(scale)
+            if edge.sum() >= 1-1e-12:
+                value = edge
+            else:
+                mu = brentq(lambda m: allocate(m*scale).sum()-1, 0, 1, xtol=1e-12)
+                value = allocate(mu*scale)
+        return value/max(1, float(value.sum()))
+    A = w*C*x**2/(snapshot.drone_cycles_per_second or 1)
+    B = np.divide(snapshot.energy_coefficient*snapshot.drone_kappa*C*snapshot.drone_cycles_per_second**2,
+                  x, out=np.zeros_like(x), where=x > 0)
+    a = pool(A, B, x)
+    cloud = 1-x
+    b = pool(w*C*cloud**2/(snapshot.cloud_cycles_per_second or 1), np.zeros_like(x), cloud)
+    return a, b
 
 
 def solve_relaxed(snapshot):
@@ -283,9 +339,12 @@ def solve_relaxed(snapshot):
     n = len(snapshot.tasks)
     if not n:
         return _evaluate(snapshot, [], [], [], "relaxed", perf_counter()-start)
+    allowed_routes = tuple(tuple(_allowed(snapshot, t)) for t in snapshot.tasks)
+    if any(not routes for routes in allowed_routes):
+        raise AllocationFailure("No available execution route", snapshot)
     try:
         problem, constraints, x, a, b, coefficients, lower, upper = _conic_template(
-            n, tuple(i for i, t in enumerate(snapshot.tasks) if not t.cycles), bool(snapshot.drone_kappa))
+            n, tuple(i for i, t in enumerate(snapshot.tasks) if not t.cycles), bool(snapshot.drone_kappa), allowed_routes)
     except ImportError as exc:
         raise AllocationFailure("Install the optimization extra (CVXPY/Clarabel)", snapshot) from exc
     values, lows, highs, constant = [], [], [], 0.0
@@ -304,15 +363,27 @@ def solve_relaxed(snapshot):
             w*t.cycles/snapshot.drone_cycles_per_second if snapshot.drone_cycles_per_second else 0,
             w*t.cycles/snapshot.cloud_cycles_per_second if snapshot.cloud_cycles_per_second else 0,
             snapshot.energy_coefficient*snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2])
-    coefficients.value = np.asarray(values).T
+    scaled = np.asarray(values).T
+    scaled[1:] = np.sqrt(scaled[1:])
+    coefficients.value = scaled
     lower.value, upper.value = np.asarray(lows), np.asarray(highs)
-    try:
-        problem.solve(solver="CLARABEL", enforce_dpp=True, warm_start=True,
-                      tol_gap_abs=1e-9, tol_gap_rel=1e-9, tol_feas=1e-9)
-    except Exception as exc:
-        raise AllocationFailure(str(exc), snapshot, {"is_dcp": problem.is_dcp()}) from exc
+    attempts = []
+    for tolerance in (1e-8, 1e-7):
+        try:
+            with warnings.catch_warnings(record=True) as captured:
+                problem.solve(solver="CLARABEL", enforce_dpp=True, warm_start=not attempts,
+                    max_iter=300, tol_gap_abs=tolerance, tol_gap_rel=tolerance, tol_feas=tolerance)
+            attempts.append(dict(tolerance=tolerance, status=problem.status,
+                                 warnings=[str(w.message) for w in captured]))
+        except Exception as exc:
+            attempts.append(dict(tolerance=tolerance, error=str(exc)))
+            if tolerance == 1e-7:
+                raise AllocationFailure(str(exc), snapshot, {"is_dcp": problem.is_dcp(), "attempts": attempts}) from exc
+            continue
+        if problem.status != "optimal_inaccurate":
+            break
     if problem.status != "optimal":
-        raise AllocationFailure("Relaxation did not solve optimally", snapshot, {"status": problem.status})
+        raise AllocationFailure("Relaxation did not solve optimally", snapshot, {"status": problem.status, "attempts": attempts})
     residual = max(float(np.max(c.violation())) for c in constraints)
     if not math.isfinite(residual) or residual > 1e-6:
         raise AllocationFailure("Allocation constraint residual exceeded tolerance", snapshot, {"residual": residual})
@@ -324,11 +395,9 @@ def solve_relaxed(snapshot):
         allowed = _allowed(snapshot, t)
         if len(allowed) == 1:
             xv[i] = allowed[0]
-    av = np.minimum(np.maximum(a.value, 0), xv)
-    bv = np.minimum(np.maximum(b.value, 0), 1-xv)
-    av /= max(1.0, float(av.sum()))
-    bv /= max(1.0, float(bv.sum()))
+    av, bv = _refine_cpu(snapshot, xv)
     result = _evaluate(snapshot, xv, av, bv, "relaxed", perf_counter()-start, residual)
+    result.solver_attempts = attempts
     if not math.isfinite(result.objective) or abs(result.objective-problem.value-constant) > 1e-6*max(1, abs(problem.value+constant)):
         raise AllocationFailure("Recovered allocation disagrees with conic objective", snapshot)
     return result

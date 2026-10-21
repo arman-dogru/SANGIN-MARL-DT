@@ -8,7 +8,9 @@ import json
 from pathlib import Path
 import platform
 import subprocess
+import ast
 from concurrent.futures import ProcessPoolExecutor
+from collections import deque
 
 import numpy as np
 
@@ -35,9 +37,28 @@ def _worker_initialize(model_path, configuration, diagnostic, device_name):
 
 def _worker_episode(arguments):
     from .evaluation import run_episode
-    config, case, version, max_steps = arguments
-    return run_episode(config, _WORKER_MODEL, case, _WORKER_DEVICE, version,
+    import faulthandler
+    import os
+    faulthandler.enable()
+    config, case, version, max_steps, directory = arguments
+    progress = Path(directory)/f"worker-{os.getpid()}.json"
+    write_json(progress, dict(case_id=case["case_id"], status="running"))
+    row, trace = run_episode(config, _WORKER_MODEL, case, _WORKER_DEVICE, version,
         decision_deadline_seconds=config.resource_allocation.decision_budget_seconds, max_steps=max_steps)
+    result = _archive_episode(row, trace, directory, case)
+    write_json(progress, dict(case_id=case["case_id"], status="complete"))
+    return result
+
+
+def _archive_episode(row, trace, directory, case):
+    if trace["frames"][0]["positions"] != case["starts"]:
+        raise AssertionError("Paired case starts changed")
+    row = episode_metrics(row, trace)
+    # Encode once; streaming json.dump into gzip incurs one write per token.
+    encoded = json.dumps(trace, allow_nan=False, separators=(",", ":")).encode("utf-8")
+    with gzip.open(Path(directory)/f"{case['case_id']}.json.gz", "wb", compresslevel=4) as stream:
+        stream.write(encoded)
+    return row, trace["resource_tasks"], [e for e in trace["transport_events"] if e["event"] == "paper_allocation"]
 
 
 def _case_config(config, case):
@@ -45,6 +66,22 @@ def _case_config(config, case):
         return config
     return replace(config, communication=replace(config.communication,
         backhaul_time_offset_seconds=config.communication.backhaul_time_offset_seconds+case["orbital_offset_seconds"]))
+
+
+def _bounded_episodes(executor, arguments, window):
+    """Preserve deterministic case order without retaining 200 large futures."""
+    arguments = iter(arguments)
+    pending = deque()
+    for _ in range(window):
+        item = next(arguments, None)
+        if item is None:
+            break
+        pending.append(executor.submit(_worker_episode, item))
+    while pending:
+        yield pending.popleft().result()
+        item = next(arguments, None)
+        if item is not None:
+            pending.append(executor.submit(_worker_episode, item))
 
 
 def optimize_snapshot(input_path, output_path):
@@ -324,7 +361,8 @@ def plot_results(root):
 
 
 def run_study(config, output, model_path=None, diagnostic=False, cases=50,
-              counts=(2, 4, 6, 8), secondary=True, selected=None, max_steps=250, device_name="cpu", workers=1):
+              counts=(2, 4, 6, 8), secondary=True, selected=None, max_steps=250, device_name="cpu", workers=1,
+              resume=False):
     import torch
     from .evaluation import case_bank, run_episode
     from .models import DQN, choose_device
@@ -355,7 +393,7 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
     output = Path(output).resolve()
     choices = [(name, replace(cfg, resource_allocation=replace(cfg.resource_allocation,
         failure_directory=str(output/name/"failures"))), tags) for name, cfg, tags in choices]
-    output.mkdir(parents=True, exist_ok=False)
+    output.mkdir(parents=True, exist_ok=resume)
     device = choose_device(device_name)
     torch.set_num_threads(1)
     torch.manual_seed(42)
@@ -398,37 +436,68 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         timeline_sha256=sha256(config.communication.leo_timeline) if config.communication.leo_timeline else None,
         assumptions="Synthetic task/RF assumptions; fractional solutions are bounds; runtime executes binary routes",
         conditions=[dict(name=name, tags=tags, configuration=cfg.to_dict()) for name, cfg, tags in choices])
+    # JSON manifests restore tuple-valued dataclass fields as lists.
+    manifest = json.loads(json.dumps(manifest, allow_nan=False))
+    if resume:
+        previous = json.loads((output/"manifest.json").read_text(encoding="utf-8"))
+        for key in ("configuration", "model", "counts", "cases_per_count", "episode_cap", "map_sha256",
+                    "timeline_sha256", "case_bank_sha256", "conditions"):
+            if manifest[key] != previous[key]:
+                raise ValueError(f"Resume identity mismatch: {key}")
+        # Archive/summary orchestration may improve; the simulation kernels must match.
+        for name, digest in previous["code_sha256"].items():
+            if name not in ("resource_study.py", "cli.py") and manifest["code_sha256"].get(name) != digest:
+                if name != "allocation.py":
+                    raise ValueError(f"Resume simulation code mismatch: {name}")
+                old_source = subprocess.check_output(["git", "show",
+                    f"{previous['git_commit']}:src/panama_uav/allocation.py"], cwd=code_root, text=True)
+                new_source = (code_root/name).read_text(encoding="utf-8")
+                invariant = {"AllocationTask", "AllocationSnapshot", "priority_weights", "cpu_shares",
+                             "processor_shares", "_processor_batch", "_evaluate", "_allowed", "solve_binary"}
+                def kernels(source):
+                    return {node.name: ast.dump(node, include_attributes=False) for node in ast.parse(source).body
+                            if isinstance(node, (ast.ClassDef, ast.FunctionDef)) and node.name in invariant}
+                if kernels(old_source) != kernels(new_source):
+                    raise ValueError("Resume exact-execution allocation code mismatch")
+                manifest.setdefault("numerical_revisions", []).append(dict(module=name,
+                    previous_sha256=digest, new_sha256=manifest["code_sha256"][name],
+                    execution_kernels="AST-identical exact binary objective, route constraints and CPU allocation",
+                    reason="conic endpoint representation and cross-process failure reporting"))
+        previous.setdefault("resumptions", []).append(dict(created_utc=manifest["created_utc"],
+            git_commit=commit, code_sha256=manifest["code_sha256"], workers=workers))
+        if "numerical_revisions" in manifest:
+            previous["numerical_revisions"] = manifest["numerical_revisions"]
+        manifest = previous
     write_json(output/"manifest.json", manifest)
     write_json(output/"status.json", dict(status="running", completed_episodes=0))
-    completed = 0
+    completed = sum(len((output/name/"episodes.jsonl").read_text(encoding="utf-8").splitlines())
+                    for name, _, _ in choices if (output/name/"episodes.jsonl").exists()) if resume else 0
     executor = (ProcessPoolExecutor(max_workers=workers, initializer=_worker_initialize,
         initargs=(str(Path(model_path).resolve()) if model_path else None, config.to_dict(), diagnostic, device_name))
         if workers > 1 else None)
     try:
         for name, cfg, tags in choices:
             directory = output/name
-            directory.mkdir()
+            directory.mkdir(exist_ok=resume)
             cfg = replace(cfg, resource_allocation=replace(cfg.resource_allocation,
                 failure_directory=str(directory/"failures")))
+            done = {json.loads(line)["case_id"] for line in (directory/"episodes.jsonl").read_text(encoding="utf-8").splitlines()} \
+                if resume and (directory/"episodes.jsonl").exists() else set()
+            pending = [case for case in bank if case["case_id"] not in done]
             if executor:
-                results = executor.map(_worker_episode, [(_case_config(cfg, case), case, version, max_steps) for case in bank])
+                results = _bounded_episodes(executor,
+                    [(_case_config(cfg, case), case, version, max_steps, str(directory)) for case in pending], 2*workers)
             else:
-                results = (run_episode(_case_config(cfg, case), model, case, device, version,
+                results = (_archive_episode(*run_episode(_case_config(cfg, case), model, case, device, version,
                     decision_deadline_seconds=cfg.resource_allocation.decision_budget_seconds,
-                    max_steps=max_steps) for case in bank)
-            for case, (row, trace) in zip(bank, results):
-                if trace["frames"][0]["positions"] != case["starts"]:
-                    raise AssertionError("Paired case starts changed")
-                row = episode_metrics(row, trace)
+                    max_steps=max_steps), directory, case) for case in pending)
+            for case, (row, tasks, allocations) in zip(pending, results):
                 row.update(condition=name, diagnostic=diagnostic, policy_model_sha256=model_identity["sha256"], **tags)
-                with gzip.open(directory/f"{case['case_id']}.json.gz", "wt", encoding="utf-8") as stream:
-                    json.dump(trace, stream, allow_nan=False, separators=(",", ":"))
                 append_jsonl(directory/"episodes.jsonl", row)
-                for job in trace["resource_tasks"]:
+                for job in tasks:
                     append_jsonl(directory/"tasks.jsonl", dict(case_id=case["case_id"], **job))
-                for event in trace["transport_events"]:
-                    if event["event"] == "paper_allocation":
-                        append_jsonl(directory/"allocations.jsonl", dict(case_id=case["case_id"], **event))
+                for event in allocations:
+                    append_jsonl(directory/"allocations.jsonl", dict(case_id=case["case_id"], **event))
                 completed += 1
                 write_json(output/"status.json", dict(status="running", condition=name,
                     completed_episodes=completed, planned_episodes=len(bank)*len(choices)))

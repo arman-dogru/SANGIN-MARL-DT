@@ -138,6 +138,7 @@ def parser():
     sub.add_argument("--primary-only", action="store_true")
     sub.add_argument("--conditions", nargs="+")
     sub.add_argument("--workers", type=int, default=1)
+    sub.add_argument("--resume", action="store_true")
     return result
 
 
@@ -202,7 +203,7 @@ def main(argv=None):
                 leo_timeline=str(Path(arguments.timeline).resolve())))
         summary = run_study(config, root, arguments.model, arguments.diagnostic,
             arguments.cases, tuple(arguments.agents), not arguments.primary_only,
-            arguments.conditions, arguments.max_steps, arguments.device, arguments.workers)
+            arguments.conditions, arguments.max_steps, arguments.device, arguments.workers, arguments.resume)
         print(f"Measured {len(summary)} resource condition/count summaries in {root}")
         return 0
     if arguments.command in ("train", "compare-training", "study"):

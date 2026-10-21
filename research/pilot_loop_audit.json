@@ -1,0 +1,189 @@
+{
+  "status": "passed",
+  "checkpoint_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "episodes_audited": 20,
+  "decisions_replayed": 240,
+  "allocation_snapshots": 176,
+  "rows": [
+    {
+      "condition": "fresh",
+      "case_id": "agents-2-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 0,
+      "tasks": 0,
+      "trace_sha256": "03e222df24402933b200f8a43052dd2a761f7d0d8321da7063f538ed9497c15c",
+      "status": "passed"
+    },
+    {
+      "condition": "fresh",
+      "case_id": "agents-4-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 0,
+      "tasks": 0,
+      "trace_sha256": "8f2748b21fbb4f9deab50b9e8b520423fb7dce9a9f2ce7e8944d44ae0a4ddc27",
+      "status": "passed"
+    },
+    {
+      "condition": "fresh",
+      "case_id": "agents-6-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 0,
+      "tasks": 0,
+      "trace_sha256": "cc6c9ae2df26588367c1a5b59c86a55bc5a72d196f2003203b60e6a2b2fbbb09",
+      "status": "passed"
+    },
+    {
+      "condition": "fresh",
+      "case_id": "agents-8-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 0,
+      "tasks": 0,
+      "trace_sha256": "47b3cba33842e412aa39ef0fb2505eb1b2acb23cfd15d20489642675d6f93571",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "case_id": "agents-2-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 24,
+      "trace_sha256": "d79814165c3cbfbbe8de47544011f16c48944bc7389b3b1b9e8b22f78ff431fe",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "case_id": "agents-4-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 48,
+      "trace_sha256": "6e0d7321a19c81414f9a5abfeef65696e938538ab98c17de85dea52c8e128e25",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "case_id": "agents-6-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 72,
+      "trace_sha256": "b67f4fce043e0cdf42647e41c9cf6650218e4894b6bf18f50e55991f4f8ac0b4",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "case_id": "agents-8-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 96,
+      "trace_sha256": "097813b659c97fcb71fc365774f48c95f2534fa9cb6d351c008810a27de4e7bb",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "case_id": "agents-2-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 24,
+      "trace_sha256": "493de80f914c3f35c49c628a0b02c9899c2bb026961d8bc3192ef7214bc25778",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "case_id": "agents-4-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 48,
+      "trace_sha256": "bbe7c5cad7f2dded19b14dd4c446a8f84226a2e953a02ddc89e89d72205a3a27",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "case_id": "agents-6-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 72,
+      "trace_sha256": "0389a91a0b02f1f39d5a0a06b4d8a3f206057206a6da985b24cfd619ca7484da",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "case_id": "agents-8-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 96,
+      "trace_sha256": "728fe9b23dbeaee31cb0477892eb095649aa7dda7f7498f25e7855174b8ac7b1",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "case_id": "agents-2-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 24,
+      "trace_sha256": "f559f362efe45dab91404515c449077979c61ca80a4f496e5149f430f8d714a0",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "case_id": "agents-4-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 48,
+      "trace_sha256": "b1fdfc70fefdcb3d501d56593fb38021fbdb9d20da4b674aebf917c9c32ba842",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "case_id": "agents-6-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 72,
+      "trace_sha256": "bb8b1986bd0dfa1f488ddb451b81aeaec6f3f585f187f2632eb809c425c25044",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "case_id": "agents-8-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 96,
+      "trace_sha256": "3964c7eb2770aeff65c523a031c5e539b4ac7f96729c9aa7d358acdb9515614e",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "case_id": "agents-2-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 24,
+      "trace_sha256": "43735b4431515a08d60860ca3e9df5b49686759b7c4950f5049ee80ac8cd7a94",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "case_id": "agents-4-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 48,
+      "trace_sha256": "f31e083a935694639259307345a1c04111d72c4c7df0600455095e5dcd64c460",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "case_id": "agents-6-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 72,
+      "trace_sha256": "a5fc98f6e8061cccb397826193ff16b241c6ca5c5a212a93c5da279f68fb5e5b",
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "case_id": "agents-8-case-000",
+      "decisions_replayed": 12,
+      "allocation_snapshots": 11,
+      "tasks": 96,
+      "trace_sha256": "2edc62638e4e2edb181c0ddbd0683c66ea27d9d1821cc50a575d77f5d4ab5e9c",
+      "status": "passed"
+    }
+  ]
+}

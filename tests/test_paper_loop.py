@@ -2,8 +2,11 @@ from dataclasses import replace
 
 import numpy as np
 import pytest
+import pickle
+import json
+from pathlib import Path
 
-from panama_uav.allocation import AllocationTask, AllocationSnapshot, compare_allocations
+from panama_uav.allocation import AllocationTask, AllocationSnapshot, AllocationFailure, compare_allocations
 from panama_uav.consistency import consistency_snapshot
 from panama_uav.information import InformationCache
 from panama_uav.validation import independent_primal
@@ -38,3 +41,24 @@ def test_vectorized_dvfs_matches_independent_enumeration(energy):
     direct = independent_primal(snapshot)
     assert comparison["binary"]["objective"] == pytest.approx(direct["objective"], rel=1e-6)
     assert comparison["binary"]["assignments_checked"] == 16
+
+
+def test_preserved_handover_endpoint_and_picklable_failure():
+    fixture = Path(__file__).parent/"fixtures/handover_forced_drone.json"
+    snapshot = AllocationSnapshot.from_dict(json.loads(fixture.read_text())["snapshot"])
+    for _ in range(3):
+        result = compare_allocations(snapshot)
+        assert [r["x"] for r in result["relaxed"]["tasks"]] == [1]*8
+        assert result["relaxed"]["objective"] == pytest.approx(result["binary"]["objective"], rel=1e-6)
+    failure = AllocationFailure("test", snapshot, {"status": "test"})
+    recovered = pickle.loads(pickle.dumps(failure))
+    assert recovered.snapshot == failure.snapshot and recovered.details == failure.details
+
+
+def test_preserved_static_priority_numerical_cases():
+    for path in (Path(__file__).parent/"fixtures/numerical_snapshots").glob("*.json"):
+        snapshot = AllocationSnapshot.from_dict(json.loads(path.read_text())["snapshot"])
+        comparison = compare_allocations(snapshot)
+        assert comparison["relaxed"]["residual"] <= 1e-6
+        assert comparison["raw_objective_difference"] >= -1e-6
+        assert comparison["relaxed"]["solver_attempts"][-1]["status"] == "optimal"

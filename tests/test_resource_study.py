@@ -69,3 +69,15 @@ def test_paired_diagnostic_produces_real_records_and_figures(tmp_path):
     assert all(r["cases"] == 1 for r in rows)
     priority = next(r for r in rows if r["policy"] == "priority")
     assert priority["paired_equal"]["waiting_steps"]["pairs"] == 1
+
+
+def test_resume_preserves_finished_cases(tmp_path):
+    config = load_config(ROOT/"configs/resource_study.toml")
+    args = dict(diagnostic=True, cases=1, counts=(2,), secondary=False,
+                selected=["up-1-cpu-1__priority"], max_steps=2)
+    root = tmp_path/"resumable"
+    run_study(config, root, **args)
+    before = (root/"up-1-cpu-1__priority/episodes.jsonl").read_bytes()
+    run_study(config, root, resume=True, **args)
+    assert (root/"up-1-cpu-1__priority/episodes.jsonl").read_bytes() == before
+    assert len(json.loads((root/"manifest.json").read_text())["resumptions"]) == 1

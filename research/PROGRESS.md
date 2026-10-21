@@ -36,3 +36,24 @@ movement. `paper_audit.association_average` derives the paper's mean-geometry
 15-second association channels from the archived samples, recomputing rates
 rather than averaging rates. Source interruptions and both propagation legs are
 retained. The original time-varying archive remains unchanged.
+
+Stage 3 adds the editable manuscript under `paper/`, the unchanged original TeX,
+and reproducible input preparation, independent policy replay, diagrams, and a
+complete-study-only report publisher. The manuscript compiles with portable
+Tectonic after the built-in preview's Windows sandbox helper failed. Generated
+results are explicitly marked in progress until all 19,400 episodes finish.
+
+The full grid exposed a backhaul-interruption endpoint and nearly tied static
+weights that the smaller pilot did not cover. Their original failed snapshots
+are retained as regression fixtures. The conic epigraphs are now dimensionally
+scaled, unused-route cones removed, and fixed-x CPU shares recovered by the same
+convex subproblem without allocation floors. Numerical retries and tolerances
+are recorded; feasibility and objective checks remain at 1e-6. A separate fix
+preserves AllocationFailure snapshots across worker-process boundaries. Exact
+binary execution kernels are AST-checked against the original run revision on
+resume; these numerical changes affect the bound calculation only.
+
+The expanded full suite passes 110 checks. Completed episodes and interrupted
+allocation-log tails are verified against their complete compressed traces before
+resume. The complete sweep remains active; publication tables are gated on its
+completion and exact case/record counts.

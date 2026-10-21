@@ -1,0 +1,142 @@
+{
+  "error": "Relaxation did not solve optimally",
+  "snapshot": {
+    "tasks": [
+      {
+        "task_id": "42:0",
+        "input_bits": 100000,
+        "cycles_per_bit": 1000.0,
+        "weight": 1.0,
+        "access_bps": 50000000.0,
+        "backhaul_bps": 2500000.0,
+        "propagation_round_trip_seconds": 0.02700395076720355,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": null,
+        "required_cycles": null
+      },
+      {
+        "task_id": "42:1",
+        "input_bits": 100000,
+        "cycles_per_bit": 1000.0,
+        "weight": 3.9999995000002495,
+        "access_bps": 50000000.0,
+        "backhaul_bps": 2500000.0,
+        "propagation_round_trip_seconds": 0.02700395076720355,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": null,
+        "required_cycles": null
+      },
+      {
+        "task_id": "42:2",
+        "input_bits": 100000,
+        "cycles_per_bit": 1000.0,
+        "weight": 1.0000004999997505,
+        "access_bps": 50000000.0,
+        "backhaul_bps": 2500000.0,
+        "propagation_round_trip_seconds": 0.02700395076720355,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": null,
+        "required_cycles": null
+      },
+      {
+        "task_id": "42:3",
+        "input_bits": 100000,
+        "cycles_per_bit": 1000.0,
+        "weight": 1.0,
+        "access_bps": 50000000.0,
+        "backhaul_bps": 2500000.0,
+        "propagation_round_trip_seconds": 0.02700395076720355,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": null,
+        "required_cycles": null
+      },
+      {
+        "task_id": "40:0",
+        "input_bits": 0,
+        "cycles_per_bit": 0,
+        "weight": 1.0,
+        "access_bps": 1,
+        "backhaul_bps": 1,
+        "propagation_round_trip_seconds": 0,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": 1,
+        "required_cycles": 49999751.255983226
+      },
+      {
+        "task_id": "40:1",
+        "input_bits": 0,
+        "cycles_per_bit": 0,
+        "weight": 3.9999995000002495,
+        "access_bps": 1,
+        "backhaul_bps": 1,
+        "propagation_round_trip_seconds": 0,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": 1,
+        "required_cycles": 758.7319484502077
+      },
+      {
+        "task_id": "40:2",
+        "input_bits": 0,
+        "cycles_per_bit": 0,
+        "weight": 1.0000004999997505,
+        "access_bps": 1,
+        "backhaul_bps": 1,
+        "propagation_round_trip_seconds": 0,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": 1,
+        "required_cycles": 49999738.75608509
+      },
+      {
+        "task_id": "40:3",
+        "input_bits": 0,
+        "cycles_per_bit": 0,
+        "weight": 1.0,
+        "access_bps": 1,
+        "backhaul_bps": 1,
+        "propagation_round_trip_seconds": 0,
+        "robot_power_w": 0.2,
+        "drone_power_w": 2.0,
+        "fixed_x": 1,
+        "required_cycles": 49999751.255983226
+      }
+    ],
+    "drone_cycles_per_second": 250000000.0,
+    "cloud_cycles_per_second": 2500000000.0,
+    "energy_coefficient": 1.0,
+    "latency_coefficient": 1.0,
+    "drone_kappa": 1e-28,
+    "include_robot_upload_in_objective": false
+  },
+  "details": {
+    "status": "optimal_inaccurate"
+  },
+  "time": 21.008323840000003,
+  "radio": {
+    "available": true,
+    "applied_bps": 2500000.0,
+    "downlink_applied_bps": 39405127.27595333,
+    "one_way_seconds": 0.013501975383601775,
+    "air_to_space_one_way_seconds": 0.0017255918336601664,
+    "satellite_gateway_one_way_seconds": 0.001776383549941608,
+    "ground_one_way_seconds": 0.01,
+    "distance_km": 517.3194173177084,
+    "elevation_degrees": 85.79503682454427,
+    "fspl_db": 169.79925610346524,
+    "atmosphere_db": 0.885350083390121,
+    "snr_db": 11.904261029722505,
+    "rate_bound_bps": 40446887.20840757,
+    "bandwidth_hz": 20000000.0,
+    "transmit_power_w": 2.0,
+    "terminal_eirp_dbw": 35.0,
+    "implied_antenna_gain_dbi": 31.989700043360187,
+    "provenance": "archived ITU-R/geometry budget; service uses existing orbital timeline",
+    "round_trip_seconds": 0.02700395076720355
+  }
+}

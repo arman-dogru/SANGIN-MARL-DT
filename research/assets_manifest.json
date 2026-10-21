@@ -64,5 +64,9 @@
     "source": "D:\\Projects\\PANAMA+UAV\\panama_uav\\data\\leo\\tremblant_full.npz",
     "local": "data\\leo\\tremblant_full.npz",
     "sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f"
+  },
+  "association_average": {
+    "local": "data\\leo\\tremblant_association_average.npz",
+    "sha256": "8681dd5a974b86e54f4de26f39802ee7f098ca229512c6630da11bab9eb5cba0"
   }
 }

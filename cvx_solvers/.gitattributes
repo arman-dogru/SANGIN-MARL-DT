@@ -1,0 +1,2 @@
+# Preserve the uploaded solver bytes for SHA-256 verification on every platform.
+originals/** -text

@@ -1,0 +1,23 @@
+{
+  "description": "Earlier synthetic fixtures; use --benchmarks explicitly. Deadlines effectively disabled with tau=1000000 seconds.",
+  "tau_seconds": 1000000,
+  "populations": [2, 4, 6, 8],
+  "input_bits": 100000,
+  "cycles_per_bit": 1000,
+  "priority_weight_min": 1,
+  "priority_weight_max": 4,
+  "access_bps": 50000000,
+  "backhaul_bps": 10000000,
+  "propagation_round_trip_seconds": 0.05,
+  "drone_power_w": 2,
+  "robot_power_w": 0.2,
+  "FDmax": 1000000000,
+  "FCmax": 10000000000,
+  "omega2": 1,
+  "omega3": 1,
+  "Tref": 1,
+  "Eref": 1,
+  "cpuScale": 1000000000,
+  "epsCPU": 0.000001,
+  "kappaD_cases": [0, 1e-28]
+}

@@ -1,0 +1,68 @@
+{
+  "description": "The user's four-robot MATLAB validation script, Cases A-F. Every tau is overridden to 1,000,000 seconds as requested.",
+  "tau_seconds": 1000000,
+  "deadline_override_note": "Case E originally uses 1.10*solC.T. That deadline experiment is disabled: E repeats C with large tau. Cases A-D and F originally use infinite tau.",
+  "base": {
+    "C": [2000000000, 1800000000, 2200000000, 1600000000],
+    "pi": [1.00, 0.85, 0.55, 0.35],
+    "FDmax": 6000000000,
+    "FCmax": 7000000000,
+    "omega2": 0.1,
+    "omega3": 0.9,
+    "kappaD": 1e-29,
+    "Ebackhaul": [1.20, 0.90, 0.05, 0.05],
+    "Tref": 1.0,
+    "Eref": 1.0,
+    "solver": "mosek",
+    "quiet": false
+  },
+  "cases": [
+    {
+      "id": "case_A",
+      "description": "Cloud favorable (user label)",
+      "overrides": {
+        "dD": [0.20, 0.20, 0.20, 0.20],
+        "dC": [0.05, 0.05, 0.05, 0.05],
+        "FDmax": 4000000000,
+        "FCmax": 30000000000
+      }
+    },
+    {
+      "id": "case_B",
+      "description": "Drone-AP favorable (user label)",
+      "overrides": {
+        "dD": [0.03, 0.03, 0.03, 0.03],
+        "dC": [1.00, 1.00, 1.00, 1.00],
+        "FDmax": 30000000000,
+        "FCmax": 5000000000
+      }
+    },
+    {
+      "id": "case_C",
+      "description": "Heterogeneous mixed scenario",
+      "overrides": {
+        "dD": [0.05, 0.06, 0.08, 0.07],
+        "dC": [1.20, 0.90, 0.20, 0.18]
+      }
+    },
+    {
+      "id": "case_D",
+      "description": "Case C with forced x=[1,1,0,0]",
+      "inherits": "case_C",
+      "overrides": {"fixedX": [1, 1, 0, 0]}
+    },
+    {
+      "id": "case_E",
+      "description": "Case C repeated with tau=1000000; tight deadline test disabled",
+      "inherits": "case_C",
+      "original_tau": {"reference_case": "case_C", "latency_multiplier": 1.10},
+      "overrides": {}
+    },
+    {
+      "id": "case_F",
+      "description": "Case C with latency/energy weights 0.99/0.01",
+      "inherits": "case_C",
+      "overrides": {"omega2": 0.99, "omega3": 0.01, "Tref": 1.0, "Eref": 1.0}
+    }
+  ]
+}

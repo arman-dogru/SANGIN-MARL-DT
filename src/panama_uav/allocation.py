@@ -420,3 +420,26 @@ def compare_allocations(snapshot):
             "binary": binary.to_dict(), "absolute_gap": max(0.0, gap),
             "raw_objective_difference": gap,
             "relative_gap": max(0.0, gap)/max(abs(binary.objective), 1e-12)}
+
+
+def score_allocation(snapshot, allocation):
+    """Score unchanged feasible rates/routes under a common reference objective.
+
+    This does not optimize or mutate either snapshot. In particular, native
+    objectives with different priority weights must not be subtracted as regret.
+    """
+    rows = {r["task_id"]: r for r in allocation}
+    if set(rows) != {t.task_id for t in snapshot.tasks}:
+        raise ValueError("Reference score requires the identical task set")
+    x = np.asarray([rows[t.task_id]["x"] for t in snapshot.tasks])
+    a = np.asarray([rows[t.task_id]["drone_share"] for t in snapshot.tasks])
+    b = np.asarray([rows[t.task_id]["cloud_share"] for t in snapshot.tasks])
+    if (not np.all(np.isfinite(np.concatenate((x, a, b)))) or np.any(x < -1e-8)
+        or np.any(x > 1+1e-8) or np.any(a < -1e-8) or np.any(b < -1e-8)
+        or np.any(a > x+1e-8) or np.any(b > 1-x+1e-8)
+        or a.sum() > 1+1e-8 or b.sum() > 1+1e-8):
+        raise ValueError("Reference allocation violates capacity or conditional bounds")
+    for task, value in zip(snapshot.tasks, x):
+        if task.fixed_x is not None and value != task.fixed_x:
+            raise ValueError("Reference allocation changes a committed route")
+    return _evaluate(snapshot, x, a, b, "reference_score", 0)

@@ -11,18 +11,22 @@ import numpy as np
 
 from .config import COMMUNICATION_SCHEMA, FIXED_MAP, ExperimentMode
 from .environment import ExperimentEnvironment
-from .models import choose_device, select_actions
+from .models import choose_device, select_action, select_actions
 from .records import append_jsonl, export_csv, read_jsonl, sha256, write_json
 from .training import load_model
 
 
 def case_bank(config, cases=50, counts=(2, 4, 6, 8)):
+    # Case generation has no deployed policy or remote execution. Its RNG/map
+    # must remain identical across execution modes and resource conditions.
+    scenario_config = replace(config, resource_allocation=replace(config.resource_allocation,
+        enabled=False, execution_mode="support"))
     records = []
     for count in counts:
         for case in range(cases):
             seed = 50_000_000 + count * 10_000 + case
             env = ExperimentEnvironment(
-                config, ExperimentMode.UAV, FIXED_MAP, count, 250, seed
+                scenario_config, ExperimentMode.UAV, FIXED_MAP, count, 250, seed
             )
             env.reset()
             records.append(
@@ -56,6 +60,12 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
     env = ExperimentEnvironment(
         config, ExperimentMode.UAV, FIXED_MAP, case["num_agents"], max_steps, case["seed"]
     )
+    remote = config.resource_allocation.enabled and config.resource_allocation.execution_mode == "remote_dt"
+    if remote:
+        def remote_inference(location, agent, observation):
+            return select_action(model, observation, 0.0, np.random.default_rng(0), device)
+        env.remote_inference = remote_inference
+        decision_deadline_seconds = config.resource_allocation.decision_budget_seconds
     observations, _ = env.reset()
     deadline = decision_deadline_seconds
     if deadline:
@@ -68,7 +78,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
     collisions = 0
     loop_steps = []
     while True:
-        actions = select_actions(
+        actions = dict(env.communication.execution_actions) if remote else select_actions(
             {0: model},
             versions,
             observations,
@@ -78,8 +88,8 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
         )
         if config.resource_allocation.enabled:
             loop_steps.append(dict(step=env.step_count, decision_at=env.communication.transport.now,
-                observations={a: {key: value.tolist() for key, value in observation.items()}
-                              for a, observation in observations.items()}, actions=actions,
+                observations=({} if remote else {a: {key: value.tolist() for key, value in observation.items()}
+                              for a, observation in observations.items()}), actions=actions,
                 physical_priorities={a.id: a.priority for a in env.agents},
                 input_cache_sources=env.communication.snapshot()["coordination_sources"]))
         result = env.step(actions)
@@ -141,6 +151,11 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
         trace["resource_tasks"] = env.communication.task_records()
         trace["allocation_loop"] = loop_steps
         row.update(env.communication.energy_bounds())
+        if remote:
+            trace["remote_schema"] = env.communication.snapshot()["remote_schema"]
+            trace["remote_events"] = env.communication.remote_events
+            trace["oracle_events"] = env.communication.oracle_events
+            row["execution_mode"] = "remote_dt"
     return row, trace
 
 

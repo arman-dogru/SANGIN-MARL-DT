@@ -1,0 +1,392 @@
+"""Network-delivered observations, location-specific DT inference and action commands.
+
+Physical sensing is performed only at report generation. Selected DT processors
+consume uploaded sensing and their own delivered replica stores at completion.
+"""
+from dataclasses import asdict, replace
+import hashlib
+import json
+import math
+from time import perf_counter
+
+import numpy as np
+
+from .allocation import (AllocationTask, AllocationSnapshot, AllocationFailure, compare_allocations,
+                         priority_weights, score_allocation, solve_binary)
+from .information import InformationCache
+from .paper import PaperMissionCommunication
+from .paper_radio import access_budget, backhaul_budget
+from .records import write_json
+from .remote_state import (REMOTE_SCHEMA, ActionCommand, CommandInbox, DTReplica, DTState,
+                           PhysicalReport, observation_hash, remote_observation, source_min)
+from .transport import encode
+
+
+class RemoteDTCommunication(PaperMissionCommunication):
+    def __init__(self, project, grid, agents, pathfinder, seed, cap, uav, inference):
+        if inference is None:
+            raise ValueError("Remote DT execution requires an explicit frozen inference callback")
+        super().__init__(project, grid, agents, pathfinder, seed, cap, uav)
+        self.inference = inference
+        self.remote_events, self.oracle_events = [], []
+        self.event_checksum = "0"*64
+        self.replicas = {name: DTReplica(name) for name in ("drone", "cloud")}
+        self.inboxes = {a.id: CommandInbox() for a in agents}
+        self.receiver_refs = {a.id: {} for a in agents}
+        self.physical_refs = {}
+        self.execution_actions, self.command_contexts = {}, {}
+        self.completion_sent = set()
+        self.radio_energy_j = 0.0
+        self.control_energy_j = 0.0
+        self._agents = agents
+        self.current_cycle = 0
+        for agent in agents:
+            report = self._sense(agent, agents, 0, 0)
+            state = self._state_for_report(report, 0, 0)
+            for location, replica in self.replicas.items():
+                event = self._record("dt_state_event", location=location, state=state.payload(),
+                    available_at=0.0, bootstrap=True, accepted=True)
+                replica.accept(state, 0, event["event_id"])
+        self.dt_states = self.replicas["cloud"].states
+        self._record("bootstrap", assumption="Fresh initial briefing at both replicas and robot caches; no free commands",
+            model_version=0, synthetic_cpu_cycles=True)
+
+    def _record(self, event_name, **values):
+        event = dict(schema=REMOTE_SCHEMA, event=event_name, event_id=f"rdt:{len(self.remote_events)}",
+            time=self.transport.now, previous_checksum=self.event_checksum, **values)
+        canonical = json.dumps(event, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+        self.event_checksum = hashlib.sha256(canonical).hexdigest()
+        event["checksum"] = self.event_checksum
+        self.remote_events.append(event)
+        return event
+
+    def _sense(self, agent, agents, cycle, now):
+        radius = self.project.map.fov_radius
+        padded = np.pad(self.grid, radius, constant_values=1)
+        row, col = agent.position
+        obstacles = padded[row:row+2*radius+1, col:col+2*radius+1].tolist()
+        occupancy = np.zeros((2*radius+1, 2*radius+1), dtype=np.float32)
+        for peer in agents:
+            dr, dc = peer.position[0]-row, peer.position[1]-col
+            if peer.id != agent.id and abs(dr) <= radius and abs(dc) <= radius:
+                occupancy[dr+radius, dc+radius] = 1
+        normalizer = agent.initial_distance_to_goal
+        if not math.isfinite(normalizer):
+            normalizer = float(max(self.grid.shape))
+        return PhysicalReport(agent.id, cycle, now, tuple(agent.position), tuple(agent.goal),
+            agent.ever_reached_goal, normalizer, obstacles, occupancy.tolist(), f"report:{cycle}:{agent.id}")
+
+    def _state_for_report(self, report, generated, version):
+        path = self.pathfinder(self.grid, tuple(report.position), tuple(report.goal))
+        distance = len(path)-1 if path else self.grid.size-1
+        priority = (self.grid.size if report.completed else min(distance, self.grid.size-1))+report.robot_id*1e-6
+        return DTState(report.robot_id, tuple(report.position), tuple(report.goal),
+            list(path or [tuple(report.position)]), float(priority), report.completed,
+            generated, version, {report.robot_id: report.sensed_at}, report.report_id)
+
+    def _send_remote(self, agent, kind, payload, route, *, version=0, pad=False):
+        body = encode(payload)
+        if pad:
+            body = body.ljust(math.ceil(self.parameters.task_input_bits/8), b"\0")
+        packet_id = self.transport.send(agent, kind, route=route, wire=body,
+            generated_at=self.transport.now, version=version, delayed=False)
+        self._record("message_sent", packet_id=packet_id, kind=kind, route=list(route),
+            job_id=payload.get("job_id"), wire_payload_bits=len(body)*8, version=version)
+        return packet_id
+
+    def _transmitted(self, packet, link, details):
+        if not packet.kind.startswith("remote_"):
+            return
+        payload = packet.payload
+        job = self.jobs.get(payload.get("job_id"))
+        power = (self.parameters.robot_power_w if link == "access_up" else
+                 self.parameters.drone_power_w if link == "satellite_up" else 0)
+        energy = power*details["transmission_seconds"]
+        self.radio_energy_j += energy
+        if job is None:
+            self.control_energy_j += energy
+        else:
+            job["robot_energy_j" if link == "access_up" else "backhaul_energy_j"] += energy
+            if packet.kind in ("remote_robot_observation", "remote_cloud_observation"):
+                for quantity in ("transmission_seconds", "queue_seconds", "guard_seconds", "interruption_seconds"):
+                    job["uplink_"+quantity] += details[quantity]
+                if link == "satellite_up" and details["last_chunk"]:
+                    job["backhaul_transmission_finish"] = details["finish"]
+        category = ("synchronization" if packet.kind == "remote_dt_sync" else
+                    "upload" if packet.kind.endswith("observation") else "response")
+        self.transport.log.append(dict(event="remote_transmit", job_id=payload.get("job_id"),
+            id=packet.id, kind=packet.kind, link=link, energy_j=energy, category=category, **details))
+
+    def _publish(self, state, location, job_id=None):
+        short = replace(state, path=state.path[:self.project.map.communicated_path_steps+1])
+        event = self._record("dt_state_event", location=location, state=short.payload(),
+            available_at=self.transport.now, bootstrap=False)
+        accepted = self.replicas[location].accept(short, self.transport.now, event["event_id"])
+        self._record("dt_state_acceptance", state_event=event["event_id"], accepted=accepted)
+        if not accepted:
+            return
+        other = "cloud" if location == "drone" else "drone"
+        common = dict(job_id=job_id, state=short.payload(), state_event=event["event_id"])
+        self._send_remote(state.robot_id, "remote_dt_sync", dict(common, destination=other),
+            ("satellite_up",) if location == "drone" else ("satellite_down",), version=state.version)
+        down = ("access_down",) if location == "drone" else ("satellite_down", "access_down")
+        for receiver in self.goals:
+            self._send_remote(receiver, "remote_state", common, down, version=state.version)
+
+    def _receive(self, packet):
+        payload, t = packet.payload, self.transport
+        if packet.kind in ("remote_robot_observation", "remote_completion"):
+            report = PhysicalReport(**payload["report"])
+            if report.sensed_at >= self.report_timestamps[report.robot_id]:
+                self.reports[report.robot_id] = {**self.reports[report.robot_id], "position": report.position}
+                self.report_timestamps[report.robot_id] = report.sensed_at
+            self._record("report_arrived", report_id=report.report_id, robot_id=report.robot_id,
+                location="drone", source_time=report.sensed_at, available_at=t.now, packet_id=packet.id)
+            if packet.kind == "remote_completion":
+                self._publish(self._state_for_report(report, t.now, packet.version), "drone")
+            else:
+                job = self.jobs[payload["job_id"]]
+                job["access_arrived_at"] = t.now
+                self._admit(payload)
+        elif packet.kind == "remote_cloud_observation":
+            job = self.jobs[payload["job_id"]]
+            job.update(stage="computing", compute_arrived_at=t.now,
+                uplink_propagation_seconds=t.now-job["backhaul_transmission_finish"])
+            self._record("report_arrived", report_id=job["report"]["report_id"], robot_id=job["agent"],
+                location="cloud", source_time=job["source_time"], available_at=t.now, packet_id=packet.id)
+            t.compute_pools["cloud"].submit(job["job_id"], job["required_cycles"], job["weight"], job["job_id"])
+        elif packet.kind == "remote_dt_sync":
+            state = DTState(**payload["state"])
+            accepted = self.replicas[payload["destination"]].accept(state, t.now, payload["state_event"])
+            self._record("replica_sync_arrived", location=payload["destination"], state_event=payload["state_event"],
+                state=payload["state"], arrived_at=t.now, accepted=accepted, packet_id=packet.id)
+        elif packet.kind == "remote_state":
+            state = DTState(**payload["state"])
+            cache = self.states[packet.agent][state.robot_id]
+            accepted = False
+            if state.source_time >= source_min(cache.source_timestamps):
+                accepted = cache.accept(state.generated_at, state.payload(), state.version, dict(state.sources))
+            event = self._record("received_state_event", receiver=packet.agent, peer=state.robot_id,
+                state_event=payload["state_event"], arrived_at=t.now, accepted=accepted,
+                generated_at=state.generated_at, source_min=state.source_time, version=state.version,
+                rejection_reason=None if accepted else "obsolete_source_or_order", packet_id=packet.id)
+            if accepted:
+                self.receiver_refs[packet.agent][state.robot_id] = event["event_id"]
+                self._sync(packet.agent)
+        elif packet.kind == "remote_action_command":
+            command = ActionCommand(**payload["command"])
+            accepted, reason = self.inboxes[packet.agent].accept(command, t.now)
+            job = self.jobs[command.job_id]
+            job.update(delivered_at=t.now, observed_latency_seconds=t.now-job["source_time"],
+                command_accepted=accepted, response_seconds=t.now-job["compute_completed_at"])
+            self._record("command_arrived", robot_id=packet.agent, command=command.payload(),
+                arrived_at=t.now, accepted=accepted, reason=reason, packet_id=packet.id)
+
+    def _available_weights(self):
+        cache = self.replicas["drone"].states
+        reports = {a: c.value for a, c in cache.items()}
+        ages = {a: c.age(self.transport.now) for a, c in cache.items()}
+        if self.parameters.policy == "equal" and self.parameters.equal_weight_mode == "matched_active_mean":
+            ids = sorted(reports)
+            bounded = priority_weights([reports[a]["priority"] for a in ids],
+                [reports[a]["completed"] for a in ids], self.parameters.weight_min, self.parameters.weight_max)
+            active = [i for i, a in enumerate(ids) if not reports[a]["completed"]]
+            mean = float(np.mean(bounded[active])) if active else self.parameters.weight_min
+            return {a: self.parameters.weight_min if reports[a]["completed"] else mean for a in ids}
+        return self._weights(reports, ages)
+
+    def _admit(self, payload):
+        t, p = self.transport, self.parameters
+        job = self.jobs[payload["job_id"]]
+        weights, radio = self._available_weights(), backhaul_budget(t, p)
+        if t.orbit is None:
+            t.links["satellite_up"].capacity_bps = radio["applied_bps"] or self.config.satellite_uplink_mbps*1e6
+        task = AllocationTask(job["job_id"], p.task_input_bits, p.cycles_per_bit,
+            weights[job["agent"]], payload["access_radio"]["applied_bps"], radio["applied_bps"],
+            radio["round_trip_seconds"], p.robot_power_w, p.drone_power_w)
+        tasks = [task]
+        remaining = {r["job_id"]: r["remaining_cycles"] for pool in t.compute_pools.values() for r in pool.snapshot()}
+        for previous in self.jobs.values():
+            if previous["job_id"] == job["job_id"] or previous["stage"] not in ("computing", "backhaul"):
+                continue
+            tasks.append(AllocationTask(previous["job_id"], 0, 0, previous["weight"], 1, 1, 0,
+                p.robot_power_w, p.drone_power_w, fixed_x=previous["executed_x"],
+                required_cycles=remaining.get(previous["job_id"], previous["required_cycles"])))
+        snapshot = AllocationSnapshot(tuple(tasks), p.drone_cycles_per_second, p.cloud_cycles_per_second,
+            p.energy_coefficient, p.latency_coefficient, p.drone_kappa, p.include_robot_upload_in_objective)
+        try:
+            comparison = compare_allocations(snapshot)
+        except AllocationFailure as exc:
+            directory = self.project.resolve(p.failure_directory)
+            write_json(directory/f"remote-seed-{self.seed}-{self.allocations}.json",
+                dict(error=str(exc), snapshot=exc.snapshot, details=exc.details))
+            raise
+        self.allocations += 1
+        event = dict(event="paper_allocation", schema=REMOTE_SCHEMA, time=t.now, radio=radio,
+            new_job=job["job_id"], priority_versions=dict(self.replicas["drone"].state_ids),
+            received_priorities={a: c.value["priority"] for a, c in self.replicas["drone"].states.items()},
+            resource_weights=weights, **comparison)
+        self.transport.log.append(event)
+        if p.oracle_shadow:
+            self._allocation_shadow(snapshot, comparison["binary"], job["job_id"])
+        self._record("allocation_event", job_id=job["job_id"], allocation_version=self.allocations,
+            new_vs_fixed={x.task_id: x.fixed_x is None for x in tasks},
+            priority_versions=event["priority_versions"], transport_allocation_index=self.allocations)
+        binary = next(r for r in comparison["binary"]["tasks"] if r["task_id"] == job["job_id"])
+        relaxed = next(r for r in comparison["relaxed"]["tasks"] if r["task_id"] == job["job_id"])
+        job.update(executed_x=int(binary["x"]), relaxed_x=relaxed["x"], weight=task.weight,
+            predicted_latency_seconds=binary["latency_seconds"], predicted_energy_j=binary["energy_j"],
+            predicted_allocation=binary, relaxed_prediction=relaxed, allocation_at=t.now,
+            backhaul_radio=radio, relaxation_gap=comparison["absolute_gap"], batch_wait_seconds=0.0)
+        if job["executed_x"] or self.config.profile == "perfect":
+            location = "drone" if job["executed_x"] else "cloud"
+            job.update(stage="computing", compute_arrived_at=t.now, location=location)
+            if self.config.profile == "perfect":
+                self._finish(job["job_id"], 0, 0)
+            else:
+                t.compute_pools[location].submit(job["job_id"], job["required_cycles"], task.weight, job["job_id"])
+        else:
+            job.update(stage="backhaul", location="cloud")
+            self._send_remote(job["agent"], "remote_cloud_observation", payload, ("satellite_up",),
+                version=job["version"], pad=True)
+
+    def _allocation_shadow(self, actual_snapshot, actual, new_job):
+        """Evaluation-only oracle. No transport, cache, KKT pool or real decision is changed."""
+        ids = sorted(self.truth)
+        weights = priority_weights([self.truth[a]["priority"] for a in ids],
+            [self.truth[a]["completed"] for a in ids], self.parameters.weight_min, self.parameters.weight_max)
+        physical_weights = dict(zip(ids, map(float, weights)))
+        reference = replace(actual_snapshot, tasks=tuple(replace(task,
+            weight=physical_weights[self.jobs[task.task_id]["agent"]]) for task in actual_snapshot.tasks))
+        # Binary enumeration is pure and does not change the actual conic template's warm start.
+        oracle = solve_binary(reference)
+        scored = score_allocation(reference, actual["tasks"])
+        regret = scored.objective-oracle.objective
+        if regret < -1e-6*max(1, abs(oracle.objective)):
+            raise AssertionError("Truth-scored oracle regret is negative")
+        by_id = {r["task_id"]: r for r in oracle.tasks}
+        self.oracle_events.append(dict(event="allocation_shadow", time=self.transport.now,
+            allocation_version=self.allocations, new_job=new_job,
+            actual_priorities={a: c.value["priority"] for a, c in self.replicas["drone"].states.items()},
+            physical_priorities={a: r["priority"] for a, r in self.truth.items()},
+            physical_weights=physical_weights, reference_snapshot=asdict(reference),
+            native_actual_objective=actual["objective"], native_oracle_objective=oracle.objective,
+            truth_actual_objective=scored.objective, truth_oracle_objective=oracle.objective,
+            truth_scored_regret=max(0.0, regret), oracle=oracle.to_dict(),
+            offload_switches=[r["task_id"] for r in actual["tasks"] if r["x"] != by_id[r["task_id"]]["x"]],
+            cpu_differences={r["task_id"]: dict(drone=by_id[r["task_id"]]["drone_share"]-r["drone_share"],
+                cloud=by_id[r["task_id"]]["cloud_share"]-r["cloud_share"]) for r in actual["tasks"]}))
+
+    def _computed(self, completed):
+        self._finish(completed.job_id, completed.service_seconds, completed.compute_energy_j)
+
+    def _finish(self, job_id, service, energy):
+        t, job = self.transport, self.jobs[job_id]
+        job.update(stage="computed", compute_completed_at=t.now, compute_service_seconds=service,
+            drone_compute_energy_j=energy, compute_elapsed_seconds=t.now-job["compute_arrived_at"])
+        report = PhysicalReport(**job["report"])
+        own = self._state_for_report(report, t.now, job["version"])
+        # Own generated state is causal at completion; peer state remains replica-specific.
+        self._publish(own, job["location"], job_id)
+        obs, sources, versions, priorities = remote_observation(report, own, self.replicas[job["location"]],
+            self.project.map.fov_radius, self.project.map.astar_waypoints,
+            self.project.map.communicated_path_steps, max(self.grid.shape))
+        start = perf_counter()
+        action = int(self.inference(job["location"], job["agent"], obs))
+        wall = perf_counter()-start
+        event = self._record("remote_inference", job_id=job_id, robot_id=job["agent"], location=job["location"],
+            observation={k: v.tolist() for k, v in obs.items()}, observation_hash=observation_hash(obs),
+            sources=sources, source_min=source_min(sources), dt_versions=versions, dt_priorities=priorities,
+            action=action, model_version=0)
+        job["inference_wall_seconds"] = wall  # Measurement only; never advances virtual service.
+        job["inference_event"] = event["event_id"]
+        command = ActionCommand(job["agent"], report.cycle, action, t.now,
+            report.cycle*self.config.seconds_per_step+self.parameters.decision_budget_seconds,
+            job["version"], job["location"], sources, job_id, observation_hash(obs), versions, priorities)
+        self._send_remote(job["agent"], "remote_action_command", dict(job_id=job_id, command=command.payload()),
+            ("access_down",) if job["location"] == "drone" else ("satellite_down", "access_down"),
+            version=job["version"])
+
+    def update(self, agents, now):
+        self._agents = agents
+        self.truth = {a.id: self._report(a) for a in agents}
+        self.positions = {a.id: tuple(a.position) for a in agents}
+        self.transport.advance(now, self._receive)
+        self.current_cycle = int(round(now/self.config.seconds_per_step))
+        if self.config.profile == "perfect":
+            # Explicit ideal-reference exception; physical treatments never refresh this way.
+            for agent in agents:
+                fresh = self._state_for_report(self._sense(agent, agents, self.current_cycle, now), now, self.current_cycle)
+                for location, replica in self.replicas.items():
+                    event = self._record("dt_state_event", location=location, state=fresh.payload(),
+                        available_at=now, ideal_reference=True)
+                    replica.accept(fresh, now, event["event_id"])
+        for agent in agents:
+            self.position_history[agent.id].append((now, tuple(agent.position)))
+            if agent.ever_reached_goal and agent.id in self.completion_sent:
+                continue
+            report = self._sense(agent, agents, self.current_cycle, now)
+            event = self._record("robot_state_event", report=report.payload(), physical=self.truth[agent.id])
+            self.physical_refs[agent.id] = event["event_id"]
+            if agent.ever_reached_goal:
+                self.completion_sent.add(agent.id)
+                self._send_remote(agent.id, "remote_completion", dict(report=report.payload()),
+                    ("access_up",), version=self.current_cycle)
+                continue
+            xy = self.uav.positions_to_xy_m([tuple(agent.position)])[0]
+            horizontal = float(np.linalg.norm(xy-self.uav.position[:2]))
+            loss = float(self.uav.model.path_loss_db(self.uav.position[2], horizontal))
+            radio = access_budget(loss, self.parameters, self.config.access_uplink_mbps*1e6)
+            self.transport.agent_rate_caps[(agent.id, "access_up")] = radio["applied_bps"]
+            job_id = f"{self.current_cycle}:{agent.id}"
+            self.jobs[job_id] = dict(job_id=job_id, agent=agent.id, report=report.payload(), version=self.current_cycle,
+                source_time=now, stage="access", input_bits=self.parameters.task_input_bits,
+                cycles_per_bit=self.parameters.cycles_per_bit,
+                required_cycles=self.parameters.task_input_bits*self.parameters.cycles_per_bit,
+                access_radio=radio, robot_energy_j=0.0, backhaul_energy_j=0.0, drone_compute_energy_j=0.0,
+                **{"uplink_"+k: 0.0 for k in ("transmission_seconds", "queue_seconds", "guard_seconds", "interruption_seconds")})
+            self._send_remote(agent.id, "remote_robot_observation", dict(job_id=job_id,
+                report=report.payload(), access_radio=radio), ("access_up",), version=self.current_cycle, pad=True)
+        self.transport.advance(now, self._receive)
+
+    def prepare_decision(self, agents, cycle_start, deadline_seconds):
+        if deadline_seconds != self.parameters.decision_budget_seconds:
+            raise ValueError("Remote command cutoff differs from its configured epoch")
+        cutoff = cycle_start+deadline_seconds
+        self.transport.advance(cutoff, self._receive)
+        cycle = int(round(cycle_start/self.config.seconds_per_step))
+        self.execution_actions, self.command_contexts = {}, {}
+        for agent in agents:
+            delivered = self.inboxes[agent.id].decision(cycle, cutoff)
+            command, arrival = delivered if delivered else (None, None)
+            action = command.action if command is not None and not agent.ever_reached_goal else 4
+            self.execution_actions[agent.id] = action
+            context = dict(robot_id=agent.id, cycle=cycle, cutoff_time=cutoff,
+                action=action, command=command.payload() if command else None, arrived_at=arrival,
+                command_cutoff_missed=command is None and not agent.ever_reached_goal,
+                stale_source=command is not None and source_min(command.sources) < cycle_start-1e-12,
+                timeout_reason="no_current_command" if command is None and not agent.ever_reached_goal else None,
+                completed_local_control=agent.ever_reached_goal)
+            self.command_contexts[agent.id] = context
+            self._record("decision_event", **context)
+            if command is not None:
+                self.jobs[command.job_id]["used_at"] = cutoff
+        self.decision = dict(cycle_start=cycle_start, at=cutoff, budget_seconds=deadline_seconds,
+            initial_briefing=cycle == 0, remote=True, inputs=self.command_contexts)
+
+    def snapshot(self):
+        result = super().snapshot()
+        result.update(remote_schema=REMOTE_SCHEMA, execution_mode="remote_dt", event_checksum=self.event_checksum,
+            remote_refs=dict(physical=dict(self.physical_refs),
+                replicas={name: dict(replica.state_ids) for name, replica in self.replicas.items()},
+                receivers=self.receiver_refs), command_contexts=self.command_contexts)
+        return result
+
+    def energy_bounds(self):
+        result = super().energy_bounds()
+        pending = result["unfinished_airtime_energy_bound_j"]
+        compute = result["drone_compute_energy_j"]
+        result.update(radio_energy_lower_j=self.radio_energy_j, radio_energy_upper_j=self.radio_energy_j+pending,
+            modeled_energy_lower_j=self.radio_energy_j+compute,
+            modeled_energy_upper_j=self.radio_energy_j+compute+pending, completion_control_energy_j=self.control_energy_j)
+        return result

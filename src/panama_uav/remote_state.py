@@ -138,7 +138,7 @@ class CommandInbox:
         return None
 
 
-def remote_observation(report, own_state, replica, radius, waypoints):
+def remote_observation(report, own_state, replica, radius, waypoints, horizon=5, map_extent=32):
     """Same network shape, using uploaded sensing and delivered replica state only."""
     side = 2*radius+1
     obstacles = np.asarray(report.obstacles, dtype=np.float32)
@@ -159,11 +159,11 @@ def remote_observation(report, own_state, replica, radius, waypoints):
                              for k, t in state["sources"].items()})
         if peer == report.robot_id or state["completed"] or state["priority"] >= own_state.priority:
             continue
-        for point in state["path"]:
+        for point in state["path"][:horizon+1]:
             dr, dc = point[0]-row, point[1]-col
             if abs(dr) <= radius and abs(dc) <= radius:
                 intentions[dr+radius, dc+radius] = 1
-    normalizer = report.initial_distance if report.initial_distance > 0 and math.isfinite(report.initial_distance) else side
+    normalizer = report.initial_distance if report.initial_distance > 0 and math.isfinite(report.initial_distance) else map_extent
     distance = max(0, len(own_state.path)-1) if own_state.path else math.inf
     vector = [float(np.clip(distance/normalizer, 0, 1)), float(report.completed)]
     path = own_state.path

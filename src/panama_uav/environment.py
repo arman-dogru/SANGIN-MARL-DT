@@ -129,6 +129,7 @@ class ExperimentEnvironment:
             self.grid.shape, config.map.meters_per_cell, config.uav
         )
         self.communication = None
+        self.remote_inference = None
 
     @property
     def observation_shape(self) -> tuple[tuple[int, int, int], int]:
@@ -214,9 +215,16 @@ class ExperimentEnvironment:
             self.uav.reset()
             self.radio_snapshot = self.uav.snapshot()
         if self.config.resource_allocation.enabled:
-            from .paper import PaperMissionCommunication
-            self.communication = PaperMissionCommunication(self.config, self.grid, self.agents,
-                astar_path, self.base_seed if seed is None else seed, self.max_episode_steps, self.uav)
+            if self.config.resource_allocation.execution_mode == "remote_dt":
+                from .remote import RemoteDTCommunication
+                self.communication = RemoteDTCommunication(self.config, self.grid, self.agents,
+                    astar_path, self.base_seed if seed is None else seed, self.max_episode_steps,
+                    self.uav, self.remote_inference)
+                self.communication.update(self.agents, 0.0)
+            else:
+                from .paper import PaperMissionCommunication
+                self.communication = PaperMissionCommunication(self.config, self.grid, self.agents,
+                    astar_path, self.base_seed if seed is None else seed, self.max_episode_steps, self.uav)
         else:
             self.communication = MissionCommunication(
                 self.config.communication, self.grid, self.agents, astar_path,

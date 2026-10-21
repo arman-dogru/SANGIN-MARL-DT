@@ -112,6 +112,17 @@ def conditions(config, secondary=True):
     base = replace(config, communication=comm, resource_allocation=resource)
     result = [("fresh", replace(base, communication=replace(comm, profile="perfect")),
                dict(variant="fresh", policy="fresh", kind="reference", uplink_factor=1.0, cpu_factor=1.0))]
+    if resource.execution_mode == "remote_dt":
+        # Revised semantics get their own nominal acceptance study. Ablations
+        # and the historical 97-condition grid are deliberately not reused.
+        for policy in ("equal", "static", "aoi", "priority", "equal_legacy"):
+            legacy = policy == "equal_legacy"
+            cfg = replace(base, resource_allocation=replace(resource,
+                policy="equal" if legacy else policy,
+                equal_weight_mode="legacy" if legacy else resource.equal_weight_mode))
+            result.append(("up-1-cpu-1__"+policy, cfg, dict(variant="up-1-cpu-1", policy=policy,
+                kind="primary", uplink_factor=1.0, cpu_factor=1.0)))
+        return result
     variants = []
     for up in (.25, 1., 4.):
         for cpu in (.25, 1., 4.):
@@ -378,6 +389,8 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
     from .training import load_model
     if not 1 <= cases <= 50 or not set(counts) <= {2, 4, 6, 8} or not counts or len(counts) != len(set(counts)):
         raise ValueError("Use 1--50 cases and populations 2/4/6/8")
+    if config.resource_allocation.execution_mode == "remote_dt" and not diagnostic and not config.resource_allocation.remote_acceptance_approved:
+        raise ValueError("Remote-DT full experiments require acceptance approval; run bounded diagnostics first")
     if not 1 <= max_steps <= 250:
         raise ValueError("Episode cap must be 1--250")
     if not 1 <= workers <= 32:
@@ -434,7 +447,8 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         commit = None
     from importlib.metadata import version as package_version
     manifest = dict(schema=1, created_utc=datetime.now(UTC).isoformat(), diagnostic=diagnostic,
-        loop_schema=2, workers=workers,
+        loop_schema=3 if config.resource_allocation.execution_mode == "remote_dt" else 2, workers=workers,
+        execution_mode=config.resource_allocation.execution_mode,
         configuration=config.to_dict(), model=model_identity, counts=list(counts), cases_per_count=cases,
         episode_cap=max_steps, decision_budget_seconds=config.resource_allocation.decision_budget_seconds,
         bootstrap_samples=config.evaluation.bootstrap_samples, git_commit=commit,

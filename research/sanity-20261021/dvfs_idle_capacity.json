@@ -1,0 +1,107 @@
+{
+  "result": {
+    "snapshot": {
+      "tasks": [
+        {
+          "task_id": "0",
+          "input_bits": 100000.0,
+          "cycles_per_bit": 1000,
+          "weight": 1,
+          "access_bps": 50000000.0,
+          "backhaul_bps": 10000000.0,
+          "propagation_round_trip_seconds": 0.05,
+          "robot_power_w": 0.2,
+          "drone_power_w": 2.0,
+          "fixed_x": 1,
+          "required_cycles": null
+        }
+      ],
+      "drone_cycles_per_second": 30000000000.0,
+      "cloud_cycles_per_second": 10000000000.0,
+      "energy_coefficient": 1,
+      "latency_coefficient": 1.0,
+      "drone_kappa": 1e-28,
+      "include_robot_upload_in_objective": true
+    },
+    "relaxed": {
+      "mode": "relaxed",
+      "status": "optimal",
+      "objective": 0.09012053214666307,
+      "energy_objective": 0.029640281319528016,
+      "latency_objective": 0.06048025082713506,
+      "tasks": [
+        {
+          "task_id": "0",
+          "x": 1.0,
+          "drone_share": 0.05699929952739967,
+          "cloud_share": 0.0,
+          "drone_normalized_rate": 0.05699929952739967,
+          "cloud_normalized_rate": 0.0,
+          "drone_cycles_per_second": 1709978985.82199,
+          "cloud_cycles_per_second": 0.0,
+          "access_seconds": 0.002,
+          "backhaul_seconds": 0.0,
+          "propagation_seconds": 0.0,
+          "drone_compute_seconds": 0.05848025082713506,
+          "cloud_compute_seconds": 0.0,
+          "latency_seconds": 0.06048025082713506,
+          "robot_energy_j": 0.0004,
+          "backhaul_energy_j": 0.0,
+          "drone_compute_energy_j": 0.029240281319528015,
+          "energy_j": 0.029640281319528016,
+          "objective_energy_j": 0.029640281319528016,
+          "weighted_latency_seconds": 0.06048025082713506
+        }
+      ],
+      "solve_seconds": 0.013483500108122826,
+      "residual": 6.975336719917971e-10,
+      "is_dcp": true
+    },
+    "binary": {
+      "mode": "binary_exact",
+      "status": "optimal",
+      "objective": 0.09012053214638599,
+      "energy_objective": 0.029640177382128666,
+      "latency_objective": 0.060480354764257324,
+      "tasks": [
+        {
+          "task_id": "0",
+          "x": 1.0,
+          "drone_share": 0.05699919822255657,
+          "cloud_share": 0.0,
+          "drone_normalized_rate": 0.05699919822255657,
+          "cloud_normalized_rate": 0.0,
+          "drone_cycles_per_second": 1709975946.6766973,
+          "cloud_cycles_per_second": 0.0,
+          "access_seconds": 0.002,
+          "backhaul_seconds": 0.0,
+          "propagation_seconds": 0.0,
+          "drone_compute_seconds": 0.05848035476425732,
+          "cloud_compute_seconds": 0.0,
+          "latency_seconds": 0.060480354764257324,
+          "robot_energy_j": 0.0004,
+          "backhaul_energy_j": 0.0,
+          "drone_compute_energy_j": 0.029240177382128665,
+          "energy_j": 0.029640177382128666,
+          "objective_energy_j": 0.029640177382128666,
+          "weighted_latency_seconds": 0.060480354764257324
+        }
+      ],
+      "solve_seconds": 9.799934923648834e-05,
+      "residual": 0.0,
+      "is_dcp": true
+    },
+    "absolute_gap": 0.0,
+    "raw_objective_difference": -2.7708391137082344e-13,
+    "relative_gap": 0.0
+  },
+  "independent": {
+    "objective": 0.09012053220699412,
+    "x": [
+      1
+    ]
+  },
+  "expected": [
+    1
+  ]
+}

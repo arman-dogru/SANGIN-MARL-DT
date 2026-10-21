@@ -103,8 +103,16 @@ def load_model(path, config, device, require_qualified=False):
         raise ValueError(
             "Legacy checkpoint rejected; a new communication-study run ID is required"
         )
-    if payload.get("map_sha256") != sha256(config.resolve(FIXED_MAP)):
+    # A Git checkout may change LF to CRLF without changing the map. Accept
+    # only hashes of these exact two encodings, never unrelated map content.
+    map_bytes = config.resolve(FIXED_MAP).read_bytes().replace(b"\r\n", b"\n")
+    compatible_hashes = {hashlib.sha256(raw).hexdigest()
+                         for raw in (map_bytes, map_bytes.replace(b"\n", b"\r\n"))}
+    if payload.get("map_sha256") not in compatible_hashes:
         raise ValueError("Model map mismatch")
+    payload["map_compatibility"] = dict(checkpoint_sha256=payload["map_sha256"],
+        checkout_sha256=sha256(config.resolve(FIXED_MAP)), normalized_lf_sha256=hashlib.sha256(map_bytes).hexdigest(),
+        equivalence="exact content under LF/CRLF conversion only")
     if payload.get("task_reward") != config.to_dict()["reward"]:
         raise ValueError("Model task-reward definition mismatch; use a fresh run ID")
     if (

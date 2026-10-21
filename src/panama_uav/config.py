@@ -194,6 +194,8 @@ class ResourceAllocationConfig:
     policy: str = "priority"
     energy_coefficient: float = 1.0
     latency_coefficient: float = 1.0
+    drone_kappa: float = 0.0
+    include_robot_upload_in_objective: bool = True
     access_bandwidth_hz: float = 20e6
     noise_psd_w_hz: float = 3.9810717055e-21  # -174 dBm/Hz, assumed thermal floor
     access_noise_figure_db: float = 7.0
@@ -221,7 +223,7 @@ class ResourceAllocationConfig:
             raise ValueError("Resource parameters must be finite and positive")
         if self.weight_max < self.weight_min or self.policy not in ("equal", "static", "aoi", "priority"):
             raise ValueError("Invalid resource weights or policy")
-        for v in (self.energy_coefficient, self.decision_budget_seconds, self.access_noise_figure_db,
+        for v in (self.energy_coefficient, self.drone_kappa, self.decision_budget_seconds, self.access_noise_figure_db,
                   self.assumed_atmosphere_db, self.implementation_loss_db):
             if not math.isfinite(v) or v < 0:
                 raise ValueError("Invalid resource coefficient or control budget")

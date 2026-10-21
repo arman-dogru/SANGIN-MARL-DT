@@ -52,12 +52,14 @@ class AllocationSnapshot:
     cloud_cycles_per_second: float = 1e10
     energy_coefficient: float = 1.0  # per joule; reference energy = 1 J
     latency_coefficient: float = 1.0  # per second; reference time = 1 s
+    drone_kappa: float = 0.0  # legacy default; paper DVFS coefficient [J/(cycle*(cycle/s)^2)]
+    include_robot_upload_in_objective: bool = True
 
     def __post_init__(self):
         if len({t.task_id for t in self.tasks}) != len(self.tasks):
             raise ValueError("Duplicate task IDs")
         for v in (self.drone_cycles_per_second, self.cloud_cycles_per_second,
-                  self.energy_coefficient, self.latency_coefficient):
+                  self.energy_coefficient, self.latency_coefficient, self.drone_kappa):
             if not math.isfinite(v) or v < 0:
                 raise ValueError("Capacities and coefficients must be finite and nonnegative")
         if self.latency_coefficient <= 0:
@@ -111,6 +113,50 @@ def cpu_shares(cycles, weights):
     return roots/roots.sum() if roots.sum() else np.zeros_like(roots)
 
 
+def processor_shares(cycles, weights, capacity, kappa=0.0, energy_coefficient=1.0, latency_coefficient=1.0):
+    """KKT solution including DVFS; returns actual capacity fractions, possibly idle.
+
+    In normalized rates u=f/F, minimize sum(A/u+B*u^2). The latency-only
+    case is Equations 18--19. The general case solves -A/u^2+2*B*u+lambda=0.
+    """
+    cycles, weights = np.asarray(cycles, float), np.asarray(weights, float)
+    if not cycles.size or not np.any(cycles):
+        return np.zeros_like(cycles)
+    if kappa == 0 or energy_coefficient == 0:
+        return cpu_shares(cycles, weights)
+    from scipy.optimize import brentq
+    active = cycles > 0
+    A = latency_coefficient*weights[active]*cycles[active]/capacity
+    B = energy_coefficient*kappa*cycles[active]*capacity**2
+    free = np.cbrt(A/(2*B))
+    def allocate(multiplier):
+        # Safeguarded Newton iteration on a monotone scalar derivative per job.
+        upper = np.minimum(free, np.sqrt(A/multiplier)) if multiplier else free.copy()
+        lower = np.zeros_like(upper)
+        value = upper.copy()
+        for _ in range(50):
+            derivative = -A/value**2+2*B*value+multiplier
+            high = derivative > 0
+            upper = np.where(high, value, upper)
+            lower = np.where(high, lower, value)
+            proposal = value-derivative/(2*A/value**3+2*B)
+            proposal = np.where((proposal > lower) & (proposal < upper), proposal, (lower+upper)/2)
+            if np.max(np.abs(proposal-value)) < 1e-13:
+                break
+            value = proposal
+        return value
+    if free.sum() <= 1:
+        rates = free
+    else:
+        upper = float(np.sum(np.sqrt(A))**2)
+        multiplier = brentq(lambda m: allocate(m).sum()-1, 0, upper, xtol=1e-12)
+        rates = allocate(multiplier)
+        rates /= max(1.0, float(rates.sum()))
+    result = np.zeros_like(cycles)
+    result[active] = rates
+    return result
+
+
 def _evaluate(snapshot, x, a, b, mode, elapsed, residual=0.0):
     rows = []
     for t, xi, ai, bi in zip(snapshot.tasks, x, a, b):
@@ -128,6 +174,10 @@ def _evaluate(snapshot, x, a, b, mode, elapsed, residual=0.0):
         latency = access+(1-xi)*(backhaul+t.propagation_round_trip_seconds)+drone_time+cloud_time
         robot_energy = t.robot_power_w*access
         backhaul_energy = t.drone_power_w*(1-xi)*backhaul
+        drone_energy = (snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2*ai**2/xi
+                        if xi else 0.0)
+        objective_energy = backhaul_energy+drone_energy+(
+            robot_energy if snapshot.include_robot_upload_in_objective else 0.0)
         rows.append(dict(task_id=t.task_id, x=float(xi), drone_share=float(ai),
             cloud_share=float(bi),
             drone_normalized_rate=float(ai/xi) if xi else 0.0,
@@ -138,9 +188,10 @@ def _evaluate(snapshot, x, a, b, mode, elapsed, residual=0.0):
             propagation_seconds=(1-xi)*t.propagation_round_trip_seconds,
             drone_compute_seconds=drone_time, cloud_compute_seconds=cloud_time,
             latency_seconds=latency, robot_energy_j=robot_energy,
-            backhaul_energy_j=backhaul_energy, energy_j=robot_energy+backhaul_energy,
+            backhaul_energy_j=backhaul_energy, drone_compute_energy_j=drone_energy,
+            energy_j=robot_energy+backhaul_energy+drone_energy, objective_energy_j=objective_energy,
             weighted_latency_seconds=t.weight*latency))
-    energy = snapshot.energy_coefficient*sum(r["energy_j"] for r in rows)
+    energy = snapshot.energy_coefficient*sum(r["objective_energy_j"] for r in rows)
     latency = snapshot.latency_coefficient*sum(r["weighted_latency_seconds"] for r in rows)
     return AllocationResult(mode, "optimal", energy+latency, energy, latency, rows, elapsed, residual)
 
@@ -165,7 +216,8 @@ def solve_binary(snapshot):
     weights = np.array([t.weight for t in snapshot.tasks])
     for assignment in product(*choices):
         x = np.array(assignment, dtype=float)
-        a = cpu_shares(cycles*x, weights)
+        a = processor_shares(cycles*x, weights, snapshot.drone_cycles_per_second,
+            snapshot.drone_kappa, snapshot.energy_coefficient, snapshot.latency_coefficient)
         b = cpu_shares(cycles*(1-x), weights)
         result = _evaluate(snapshot, x, a, b, "binary_exact", 0.0)
         if best is None or result.objective < best.objective-1e-12:
@@ -185,6 +237,7 @@ def solve_relaxed(snapshot):
         return _evaluate(snapshot, [], [], [], "relaxed", perf_counter()-start)
     x, a, b = (cp.Variable(n) for _ in range(3))
     qd, qc = cp.Variable(n, nonneg=True), cp.Variable(n, nonneg=True)
+    ed = cp.Variable(n, nonneg=True) if snapshot.drone_kappa else None
     constraints = [x >= 0, x <= 1, a >= 0, b >= 0, a <= x, b <= 1-x,
                    cp.sum(a) <= 1, cp.sum(b) <= 1]
     objective = 0
@@ -209,6 +262,12 @@ def solve_relaxed(snapshot):
         tc = t.cycles/snapshot.cloud_cycles_per_second if snapshot.cloud_cycles_per_second else 0.0
         latency = d_g+(1-x[i])*(d_a+t.propagation_round_trip_seconds)+td*qd[i]+tc*qc[i]
         energy = t.robot_power_w*d_g+t.drone_power_w*(1-x[i])*d_a
+        if not snapshot.include_robot_upload_in_objective:
+            energy -= t.robot_power_w*d_g
+        if ed is not None:
+            # Closed perspective a^2/x includes the exact x=a=0 endpoint.
+            constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*a[i], ed[i]-x[i]])))
+            energy += snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2*ed[i]
         objective += snapshot.energy_coefficient*energy+snapshot.latency_coefficient*t.weight*latency
     problem = cp.Problem(cp.Minimize(objective), constraints)
     try:

@@ -1,0 +1,112 @@
+[
+  {
+    "scenario": "high_satellite_delay",
+    "expected": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "actual": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "status": "passed",
+    "objective": 1.608,
+    "independent_objective": 1.607999999247345,
+    "difference": 7.526550493963668e-10,
+    "relaxation_gap": 0.0
+  },
+  {
+    "scenario": "fast_cloud_slow_drone",
+    "expected": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "status": "passed",
+    "objective": 0.20800000000000002,
+    "independent_objective": 0.20800000002123809,
+    "difference": 2.1238066860718163e-11,
+    "relaxation_gap": 0.0
+  },
+  {
+    "scenario": "unavailable_backhaul",
+    "expected": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "actual": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "status": "passed",
+    "objective": 1.608,
+    "independent_objective": 1.607999999247345,
+    "difference": 7.526550493963668e-10,
+    "relaxation_gap": 0.0
+  },
+  {
+    "scenario": "unavailable_drone",
+    "expected": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "status": "passed",
+    "objective": 0.40800000000000003,
+    "independent_objective": 0.4080000000212381,
+    "difference": 2.1238066860718163e-11,
+    "relaxation_gap": 0.0
+  },
+  {
+    "scenario": "bounded_priority_fixed_drone",
+    "expected": [
+      1,
+      1
+    ],
+    "actual": [
+      1,
+      1
+    ],
+    "status": "passed",
+    "objective": 0.9100000000000001,
+    "independent_objective": 0.9100000001938402,
+    "difference": 1.9384005511824398e-10,
+    "relaxation_gap": 0.0
+  },
+  {
+    "scenario": "dvfs_idle_capacity",
+    "expected": [
+      1
+    ],
+    "actual": [
+      1
+    ],
+    "status": "passed",
+    "objective": 0.09012053214638599,
+    "independent_objective": 0.09012053220699412,
+    "difference": 6.060812962616069e-11,
+    "relaxation_gap": 0.0
+  }
+]

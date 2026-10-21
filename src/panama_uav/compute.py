@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 import math
 
-from .allocation import cpu_shares
+from .allocation import processor_shares
 
 
 @dataclass
@@ -14,16 +14,20 @@ class ComputeJob:
     arrived_at: float
     payload: object
     service_seconds: float = 0.0
+    compute_energy_j: float = 0.0
 
 
 class ComputePool:
-    def __init__(self, name, capacity, transport, completed):
+    def __init__(self, name, capacity, transport, completed, *, kappa=0.0,
+                 energy_coefficient=1.0, latency_coefficient=1.0):
         self.name, self.capacity = name, capacity
         self.transport, self.completed = transport, completed
         self.jobs = {}
         self.rates = {}
         self.updated_at = transport.now
         self.token = 0
+        self.kappa, self.energy_coefficient, self.latency_coefficient = kappa, energy_coefficient, latency_coefficient
+        self.energy_j = 0.0
 
     def _account(self):
         now = self.transport.now
@@ -33,6 +37,9 @@ class ComputePool:
             job.remaining_cycles = max(0.0, job.remaining_cycles-rate*elapsed)
             if rate > 0:
                 job.service_seconds += elapsed
+                energy = self.kappa*rate**3*elapsed
+                job.compute_energy_j += energy
+                self.energy_j += energy
         self.updated_at = now
 
     def submit(self, job_id, cycles, weight, payload):
@@ -50,7 +57,8 @@ class ComputePool:
             self.rates = {}
             return
         jobs = list(self.jobs.values())
-        shares = cpu_shares([j.remaining_cycles for j in jobs], [j.weight for j in jobs])
+        shares = processor_shares([j.remaining_cycles for j in jobs], [j.weight for j in jobs],
+            self.capacity, self.kappa, self.energy_coefficient, self.latency_coefficient)
         self.rates = {j.job_id: float(s)*self.capacity for j, s in zip(jobs, shares)}
         self.transport.log.append(dict(event="compute_allocation", time=self.transport.now,
             pool=self.name, capacity_cycles_per_second=self.capacity,
@@ -75,7 +83,8 @@ class ComputePool:
             self.transport.log.append(dict(event="compute_complete", time=self.transport.now,
                 pool=self.name, job_id=job.job_id, cycles=job.initial_cycles,
                 arrived_at=job.arrived_at, service_seconds=job.service_seconds,
-                queue_seconds=0.0, elapsed_seconds=self.transport.now-job.arrived_at))
+                queue_seconds=0.0, elapsed_seconds=self.transport.now-job.arrived_at,
+                compute_energy_j=job.compute_energy_j))
         self._reschedule()
         for job in finished:
             self.completed(job)
@@ -86,4 +95,8 @@ class ComputePool:
         return [dict(job_id=j.job_id, remaining_cycles=max(0.0,
                     j.remaining_cycles-self.rates.get(j.job_id, 0)*elapsed),
                     weight=j.weight, arrived_at=j.arrived_at,
+                    compute_energy_j=j.compute_energy_j+self.kappa*self.rates.get(j.job_id, 0)**3*elapsed,
                     cycles_per_second=self.rates.get(j.job_id, 0)) for j in self.jobs.values()]
+
+    def energy(self):
+        return self.energy_j+self.kappa*sum(rate**3 for rate in self.rates.values())*(self.transport.now-self.updated_at)

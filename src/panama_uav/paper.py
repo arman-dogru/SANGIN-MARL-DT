@@ -44,7 +44,8 @@ class PaperMissionCommunication(MissionCommunication):
         self.transport.transmission_observer = self._transmitted
         p = self.parameters
         self.transport.compute_pools = {
-            "drone": ComputePool("drone", p.drone_cycles_per_second, self.transport, self._computed),
+            "drone": ComputePool("drone", p.drone_cycles_per_second, self.transport, self._computed,
+                kappa=p.drone_kappa, energy_coefficient=p.energy_coefficient, latency_coefficient=p.latency_coefficient),
             "cloud": ComputePool("cloud", p.cloud_cycles_per_second, self.transport, self._computed)}
 
     def _report(self, agent):
@@ -189,7 +190,8 @@ class PaperMissionCommunication(MissionCommunication):
                 p.robot_power_w, p.drone_power_w, fixed_x=job["executed_x"],
                 required_cycles=remaining.get(job_id, job["required_cycles"])))
         snapshot = AllocationSnapshot(tuple(tasks), p.drone_cycles_per_second,
-            p.cloud_cycles_per_second, p.energy_coefficient, p.latency_coefficient)
+            p.cloud_cycles_per_second, p.energy_coefficient, p.latency_coefficient,
+            p.drone_kappa, p.include_robot_upload_in_objective)
         try:
             comparison = compare_allocations(snapshot)
         except AllocationFailure as exc:
@@ -227,6 +229,7 @@ class PaperMissionCommunication(MissionCommunication):
         job = self.jobs[job_id]
         job.update(stage="computed", compute_completed_at=t.now,
             compute_service_seconds=completed.service_seconds,
+            drone_compute_energy_j=completed.compute_energy_j,
             compute_elapsed_seconds=t.now-completed.arrived_at,
             batch_wait_seconds=job["allocation_at"]-job["access_arrived_at"])
         report = dict(job["report"])
@@ -280,7 +283,7 @@ class PaperMissionCommunication(MissionCommunication):
                     input_bits=self.parameters.task_input_bits,
                     cycles_per_bit=self.parameters.cycles_per_bit,
                     required_cycles=self.parameters.task_input_bits*self.parameters.cycles_per_bit,
-                    access_radio=radio, robot_energy_j=0.0, backhaul_energy_j=0.0,
+                    access_radio=radio, robot_energy_j=0.0, backhaul_energy_j=0.0, drone_compute_energy_j=0.0,
                     access_wire_bits=0, backhaul_wire_bits=0, response_all_recipients_wire_bits=0,
                     **{"uplink_"+k: 0.0 for k in ("transmission_seconds", "queue_seconds", "propagation_seconds",
                                                     "interruption_seconds", "guard_seconds")})
@@ -337,5 +340,7 @@ class PaperMissionCommunication(MissionCommunication):
             power = (self.parameters.robot_power_w if link == "access_up" else
                      self.parameters.drone_power_w if link == "satellite_up" else 0.0)
             pending += power*details["transmission_seconds"]
+        compute = self.transport.compute_pools["drone"].energy()
         return dict(radio_energy_lower_j=lower, radio_energy_upper_j=lower+pending,
-                    unfinished_airtime_energy_bound_j=pending)
+                    unfinished_airtime_energy_bound_j=pending, drone_compute_energy_j=compute,
+                    modeled_energy_lower_j=lower+compute, modeled_energy_upper_j=lower+pending+compute)

@@ -119,6 +119,8 @@ def parser():
     sub = commands.add_parser("allocation-snapshot", help="Solve and compare a fixed Equation 16 snapshot")
     sub.add_argument("--input", required=True)
     sub.add_argument("--output", required=True)
+    sub = commands.add_parser("allocation-sanity", help="Run predictable independently verified allocation cases")
+    sub.add_argument("--output", required=True)
     sub = commands.add_parser("resource-conditions", help="List resource experiment conditions")
     sub.add_argument("--primary-only", action="store_true")
     sub = commands.add_parser("resource-report", help="Rebuild resource summaries and figures")
@@ -140,6 +142,11 @@ def parser():
 
 def main(argv=None):
     arguments = parser().parse_args(argv)
+    if arguments.command == "allocation-sanity":
+        from .validation import run_sanity
+        rows = run_sanity(arguments.output)
+        print(json.dumps(rows, indent=2))
+        return 0
     if arguments.command == "allocation-snapshot":
         from .resource_study import optimize_snapshot
         result = optimize_snapshot(arguments.input, arguments.output)

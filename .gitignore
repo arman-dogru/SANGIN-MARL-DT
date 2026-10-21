@@ -19,5 +19,6 @@ artifacts/.mplconfig/
 /tmp/
 /traces/
 /data/leo/
+/artifacts/inputs/
 .venv/
 docs/

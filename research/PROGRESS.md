@@ -75,3 +75,16 @@ The expanded independent replay audit verifies physical accounting for 10,944
 saved nominal tasks: s/R, C/f, P times measured airtime, the complete two-way
 propagation decomposition, and the sum of observed per-stage delay components.
 These checks use saved measurements rather than allocation implementation helpers.
+
+Stage 5 extends paired summaries with same-policy nominal-resource comparisons,
+so CPU/radio changes have their own matched-case intervals. Seven resource-study
+checks pass, including shuffled/missing case identities and the nominal identity
+comparison. The manuscript explicitly documents absolute weight scaling, sticky
+first-goal completion priority, and guidance-arrival task latency versus separate
+coordination-state delivery. Its equations compile without column overflow.
+
+Exhaustive nominal replay now passes for all 1,000 episodes: 81,914 decisions,
+487,862 physical task checks and 74,092 allocation snapshots. The earlier sampled
+audit remains preserved alongside `baseline_full_loop_audit.json`. The full
+sensitivity sweep continues; weight-ratio identity controls will be checked once
+those complete conditions are available.

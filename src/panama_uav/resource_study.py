@@ -265,6 +265,8 @@ def summarize(root):
             fresh = [r for r in groups.get("fresh", []) if r["num_agents"] == count]
             equal_name = condition["tags"]["variant"]+"__equal"
             equal = [r for r in groups.get(equal_name, []) if r["num_agents"] == count]
+            nominal_name = "up-1-cpu-1__"+condition["tags"]["policy"]
+            nominal = [r for r in groups.get(nominal_name, []) if r["num_agents"] == count]
             item = dict(condition=name, num_agents=count, cases=len(rows), **condition["tags"])
             for metric in METRICS:
                 values = [float(r[metric]) for r in rows if r.get(metric) is not None]
@@ -278,6 +280,7 @@ def summarize(root):
             item["pooled_xi_fov"] = item["pooled_fov_errors"]/max(1, item["pooled_relevant_pairs"])
             item["paired_fresh"] = paired_metrics(rows, fresh, manifest["bootstrap_samples"])
             item["paired_equal"] = paired_metrics(rows, equal, manifest["bootstrap_samples"])
+            item["paired_nominal"] = paired_metrics(rows, nominal, manifest["bootstrap_samples"])
             summaries.append(item)
     write_json(root/"summary.json", summaries)
     # Reuse the repository's CSV serializer for nested comparison intervals.
@@ -334,7 +337,7 @@ def plot_results(root):
         if group:
             ax.scatter([r["mean_task_latency_seconds"] for r in group],
                 [r["mean_completed_task_energy_j"] for r in group], label=policy, alpha=.7)
-    ax.set(xlabel="Observed task latency (s)", ylabel="Completed-task transmit energy (J)",
+    ax.set(xlabel="Observed task latency (s)", ylabel="Modeled energy / delivered task (J)",
            title=f"{max(counts)} robots; explicit simulation assumptions")
     if ax.collections:
         ax.legend()

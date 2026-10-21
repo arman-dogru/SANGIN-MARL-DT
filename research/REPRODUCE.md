@@ -30,6 +30,7 @@ After completion:
 ```powershell
 .\.venv\Scripts\python.exe scripts\audit_resource_loop.py --study output\resources\paper-allocation-20261021 --output research\full_loop_audit.json
 .\.venv\Scripts\python.exe scripts\verify_resource_records.py --study output\resources\paper-allocation-20261021 --output research\full_record_audit.json
+.\.venv\Scripts\python.exe scripts\verify_weight_identity.py --study output\resources\paper-allocation-20261021 --output research\weight_identity_audit.json
 .\.venv\Scripts\python.exe scripts\report_paper_results.py --study output\resources\paper-allocation-20261021
 .\.venv\Scripts\python.exe scripts\paper_diagrams.py
 ```

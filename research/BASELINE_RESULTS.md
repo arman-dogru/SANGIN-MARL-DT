@@ -13,6 +13,12 @@ tasks for bit/cycle identities, predicted computation and transmission times,
 transmitter energy, full-route round-trip propagation and observed stage sums.
 See `baseline_loop_audit.json`.
 
+The subsequent exhaustive audit reproduced **all 81,914 decisions in all 1,000
+nominal episodes**. It also checked all **487,862 task records**, covering 74,092
+allocation snapshots, with the same causal, physical and ordering identities.
+The complete evidence is in `baseline_full_loop_audit.json`; the earlier sample
+audit remains available separately.
+
 At eight robots, current-priority versus equal weights gives:
 
 | Outcome | Equal | PANAMA priority | Paired difference, 95% CI |
@@ -25,6 +31,11 @@ The nominal latency difference is directional in its pointwise interval. The
 completion and inconsistency intervals include zero; these results do not
 establish a universal mission-success advantage for current-priority allocation.
 Other populations and policies remain visible in the full tables and plots.
+
+Equal weights are all 1; priority/AoI policies use their configured 1--4 range.
+Weights are not normalized to the same sum, so these comparisons change aggregate
+latency-versus-energy emphasis alongside relative prioritization. The full grid's
+weight-ratio-one identity control will independently check the common-weight limit.
 
 The archived model was qualified under fresh information. These experiments use
 its frozen weights under delayed guidance and coordination; they do not retrain

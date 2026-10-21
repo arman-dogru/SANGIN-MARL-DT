@@ -46,6 +46,15 @@ def test_paired_interval_has_expected_direction():
     assert result == dict(delta=2., pairs=2, ci95=[2., 2.])
 
 
+def test_paired_metrics_match_case_ids_and_exclude_unmatched_cases():
+    rows = [dict(case_id="a", waiting_steps=3), dict(case_id="b", waiting_steps=10),
+            dict(case_id="unmatched", waiting_steps=1000)]
+    reference = [dict(case_id="b", waiting_steps=6), dict(case_id="a", waiting_steps=1)]
+    result = paired_metrics(rows, reference, samples=200)["waiting_steps"]
+    assert result["delta"] == 3 and result["pairs"] == 2
+    assert result["ci95"] == [2., 4.]
+
+
 def test_paper_run_rejects_missing_qualification_and_timeline(tmp_path):
     config = load_config(ROOT/"configs/resource_study.toml")
     with pytest.raises(ValueError, match="qualified checkpoint"):
@@ -69,6 +78,7 @@ def test_paired_diagnostic_produces_real_records_and_figures(tmp_path):
     assert all(r["cases"] == 1 for r in rows)
     priority = next(r for r in rows if r["policy"] == "priority")
     assert priority["paired_equal"]["waiting_steps"]["pairs"] == 1
+    assert priority["paired_nominal"]["waiting_steps"] == dict(delta=0., pairs=1, ci95=[0.,0.])
 
 
 def test_resume_preserves_finished_cases(tmp_path):

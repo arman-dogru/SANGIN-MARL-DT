@@ -24,7 +24,9 @@ COLORS = dict(equal="#3b6280", static="#a26825", aoi="#6e5891", priority="#18786
 
 def save_figure(fig, directory, name):
     for suffix in ("png", "svg", "pdf"):
-        fig.savefig(directory/f"{name}.{suffix}", dpi=220, bbox_inches="tight")
+        metadata = ({"Date":None} if suffix=="svg" else
+                    {"CreationDate":None,"ModDate":None} if suffix=="pdf" else {})
+        fig.savefig(directory/f"{name}.{suffix}", dpi=220, bbox_inches="tight", metadata=metadata)
     svg = directory/f"{name}.svg"
     svg.write_text("\n".join(line.rstrip() for line in svg.read_text(encoding="utf-8").splitlines())+"\n", encoding="utf-8")
     plt.close(fig)
@@ -150,6 +152,24 @@ def latex_results(rows, paper, manifest, totals, full_grid=True):
         parts.append(f"The nominal eight-robot priority-minus-equal difference in {label} is {paired['delta']*scale:.4f} {units} "
                      f"(95\\% paired interval [{lo:.4f}, {hi:.4f}]; {paired['pairs']} pairs).")
     lines += parts
+    if full_grid:
+        lines.append("Resource effects are also paired against the nominal condition under the same policy. "
+            "The following eight-robot PANAMA-priority comparisons therefore hold the weight policy fixed; "
+            "they change the configured service capacities.")
+        for variant,label in (("up-1-cpu-0.25","one-quarter common CPU capacity"),
+                              ("up-1-cpu-4","fourfold common CPU capacity"),
+                              ("up-0.25-cpu-1","one-quarter backhaul uplink capacity"),
+                              ("up-4-cpu-1","fourfold backhaul uplink capacity")):
+            row=next(r for r in rows if r["num_agents"]==8 and r["policy"]=="priority" and r["variant"]==variant)
+            effects=[]
+            for metric,name,scale,unit in (("mean_task_latency_seconds","task latency",1,"s"),
+                ("xi_fov","FoV inconsistency",100,"percentage points"),
+                ("success","completion probability",100,"percentage points")):
+                effect=row["paired_nominal"][metric]
+                low,high=np.array(effect["ci95"])*scale
+                effects.append(f"{name} by {effect['delta']*scale:.4f} {unit} "
+                    f"(95\\% paired interval [{low:.4f}, {high:.4f}])")
+            lines.append(f"Relative to nominal resources, {label} changes "+"; ".join(effects)+".")
     lines += ["These results quantify the complete closed loop rather than only the static optimizer. "
         "Queueing, changing CPU service, delayed self and peer state, discrete route changes and the frozen policy can change mission outcomes independently of snapshot objective gains. "
         "The confidence intervals and sensitivity figures must therefore be considered alongside the mean values; superiority is not assumed."]
@@ -186,7 +206,8 @@ def publish(study,paper,output):
             if count!=expected:
                 raise ValueError(f"Intermediate record count mismatch: {condition['name']}/{filename}")
     rows=summarize(study)
-    plt.rcParams.update({"font.size":8,"axes.titlesize":9,"svg.fonttype":"none","pdf.fonttype":42})
+    plt.rcParams.update({"font.size":8,"axes.titlesize":9,"svg.fonttype":"none","pdf.fonttype":42,
+                         "svg.hashsalt":"panama-allocation-paper"})
     figures=paper/"figures"; figures.mkdir(exist_ok=True)
     overview(rows,figures); ordering_components(rows,figures)
     if full_grid:
@@ -197,7 +218,9 @@ def publish(study,paper,output):
         shutil.copyfile(study/filename,output/filename)
     write_json(output/"verification.json",dict(status="passed",**totals,conditions=len(manifest["conditions"]),
         checkpoint_sha256=manifest["model"]["sha256"],timeline_sha256=manifest["timeline_sha256"],
-        study_path=str(study.resolve()),manifest_sha256=sha256(study/"manifest.json")))
+        study_path=str(study.resolve()),manifest_sha256=sha256(study/"manifest.json"),
+        report_code_sha256={str(p.relative_to(ROOT)):sha256(p) for p in
+            (Path(__file__).resolve(),ROOT/"src/panama_uav/resource_study.py")}))
     baseline=[r for r in rows if r["variant"]=="up-1-cpu-1"]
     fields=["num_agents","policy","success","par2","mean_task_latency_seconds","mean_completed_task_energy_j","xi_fov","xi_fov_uplink","xi_fov_downlink","mean_intentions_age_seconds","waiting_steps","sum_path_costs","tasks_unfinished"]
     with (output/"baseline.csv").open("w",newline="",encoding="utf-8") as stream:

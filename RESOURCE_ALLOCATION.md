@@ -188,6 +188,13 @@ AoI-only weights based on the reported self-state source time, and current prior
 weights. AoI weights are clipped to the same configured bounds. Completed-task
 weights retain the floor under every policy.
 
+The equal-policy control uses the minimum weight (1), whereas tied active agents
+under the priority map use the maximum weight (4 nominally). The sum of weights
+is not normalized between policies. Comparisons therefore include changes in the
+latency/energy emphasis as well as relative priority; they do not isolate a fixed
+total priority budget. At weight ratio one, all four policies receive identical
+weights and must reproduce equal-policy execution for the paired case bank.
+
 ## Measurements and experiments
 
 Equations 28--36 are evaluated per directed receiver-peer pair. Vertex/edge
@@ -209,6 +216,8 @@ Secondary sweeps independently vary drone CPU, cloud CPU, downlink, input bits,
 and cycles/bit by 0.25 and 4, weight ratios by 1 and 16 (baseline 4), and energy
 coefficients by 0, 0.1 and 10 (baseline 1): 97 total conditions. Fresh and equal-policy
 comparisons are paired by case ID, with seeded 2,000-sample bootstrap intervals.
+Each policy also has paired comparisons against its own nominal resource
+condition, isolating resource changes while keeping the weight policy fixed.
 
 Outputs include a manifest with full configurations, code/model/map/timeline/case
 hashes and package versions; compressed episode traces; allocation and task JSONL;
@@ -216,6 +225,9 @@ CSV tables; summaries; and PNG/SVG plots. Task records distinguish logical input
 size from wire overhead, predicted snapshot latency from observed task latency,
 and original work from outstanding remaining cycles. Source/generation/delivery
 times and per-chunk radio service permit stage-by-stage audit.
+Task latency and delivered-task counts use guidance arrival at the requesting
+robot. Broadcast coordination states have separate per-receiver deliveries,
+including self, which are measured through cache AoI and directed inconsistency.
 
 Transmit energy is credited only when a service chunk completes. Delivered-task
 energy is exact within the simulation. At episode termination an unfinished chunk

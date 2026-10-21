@@ -474,7 +474,8 @@
         ]
       }
     },
-    "paired_equal": {}
+    "paired_equal": {},
+    "paired_nominal": {}
   },
   {
     "condition": "fresh",
@@ -951,7 +952,8 @@
         ]
       }
     },
-    "paired_equal": {}
+    "paired_equal": {},
+    "paired_nominal": {}
   },
   {
     "condition": "fresh",
@@ -1428,7 +1430,8 @@
         ]
       }
     },
-    "paired_equal": {}
+    "paired_equal": {},
+    "paired_nominal": {}
   },
   {
     "condition": "fresh",
@@ -1905,7 +1908,8 @@
         ]
       }
     },
-    "paired_equal": {}
+    "paired_equal": {},
+    "paired_nominal": {}
   },
   {
     "condition": "up-1-cpu-1__equal",
@@ -2407,6 +2411,336 @@
       }
     },
     "paired_equal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_nominal": {
       "par2": {
         "delta": 0.0,
         "pairs": 50,
@@ -3565,6 +3899,336 @@
           0.0
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 45,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -4067,6 +4731,336 @@
       }
     },
     "paired_equal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 26,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_nominal": {
       "par2": {
         "delta": 0.0,
         "pairs": 50,
@@ -5225,6 +6219,336 @@
           0.0
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 15,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -6037,6 +7361,336 @@
         "ci95": [
           0.005273908077032533,
           0.007366057460421374
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       },
       "mean_drone_cpu_utilization": {
@@ -6885,6 +8539,336 @@
           -5.3741901124383824e-05
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 48,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -7713,6 +9697,336 @@
         "ci95": [
           -0.0002781024790623196,
           4.8131891931394584e-05
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 33,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       }
     }
@@ -8545,6 +10859,336 @@
           9.33465192478305e-05
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 15,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -9357,6 +12001,336 @@
         "ci95": [
           0.0,
           0.0005970461973999117
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       },
       "mean_drone_cpu_utilization": {
@@ -10205,6 +13179,336 @@
           -7.010682646877625e-05
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 49,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -11033,6 +14337,336 @@
         "ci95": [
           -0.00021686214243088638,
           5.9606241540249836e-05
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 33,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       }
     }
@@ -11865,6 +15499,336 @@
           0.0
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 15,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -12677,6 +16641,336 @@
         "ci95": [
           0.005472923476165835,
           0.007562585167065523
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       },
       "mean_drone_cpu_utilization": {
@@ -13525,6 +17819,336 @@
           -0.00010287039252882139
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -14355,6 +18979,336 @@
           0.0001069524179368279
         ]
       }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 31,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   {
@@ -15183,6 +20137,336 @@
         "ci95": [
           -0.00014030095099579152,
           8.562395899256447e-05
+        ]
+      }
+    },
+    "paired_nominal": {
+      "par2": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "success": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "waiting_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sum_path_costs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_xi_aoi": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "radio_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_task_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_intentions_age_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_predicted_latency_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_compute_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "ever_completion_fraction": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "successful_makespan": {
+        "delta": 0.0,
+        "pairs": 17,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "restricted_makespan_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_generated": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_delivered": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tasks_unfinished": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "latency_p95_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_prediction_error_seconds": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_uplink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "xi_fov_downlink": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_relevant_pairs": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_uplink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fov_downlink_errors": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "drone_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_lower_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "modeled_energy_upper_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "collision_attempts": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "voluntary_wait_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "travel_steps": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_robot_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_backhaul_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "completed_task_compute_energy_j": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_drone_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_cloud_cpu_utilization": {
+        "delta": 0.0,
+        "pairs": 50,
+        "ci95": [
+          0.0,
+          0.0
         ]
       }
     }

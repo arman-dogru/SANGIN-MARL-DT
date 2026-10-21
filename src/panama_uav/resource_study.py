@@ -82,6 +82,21 @@ def _case_config(config, case):
         backhaul_time_offset_seconds=config.communication.backhaul_time_offset_seconds+case["orbital_offset_seconds"]))
 
 
+def study_cases(config, cases, counts, max_steps):
+    """Freeze held-out geometry and orbital offsets independently of cutoffs."""
+    from .evaluation import case_bank
+    bank = case_bank(config, cases, counts)
+    if config.communication.leo_timeline:
+        from .leo import OrbitTimeline
+        orbital = OrbitTimeline.load(config.resolve(config.communication.leo_timeline))
+        available = orbital.period-config.communication.backhaul_time_offset_seconds-2*max_steps-1
+        if available <= 0:
+            raise ValueError("Orbital timeline is too short for the case bank and episode cap")
+        for case in bank:
+            case["orbital_offset_seconds"] = float(((case["num_agents"]//2-1)*5000+case["case"]*100)%available)
+    return bank
+
+
 def _bounded_episodes(executor, arguments, window):
     """Preserve deterministic case order without retaining 200 large futures."""
     arguments = iter(arguments)
@@ -451,7 +466,7 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
               counts=(2, 4, 6, 8), secondary=True, selected=None, max_steps=250, device_name="cpu", workers=1,
               resume=False):
     import torch
-    from .evaluation import case_bank, run_episode
+    from .evaluation import run_episode
     from .models import DQN, choose_device
     from .training import load_model
     if not 1 <= cases <= 50 or not set(counts) <= {2, 4, 6, 8} or not counts or len(counts) != len(set(counts)):
@@ -497,15 +512,7 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         model_identity = dict(kind="checkpoint", path=str(Path(model_path).resolve()), sha256=sha256(model_path))
         model_identity.update(qualification=payload.get("qualification"), map_compatibility=payload.get("map_compatibility"))
         version = payload.get("learner_updates", 0)
-    bank = case_bank(config, cases, counts)
-    if config.communication.leo_timeline:
-        from .leo import OrbitTimeline
-        orbital = OrbitTimeline.load(config.communication.leo_timeline)
-        available = orbital.period-config.communication.backhaul_time_offset_seconds-2*max_steps-1
-        if available <= 0:
-            raise ValueError("Orbital timeline is too short for the case bank and episode cap")
-        for case in bank:
-            case["orbital_offset_seconds"] = float(((case["num_agents"]//2-1)*5000+case["case"]*100)%available)
+    bank = study_cases(config, cases, counts, max_steps)
     write_json(output/"held_out_cases.json", bank)
     code_root = Path(__file__).parent
     try:

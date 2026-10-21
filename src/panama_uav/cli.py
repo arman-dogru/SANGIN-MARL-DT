@@ -144,6 +144,20 @@ def parser():
     sub.add_argument("--conditions", nargs="+")
     sub.add_argument("--workers", type=int, default=1)
     sub.add_argument("--resume", action="store_true")
+    sub = commands.add_parser("deadline-study", help="Run paired 100/250/300/500 ms remote command-cutoff sensitivity")
+    sub.add_argument("--run-id", required=True)
+    sub.add_argument("--output-root", default="output/deadlines")
+    sub.add_argument("--model", required=True)
+    sub.add_argument("--timeline")
+    sub.add_argument("--device", default="cpu")
+    sub.add_argument("--cases", type=int, default=1)
+    sub.add_argument("--agents", type=int, nargs="+", choices=(2, 4, 6, 8), default=[2, 4, 6, 8])
+    sub.add_argument("--max-steps", type=int, default=250)
+    sub.add_argument("--workers", type=int, default=1)
+    sub.add_argument("--diagnostic", action="store_true")
+    sub.add_argument("--resume", action="store_true")
+    sub = commands.add_parser("deadline-report", help="Verify pairing and rebuild deadline comparison tables and plots")
+    sub.add_argument("--path", required=True)
     return result
 
 
@@ -189,6 +203,11 @@ def main(argv=None):
         summarize(arguments.path)
         print("\n".join(plot_results(arguments.path)))
         return 0
+    if arguments.command == "deadline-report":
+        from .deadline_study import report_study
+        rows = report_study(arguments.path)
+        print(f"Verified {len(rows)} deadline/treatment/population comparisons in {arguments.path}")
+        return 0
     if arguments.command == "serve-replay":
         serve(arguments.path, arguments.port)
         return 0
@@ -221,6 +240,15 @@ def main(argv=None):
         )
     config = load_config(arguments.config)
     root = Path(arguments.output_root) / arguments.run_id
+    if arguments.command == "deadline-study":
+        from .deadline_study import run_deadline_study
+        if arguments.timeline:
+            config = replace(config,communication=replace(config.communication,leo_timeline=arguments.timeline))
+        rows = run_deadline_study(config,root,arguments.model,diagnostic=arguments.diagnostic,
+            cases=arguments.cases,counts=tuple(arguments.agents),max_steps=arguments.max_steps,
+            workers=arguments.workers,device_name=arguments.device,resume=arguments.resume)
+        print(f"Measured {len(rows)} deadline/treatment/population comparisons in {root}")
+        return 0
     if arguments.command == "resource-study":
         from .resource_study import run_study
         if arguments.timeline:

@@ -290,3 +290,62 @@ execution sites. The manuscript's cloud-only descriptions, task-deadline claims,
 robot-applied ordering interpretation, analytical omission of download bytes and
 separate learning-study narrative require author review later. No new LaTeX or
 paper text is produced by this implementation.
+
+## Command deadline sensitivity
+
+`deadline-study` runs the existing six treatments at **100, 250, 300 and 500 ms**.
+It changes `decision_budget_seconds`, `command_cutoff_seconds` and
+`task_deadline_seconds` together, keeps `enforce_task_deadlines=false`, and requires
+a 1-second control interval. CPU capacities, task sizes, energy coefficients,
+PANAMA, binary routing, radio scheduling, oracle diagnostics and original metrics
+are unchanged. Each scenario executes its own closed loop with the new cutoff;
+this is not post-processing of a fixed trajectory. Physical motion and fresh
+oracle evaluation occur at that cycle's cutoff, while sensing stays at integer
+seconds. A longer cutoff can change later positions, allocations and mission
+duration, so compliance need not increase monotonically across complete episodes.
+
+The default is **one paired case per population**, with a 250-step cap. All four
+scenarios use identical held-out starts/goals, seeds, orbital offsets, map, frozen
+checkpoint and archived timeline. A shared case bank and asset/source hashes are
+checked against each child manifest, every treatment configuration and episode.
+Each child run retains the existing per-task, allocation, oracle and replay-audited
+archives. Failed conditions stop the workflow and retain their evidence. Resume
+requires matching inputs, configuration and source identities. Full studies retain
+the acceptance gate; this pilot does not enable it.
+
+```powershell
+.venv\Scripts\python.exe -m panama_uav --config configs/paper_remote_dt.toml deadline-study --run-id deadline-pilot-new-id --model artifacts/inputs/final_model.pt --diagnostic --cases 1 --agents 2 4 6 8 --max-steps 250 --workers 2
+.venv\Scripts\python.exe -m panama_uav deadline-report --path output/deadlines/deadline-pilot-new-id
+```
+
+The output contains `deadline-100ms/` through `deadline-500ms/`, a parent manifest
+with all assumptions, and CSV/JSONL comparison tables:
+
+- `episodes`: original episode metrics plus measured arrival rates and assigned
+  UAV/cloud shares, with one row per case, cutoff and treatment.
+- `summary`: one row per cutoff, treatment and population; pooled command counts
+  and rates, mean cutoff WAITs, success rate, mean successful makespan, capped
+  mission duration, active waiting, and pooled delivered-task latency p95.
+- `execution_locations`: UAV (`drone`), ground cloud (`cloud`) and `unassigned`
+  populations, each with on-time/late/undelivered counts, rates and compliance.
+- `paired_vs_100ms`: matched-case changes from 100 ms for timing, offloading and
+  mission outcomes. One-case comparisons have no confidence interval. Successful
+  makespan deltas use only pairs successful in both runs; capped duration retains
+  failed/censored missions. Makespan uses the existing control-cycle convention,
+  so one step equals one second here.
+
+On-time, late and undelivered **arrival rates divide by all monitored logical
+tasks** and sum to one when that population is nonempty. Compliance divides by
+assessed tasks, excluding still-pending tasks and including overdue undelivered
+tasks. Cutoff WAITs and censored tasks are separate tags and never additional
+misses. Final classifications are pooled using each episode's own horizon.
+UAV/cloud offloading fractions divide by assigned tasks; the separate unassigned
+fraction divides by all tasks. Locations with no tasks have null compliance/rates,
+not an assumed 100%. The fresh reference is ideal zero-delay execution; its cloud
+label does not represent actual cloud service or RF traffic. Latency p95 uses all
+delivered commands, including late arrivals, and cannot impute censored latency.
+
+`figures/` compares timeliness, late/undelivered fractions, cutoff WAITs, mission
+duration/success, waiting, task p95, UAV offloading share and per-location deadline
+compliance against cutoff. All generated tables, plots and evidence stay local
+under ignored `output/`; only implementation, tests and documentation are tracked.

@@ -48,6 +48,9 @@ and its SHA-256. Gzip JSONL can be read with Python's standard `gzip.open(path,
 'rt', encoding='utf-8')`, one JSON record per line. `verification.json` records
 export counts and hashes. These compact review files accompany the complete local
 task/allocation logs and compressed traces rather than replacing them.
+Published report files retain their original bytes through Git. To verify the
+actual committed data, run `python scripts/verify_published_records.py --directory
+research/results --git-ref HEAD`; omit `--git-ref` to verify the workspace files.
 
 Open `paper/` in the LaTeX editor, or compile `paper/main.tex` with a standard LaTeX
 distribution. This workstation also uses the official portable Tectonic 0.17.0

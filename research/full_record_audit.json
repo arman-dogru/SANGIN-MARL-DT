@@ -1,0 +1,1364 @@
+{
+  "status": "passed",
+  "active_condition_skipped": null,
+  "records": [
+    {
+      "condition": "cloud_cpu-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 207140,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35041,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 212096,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 37519,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 207140,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35041,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 212096,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 37519,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 105242,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15647,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 107102,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15881,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 106078,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15753,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 106022,
+      "status": "passed"
+    },
+    {
+      "condition": "cloud_cpu-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15746,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 44980,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7435,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 64340,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 9860,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 49668,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 8025,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 49332,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7984,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 119116,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 24561,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 102208,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20977,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 121386,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 24851,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 106778,
+      "status": "passed"
+    },
+    {
+      "condition": "cycles_per_bit-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 21199,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 118500,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17756,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131486,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20377,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117478,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17715,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 120454,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18251,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 118492,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17755,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117454,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17712,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 120438,
+      "status": "passed"
+    },
+    {
+      "condition": "downlink-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18249,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 56818,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 9187,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 56818,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 9187,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 56818,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 9187,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 56818,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 9187,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 44700,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7400,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 43572,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7264,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 42132,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7083,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 38404,
+      "status": "passed"
+    },
+    {
+      "condition": "drone_cpu-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6618,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117148,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17587,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117374,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17692,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 120438,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0.1__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18249,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117148,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17587,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117374,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17692,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 120438,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-0__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18249,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 90162,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 13857,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 128844,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 22774,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 97750,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15339,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 112354,
+      "status": "passed"
+    },
+    {
+      "condition": "energy-10__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20077,
+      "status": "passed"
+    },
+    {
+      "condition": "fresh",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 0,
+      "status": "passed"
+    },
+    {
+      "condition": "fresh",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 0,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35296,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6224,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35348,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6236,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 36600,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6444,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35348,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6236,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 175280,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 32546,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 155800,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 27676,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 178112,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 33254,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 164052,
+      "status": "passed"
+    },
+    {
+      "condition": "task_bits-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 29739,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 121688,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 25847,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 102208,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20977,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 125096,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 26699,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 109868,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 22892,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 186100,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 30959,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 192068,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 33690,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 178356,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 29892,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 185746,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-1__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 32674,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 64330,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 10307,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 129126,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18826,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 62196,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 10065,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 105120,
+      "status": "passed"
+    },
+    {
+      "condition": "up-0.25-cpu-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15776,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 119116,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 24561,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 102208,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20977,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 121386,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 24851,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 106778,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 21199,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 118492,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17755,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 117454,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17712,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 120438,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-1__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18249,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 42532,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7129,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 80414,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 12539,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 46828,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 7670,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 63442,
+      "status": "passed"
+    },
+    {
+      "condition": "up-1-cpu-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 10014,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 114726,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 22366,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 102208,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20977,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 115542,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 21929,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 106778,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-0.25__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 21199,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 79748,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 11980,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 126432,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 18133,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 68734,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 10652,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 109062,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-1__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 15798,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35308,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6226,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35348,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6236,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35340,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6234,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 35348,
+      "status": "passed"
+    },
+    {
+      "condition": "up-4-cpu-4__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 6236,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 90192,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 13807,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 111260,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17240,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 111318,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-16__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 17349,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__aoi",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__aoi",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__equal",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__equal",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__priority",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__priority",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__static",
+      "file": "tasks.jsonl",
+      "committed_cases": 200,
+      "expected_records": 131478,
+      "status": "passed"
+    },
+    {
+      "condition": "weight-ratio-1__static",
+      "file": "allocations.jsonl",
+      "committed_cases": 200,
+      "expected_records": 20376,
+      "status": "passed"
+    }
+  ]
+}

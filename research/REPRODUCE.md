@@ -70,3 +70,9 @@ Worker count changes throughput only; this workstation uses 24 of 36 logical
 cores for the full study. Keep the configuration and frozen model fixed. The
 action policy executes at robot decision epochs using local sensing and delivered
 caches; finite-CPU offloaded jobs generate guidance/coordination support.
+
+The expanded code-only solver validation is documented in `SOLVER_VALIDATION.md`.
+Run the complete regression suite with a new workspace-local temporary directory:
+`python -m pytest -q --basetemp tmp/pytest-new`. This avoids the workstation's
+restricted default pytest temporary directory. The completed-study data and plots
+are in `results/`; manuscript editing is deferred.

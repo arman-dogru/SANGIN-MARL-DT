@@ -54,11 +54,12 @@ physical outcomes and task metrics. Host-dependent solver wall time is excluded
 from that equality check and never advances simulated time. See
 `nominal_repeat_audit.json` for all checked quantities.
 
-The full **97-condition / 19,400-episode sensitivity grid remains in progress**.
-Its unfinished conditions are not presented as completed results. Raw nominal
-traces remain at `output/resources/paper-baseline-20261021/`; tracked summaries,
+The full **97-condition / 19,400-episode sensitivity grid is complete**. Its
+results and independent audits are documented in `RESULTS.md`. Raw nominal traces
+remain at `output/resources/paper-baseline-20261021/`; tracked nominal summaries,
 case seeds, parameters and verification are in `baseline_results/`. The manuscript
-already includes the completed nominal tables and scientific figures.
+contains the earlier nominal comparison. Further manuscript work is deferred;
+the complete sensitivity results are available as code outputs and data exports.
 
 Every nominal episode's metrics are pushed in `baseline_results/episodes.csv`
 and compressed JSONL. Trace-backed allocation, task/transmission and coordination/

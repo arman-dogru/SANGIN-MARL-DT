@@ -101,3 +101,25 @@ execution. Review exports now include every episode's metrics and compressed
 trace-backed allocation, task/transmission and coordination/decision samples.
 Their counts and hashes accompany each report. The remaining energy-coefficient
 conditions are running; the full study is not yet labelled complete.
+
+Stage 7 completes all 97 conditions and 19,400 qualified-policy episodes, with
+10,177,608 generated tasks, 10,077,968 delivered tasks, 99,640 unfinished tasks and
+1,714,431 allocation snapshots. The exhaustive record audit passes all 194
+task/allocation files, with no active or skipped condition. Independent full-grid
+replay covers the first case at each condition/population: 388 traces, 38,688
+decisions, 241,336 task checks and 38,160 snapshots. Its maximum solver residual
+is 5.315e-7, below the 1e-6 threshold. Earlier exhaustive nominal replay and all
+1,000 nominal-repeat and weight-identity comparisons remain separately available.
+
+The final data report publishes every episode's metrics, trace-backed intermediate
+examples and all paired summaries. `RESULTS.md` gives measured effects and limits;
+the source traces remain locally available under the completed run directory.
+Paper work is deferred at the user's request; pending manuscript edits remain
+local. No execution-kernel changes were made during data publication.
+
+Stage 8 expands obvious CVX cases to ten, adds hand-calculated tests around the
+80 ms single-task propagation threshold, balanced equal-processor assignments and
+priority-weighted CPU shares. All ten cases pass independent primal enumeration;
+the complete code regression suite passes 121 tests. A Windows temporary-folder
+ACL problem was resolved by using a workspace-local pytest base directory. See
+`SOLVER_VALIDATION.md`, `solver_test_run.json` and `solver-sanity-20261021/`.

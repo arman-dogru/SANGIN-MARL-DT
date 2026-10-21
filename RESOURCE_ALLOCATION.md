@@ -209,6 +209,10 @@ AoI weighting uses the larger cached operand age
 and a 1 s reference. Store raw ordering errors, relevant-pair counts, relevant
 errors, and pair-level source ages; a zero relevant-pair denominator gives zero.
 This metric is measured and does not enter the allocation objective.
+The plotted coordination AoI is the receiver's oldest accepted state-source age,
+including self, averaged over receivers and recorded epochs. It is distinct from
+the pair-level maximum age used in the AoI-weighted inconsistency. Recorded epochs
+include the initial decision snapshot and terminal sample, with actual timestamps.
 
 The primary sweep contains the 3x3 uplink/common-CPU multiplier grid {0.25,1,4}
 under all four policies, plus a fresh-coordination reference: 37 conditions.
@@ -273,3 +277,16 @@ TeX is now revised under `paper/`; its exact original source is preserved under
 `paper/original/`. The tracked PDF, tables and plots are generated from recorded
 runs. `research/BASELINE_RESULTS.md` documents the completed nominal comparison;
 `research/REPRODUCE.md` provides the complete sweep and independent audit commands.
+
+The full 97-condition study is complete: 19,400 episodes, 10,177,608 generated
+tasks and 1,714,431 allocation snapshots. `research/RESULTS.md` documents the
+measured comparisons and their limits. Every episode's metrics and trace-backed
+allocation/task/coordination examples are published under `research/results/`;
+complete raw logs remain local under `output/resources/paper-allocation-20261021/`.
+
+The expanded solver checks are documented in `research/SOLVER_VALIDATION.md`.
+Ten predictable cases include high satellite propagation, slow finite backhaul,
+slow finite cloud CPU and the single-task routing switch. Hand-calculated tests
+also verify the 80 ms switching threshold, balanced processor loading and the
+2:1 CPU ratio for weights 4:1 with equal work. Both the scheduling relaxation and
+whole-task reference are checked. No task deadline is imposed in these cases.

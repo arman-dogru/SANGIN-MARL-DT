@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from itertools import product
+from functools import lru_cache
 import math
 from time import perf_counter
 
@@ -81,6 +82,7 @@ class AllocationResult:
     solve_seconds: float
     residual: float = 0.0
     is_dcp: bool = True
+    assignments_checked: int = 1
 
     def to_dict(self):
         return asdict(self)
@@ -124,36 +126,50 @@ def processor_shares(cycles, weights, capacity, kappa=0.0, energy_coefficient=1.
         return np.zeros_like(cycles)
     if kappa == 0 or energy_coefficient == 0:
         return cpu_shares(cycles, weights)
-    from scipy.optimize import brentq
-    active = cycles > 0
-    A = latency_coefficient*weights[active]*cycles[active]/capacity
-    B = energy_coefficient*kappa*cycles[active]*capacity**2
-    free = np.cbrt(A/(2*B))
-    def allocate(multiplier):
-        # Safeguarded Newton iteration on a monotone scalar derivative per job.
-        upper = np.minimum(free, np.sqrt(A/multiplier)) if multiplier else free.copy()
-        lower = np.zeros_like(upper)
-        value = upper.copy()
-        for _ in range(50):
-            derivative = -A/value**2+2*B*value+multiplier
-            high = derivative > 0
-            upper = np.where(high, value, upper)
-            lower = np.where(high, lower, value)
-            proposal = value-derivative/(2*A/value**3+2*B)
-            proposal = np.where((proposal > lower) & (proposal < upper), proposal, (lower+upper)/2)
-            if np.max(np.abs(proposal-value)) < 1e-13:
+    return _processor_batch(cycles[None, :], weights, capacity, kappa,
+                            energy_coefficient, latency_coefficient)[0]
+
+
+def _processor_batch(cycles, weights, capacity, kappa=0.0, energy_coefficient=1.0, latency_coefficient=1.0):
+    roots = np.sqrt(cycles*weights)
+    totals = roots.sum(axis=1, keepdims=True)
+    if not kappa or not energy_coefficient:
+        return np.divide(roots, totals, out=np.zeros_like(roots), where=totals > 0)
+    A = latency_coefficient*weights*cycles/capacity
+    B = energy_coefficient*kappa*cycles*capacity**2
+    free = np.cbrt(np.divide(A, 2*B, out=np.zeros_like(A), where=B > 0))
+    binding = free.sum(axis=1) > 1
+    result = free.copy()
+    if not binding.any():
+        return result
+    A, B = A[binding], B[binding]
+    upper = np.sum(np.sqrt(A), axis=1)**2
+    lower = np.zeros_like(upper)
+    multiplier = upper/2
+    active = A > 0
+    for _ in range(60):
+        lam = multiplier[:, None]
+        u = np.minimum(np.cbrt(np.divide(A, 2*B, out=np.zeros_like(A), where=B > 0)),
+                       np.sqrt(A/lam))
+        # Newton on the monotone cubic from an upper bound stays above its root.
+        for _ in range(18):
+            numerator = 2*B*u**3+lam*u**2-A
+            denominator = 6*B*u**2+2*lam*u
+            change = np.divide(numerator, denominator, out=np.zeros_like(u), where=active)
+            u -= change
+            if np.max(np.abs(change)) < 1e-14:
                 break
-            value = proposal
-        return value
-    if free.sum() <= 1:
-        rates = free
+        error = u.sum(axis=1)-1
+        if np.max(np.abs(error)) < 1e-12:
+            break
+        lower = np.where(error > 0, multiplier, lower)
+        upper = np.where(error > 0, upper, multiplier)
+        derivative = -np.sum(np.divide(u, 6*B*u+2*lam, out=np.zeros_like(u), where=active), axis=1)
+        proposal = multiplier-error/derivative
+        multiplier = np.where((proposal > lower) & (proposal < upper), proposal, (lower+upper)/2)
     else:
-        upper = float(np.sum(np.sqrt(A))**2)
-        multiplier = brentq(lambda m: allocate(m).sum()-1, 0, upper, xtol=1e-12)
-        rates = allocate(multiplier)
-        rates /= max(1.0, float(rates.sum()))
-    result = np.zeros_like(cycles)
-    result[active] = rates
+        raise ArithmeticError("CPU KKT allocation did not converge")
+    result[binding] = u/np.maximum(1, u.sum(axis=1, keepdims=True))
     return result
 
 
@@ -211,67 +227,88 @@ def solve_binary(snapshot):
     choices = [_allowed(snapshot, t) for t in snapshot.tasks]
     if any(not c for c in choices):
         raise AllocationFailure("No available execution route", snapshot)
-    best = None
     cycles = np.array([t.cycles for t in snapshot.tasks])
     weights = np.array([t.weight for t in snapshot.tasks])
-    for assignment in product(*choices):
-        x = np.array(assignment, dtype=float)
-        a = processor_shares(cycles*x, weights, snapshot.drone_cycles_per_second,
-            snapshot.drone_kappa, snapshot.energy_coefficient, snapshot.latency_coefficient)
-        b = cpu_shares(cycles*(1-x), weights)
-        result = _evaluate(snapshot, x, a, b, "binary_exact", 0.0)
-        if best is None or result.objective < best.objective-1e-12:
-            best = result
-    best.solve_seconds = perf_counter()-start
+    x = np.array(list(product(*choices)), dtype=float).reshape(-1, len(cycles)) if len(cycles) else np.empty((1, 0))
+    a = _processor_batch(cycles*x, weights, snapshot.drone_cycles_per_second or 1,
+        snapshot.drone_kappa, snapshot.energy_coefficient, snapshot.latency_coefficient)
+    b = _processor_batch(cycles*(1-x), weights, snapshot.cloud_cycles_per_second or 1)
+    access = np.array([t.input_bits/t.access_bps if t.input_bits else 0 for t in snapshot.tasks])
+    backhaul = np.array([t.input_bits/t.backhaul_bps if t.backhaul_bps else 0 for t in snapshot.tasks])
+    propagation = np.array([t.propagation_round_trip_seconds for t in snapshot.tasks])
+    drone_time = np.divide(cycles*x, a*(snapshot.drone_cycles_per_second or 1), out=np.zeros_like(a), where=a > 0)
+    cloud_time = np.divide(cycles*(1-x), b*(snapshot.cloud_cycles_per_second or 1), out=np.zeros_like(b), where=b > 0)
+    latency = access+(1-x)*(backhaul+propagation)+drone_time+cloud_time
+    energy = (1-x)*backhaul*np.array([t.drone_power_w for t in snapshot.tasks])
+    energy += snapshot.drone_kappa*cycles*(a*snapshot.drone_cycles_per_second)**2
+    if snapshot.include_robot_upload_in_objective:
+        energy += access*np.array([t.robot_power_w for t in snapshot.tasks])
+    objective = snapshot.latency_coefficient*np.sum(weights*latency, axis=1)+snapshot.energy_coefficient*energy.sum(axis=1)
+    selected = int(np.argmin(objective))
+    best = _evaluate(snapshot, x[selected], a[selected], b[selected], "binary_exact", perf_counter()-start)
+    best.assignments_checked = len(x)
     return best
+
+
+@lru_cache(maxsize=24)
+def _conic_template(n, zero_work, dvfs):
+    """Reusable DPP graph; every snapshot still performs a fresh numerical solve."""
+    import cvxpy as cp
+    x, a, b = (cp.Variable(n) for _ in range(3))
+    qd, qc = cp.Variable(n, nonneg=True), cp.Variable(n, nonneg=True)
+    ed = cp.Variable(n, nonneg=True) if dvfs else None
+    coefficients = cp.Parameter((4, n), nonneg=True)
+    lower, upper = cp.Parameter(n, nonneg=True), cp.Parameter(n, nonneg=True)
+    constraints = [x >= lower, x <= upper, a >= 0, b >= 0, a <= x, b <= 1-x,
+                   cp.sum(a) <= 1, cp.sum(b) <= 1]
+    for i in range(n):
+        if i not in zero_work:
+            constraints.extend((cp.SOC(qd[i]+a[i], cp.hstack([2*x[i], qd[i]-a[i]])),
+                                cp.SOC(qc[i]+b[i], cp.hstack([2*(1-x[i]), qc[i]-b[i]]))))
+        else:
+            constraints.extend((a[i] == 0, b[i] == 0, qd[i] == 0, qc[i] == 0))
+        if ed is not None:
+            constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*a[i], ed[i]-x[i]])))
+    objective = cp.sum(cp.multiply(coefficients[0], 1-x)+cp.multiply(coefficients[1], qd)
+                       +cp.multiply(coefficients[2], qc))
+    if ed is not None:
+        objective += coefficients[3] @ ed
+    problem = cp.Problem(cp.Minimize(objective), constraints)
+    assert problem.is_dcp(dpp=True)
+    return problem, constraints, x, a, b, coefficients, lower, upper
 
 
 def solve_relaxed(snapshot):
     start = perf_counter()
-    try:
-        import cvxpy as cp
-    except ImportError as exc:
-        raise AllocationFailure("Install the optimization extra (CVXPY/Clarabel)", snapshot) from exc
     n = len(snapshot.tasks)
     if not n:
         return _evaluate(snapshot, [], [], [], "relaxed", perf_counter()-start)
-    x, a, b = (cp.Variable(n) for _ in range(3))
-    qd, qc = cp.Variable(n, nonneg=True), cp.Variable(n, nonneg=True)
-    ed = cp.Variable(n, nonneg=True) if snapshot.drone_kappa else None
-    constraints = [x >= 0, x <= 1, a >= 0, b >= 0, a <= x, b <= 1-x,
-                   cp.sum(a) <= 1, cp.sum(b) <= 1]
-    objective = 0
-    for i, t in enumerate(snapshot.tasks):
+    try:
+        problem, constraints, x, a, b, coefficients, lower, upper = _conic_template(
+            n, tuple(i for i, t in enumerate(snapshot.tasks) if not t.cycles), bool(snapshot.drone_kappa))
+    except ImportError as exc:
+        raise AllocationFailure("Install the optimization extra (CVXPY/Clarabel)", snapshot) from exc
+    values, lows, highs, constant = [], [], [], 0.0
+    for t in snapshot.tasks:
         allowed = _allowed(snapshot, t)
         if not allowed:
             raise AllocationFailure("No available execution route", snapshot)
-        if len(allowed) == 1:
-            constraints.append(x[i] == allowed[0])
-        # ||(2*z, q-u)|| <= q+u represents z^2 <= q*u,
-        # including the closed endpoint z=u=q=0.
-        if t.cycles:
-            constraints.extend((cp.SOC(qd[i]+a[i], cp.hstack([2*x[i], qd[i]-a[i]])),
-                                cp.SOC(qc[i]+b[i], cp.hstack([2*(1-x[i]), qc[i]-b[i]]))))
-        else:
-            # A zero-work task needs no processor even when its route is fixed.
-            # Keeping x^2 <= q*a here would force a spurious positive share.
-            constraints.extend((a[i] == 0, b[i] == 0, qd[i] == 0, qc[i] == 0))
+        lows.append(min(allowed))
+        highs.append(max(allowed))
         d_g = t.input_bits/t.access_bps if t.input_bits else 0.0
         d_a = t.input_bits/t.backhaul_bps if t.backhaul_bps else 0.0
-        td = t.cycles/snapshot.drone_cycles_per_second if snapshot.drone_cycles_per_second else 0.0
-        tc = t.cycles/snapshot.cloud_cycles_per_second if snapshot.cloud_cycles_per_second else 0.0
-        latency = d_g+(1-x[i])*(d_a+t.propagation_round_trip_seconds)+td*qd[i]+tc*qc[i]
-        energy = t.robot_power_w*d_g+t.drone_power_w*(1-x[i])*d_a
-        if not snapshot.include_robot_upload_in_objective:
-            energy -= t.robot_power_w*d_g
-        if ed is not None:
-            # Closed perspective a^2/x includes the exact x=a=0 endpoint.
-            constraints.append(cp.SOC(ed[i]+x[i], cp.hstack([2*a[i], ed[i]-x[i]])))
-            energy += snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2*ed[i]
-        objective += snapshot.energy_coefficient*energy+snapshot.latency_coefficient*t.weight*latency
-    problem = cp.Problem(cp.Minimize(objective), constraints)
+        w = snapshot.latency_coefficient*t.weight
+        constant += w*d_g+(snapshot.energy_coefficient*t.robot_power_w*d_g
+                            if snapshot.include_robot_upload_in_objective else 0)
+        values.append([w*(d_a+t.propagation_round_trip_seconds)+snapshot.energy_coefficient*t.drone_power_w*d_a,
+            w*t.cycles/snapshot.drone_cycles_per_second if snapshot.drone_cycles_per_second else 0,
+            w*t.cycles/snapshot.cloud_cycles_per_second if snapshot.cloud_cycles_per_second else 0,
+            snapshot.energy_coefficient*snapshot.drone_kappa*t.cycles*snapshot.drone_cycles_per_second**2])
+    coefficients.value = np.asarray(values).T
+    lower.value, upper.value = np.asarray(lows), np.asarray(highs)
     try:
-        problem.solve(solver="CLARABEL", tol_gap_abs=1e-9, tol_gap_rel=1e-9, tol_feas=1e-9)
+        problem.solve(solver="CLARABEL", enforce_dpp=True, warm_start=True,
+                      tol_gap_abs=1e-9, tol_gap_rel=1e-9, tol_feas=1e-9)
     except Exception as exc:
         raise AllocationFailure(str(exc), snapshot, {"is_dcp": problem.is_dcp()}) from exc
     if problem.status != "optimal":
@@ -292,7 +329,7 @@ def solve_relaxed(snapshot):
     av /= max(1.0, float(av.sum()))
     bv /= max(1.0, float(bv.sum()))
     result = _evaluate(snapshot, xv, av, bv, "relaxed", perf_counter()-start, residual)
-    if not math.isfinite(result.objective) or abs(result.objective-problem.value) > 1e-6*max(1, abs(problem.value)):
+    if not math.isfinite(result.objective) or abs(result.objective-problem.value-constant) > 1e-6*max(1, abs(problem.value+constant)):
         raise AllocationFailure("Recovered allocation disagrees with conic objective", snapshot)
     return result
 

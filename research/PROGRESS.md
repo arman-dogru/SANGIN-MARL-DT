@@ -15,5 +15,24 @@ CVXPY problems. The stage's 34 allocation, compute, mission, sanity, and checkpo
 compatibility checks pass. Checkpoint map compatibility accepts only exact LF/CRLF
 conversions, preserving rejection of content changes and all qualification gates.
 
-User-provided qualified policy and six-hour archived LEO timeline will be hashed
-and used for the complete paired mission study; test checkpoints are not inputs.
+The user-provided qualified policy and six-hour archived LEO timeline have been
+verified and hashed in `assets_manifest.json`. The policy passed the clean
+200-case qualification gates at 2/4/6/8 agents. Test checkpoints are not inputs.
+
+Stage 2 records physical, latest generated digital-twin, and receiver-cache
+orderings separately, including UL/DL/E2E errors and their common FoV denominator.
+It saves policy observations/actions, priorities, input provenance, every snapshot,
+executed assignments, service stages, CPU utilization and realized DVFS energy.
+Independent episode workers preserve paired seeds and case-specific orbital
+offsets; all treatments use the same case/channel realization.
+
+The full regression suite passes 106 checks. A qualified-policy pilot completed
+all four resource policies and the fresh reference at 2/4/6/8 agents (20 episodes,
+12-step pilot cap). Pilot outputs remain explicitly labelled diagnostic.
+
+`physics_audit.json` verifies path loss, effective -167 dBm/Hz noise, conducted
+power versus EIRP, gateway bottlenecks, complete round-trip propagation and UAV
+movement. `paper_audit.association_average` derives the paper's mean-geometry
+15-second association channels from the archived samples, recomputing rates
+rather than averaging rates. Source interruptions and both propagation legs are
+retained. The original time-varying archive remains unchanged.

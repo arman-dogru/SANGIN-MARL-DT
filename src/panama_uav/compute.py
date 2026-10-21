@@ -55,6 +55,8 @@ class ComputePool:
         self.token += 1
         if not self.jobs:
             self.rates = {}
+            self.transport.log.append(dict(event="compute_allocation", time=self.transport.now,
+                pool=self.name, capacity_cycles_per_second=self.capacity, utilization=0.0, jobs=[]))
             return
         jobs = list(self.jobs.values())
         shares = processor_shares([j.remaining_cycles for j in jobs], [j.weight for j in jobs],

@@ -8,12 +8,43 @@ import json
 from pathlib import Path
 import platform
 import subprocess
+from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
 from .allocation import AllocationFailure, AllocationSnapshot, compare_allocations
 from .config import FIXED_MAP
 from .records import append_jsonl, export_csv, sha256, write_json
+
+
+def _worker_initialize(model_path, configuration, diagnostic, device_name):
+    import torch
+    from .config import ProjectConfig
+    from .models import DQN, choose_device
+    from .training import load_model
+    global _WORKER_MODEL, _WORKER_DEVICE
+    torch.set_num_threads(1)
+    torch.manual_seed(42)
+    config = ProjectConfig.from_dict(configuration)
+    _WORKER_DEVICE = choose_device(device_name)
+    if model_path is None:
+        _WORKER_MODEL = DQN((3, 15, 15), config.vector_length).to(_WORKER_DEVICE).eval()
+    else:
+        _WORKER_MODEL, _ = load_model(model_path, config, _WORKER_DEVICE, require_qualified=not diagnostic)
+
+
+def _worker_episode(arguments):
+    from .evaluation import run_episode
+    config, case, version, max_steps = arguments
+    return run_episode(config, _WORKER_MODEL, case, _WORKER_DEVICE, version,
+        decision_deadline_seconds=config.resource_allocation.decision_budget_seconds, max_steps=max_steps)
+
+
+def _case_config(config, case):
+    if "orbital_offset_seconds" not in case:
+        return config
+    return replace(config, communication=replace(config.communication,
+        backhaul_time_offset_seconds=config.communication.backhaul_time_offset_seconds+case["orbital_offset_seconds"]))
 
 
 def optimize_snapshot(input_path, output_path):
@@ -88,7 +119,12 @@ def episode_metrics(row, trace):
         mean_task_latency_seconds=None, mean_completed_task_energy_j=None,
         mean_predicted_latency_seconds=None, mean_compute_seconds=None,
         mean_uplink_queue_seconds=None, mean_batch_wait_seconds=None,
-        completed_task_energy_j=sum(t["robot_energy_j"]+t["backhaul_energy_j"] for t in delivered))
+        completed_task_energy_j=sum(t["robot_energy_j"]+t["backhaul_energy_j"]+t.get("drone_compute_energy_j", 0)
+                                    for t in delivered),
+        completed_task_robot_energy_j=sum(t["robot_energy_j"] for t in delivered),
+        completed_task_backhaul_energy_j=sum(t["backhaul_energy_j"] for t in delivered),
+        completed_task_compute_energy_j=sum(t.get("drone_compute_energy_j", 0) for t in delivered),
+        voluntary_wait_steps=0, travel_steps=0)
     if delivered:
         for target, source in (("mean_task_latency_seconds", "observed_latency_seconds"),
             ("mean_predicted_latency_seconds", "predicted_latency_seconds"),
@@ -103,7 +139,12 @@ def episode_metrics(row, trace):
                 metrics["sum_path_costs"] += 1
                 actions = after["actions"]
                 if actions.get(agent, actions.get(str(agent))) == 4:
+                    metrics["voluntary_wait_steps"] += 1
+                i = int(agent)
+                if before["positions"][i] == after["positions"][i]:
                     metrics["waiting_steps"] += 1
+                else:
+                    metrics["travel_steps"] += 1
     snapshots = [f["consistency"] for f in frames]
     relevant = sum(s["relevant_pairs"] for s in snapshots)
     errors = sum(s["fov_errors"] for s in snapshots)
@@ -115,13 +156,35 @@ def episode_metrics(row, trace):
         allocation_solves=len(allocations),
         mean_relaxation_gap=float(np.mean([a["absolute_gap"] for a in allocations])) if allocations else 0,
         solver_seconds=sum(a["relaxed"]["solve_seconds"]+a["binary"]["solve_seconds"] for a in allocations))
+    metrics.update(fov_uplink_errors=sum(s.get("fov_uplink_errors", 0) for s in snapshots),
+        fov_downlink_errors=sum(s.get("fov_downlink_errors", 0) for s in snapshots),
+        xi_fov_uplink=sum(s.get("fov_uplink_errors", 0) for s in snapshots)/max(1, relevant),
+        xi_fov_downlink=sum(s.get("fov_downlink_errors", 0) for s in snapshots)/max(1, relevant),
+        restricted_makespan_seconds=row["steps"]*trace["configuration_seconds_per_step"]
+            if "configuration_seconds_per_step" in trace else row["steps"],
+        latency_p95_seconds=float(np.quantile([t["observed_latency_seconds"] for t in delivered], .95)) if delivered else None,
+        mean_prediction_error_seconds=float(np.mean([t["observed_latency_seconds"]-t["predicted_latency_seconds"] for t in delivered]))
+            if delivered else None,
+        allocation_loop_steps=len(trace.get("allocation_loop", [])))
+    duration = frames[-1]["time"]
+    for pool in ("drone", "cloud"):
+        events = [e for e in trace["transport_events"] if e["event"] == "compute_allocation" and e["pool"] == pool]
+        area = sum((min(duration, events[i+1]["time"] if i+1 < len(events) else duration)-event["time"])
+                   *event["utilization"] for i, event in enumerate(events))
+        metrics[f"mean_{pool}_cpu_utilization"] = area/duration if duration else 0.0
     return {**row, **metrics}
 
 
 METRICS = ("par2", "success", "waiting_steps", "sum_path_costs", "xi_fov", "mean_xi_aoi",
            "mean_task_latency_seconds", "mean_completed_task_energy_j", "completed_task_energy_j",
            "radio_energy_lower_j", "radio_energy_upper_j", "mean_task_age_seconds",
-           "mean_intentions_age_seconds", "mean_predicted_latency_seconds", "mean_compute_seconds")
+           "mean_intentions_age_seconds", "mean_predicted_latency_seconds", "mean_compute_seconds",
+           "completion_fraction", "ever_completion_fraction", "successful_makespan", "restricted_makespan_seconds",
+           "tasks_generated", "tasks_delivered", "tasks_unfinished", "latency_p95_seconds", "mean_prediction_error_seconds",
+           "xi_fov_uplink", "xi_fov_downlink", "fov_relevant_pairs", "fov_errors", "fov_uplink_errors", "fov_downlink_errors",
+           "drone_compute_energy_j", "modeled_energy_lower_j", "modeled_energy_upper_j", "collision_attempts",
+           "voluntary_wait_steps", "travel_steps", "completed_task_robot_energy_j", "completed_task_backhaul_energy_j",
+           "completed_task_compute_energy_j", "mean_drone_cpu_utilization", "mean_cloud_cpu_utilization")
 
 
 def paired_metrics(rows, reference, samples=2000):
@@ -163,6 +226,13 @@ def summarize(root):
             for metric in METRICS:
                 values = [float(r[metric]) for r in rows if r.get(metric) is not None]
                 item[metric] = float(np.mean(values)) if values else None
+                if values:
+                    rng = np.random.default_rng(42)
+                    indices = rng.integers(0, len(values), (manifest["bootstrap_samples"], len(values)))
+                    item[metric+"_ci95"] = np.quantile(np.asarray(values)[indices].mean(axis=1), [.025, .975]).tolist()
+            item["pooled_relevant_pairs"] = sum(r["fov_relevant_pairs"] for r in rows)
+            item["pooled_fov_errors"] = sum(r["fov_errors"] for r in rows)
+            item["pooled_xi_fov"] = item["pooled_fov_errors"]/max(1, item["pooled_relevant_pairs"])
             item["paired_fresh"] = paired_metrics(rows, fresh, manifest["bootstrap_samples"])
             item["paired_equal"] = paired_metrics(rows, equal, manifest["bootstrap_samples"])
             summaries.append(item)
@@ -254,7 +324,7 @@ def plot_results(root):
 
 
 def run_study(config, output, model_path=None, diagnostic=False, cases=50,
-              counts=(2, 4, 6, 8), secondary=True, selected=None, max_steps=250, device_name="cpu"):
+              counts=(2, 4, 6, 8), secondary=True, selected=None, max_steps=250, device_name="cpu", workers=1):
     import torch
     from .evaluation import case_bank, run_episode
     from .models import DQN, choose_device
@@ -263,6 +333,8 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         raise ValueError("Use 1--50 cases and populations 2/4/6/8")
     if not 1 <= max_steps <= 250:
         raise ValueError("Episode cap must be 1--250")
+    if not 1 <= workers <= 8:
+        raise ValueError("Use 1--8 independent worker processes")
     if not diagnostic and (cases != 50 or tuple(counts) != (2, 4, 6, 8) or max_steps != 250):
         raise ValueError("Paper results require 50 cases, all populations, and 250 steps")
     if not diagnostic and (model_path is None or config.communication.leo_timeline is None):
@@ -296,8 +368,17 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
     else:
         model, payload = load_model(model_path, config, device, require_qualified=not diagnostic)
         model_identity = dict(kind="checkpoint", path=str(Path(model_path).resolve()), sha256=sha256(model_path))
+        model_identity.update(qualification=payload.get("qualification"), map_compatibility=payload.get("map_compatibility"))
         version = payload.get("learner_updates", 0)
     bank = case_bank(config, cases, counts)
+    if config.communication.leo_timeline:
+        from .leo import OrbitTimeline
+        orbital = OrbitTimeline.load(config.communication.leo_timeline)
+        available = orbital.period-config.communication.backhaul_time_offset_seconds-2*max_steps-1
+        if available <= 0:
+            raise ValueError("Orbital timeline is too short for the case bank and episode cap")
+        for case in bank:
+            case["orbital_offset_seconds"] = float(((case["num_agents"]//2-1)*5000+case["case"]*100)%available)
     write_json(output/"held_out_cases.json", bank)
     code_root = Path(__file__).parent
     try:
@@ -306,6 +387,7 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
         commit = None
     from importlib.metadata import version as package_version
     manifest = dict(schema=1, created_utc=datetime.now(UTC).isoformat(), diagnostic=diagnostic,
+        loop_schema=2, workers=workers,
         configuration=config.to_dict(), model=model_identity, counts=list(counts), cases_per_count=cases,
         episode_cap=max_steps, decision_budget_seconds=config.resource_allocation.decision_budget_seconds,
         bootstrap_samples=config.evaluation.bootstrap_samples, git_commit=commit,
@@ -319,16 +401,22 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
     write_json(output/"manifest.json", manifest)
     write_json(output/"status.json", dict(status="running", completed_episodes=0))
     completed = 0
+    executor = (ProcessPoolExecutor(max_workers=workers, initializer=_worker_initialize,
+        initargs=(str(Path(model_path).resolve()) if model_path else None, config.to_dict(), diagnostic, device_name))
+        if workers > 1 else None)
     try:
         for name, cfg, tags in choices:
             directory = output/name
             directory.mkdir()
             cfg = replace(cfg, resource_allocation=replace(cfg.resource_allocation,
                 failure_directory=str(directory/"failures")))
-            for case in bank:
-                row, trace = run_episode(cfg, model, case, device, version,
+            if executor:
+                results = executor.map(_worker_episode, [(_case_config(cfg, case), case, version, max_steps) for case in bank])
+            else:
+                results = (run_episode(_case_config(cfg, case), model, case, device, version,
                     decision_deadline_seconds=cfg.resource_allocation.decision_budget_seconds,
-                    max_steps=max_steps)
+                    max_steps=max_steps) for case in bank)
+            for case, (row, trace) in zip(bank, results):
                 if trace["frames"][0]["positions"] != case["starts"]:
                     raise AssertionError("Paired case starts changed")
                 row = episode_metrics(row, trace)
@@ -344,6 +432,8 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
                 completed += 1
                 write_json(output/"status.json", dict(status="running", condition=name,
                     completed_episodes=completed, planned_episodes=len(bank)*len(choices)))
+                if completed % 50 == 0:
+                    print(f"{completed}/{len(bank)*len(choices)} episodes; {name}", flush=True)
             export_csv(directory/"episodes.jsonl", directory/"episodes.csv")
             if (directory/"tasks.jsonl").exists():
                 export_csv(directory/"tasks.jsonl", directory/"tasks.csv")
@@ -352,6 +442,9 @@ def run_study(config, output, model_path=None, diagnostic=False, cases=50,
     except Exception as exc:
         write_json(output/"status.json", dict(status="failed", error=str(exc), completed_episodes=completed))
         raise
+    finally:
+        if executor:
+            executor.shutdown(wait=True, cancel_futures=True)
     write_json(output/"status.json", dict(status="complete", completed_episodes=completed,
         diagnostic=diagnostic))
     return summary

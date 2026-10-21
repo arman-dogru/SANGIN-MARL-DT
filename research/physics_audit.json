@@ -1,0 +1,230 @@
+{
+  "status": "passed",
+  "access_checks": [
+    {
+      "height_m": 20,
+      "horizontal_m": 0,
+      "path_loss_db": 67.42164585676596,
+      "rate_bound_bps": 329391773.00940466,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 20,
+      "horizontal_m": 10,
+      "path_loss_db": 68.42342960753538,
+      "rate_bound_bps": 322736148.3267383,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 20,
+      "horizontal_m": 100,
+      "path_loss_db": 98.28766315104535,
+      "rate_bound_bps": 124707612.08781992,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 20,
+      "horizontal_m": 1000,
+      "path_loss_db": 119.9053014629095,
+      "rate_bound_bps": 11933660.60534718,
+      "applied_bps": 11933660.60534718
+    },
+    {
+      "height_m": 50,
+      "horizontal_m": 0,
+      "path_loss_db": 75.38044603007647,
+      "rate_bound_bps": 276516318.4251522,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 50,
+      "horizontal_m": 10,
+      "path_loss_db": 75.55319809120965,
+      "rate_bound_bps": 275368659.2095318,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 50,
+      "horizontal_m": 100,
+      "path_loss_db": 89.76750913138903,
+      "rate_bound_bps": 180983271.670182,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 50,
+      "horizontal_m": 1000,
+      "path_loss_db": 119.76267485089086,
+      "rate_bound_bps": 12258133.04438296,
+      "applied_bps": 12258133.04438296
+    },
+    {
+      "height_m": 100,
+      "horizontal_m": 0,
+      "path_loss_db": 81.40104594331268,
+      "rate_bound_bps": 236522279.10291347,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 100,
+      "horizontal_m": 10,
+      "path_loss_db": 81.44496694343471,
+      "rate_bound_bps": 236230555.06897092,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 100,
+      "horizontal_m": 100,
+      "path_loss_db": 85.02472621713164,
+      "rate_bound_bps": 212457424.3638325,
+      "applied_bps": 50000000.0
+    },
+    {
+      "height_m": 100,
+      "horizontal_m": 1000,
+      "path_loss_db": 119.4403107298785,
+      "rate_bound_bps": 13017560.434362594,
+      "applied_bps": 13017560.434362594
+    }
+  ],
+  "uav": {
+    "environment": "urban",
+    "carrier_frequency_hz": 2500000000.0,
+    "max_path_loss_db": 85.0,
+    "speed_m_per_step": 1.0,
+    "minimum_altitude_m": 20.0,
+    "blackout_threshold_db": -8.47
+  },
+  "uav_optimal_reference_height_m": 91.97081700880547,
+  "uav_coverage_radius_m": 100.58487528940273,
+  "uav_movement_m_per_step": 1.0,
+  "effective_noise_psd_dbm_hz": -167.00000000003814,
+  "conducted_drone_power_w": 2.0,
+  "eirp_dbw": 35.0,
+  "implied_antenna_gain_dbi": 31.989700043360187,
+  "space_speed_km_s": 299792.458,
+  "access_speed_approx_m_s": 300000000.0,
+  "original_timeline_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+  "averaged_timeline_sha256": "8681dd5a974b86e54f4de26f39802ee7f098ca229512c6630da11bab9eb5cba0",
+  "orbital_metadata": {
+    "orbital_source": {
+      "url": "https://raw.githubusercontent.com/satvisorcom/satvisor-data/master/celestrak/json/starlink.json",
+      "original_source": "CelesTrak",
+      "mirror": true,
+      "retrieved_utc": "2026-10-05T16:39:16.206880+00:00",
+      "source_sha256": "b41fb2032d0ad72744e4234804fa66928f5e26445e8950764cce8789f35d8224",
+      "elements": 11037,
+      "epoch_min": "2026-08-25T03:22:20.307648",
+      "epoch_max": "2026-08-31T07:48:45.926784",
+      "failed_sources": [
+        {
+          "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=json",
+          "error": "The read operation timed out"
+        }
+      ],
+      "immutable_url": "https://raw.githubusercontent.com/satvisorcom/satvisor-data/3c90be864dc8b3b8899a3cc3477957ae1e61564c/celestrak/json/starlink.json",
+      "mirror_revision": "3c90be864dc8b3b8899a3cc3477957ae1e61564c"
+    },
+    "source_sha256": "b41fb2032d0ad72744e4234804fa66928f5e26445e8950764cce8789f35d8224",
+    "source_elements": 11037,
+    "used_elements": 10606,
+    "rejected": {
+      "epoch": 25,
+      "orbit": 406,
+      "initialization": 0
+    },
+    "sgp4_error_samples": 0,
+    "simulation_start_utc": "2026-08-31T00:00:00+00:00",
+    "element_epoch_min": "2026-08-28T08:26:03.641856",
+    "element_epoch_max": "2026-08-31T06:00:02.000160",
+    "archived_epoch_replay": true,
+    "duration_seconds": 21600,
+    "sample_interval_seconds": 1,
+    "site": {
+      "latitude": 46.2,
+      "longitude": -74.6,
+      "altitude_km": 0.44
+    },
+    "gateway": {
+      "latitude": 45.3,
+      "longitude": -74.6,
+      "altitude_km": 0.3,
+      "measured_provider_gateway": false
+    },
+    "elevation_mask_degrees": 25,
+    "gateway_elevation_mask_degrees": 10,
+    "satellite_selection": "highest visible elevation at 15-second scheduling boundaries or visibility expiry",
+    "scheduling_interval_seconds": 15.0,
+    "reconfiguration_interruption_seconds": 0.05,
+    "scheduled_event_count": 1440,
+    "scheduling_basis": "SATPIPE observed 15 s / 50 ms; not provider schedule reconstruction",
+    "provider_handover_schedule": false,
+    "time_transform": "Skyfield EarthSatellite and ITRS frame objects with bundled UT1 timescale; zero polar motion",
+    "libraries": {
+      "skyfield": "1.55",
+      "sgp4": "2.27"
+    },
+    "radio": {
+      "library": "ITU-Rpy",
+      "version": "0.4.0",
+      "parameters": {
+        "uplink_ghz": 14.25,
+        "downlink_ghz": 11.7,
+        "uplink_bandwidth_hz": 20000000.0,
+        "downlink_bandwidth_hz": 100000000.0,
+        "terminal_eirp_dbw": 35.0,
+        "satellite_receive_gt_db_k": -5.0,
+        "satellite_eirp_dbw": 30.0,
+        "terminal_receive_gt_db_k": 5.0,
+        "antenna_diameter_m": 0.3,
+        "atmospheric_exceedance_percent": 1.0,
+        "implementation_loss_db": 3.0,
+        "shannon_efficiency": 0.5
+      },
+      "attenuation": "ITU-R P.618 combined rain/cloud/scintillation/gas statistics and bundled climatology",
+      "weather": "fixed long-term attenuation exceedance quantile; not instantaneous weather",
+      "rate": "efficiency-scaled Shannon upper bound, capped by allocated Mbps; not provider MCS",
+      "rf_parameters": "configurable simulation assumptions, not measured Starlink or UAV equipment"
+    },
+    "route": "UAV -> one serving LEO -> assumed visible gateway -> cloud; no ISL",
+    "long_run_replay": "explicit repetition of this archived geometry window; no element extrapolation",
+    "ground_delay_seconds": 0.01,
+    "handover_count": 796,
+    "mean_contact_seconds": 27.1356783919598,
+    "mean_handshake_seconds": 0.049999999999597554,
+    "no_visibility_seconds": 0,
+    "doppler": "-range_rate/carrier_wavelength; raw geometric shift, ideal compensation assumed",
+    "mean_visible_satellites": 76.42275820563863,
+    "minimum_visible_satellites": 53,
+    "association_average": {
+      "parent_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+      "interval_seconds": 15.0,
+      "groups": 1441,
+      "method": "mean range and dB attenuation per association/scheduling interval; recompute FSPL and Shannon rates",
+      "interruptions": "original interruption windows retained",
+      "fading": "no instantaneous small-scale fading",
+      "positions": "raw ECEF retained as provenance; service and reported ranges use association means"
+    }
+  },
+  "association_average": {
+    "parent_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+    "interval_seconds": 15.0,
+    "groups": 1441,
+    "method": "mean range and dB attenuation per association/scheduling interval; recompute FSPL and Shannon rates",
+    "interruptions": "original interruption windows retained",
+    "fading": "no instantaneous small-scale fading",
+    "positions": "raw ECEF retained as provenance; service and reported ranges use association means"
+  },
+  "ranges_km": {
+    "minimum": 365.2864298502604,
+    "maximum": 696.0800170898438
+  },
+  "round_trip_propagation_seconds": {
+    "minimum": 0.024919089595977297,
+    "maximum": 0.02959947743539431
+  },
+  "far_field_uav_displacement_bound_m": 102.50185940395023,
+  "far_field_range_relative_error_bound": 0.0002806068088704204,
+  "far_field_round_trip_error_bound_seconds": 6.83818799764137e-07,
+  "interpretation": "Association-mean geometry and ITU-R long-term attenuation quantile; no sampled fading; rate held fixed in each solve",
+  "delay_accounting": "one full-route outbound plus one full-route return; actual response serialization retained"
+}

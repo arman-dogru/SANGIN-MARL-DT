@@ -66,6 +66,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
     events = list(env.communication.transport.log)
     env.communication.transport.log.clear()
     collisions = 0
+    loop_steps = []
     while True:
         actions = select_actions(
             {0: model},
@@ -75,6 +76,12 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
             np.random.default_rng(case["seed"]),
             device,
         )
+        if config.resource_allocation.enabled:
+            loop_steps.append(dict(step=env.step_count, decision_at=env.communication.transport.now,
+                observations={a: {key: value.tolist() for key, value in observation.items()}
+                              for a, observation in observations.items()}, actions=actions,
+                physical_priorities={a.id: a.priority for a in env.agents},
+                input_cache_sources=env.communication.snapshot()["coordination_sources"]))
         result = env.step(actions)
         observations = result.observations
         if deadline and not (result.terminated or result.truncated):
@@ -120,6 +127,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
         },
     }
     trace = {
+        "configuration_seconds_per_step": config.communication.seconds_per_step,
         "case": case,
         "grid": env.grid.tolist(),
         "goals": case["goals"],
@@ -131,6 +139,7 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
     }
     if config.resource_allocation.enabled:
         trace["resource_tasks"] = env.communication.task_records()
+        trace["allocation_loop"] = loop_steps
         row.update(env.communication.energy_bounds())
     return row, trace
 

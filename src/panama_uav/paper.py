@@ -32,6 +32,9 @@ class PaperMissionCommunication(MissionCommunication):
         self.states = {a.id: {b.id: InformationCache() for b in agents} for a in agents}
         self.truth = {a.id: self._report(a) for a in agents}
         self.positions = {a.id: tuple(a.position) for a in agents}
+        self.dt_states = {a.id: InformationCache() for a in agents}
+        for peer, cache in self.dt_states.items():
+            cache.accept(0.0, self._state(self.truth[peer]), 0, {peer: 0.0})
         for receiver in self.states:
             self.caches[receiver]["task"].source_timestamps = {receiver: 0.0}
             for peer in self.states[receiver]:
@@ -117,6 +120,12 @@ class PaperMissionCommunication(MissionCommunication):
         self.transport.log.append(dict(event="paper_transmit", job_id=job_id, id=packet.id,
             agent=packet.agent, link=link, kind=packet.kind, robot_energy_j=robot_energy,
             backhaul_energy_j=drone_energy, **details))
+        if packet.kind != "paper_state":
+            stage = job.setdefault("service_stages", {}).setdefault(f"{packet.kind}:{link}",
+                dict(transmission_seconds=0.0, queue_seconds=0.0, guard_seconds=0.0, interruption_seconds=0.0))
+            for key in ("transmission_seconds", "queue_seconds", "guard_seconds", "interruption_seconds"):
+                stage[key] += details[key]
+            stage["last_transmission_finish"] = details["finish"]
 
     def _receive(self, packet):
         payload = packet.payload
@@ -203,7 +212,9 @@ class PaperMissionCommunication(MissionCommunication):
             raise
         self.allocations += 1
         self.transport.log.append(dict(event="paper_allocation", time=t.now, radio=radio,
-            input_source_times={a: v["source_time"] for a, v in batch.items()}, **comparison))
+            input_source_times={a: v["source_time"] for a, v in batch.items()},
+            received_priorities={a: reports[a]["priority"] for a in reports},
+            resource_weights=weights, **comparison))
         binary = {r["task_id"]: r for r in comparison["binary"]["tasks"]}
         relaxed = {r["task_id"]: r for r in comparison["relaxed"]["tasks"]}
         for agent, payload in sorted(batch.items()):
@@ -236,6 +247,11 @@ class PaperMissionCommunication(MissionCommunication):
         route = self.pathfinder(self.grid, tuple(report["position"]), tuple(report["goal"]))
         report["path"] = list(route or [tuple(report["position"])])
         report["distance"] = float(len(route)-1) if route else float(self.grid.size)
+        report["priority"] = (float(self.grid.size) if report["completed"] else
+                              min(report["distance"], float(self.grid.size)-1))+job["agent"]*1e-6
+        dt = self.dt_states[job["agent"]]
+        if job["source_time"] >= min(dt.source_timestamps.values()):
+            dt.accept(t.now, self._state(report), job["version"], {job["agent"]: job["source_time"]})
         hops = ("access_down",) if job["executed_x"] else ("satellite_down", "access_down")
         common = dict(job_id=job_id, source_time=job["source_time"])
         self._send(job["agent"], "paper_guidance", dict(common, path=report["path"], distance=report["distance"]),
@@ -253,6 +269,7 @@ class PaperMissionCommunication(MissionCommunication):
                     Guidance(list(fresh[agent.id]["path"]), fresh[agent.id]["distance"]),
                     self.sequence, {agent.id: now})
             if self.config.profile == "perfect" or "priorities" not in self.config.stale_information:
+                self.dt_states[agent.id].accept(now, self._state(fresh[agent.id]), self.sequence, {agent.id: now})
                 for peer in self.states[agent.id]:
                     self.states[agent.id][peer].accept(now, self._state(fresh[peer]), self.sequence, {peer: now})
                 self._sync(agent.id)
@@ -273,6 +290,8 @@ class PaperMissionCommunication(MissionCommunication):
                 horizontal = float(np.linalg.norm(xy-self.uav.position[:2]))
                 loss = float(self.uav.model.path_loss_db(self.uav.position[2], horizontal))
                 radio = access_budget(loss, self.parameters, self.config.access_uplink_mbps*1e6)
+                radio.update(height_m=float(self.uav.position[2]), horizontal_distance_m=horizontal,
+                    los_probability=float(self.uav.model.los_probability(self.uav.position[2]/max(horizontal, 1e-6))))
                 self.transport.agent_rate_caps[(agent.id, "access_up")] = radio["applied_bps"]
                 job_id = f"{self.sequence}:{agent.id}"
                 payload = dict(job_id=job_id, report=report, source_time=now,
@@ -315,7 +334,10 @@ class PaperMissionCommunication(MissionCommunication):
         result.update(paper_schema=1,
             consistency=consistency_snapshot(self.positions, self.truth, self.states, self.transport.now,
                 self.project.map.fov_radius, self.project.map.communicated_path_steps,
-                self.parameters.age_reference_seconds),
+                self.parameters.age_reference_seconds, self.dt_states),
+            physical_priorities={a: r["priority"] for a, r in self.truth.items()},
+            digital_twin_states={a: dict(priority=c.value["priority"], source_time=min(c.source_timestamps.values()),
+                generation_time=c.timestamp) for a, c in self.dt_states.items()},
             compute_pools={name: pool.snapshot() for name, pool in self.transport.compute_pools.items()},
             paper_jobs=[{key: job[key] for key in ("job_id", "agent", "stage", "source_time",
                 "required_cycles", "robot_energy_j", "backhaul_energy_j")}

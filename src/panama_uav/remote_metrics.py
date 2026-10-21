@@ -14,7 +14,10 @@ REMOTE_METRICS = ("tasks_attempted", "tasks_computed", "commands_generated", "co
     "task_latency_p50_seconds", "task_latency_p95_seconds", "task_latency_p99_seconds",
     "command_transport_p50_seconds", "command_transport_p95_seconds", "command_transport_p99_seconds",
     "access_rf_limited_fraction", "backhaul_rf_limited_fraction", "wrong_local_yield_steps", "unnecessary_wait_steps",
-    "physical_distance_m", "mean_first_completion_time_seconds")
+    "physical_distance_m", "mean_first_completion_time_seconds",
+    "decision_action_shadow_comparisons", "decision_action_shadow_disagreements",
+    "decision_action_shadow_cutoff_miss_comparisons", "decision_action_shadow_cutoff_miss_disagreements",
+    "decision_action_shadow_unnecessary_wait_steps", "decision_action_shadow_disagreement_rate")
 
 
 def remote_metrics(trace):
@@ -25,6 +28,7 @@ def remote_metrics(trace):
     pairs = [e["summary"] for e in events if e["event"] == "consistency_event"]
     shadows = [e for e in trace["oracle_events"] if e["event"] == "allocation_shadow"]
     action_shadows = [e for e in trace["oracle_events"] if e["event"] == "action_shadow"]
+    decision_shadows = [e for e in trace["oracle_events"] if e["event"] == "decision_action_shadow"]
     local_shadows = [e for e in trace["oracle_events"] if e["event"] == "local_control_shadow"]
     shadow_actions = {e["job_id"]: e for e in action_shadows}
     transmitted = [e for e in trace["transport_events"] if e["event"] == "remote_transmit"]
@@ -55,6 +59,12 @@ def remote_metrics(trace):
         mean_truth_scored_regret=mean([e["truth_scored_regret"] for e in shadows]),
         action_shadow_disagreements=sum(e["disagrees"] for e in action_shadows),
         action_shadow_comparisons=len(action_shadows),
+        decision_action_shadow_comparisons=len(decision_shadows),
+        decision_action_shadow_disagreements=sum(e["disagrees"] for e in decision_shadows),
+        decision_action_shadow_cutoff_miss_comparisons=sum(e["command_cutoff_missed"] for e in decision_shadows),
+        decision_action_shadow_cutoff_miss_disagreements=sum(e["command_cutoff_missed"] and e["disagrees"] for e in decision_shadows),
+        decision_action_shadow_unnecessary_wait_steps=sum(e["actual_action"] == 4 and e["oracle_action"] != 4 for e in decision_shadows),
+        decision_action_shadow_disagreement_rate=mean([e["disagrees"] for e in decision_shadows]),
         wrong_local_yield_steps=sum(e["wrong_yield"] for e in local_shadows),
         unnecessary_wait_steps=sum(e["unnecessary_wait"] for e in local_shadows)+sum(
             e["action"] == 4 and shadow_actions.get(e["command"]["job_id"], {}).get("oracle_action", 4) != 4 for e in used),

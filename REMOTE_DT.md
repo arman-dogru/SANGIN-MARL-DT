@@ -77,6 +77,17 @@ same physical-priority objective. Native objective values are also retained but
 never subtracted as regret. Shadow action/local-control evaluation is separately
 logged and cannot change real caches, queues, decisions or event checksums.
 
+Active robots also have a separate `decision_action_shadow` at every decision
+cutoff when oracle diagnostics are enabled. It compares the action actually
+selected for that cycle, including timeout WAIT, with a fresh frozen-DQN action
+from physical sensing and an evaluation-only fresh replica at that same cutoff.
+The record retains cycle/robot identity, cutoff, command availability, both
+actions, observation/hash, source times and model version. It never enqueues work,
+sends a command or updates actual DT state. Completed robots keep the separate
+local-control shadow. Existing `action_shadow` records and metrics remain
+compute-completion diagnostics; `decision_action_shadow_*` metrics count the
+cutoff comparisons, disagreements and missed-command cases independently.
+
 The controlled equal baseline assigns the active DT mean bounded priority weight
 to every active robot. `equal_legacy` retains weight 1. Completed robots retain
 weight 1. The other treatments are episode-initial static weights, AoI-only

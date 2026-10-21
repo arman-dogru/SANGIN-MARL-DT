@@ -468,6 +468,36 @@ class RemoteDTCommunication(PaperMissionCommunication):
             summary={k: v for k, v in consistency.items() if k != "pairs"},
             consistency_sha256=hashlib.sha256(json.dumps(consistency, sort_keys=True,
                 separators=(",", ":"), allow_nan=False).encode()).hexdigest())
+        if self.parameters.oracle_shadow and self.shadow_inference is not None:
+            # Evaluate the current physical state at the decision epoch, including
+            # timeout WAITs. This fresh replica is diagnostic only: no actual
+            # cache, job, command, or transport event is changed.
+            fresh_reports = {a.id: self._sense(a, agents, cycle, cutoff) for a in agents}
+            fresh_states = {a: self._state_for_report(r, cutoff, cycle) for a, r in fresh_reports.items()}
+            oracle_replica = DTReplica("cloud")
+            for robot, state in fresh_states.items():
+                oracle_replica.accept(state, cutoff, f"decision-oracle:{cycle}:{robot}")
+            for agent in agents:
+                if agent.ever_reached_goal:
+                    continue  # Completed robots retain the separate local-control shadow.
+                observation, sources, versions, priorities = remote_observation(
+                    fresh_reports[agent.id], fresh_states[agent.id], oracle_replica,
+                    self.project.map.fov_radius, self.project.map.astar_waypoints,
+                    self.project.map.communicated_path_steps, max(self.grid.shape))
+                oracle_action = int(self.shadow_inference("cloud", agent.id, observation))
+                context = self.command_contexts[agent.id]
+                actual_action = self.execution_actions[agent.id]
+                self.oracle_events.append(dict(event="decision_action_shadow", time=cutoff,
+                    cycle=cycle, robot_id=agent.id, cutoff_time=cutoff, evaluation_only=True,
+                    actual_action=actual_action, oracle_action=oracle_action,
+                    disagrees=actual_action != oracle_action,
+                    command_cutoff_missed=context["command_cutoff_missed"],
+                    timeout_reason=context["timeout_reason"],
+                    actual_command_job_id=context["command"]["job_id"] if context["command"] else None,
+                    actual_command_arrived_at=context["arrived_at"], model_version=self.model_version,
+                    observation={k: v.tolist() for k, v in observation.items()},
+                    observation_hash=observation_hash(observation), sources=sources,
+                    source_min=source_min(sources), dt_versions=versions, dt_priorities=priorities))
 
     def _consistency(self):
         views = {}

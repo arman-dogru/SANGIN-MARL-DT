@@ -1,9 +1,15 @@
 {
   "status": "passed",
   "checkpoint_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "manifest_sha256": "ccd9d2869dee8cdb81b2b588688fc90c99f993ca6a5a368c130cab5a65671a8f",
+  "audit_code_sha256": "366939639ccae6bbba22f65776270e895e4f8de33799aba2855181a0b8ec1994",
+  "cases_per_population": 1,
+  "conditions_audited": 5,
   "episodes_audited": 20,
   "decisions_replayed": 1760,
   "allocation_snapshots": 1600,
+  "maximum_solver_residual": 1.2815588255461325e-08,
+  "maximum_relative_relaxation_gap": 0.005033578341848315,
   "task_accounting_checks": 10944,
   "rows": [
     {
@@ -11,6 +17,8 @@
       "case_id": "agents-2-case-000",
       "decisions_replayed": 26,
       "allocation_snapshots": 0,
+      "maximum_solver_residual": 0,
+      "maximum_relative_relaxation_gap": 0,
       "tasks": 0,
       "trace_sha256": "adb72922152c12e62c7b80b935ba1b32203c7fcb58eeec41b54774ef1d35b576",
       "status": "passed"
@@ -20,6 +28,8 @@
       "case_id": "agents-4-case-000",
       "decisions_replayed": 39,
       "allocation_snapshots": 0,
+      "maximum_solver_residual": 0,
+      "maximum_relative_relaxation_gap": 0,
       "tasks": 0,
       "trace_sha256": "4ec27d522bcd4c246586adefaeec7d2f7a284e7b7b3db869b17a7d2551ae8f43",
       "status": "passed"
@@ -29,6 +39,8 @@
       "case_id": "agents-6-case-000",
       "decisions_replayed": 28,
       "allocation_snapshots": 0,
+      "maximum_solver_residual": 0,
+      "maximum_relative_relaxation_gap": 0,
       "tasks": 0,
       "trace_sha256": "bbc9319dccdd2f9e230a0500096906476c172dc7f7c0801a51aa3b9d6f942c22",
       "status": "passed"
@@ -38,6 +50,8 @@
       "case_id": "agents-8-case-000",
       "decisions_replayed": 51,
       "allocation_snapshots": 0,
+      "maximum_solver_residual": 0,
+      "maximum_relative_relaxation_gap": 0,
       "tasks": 0,
       "trace_sha256": "851a237479e3a1871d2b5aaa3f61245a7a9637c1b7733b327682c8520ddfdb7d",
       "status": "passed"
@@ -47,6 +61,8 @@
       "case_id": "agents-2-case-000",
       "decisions_replayed": 26,
       "allocation_snapshots": 25,
+      "maximum_solver_residual": 6.114941064923808e-10,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 52,
       "trace_sha256": "0db287f82ae0a5629a2430b263a4c0c698854cba5c2b763a492a3652c32f8121",
       "status": "passed"
@@ -56,6 +72,8 @@
       "case_id": "agents-4-case-000",
       "decisions_replayed": 39,
       "allocation_snapshots": 38,
+      "maximum_solver_residual": 1.659087311978169e-10,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 156,
       "trace_sha256": "5ee8cd3866c54a5d5fc7d6d5862193ddfe7e4a3cd7056c2e04a564018dceb315",
       "status": "passed"
@@ -65,6 +83,8 @@
       "case_id": "agents-6-case-000",
       "decisions_replayed": 250,
       "allocation_snapshots": 249,
+      "maximum_solver_residual": 4.948714549257716e-09,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 1500,
       "trace_sha256": "c2f6dcf536ba838ac25908fc78b730f2b337ac7f455e6ce9690092e65679fbe0",
       "status": "passed"
@@ -74,6 +94,8 @@
       "case_id": "agents-8-case-000",
       "decisions_replayed": 250,
       "allocation_snapshots": 249,
+      "maximum_solver_residual": 2.320230230168363e-09,
+      "maximum_relative_relaxation_gap": 0.0001515886018982915,
       "tasks": 2000,
       "trace_sha256": "74313d68887d352eb109d65d8fc5a4dc2d25f587ee0cbe547acb880bbba18979",
       "status": "passed"
@@ -83,6 +105,8 @@
       "case_id": "agents-2-case-000",
       "decisions_replayed": 26,
       "allocation_snapshots": 25,
+      "maximum_solver_residual": 4.528339319613716e-10,
+      "maximum_relative_relaxation_gap": 0.003735405826785001,
       "tasks": 52,
       "trace_sha256": "8db159a6ee504a111d460a375e24f7ecb87a85da17c43d95518db29a60b6fc7c",
       "status": "passed"
@@ -92,6 +116,8 @@
       "case_id": "agents-4-case-000",
       "decisions_replayed": 45,
       "allocation_snapshots": 44,
+      "maximum_solver_residual": 1.7800405593959567e-10,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 180,
       "trace_sha256": "3088eded102c76f01cba1bd1cbf24060406e7f98b55f21ff5576da3c4ba555b9",
       "status": "passed"
@@ -101,6 +127,8 @@
       "case_id": "agents-6-case-000",
       "decisions_replayed": 32,
       "allocation_snapshots": 31,
+      "maximum_solver_residual": 6.224560866741058e-09,
+      "maximum_relative_relaxation_gap": 0.002001198292985398,
       "tasks": 192,
       "trace_sha256": "f5f4a79dfedd76ba89b3af5bef8db1dd1bff92835ac3fa2384c459f3a85d41da",
       "status": "passed"
@@ -110,6 +138,8 @@
       "case_id": "agents-8-case-000",
       "decisions_replayed": 250,
       "allocation_snapshots": 249,
+      "maximum_solver_residual": 5.6193445452379365e-09,
+      "maximum_relative_relaxation_gap": 0.0026942839110417516,
       "tasks": 2000,
       "trace_sha256": "9ca278e6e33d90b435e5fa7ac7f75303273ebbff62996aedf7982b9b271ef05b",
       "status": "passed"
@@ -119,6 +149,8 @@
       "case_id": "agents-2-case-000",
       "decisions_replayed": 26,
       "allocation_snapshots": 25,
+      "maximum_solver_residual": 4.67272992459932e-10,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 52,
       "trace_sha256": "1b09e6de5666ec6640757d1e41f9ef21a2384381faf40bf33453de4ea59172f4",
       "status": "passed"
@@ -128,6 +160,8 @@
       "case_id": "agents-4-case-000",
       "decisions_replayed": 39,
       "allocation_snapshots": 38,
+      "maximum_solver_residual": 1.181480202561147e-08,
+      "maximum_relative_relaxation_gap": 4.357527546542481e-05,
       "tasks": 156,
       "trace_sha256": "c57b5ccb139c49706dcbcdeb685b51eb117fdbc25c071ea4f43d691b3684d92d",
       "status": "passed"
@@ -137,6 +171,8 @@
       "case_id": "agents-6-case-000",
       "decisions_replayed": 30,
       "allocation_snapshots": 29,
+      "maximum_solver_residual": 1.359187207228274e-09,
+      "maximum_relative_relaxation_gap": 0.004168805073588877,
       "tasks": 180,
       "trace_sha256": "a5f3b2c5f77a9815d14b2f569fab76161f437be3e88be302d0e6c1aec2505197",
       "status": "passed"
@@ -146,6 +182,8 @@
       "case_id": "agents-8-case-000",
       "decisions_replayed": 250,
       "allocation_snapshots": 249,
+      "maximum_solver_residual": 9.574234294262851e-09,
+      "maximum_relative_relaxation_gap": 0.005033578341848315,
       "tasks": 2000,
       "trace_sha256": "86a575155092a9c0707d630d1545d7c17e9279eb4ee88d6b262c56c2c1849151",
       "status": "passed"
@@ -155,6 +193,8 @@
       "case_id": "agents-2-case-000",
       "decisions_replayed": 26,
       "allocation_snapshots": 25,
+      "maximum_solver_residual": 4.528339319613716e-10,
+      "maximum_relative_relaxation_gap": 0.003735405826785001,
       "tasks": 52,
       "trace_sha256": "d9992fb8367403d205f95f8aa2731b02afacb86d8a9c56725c9ad2df6ee58b05",
       "status": "passed"
@@ -164,6 +204,8 @@
       "case_id": "agents-4-case-000",
       "decisions_replayed": 45,
       "allocation_snapshots": 44,
+      "maximum_solver_residual": 1.2588439179950228e-09,
+      "maximum_relative_relaxation_gap": 0.0,
       "tasks": 180,
       "trace_sha256": "26b380a32058afc997cd58a6419d3fc0815eac8fa1ca8e8565b12a3172fec677",
       "status": "passed"
@@ -173,6 +215,8 @@
       "case_id": "agents-6-case-000",
       "decisions_replayed": 32,
       "allocation_snapshots": 31,
+      "maximum_solver_residual": 8.88227957851484e-09,
+      "maximum_relative_relaxation_gap": 0.002001198292985398,
       "tasks": 192,
       "trace_sha256": "48615750f271bdab668ed44dac9bd101ed6c337b1e2c60fa1a3798e7dc9d0e78",
       "status": "passed"
@@ -182,6 +226,8 @@
       "case_id": "agents-8-case-000",
       "decisions_replayed": 250,
       "allocation_snapshots": 249,
+      "maximum_solver_residual": 1.2815588255461325e-08,
+      "maximum_relative_relaxation_gap": 0.002614290565547809,
       "tasks": 2000,
       "trace_sha256": "b0399d8794f12c88958c011fa37d6b46ca104d269e8733ac374708aad31aea7d",
       "status": "passed"

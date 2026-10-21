@@ -52,7 +52,12 @@ def check_task_accounting(job, config):
 
 def audit(study, output, cases_per_population=1):
     study, output = Path(study), Path(output)
+    if json.loads((study/"status.json").read_text())["status"] != "complete":
+        raise ValueError("Independent study audits require a completed run")
+    if cases_per_population < 0:
+        raise ValueError("Use zero for all cases or a positive per-population sample")
     manifest = json.loads((study/"manifest.json").read_text())
+    case_ids={r["case_id"] for r in json.loads((study/"held_out_cases.json").read_text())}
     config = ProjectConfig.from_dict(manifest["configuration"])
     device = torch.device("cpu")
     torch.set_num_threads(1)
@@ -60,7 +65,10 @@ def audit(study, output, cases_per_population=1):
     rows = []
     for condition in manifest["conditions"]:
         directory = study/condition["name"]
-        files = sorted(directory.glob("agents-*-case-*.json.gz"))
+        committed=[json.loads(s)["case_id"] for s in (directory/"episodes.jsonl").read_text().splitlines()]
+        if len(committed)!=len(case_ids) or set(committed)!=case_ids:
+            raise ValueError(f"Incomplete or duplicate case bank: {condition['name']}")
+        files = [directory/f"{case_id}.json.gz" for case_id in sorted(case_ids)]
         if cases_per_population:
             files = [p for p in files if int(p.name.split("case-")[1].split(".")[0]) < cases_per_population]
         for file in files:
@@ -89,12 +97,29 @@ def audit(study, output, cases_per_population=1):
                     assert job["compute_arrived_at"] <= job["compute_completed_at"] <= job["delivered_at"]
             allocations = [e for e in trace["transport_events"] if e["event"] == "paper_allocation"]
             assert all(e["raw_objective_difference"] >= -1e-6*max(1, abs(e["binary"]["objective"])) for e in allocations)
+            for event in allocations:
+                assert event["relaxed"]["is_dcp"]
+                for mode in ("relaxed","binary"):
+                    solution=event[mode]
+                    assert solution["residual"]<=1e-6
+                    assert sum(t["drone_share"] for t in solution["tasks"])<=1+1e-6
+                    assert sum(t["cloud_share"] for t in solution["tasks"])<=1+1e-6
+                    for task in solution["tasks"]:
+                        x,a,b=task["x"],task["drone_share"],task["cloud_share"]
+                        assert -1e-6<=x<=1+1e-6 and -1e-6<=a<=x+1e-6 and -1e-6<=b<=1-x+1e-6
+                        if mode=="binary": assert x in (0,1)
             rows.append(dict(condition=condition["name"], case_id=trace["case"]["case_id"],
                 decisions_replayed=len(trace["allocation_loop"]), allocation_snapshots=len(allocations),
+                maximum_solver_residual=max((e["relaxed"]["residual"] for e in allocations),default=0),
+                maximum_relative_relaxation_gap=max((e["relative_gap"] for e in allocations),default=0),
                 tasks=len(trace["resource_tasks"]), trace_sha256=sha256(file), status="passed"))
     report = dict(status="passed", checkpoint_sha256=manifest["model"]["sha256"],
+        manifest_sha256=sha256(study/"manifest.json"), audit_code_sha256=sha256(Path(__file__)),
+        cases_per_population=cases_per_population, conditions_audited=len(manifest["conditions"]),
         episodes_audited=len(rows), decisions_replayed=sum(r["decisions_replayed"] for r in rows),
         allocation_snapshots=sum(r["allocation_snapshots"] for r in rows),
+        maximum_solver_residual=max((r["maximum_solver_residual"] for r in rows),default=0),
+        maximum_relative_relaxation_gap=max((r["maximum_relative_relaxation_gap"] for r in rows),default=0),
         task_accounting_checks=sum(r["tasks"] for r in rows), rows=rows)
     write_json(output, report)
     return report

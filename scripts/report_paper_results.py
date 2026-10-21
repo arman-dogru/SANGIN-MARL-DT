@@ -172,6 +172,7 @@ def latex_results(rows, paper, manifest, totals, full_grid=True):
             lines.append(f"Relative to nominal resources, {label} changes "+"; ".join(effects)+".")
     lines += ["These results quantify the complete closed loop rather than only the static optimizer. "
         "Queueing, changing CPU service, delayed self and peer state, discrete route changes and the frozen policy can change mission outcomes independently of snapshot objective gains. "
+        "Guidance and self-completion state are delayed alongside peer coordination, so a mission difference cannot be attributed solely to the measured ordering inconsistency. "
         "The confidence intervals and sensitivity figures must therefore be considered alongside the mean values; superiority is not assumed."]
     (paper/"generated/results.tex").write_text("\n\n".join(lines)+"\n",encoding="utf-8")
 

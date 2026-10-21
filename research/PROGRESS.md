@@ -88,3 +88,9 @@ Exhaustive nominal replay now passes for all 1,000 episodes: 81,914 decisions,
 audit remains preserved alongside `baseline_full_loop_audit.json`. The full
 sensitivity sweep continues; weight-ratio identity controls will be checked once
 those complete conditions are available.
+
+The final full regression run passes 111 tests. Independent study audits now
+reject running/incomplete case banks and record their own source/manifest hashes.
+The nominal sample also independently verifies normalized CPU capacities,
+individual route/share bounds, binary execution and DCP certification. Its largest
+reported solver residual is 1.282e-8 against the 1e-6 acceptance threshold.

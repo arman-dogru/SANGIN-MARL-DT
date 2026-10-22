@@ -51,6 +51,12 @@ def level(weight):
     return "high" if weight >= 3 else "middle" if weight >= 2 else "low"
 
 
+def reference_weights(priorities, completed):
+    # Match the float-valued simulation configuration. Integer bounds would
+    # make np.full in the existing mapper truncate fractional reference weights.
+    return priority_weights(priorities,completed,minimum=1.0,maximum=4.0)
+
+
 def paired_interval(rows, reference, metric, *, ratio=None, samples=2000, seed=42):
     """Resample matched CASES, including zero-exposure cases for pooled rates."""
     left = {r["case_id"]:r for r in rows}
@@ -174,6 +180,21 @@ def inspect_episode(argument):
     states = {e["event_id"]:e["state"] for e in events if e["event"] == "dt_state_event"}
     allocations = {e["job_id"]:e for e in events if e["event"] == "allocation_event"}
     truth = {e["new_job"]:e for e in trace["oracle_events"] if e["event"] == "allocation_shadow"}
+    physical = {}
+    for event in events:
+        if event["event"] == "robot_state_event":
+            physical[str(event["report"]["robot_id"])] = event["physical"]
+        elif event["event"] == "motion_event":
+            physical = event["physical"]
+        elif event["event"] == "allocation_event":
+            shadow = truth[event["job_id"]]
+            ids = sorted(physical,key=int)
+            expected = reference_weights([physical[a]["priority"] for a in ids],
+                [physical[a]["completed"] for a in ids])
+            if (set(ids) != set(shadow["physical_weights"]) or
+                any(physical[a]["priority"] != shadow["physical_priorities"][a] for a in ids) or
+                not np.allclose(expected,[shadow["physical_weights"][a] for a in ids],rtol=0,atol=1e-12)):
+                raise ValueError("Physical priority reference differs from replayed physical states")
     service,pools = cpu_intervals(trace["transport_events"],horizon)
     enriched = []
     for task in tasks:
@@ -183,8 +204,10 @@ def inspect_episode(argument):
         dt_active = physical_active = None
         if assignment:
             ids = sorted(assignment["dt_priorities"],key=int)
-            weights = priority_weights([assignment["dt_priorities"][a] for a in ids],
-                [states[assignment["priority_versions"][a]]["completed"] for a in ids],1,4)
+            if any(assignment["dt_priorities"][a] != states[assignment["priority_versions"][a]]["priority"] for a in ids):
+                raise ValueError("Communicated priority reference differs from delivered DT states")
+            weights = reference_weights([assignment["dt_priorities"][a] for a in ids],
+                [states[assignment["priority_versions"][a]]["completed"] for a in ids])
             dt_weight = float(weights[ids.index(robot)])
             dt_priority = assignment["dt_priorities"][robot]
             physical_weight = truth[job]["physical_weights"][robot]

@@ -7,7 +7,7 @@ import pytest
 from panama_uav.config import load_config
 from panama_uav.deadline_study import deadline_config
 from panama_uav.priority_evaluation import (BASELINE,PRIMARY,cpu_intervals,level,paired_interval,
-    preferential_service,priority_case_rows,report_priority_study)
+    preferential_service,priority_case_rows,reference_weights,report_priority_study)
 from panama_uav.records import read_jsonl
 from panama_uav.resource_study import run_study
 from test_deadline_study import inputs
@@ -17,6 +17,13 @@ def test_reference_priority_bins_include_boundaries_and_unknown():
     assert [level(v) for v in (1,1.999,2,2.999,3,4,None)] == ['low','low','middle','middle','high','high','unknown']
     with pytest.raises(ValueError):
         level(4.1)
+
+
+def test_reference_weight_precision_matches_float_configuration_for_four_robots():
+    weights=reference_weights([39.,39.000001,17.000002,17.000003],[False]*4)
+    assert weights.dtype.kind=='f'
+    assert weights[0]==pytest.approx(1.0000001363636422,abs=1e-12)
+    assert weights[1]==1 and weights[2]==4 and 3 < weights[3] < 4
 
 
 def test_paired_bootstrap_resamples_cases_and_matches_identifiers():
@@ -135,4 +142,11 @@ def test_report_audits_real_archives_and_rejects_case_tampering(inputs,tmp_path)
     with gzip.open(path,'wt') as stream:
         json.dump(trace,stream)
     with pytest.raises(ValueError,match='case mismatch'):
+        report_priority_study(root,checkpoint,workers=1,samples=100)
+    trace['case']['seed']-=1
+    shadow=next(e for e in trace['oracle_events'] if e['event']=='allocation_shadow')
+    shadow['physical_weights']['0']=1 if shadow['physical_weights']['0']!=1 else 4
+    with gzip.open(path,'wt') as stream:
+        json.dump(trace,stream)
+    with pytest.raises(ValueError,match='Physical priority reference'):
         report_priority_study(root,checkpoint,workers=1,samples=100)

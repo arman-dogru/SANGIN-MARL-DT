@@ -300,9 +300,9 @@ def _plots(root, summary):
                 if metric not in ('mean_capped_makespan','mean_peer_aoi'):
                     ax.set_ylim(-.03,1.03)
                 ax.grid(alpha=.2)
-        fig.suptitle('Controlled stress pilot; not nominal network measurements\nDescriptive curves; paired confidence intervals in CSV')
+        fig.suptitle('Controlled stress pilot: not nominal SAGIN delays (paired CIs in CSV)', fontsize=12)
         fig.legend(*axes[0,0].get_legend_handles_labels(),loc='outside lower center',ncol=3)
-        fig.savefig(root/f'{metric}.png',dpi=150,bbox_inches='tight')
+        fig.savefig(root/f'{metric}.png',dpi=150,bbox_inches='tight',pad_inches=.15)
         plt.close(fig)
 
 

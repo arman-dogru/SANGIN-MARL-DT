@@ -122,6 +122,7 @@ def test_report_audits_real_archives_and_rejects_case_tampering(inputs,tmp_path)
     assert (output/'latency_distributions.csv').exists()
     assert (output/'priority_summary.csv').exists()
     assert (output/'execution_location_summary.csv').exists()
+    assert (output/'paired_execution_location_differences.csv').exists()
     assert (output/'overall_summary.csv').exists()
     with (output/'priority_summary.csv').open() as stream:
         levels=list(__import__('csv').DictReader(stream))
@@ -129,6 +130,10 @@ def test_report_audits_real_archives_and_rejects_case_tampering(inputs,tmp_path)
     assert all(r['deadline_compliance']=='' for r in levels if r['tasks']=='0')
     with (output/'execution_location_summary.csv').open() as stream:
         assert len(list(__import__('csv').DictReader(stream)))==6*3
+    from panama_uav.priority_locations import report_locations
+    location_differences=report_locations(output,samples=100)
+    assert any(r['location']=='cloud' and r['metric']=='deadline_compliance' for r in location_differences)
+    assert all(r['estimate'] is None for r in location_differences if r['location']=='unassigned')
     assert (output/'latency_cdf_communicated.png').exists()
     validation=json.loads((output/'validation.json').read_text())
     assert validation['episodes']==6 and validation['actual_model_actions_verified']>0

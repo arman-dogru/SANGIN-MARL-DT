@@ -111,6 +111,9 @@ limits: no propulsion, static electronics, receiver or cloud-electricity model.
   explicit task/CPU censoring denominators. `execution_location_summary.csv`
   reports the same timing quantities by UAV/cloud site with CPU utilization and
   resident-job means. `overall_summary.csv` adds all-treatment mission/energy means.
+- `execution_location_case_metrics.csv` and `paired_execution_location_differences.csv`:
+  site-conditional rates, latency and CPU service, with case-paired intervals.
+  Routing changes the site cohorts; differences are not causal same-task effects.
 - `paired_treatment_differences.csv`: all six treatment contrasts against matched
   equal, with estimators, paired counts, exclusions and confidence intervals.
 - `preferential_service_*.csv`: within-policy service gaps and paired differences

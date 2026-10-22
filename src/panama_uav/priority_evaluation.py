@@ -450,6 +450,8 @@ def report_priority_study(root, model_path, *, workers=1, samples=2000, sensitiv
             ordering_pairs_verified=sum(r["ordering_pairs_verified"] for r in audits)))
         _plots_and_report(output,manifest,episodes,strata,differences,service_differences)
         latency_distributions(output,episodes)
+        from .priority_locations import report_locations
+        report_locations(output,samples)
     except Exception as exc:
         write_json(output/"status.json",dict(status="failed",completed=len(episodes),error=str(exc)))
         raise

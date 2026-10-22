@@ -113,6 +113,17 @@ seed streams and the learning-step budget are matched. Different policies can
 finish episodes at different times, so executed training cases and population
 step counts need not be identical; both are logged explicitly.
 
+The 6,000-step workflow check produced only 26 training episodes in its first
+run. It is retained as preliminary evidence, not used alone to choose full
+training. `configs/phase1_comparison.toml` specifies the primary bounded
+comparison: the same four alternatives, two seeds, map/case bank and validation
+cohort, with **30,000 joint steps per run**, a **900-second cap per run**,
+180 seconds reserved for evaluation and a five-second shutdown margin.
+The eight-run maximum is two hours; no existing run's budget or weights are
+extended. Each starts from the same deterministic seed initialization in a new
+study folder. Only the primary comparison can justify launching the one full
+run. The final test bank remains untouched across both stages.
+
 Selection reports paired seed-and-map bootstrap 95% intervals. Two learning
 seeds and short-run validation cannot establish qualification. A full run is
 justified only by at least a five-percentage-point gain over matched original

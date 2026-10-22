@@ -468,8 +468,18 @@ def _plots_and_report(output, manifest, episodes, strata, differences, service):
     import matplotlib.pyplot as plt
     counts = sorted({r["num_agents"] for r in episodes})
     primary = [r for r in differences if r["primary_comparison"] and r["scope"] == "mission"]
-    for metric in ("success","restricted_makespan_seconds","waiting_steps","on_time_rate","command_cutoff_misses",
-                   "modeled_energy_lower_j","xi_fov_supported","cutoff_action_disagreement_rate"):
+    labels = {
+        "success": "Mission success rate difference",
+        "restricted_makespan_seconds": "Capped mission duration difference (s)",
+        "waiting_steps": "Waiting steps difference",
+        "on_time_rate": "On-time command rate difference",
+        "command_cutoff_misses": "Cutoff WAIT count difference",
+        "task_latency_p95_seconds": "Mean episode p95 latency difference (s)",
+        "modeled_energy_lower_j": "Modeled energy difference (J)",
+        "xi_fov_supported": "FoV inconsistency rate difference",
+        "cutoff_action_disagreement_rate": "Actual/oracle disagreement rate difference",
+    }
+    for metric, label in labels.items():
         group = [next(r for r in primary if r["num_agents"] == n and r["metric"] == metric) for n in counts]
         fig,ax = plt.subplots(figsize=(6,4),layout="constrained")
         for n,row in zip(counts,group):
@@ -479,8 +489,8 @@ def _plots_and_report(output, manifest, episodes, strata, differences, service):
             if row["ci95_low"] is not None:
                 ax.vlines(n,row["ci95_low"],row["ci95_high"],color="tab:blue")
         ax.axhline(0,color="black",lw=.7)
-        ax.set(xticks=counts,xlabel="Robots",ylabel=f"Current priority − matched equal: {metric}",
-            title="250 ms paired case differences (95% CI)")
+        ax.set(xticks=counts,xlabel="Robots",ylabel=label,
+            title="Current priority − matched equal\n250 ms paired case differences (95% CI)")
         ax.grid(alpha=.2)
         fig.savefig(output/f"paired_{metric}.png",dpi=160,bbox_inches="tight")
         fig.savefig(output/f"paired_{metric}.svg",bbox_inches="tight")

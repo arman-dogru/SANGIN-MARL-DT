@@ -270,6 +270,10 @@ def report_stress(root, samples=2000):
         actual_actions_verified=sum(r['actual_actions_verified'] for r in audits),
         peer_shadow_actions_verified=sum(r['peer_shadow_actions_verified'] for r in audits),
         cutoff_oracles_verified=sum(r['cutoff_oracles_verified'] for r in audits)))
+    write_json(root/'analysis_provenance.json',dict(run_commit=manifest['git_commit'],
+        analysis_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=Path(__file__).parent,text=True).strip(),
+        analysis_source_sha256=sha256(__file__),bootstrap_samples=samples,bootstrap_seed=42,
+        episodes_sha256=sha256(root/'episodes.jsonl'),case_bank_sha256=manifest['case_bank_sha256']))
     return summary
 
 
@@ -278,8 +282,8 @@ def _plots(root, summary):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     colors = dict(fresh_transport='tab:gray',equal='tab:orange',priority='tab:blue')
-    for metric,label in (('timely_stale_rate','Stale/fresh disagreement in used commands'),
-        ('physical_pair_fraction','Physically relevant directed-pair fraction'),
+    for metric,label in (('timely_stale_rate','Used-command disagreement\n(stale versus fresh peers)'),
+        ('physical_pair_fraction','Physically relevant pairs /\nall directed pairs'),
         ('mission_success_rate','Mission success rate'),('mean_capped_makespan','Mean capped makespan (s)'),
         ('command_on_time_rate','On-time command rate'),('mean_peer_aoi','Mean peer source AoI (s)')):
         counts = sorted({r['num_agents'] for r in summary})
@@ -289,11 +293,14 @@ def _plots(root, summary):
                 ax=axes[i,j]
                 for treatment in TREATMENTS:
                     rows=sorted((r for r in summary if r['scenario']==family and r['num_agents']==n and r['treatment']==treatment),key=lambda r:r['delay_steps'])
+                    style=dict(fresh_transport='s:',equal='^--',priority='o-')[treatment]
                     ax.plot([r['delay_steps'] for r in rows],[np.nan if r[metric] is None else r[metric] for r in rows],
-                        'o-',label=treatment,color=colors[treatment])
+                        style,label=treatment,color=colors[treatment])
                 ax.set(title=f'{family.replace("_"," ")}, {n} robots',xlabel='Injected peer delay (1 s steps)',ylabel=label)
+                if metric not in ('mean_capped_makespan','mean_peer_aoi'):
+                    ax.set_ylim(-.03,1.03)
                 ax.grid(alpha=.2)
-        fig.suptitle('Controlled stress pilot; not nominal network measurements')
+        fig.suptitle('Controlled stress pilot; not nominal network measurements\nDescriptive curves; paired confidence intervals in CSV')
         fig.legend(*axes[0,0].get_legend_handles_labels(),loc='outside lower center',ncol=3)
         fig.savefig(root/f'{metric}.png',dpi=150,bbox_inches='tight')
         plt.close(fig)

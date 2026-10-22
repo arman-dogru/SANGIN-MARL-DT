@@ -96,6 +96,8 @@ independent conflict opportunities. Before pilot inspection, the screening rule
 is at least 20 physical-reference relevant directed-pair observations, exposure
 in both cases, and some progressing exposed cycles for each scenario/density at
 zero-delay fresh transport. This screens scenario usefulness, not statistical power.
+The field `progressing_exposure_cycles` counts exposed cycles with any physical
+movement, including oscillation; it does not establish progress toward goals.
 
 `paired_differences.csv` reports within-treatment delay versus zero, current
 priority versus matched equal at each delay, and a priority-mitigation interaction:

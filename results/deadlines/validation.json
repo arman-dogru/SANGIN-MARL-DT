@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "completed_deadlines_ms": [
+    100,
+    250,
+    300,
+    500
+  ],
+  "completed_episodes": 96,
+  "diagnostic": true
+}

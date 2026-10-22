@@ -1,0 +1,7 @@
+scenario,num_agents,relevant_pairs,all_directed_pairs,vertex_pairs,edge_pairs,exposed_cases,exposed_cycles,moving_exposed_cycles,baseline_success,screening_pass
+intersection,2,16,36,16,0,2,8,8,1.0,False
+intersection,4,80,258,76,4,2,13,13,1.0,True
+narrow_corridor,2,30,53,8,22,2,15,15,1.0,True
+narrow_corridor,4,266,627,204,62,2,75,75,0.5,True
+shared_bottleneck,2,4,32,4,0,2,2,2,1.0,False
+shared_bottleneck,4,87,291,39,48,2,19,19,1.0,True

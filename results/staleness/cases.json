@@ -1,0 +1,482 @@
+[
+  {
+    "case_id": "intersection-n2-case00",
+    "scenario": "intersection",
+    "case": 0,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 0,
+    "seed": 71000200,
+    "starts": [
+      [
+        16,
+        12
+      ],
+      [
+        12,
+        16
+      ]
+    ],
+    "goals": [
+      [
+        16,
+        20
+      ],
+      [
+        20,
+        16
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\intersection-rotation-0.map",
+    "map_sha256": "edf960e3c1de461a6e822dcb19dc8bf586881896341c291e62a0e567ea398f96",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "intersection-n4-case00",
+    "scenario": "intersection",
+    "case": 0,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 0,
+    "seed": 71000400,
+    "starts": [
+      [
+        16,
+        12
+      ],
+      [
+        12,
+        16
+      ],
+      [
+        16,
+        20
+      ],
+      [
+        20,
+        16
+      ]
+    ],
+    "goals": [
+      [
+        16,
+        20
+      ],
+      [
+        20,
+        16
+      ],
+      [
+        16,
+        12
+      ],
+      [
+        12,
+        16
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\intersection-rotation-0.map",
+    "map_sha256": "edf960e3c1de461a6e822dcb19dc8bf586881896341c291e62a0e567ea398f96",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "intersection-n2-case01",
+    "scenario": "intersection",
+    "case": 1,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 1,
+    "seed": 71000201,
+    "starts": [
+      [
+        19,
+        16
+      ],
+      [
+        15,
+        12
+      ]
+    ],
+    "goals": [
+      [
+        11,
+        16
+      ],
+      [
+        15,
+        20
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\intersection-rotation-1.map",
+    "map_sha256": "92228b6c07e46e6d7e0f73d39f07517618ea22ba2ec15f9de3dc263a04acb7aa",
+    "orbital_offset_seconds": 100.0
+  },
+  {
+    "case_id": "intersection-n4-case01",
+    "scenario": "intersection",
+    "case": 1,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 1,
+    "seed": 71000401,
+    "starts": [
+      [
+        19,
+        16
+      ],
+      [
+        15,
+        12
+      ],
+      [
+        11,
+        16
+      ],
+      [
+        15,
+        20
+      ]
+    ],
+    "goals": [
+      [
+        11,
+        16
+      ],
+      [
+        15,
+        20
+      ],
+      [
+        19,
+        16
+      ],
+      [
+        15,
+        12
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\intersection-rotation-1.map",
+    "map_sha256": "92228b6c07e46e6d7e0f73d39f07517618ea22ba2ec15f9de3dc263a04acb7aa",
+    "orbital_offset_seconds": 100.0
+  },
+  {
+    "case_id": "narrow_corridor-n2-case00",
+    "scenario": "narrow_corridor",
+    "case": 0,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 0,
+    "seed": 71010200,
+    "starts": [
+      [
+        16,
+        11
+      ],
+      [
+        16,
+        20
+      ]
+    ],
+    "goals": [
+      [
+        16,
+        20
+      ],
+      [
+        16,
+        11
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\narrow_corridor-rotation-0.map",
+    "map_sha256": "23cf1914c8a5f7f2f6439b4433bd9040f6f2be41e2f5012501c79161efc0d651",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "narrow_corridor-n4-case00",
+    "scenario": "narrow_corridor",
+    "case": 0,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 0,
+    "seed": 71010400,
+    "starts": [
+      [
+        16,
+        11
+      ],
+      [
+        16,
+        20
+      ],
+      [
+        15,
+        11
+      ],
+      [
+        17,
+        20
+      ]
+    ],
+    "goals": [
+      [
+        16,
+        20
+      ],
+      [
+        16,
+        11
+      ],
+      [
+        17,
+        20
+      ],
+      [
+        15,
+        11
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\narrow_corridor-rotation-0.map",
+    "map_sha256": "23cf1914c8a5f7f2f6439b4433bd9040f6f2be41e2f5012501c79161efc0d651",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "narrow_corridor-n2-case01",
+    "scenario": "narrow_corridor",
+    "case": 1,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 1,
+    "seed": 71010201,
+    "starts": [
+      [
+        20,
+        16
+      ],
+      [
+        11,
+        16
+      ]
+    ],
+    "goals": [
+      [
+        11,
+        16
+      ],
+      [
+        20,
+        16
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\narrow_corridor-rotation-1.map",
+    "map_sha256": "56713254fa8438639e6e88b776b21d8b4b001c382b87ec0fef69e3bfc0600f30",
+    "orbital_offset_seconds": 100.0
+  },
+  {
+    "case_id": "narrow_corridor-n4-case01",
+    "scenario": "narrow_corridor",
+    "case": 1,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 1,
+    "seed": 71010401,
+    "starts": [
+      [
+        20,
+        16
+      ],
+      [
+        11,
+        16
+      ],
+      [
+        20,
+        15
+      ],
+      [
+        11,
+        17
+      ]
+    ],
+    "goals": [
+      [
+        11,
+        16
+      ],
+      [
+        20,
+        16
+      ],
+      [
+        11,
+        17
+      ],
+      [
+        20,
+        15
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\narrow_corridor-rotation-1.map",
+    "map_sha256": "56713254fa8438639e6e88b776b21d8b4b001c382b87ec0fef69e3bfc0600f30",
+    "orbital_offset_seconds": 100.0
+  },
+  {
+    "case_id": "shared_bottleneck-n2-case00",
+    "scenario": "shared_bottleneck",
+    "case": 0,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 0,
+    "seed": 71020200,
+    "starts": [
+      [
+        15,
+        13
+      ],
+      [
+        17,
+        13
+      ]
+    ],
+    "goals": [
+      [
+        17,
+        18
+      ],
+      [
+        15,
+        18
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\shared_bottleneck-rotation-0.map",
+    "map_sha256": "eab641d89bc2b8d03feabe4dbd9f01ebeee057b46149cdd5deb5572975d6ffc1",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "shared_bottleneck-n4-case00",
+    "scenario": "shared_bottleneck",
+    "case": 0,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 0,
+    "seed": 71020400,
+    "starts": [
+      [
+        15,
+        13
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        15,
+        18
+      ],
+      [
+        17,
+        18
+      ]
+    ],
+    "goals": [
+      [
+        17,
+        18
+      ],
+      [
+        15,
+        18
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        15,
+        13
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\shared_bottleneck-rotation-0.map",
+    "map_sha256": "eab641d89bc2b8d03feabe4dbd9f01ebeee057b46149cdd5deb5572975d6ffc1",
+    "orbital_offset_seconds": 0.0
+  },
+  {
+    "case_id": "shared_bottleneck-n2-case01",
+    "scenario": "shared_bottleneck",
+    "case": 1,
+    "num_agents": 2,
+    "density": "2-robots",
+    "rotation": 1,
+    "seed": 71020201,
+    "starts": [
+      [
+        18,
+        15
+      ],
+      [
+        18,
+        17
+      ]
+    ],
+    "goals": [
+      [
+        13,
+        17
+      ],
+      [
+        13,
+        15
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\shared_bottleneck-rotation-1.map",
+    "map_sha256": "d985edc57148c44e333ea4c3a0e4b529db750ed95fd677ed2ee2b60cceecacf5",
+    "orbital_offset_seconds": 100.0
+  },
+  {
+    "case_id": "shared_bottleneck-n4-case01",
+    "scenario": "shared_bottleneck",
+    "case": 1,
+    "num_agents": 4,
+    "density": "4-robots",
+    "rotation": 1,
+    "seed": 71020401,
+    "starts": [
+      [
+        18,
+        15
+      ],
+      [
+        18,
+        17
+      ],
+      [
+        13,
+        15
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "goals": [
+      [
+        13,
+        17
+      ],
+      [
+        13,
+        15
+      ],
+      [
+        18,
+        17
+      ],
+      [
+        18,
+        15
+      ]
+    ],
+    "map_path": "D:\\Projects\\SANGIN-dev\\output\\controlled_stress\\peer-staleness-pilot-20261021-01\\maps\\shared_bottleneck-rotation-1.map",
+    "map_sha256": "d985edc57148c44e333ea4c3a0e4b529db750ed95fd677ed2ee2b60cceecacf5",
+    "orbital_offset_seconds": 100.0
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "source_run_commit": "9ea9d9a075acccac03b4c2c13df2c915df06e246",
+  "analysis_commit": "d00ecba20439a33d6c57dc22080feafd89196ee5",
+  "analysis_sha256": "e03c4880733e73d7161f325a05e2eaa452e2f00e8286913e463484f89371ec1c",
+  "bootstrap_samples": 2000,
+  "bootstrap_seed": 42,
+  "bootstrap_unit": "paired case; never independent tasks",
+  "primary_comparison": [
+    "up-1-cpu-1__priority",
+    "up-1-cpu-1__equal"
+  ],
+  "priority_bins": "fixed reference weight [1,2): low; [2,3): middle; [3,4]: high; missing: unknown",
+  "stratification": "communicated pre-policy PANAMA reference and separate physical oracle reference at admission",
+  "note": "Post-treatment strata differ across trajectories; service contrasts are descriptive, not a causal same-task effect"
+}

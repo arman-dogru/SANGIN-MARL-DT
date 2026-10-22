@@ -1,0 +1,9 @@
+{
+  "run_commit": "7ece73f8f86c63d42831ee0baf87eb34fee70945",
+  "analysis_commit": "6a6198a724a09cf944de9995f3d7c7f65c122e7e",
+  "analysis_source_sha256": "3e493450b970e3980a077e0351054a927f36d6a22d80863dbbbe2414ec80bd4b",
+  "bootstrap_samples": 2000,
+  "bootstrap_seed": 42,
+  "episodes_sha256": "fd5f6262a2aba0535a9a460dc18a28d030c6c3f2b98cdab5234ee5d79be84393",
+  "case_bank_sha256": "293eacd60bb3443c61e197d87c9ff43967ee91dc796e39cffa1d678a3739c073"
+}

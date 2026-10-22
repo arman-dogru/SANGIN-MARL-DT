@@ -1,0 +1,17 @@
+num_agents,basis,condition,reference,metric,estimate,ci95_low,ci95_high,pairs,excluded_pairs,bootstrap_valid,estimator
+2,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.0036521713107286204,-0.004131898543721787,-0.0032459450815789837,50,0,2000,mean paired case difference
+2,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0,0.0,0.0,50,0,2000,mean paired case difference
+2,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.0036521713107286204,-0.004131898543721787,-0.0032459450815789837,50,0,2000,mean paired case difference
+2,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0,0.0,0.0,50,0,2000,mean paired case difference
+4,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.010879119182287622,-0.012330566802185345,-0.009383020339491325,50,0,2000,mean paired case difference
+4,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0005249801056786363,-0.00010217295725108475,0.0016102352304558233,50,0,2000,mean paired case difference
+4,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.01060511026627446,-0.012046234939074396,-0.0091140080291228,50,0,2000,mean paired case difference
+4,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0005226885413036442,-7.52478090768458e-05,0.0015812449918064186,50,0,2000,mean paired case difference
+6,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.008737353372155966,-0.010208761834925173,-0.00729077474356873,50,0,2000,mean paired case difference
+6,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0023617733570437836,0.0008148559593834936,0.004307952197298897,50,0,2000,mean paired case difference
+6,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.008546481759898694,-0.010088019995165572,-0.007032512593175696,50,0,2000,mean paired case difference
+6,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.002353171813345667,0.00067836638636123,0.0044901005436368225,50,0,2000,mean paired case difference
+8,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.0102198935009983,-0.011938827472092102,-0.0086055035279699,50,0,2000,mean paired case difference
+8,communicated,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0010044394098938625,-0.00042124134321073375,0.002883221604437843,50,0,2000,mean paired case difference
+8,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_latency,-0.010318499781967314,-0.012000320888716658,-0.008710056983724701,50,0,2000,mean paired case difference
+8,physical,up-1-cpu-1__priority,up-1-cpu-1__equal,high_minus_low_compliance,0.0013281412285943107,-0.00043158198504716005,0.003575883701734044,50,0,2000,mean paired case difference

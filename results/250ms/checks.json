@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-22T02:13:47.972764+00:00",
+  "episodes": 1200,
+  "paired_cases": 200,
+  "cases_per_population": 50,
+  "treatments": 6,
+  "task_records": 148536,
+  "on_time": 142020,
+  "late": 6516,
+  "undelivered": 0,
+  "pending": 0,
+  "censored": 0,
+  "successful_episodes": 1176,
+  "shared_failed_cases": [
+    "agents-4-case-035",
+    "agents-6-case-023",
+    "agents-6-case-047",
+    "agents-8-case-002"
+  ],
+  "paired_identity": true,
+  "priority_site_deadline_denominators": true,
+  "model_and_event_replay": {
+    "status": "passed",
+    "episodes": 1200,
+    "actual_model_actions_verified": 148536,
+    "cutoff_oracle_actions_verified": 148536,
+    "ordering_pairs_verified": 1222946
+  },
+  "execution_modules_unchanged": true,
+  "tests": {
+    "passed": 235,
+    "warnings": 1,
+    "warning": "Existing ITU-R low-elevation approximation"
+  },
+  "figure_source_sha256": "b332890e207c3c52ee706903f9a3131a8c0ba2c48c7be8ec388d9b07137b30f4",
+  "summary_script_sha256": "edaab50905cb2174861b47180bc2d3081e2d9c2a9915375bff987281995cbf65",
+  "git_commit": "2d187aaeeb66c9e4432d796c229b8a85000bb135",
+  "result_files_kept_local": true
+}

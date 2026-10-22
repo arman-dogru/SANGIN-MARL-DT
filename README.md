@@ -6,7 +6,7 @@ SANGIN-dev is a Python research simulator for studying how a space–air–groun
 
 The repository also implements a **clean MAPF training pipeline** for producing new PANAMA checkpoints, **priority-aware resource-allocation experiments**, **command-cutoff sensitivity**, and a **controlled peer-information staleness pilot**.
 
-This README explains the code paths and how to run them. It is based on repository commit [`ac49dc19`](https://github.com/arman-dogru/SANGIN-dev/commit/ac49dc19d5cdfb05623cd1ce783987098b348f77). It describes code behavior rather than claiming that the experiments have established a particular performance gain. The frozen checkpoints, archived orbital input, and experimental outputs are local assets and are not assumed to be present in a fresh Git clone.
+This README explains the code paths and how to run them. It is based on repository commit [`ac49dc19`](https://github.com/arman-dogru/SANGIN-dev/commit/ac49dc19d5cdfb05623cd1ce783987098b348f77). It describes code behavior rather than claiming that the experiments have established a particular performance gain. Completed result bundles are available in [`results/`](results/README.md). Frozen checkpoints, archived orbital input, and large raw replay archives remain local assets and are not assumed to be present in a fresh Git clone.
 
 ## Research model and paper references
 

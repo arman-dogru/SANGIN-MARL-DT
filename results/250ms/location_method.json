@@ -1,0 +1,10 @@
+{
+  "analysis_commit": "a76131b5684c0f67cc6c4117d3a2abcd552cff8e",
+  "source_sha256": "bdc5b1525bbc29f6574752e8b6229bd336ff13ebee4aa09c714382b823f2e76d",
+  "input_tasks_sha256": "a700a326a80384e5e12beaea6c8c489c230d786142ca7e7203eb86364991a8a4",
+  "input_episodes_sha256": "18fb621176603d0ac9af7cba09bf0e5630a32bc151104ff2a7ffa6ccfbbba0bc",
+  "bootstrap_samples": 2000,
+  "bootstrap_unit": "paired case",
+  "bootstrap_seed": 42,
+  "note": "Conditional site cohorts change with routing; site rates are not causal same-task service effects"
+}

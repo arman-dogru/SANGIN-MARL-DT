@@ -1,0 +1,2086 @@
+{
+  "status": "passed",
+  "git_commit": "13a9f62d559bd5b8d21eef63ec1ba0675eb3bb9b",
+  "episodes": 96,
+  "model_actions_verified": 14362,
+  "cutoff_oracle_actions_verified": 14362,
+  "ordering_pairs_verified": 118772,
+  "unchanged_100ms_episodes": 24,
+  "independent_deadline_and_location_counts": true,
+  "no_post_resolution_overlaps_or_swaps": true,
+  "audits": [
+    {
+      "deadline_ms": 100,
+      "treatment": "fresh",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "fresh",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "fresh",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 104,
+      "cutoff_oracle_actions_verified": 104,
+      "ordering_pairs_verified": 840,
+      "deadline_counts": {
+        "on_time": 104
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 104
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "fresh",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 268,
+      "cutoff_oracle_actions_verified": 268,
+      "ordering_pairs_verified": 2856,
+      "deadline_counts": {
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 268
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 56,
+      "cutoff_oracle_actions_verified": 56,
+      "ordering_pairs_verified": 56,
+      "deadline_counts": {
+        "late": 4,
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 4
+        },
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 187,
+      "cutoff_oracle_actions_verified": 187,
+      "ordering_pairs_verified": 720,
+      "deadline_counts": {
+        "on_time": 135,
+        "late": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 135
+        },
+        "drone": {
+          "late": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 163,
+      "cutoff_oracle_actions_verified": 163,
+      "ordering_pairs_verified": 1230,
+      "deadline_counts": {
+        "on_time": 124,
+        "late": 39
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 124
+        },
+        "drone": {
+          "late": 39
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 374,
+      "cutoff_oracle_actions_verified": 374,
+      "ordering_pairs_verified": 4704,
+      "deadline_counts": {
+        "late": 108,
+        "on_time": 266
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 58
+        },
+        "cloud": {
+          "on_time": 266,
+          "late": 50
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 56,
+      "cutoff_oracle_actions_verified": 56,
+      "ordering_pairs_verified": 56,
+      "deadline_counts": {
+        "late": 4,
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 4
+        },
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 120,
+      "cutoff_oracle_actions_verified": 120,
+      "ordering_pairs_verified": 504,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 8
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        },
+        "drone": {
+          "late": 8
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 136,
+      "cutoff_oracle_actions_verified": 136,
+      "ordering_pairs_verified": 1050,
+      "deadline_counts": {
+        "on_time": 115,
+        "late": 21
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 115
+        },
+        "drone": {
+          "late": 21
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 401,
+      "cutoff_oracle_actions_verified": 401,
+      "ordering_pairs_verified": 6104,
+      "deadline_counts": {
+        "late": 135,
+        "on_time": 266
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 85
+        },
+        "cloud": {
+          "on_time": 266,
+          "late": 50
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 56,
+      "cutoff_oracle_actions_verified": 56,
+      "ordering_pairs_verified": 56,
+      "deadline_counts": {
+        "late": 4,
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 4
+        },
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 187,
+      "cutoff_oracle_actions_verified": 187,
+      "ordering_pairs_verified": 720,
+      "deadline_counts": {
+        "on_time": 135,
+        "late": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 135
+        },
+        "drone": {
+          "late": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 163,
+      "cutoff_oracle_actions_verified": 163,
+      "ordering_pairs_verified": 1230,
+      "deadline_counts": {
+        "on_time": 124,
+        "late": 39
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 124
+        },
+        "drone": {
+          "late": 39
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 374,
+      "cutoff_oracle_actions_verified": 374,
+      "ordering_pairs_verified": 4704,
+      "deadline_counts": {
+        "late": 108,
+        "on_time": 266
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 58
+        },
+        "cloud": {
+          "on_time": 266,
+          "late": 50
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 56,
+      "cutoff_oracle_actions_verified": 56,
+      "ordering_pairs_verified": 56,
+      "deadline_counts": {
+        "late": 4,
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 4
+        },
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 120,
+      "cutoff_oracle_actions_verified": 120,
+      "ordering_pairs_verified": 504,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 8
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        },
+        "drone": {
+          "late": 8
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 142,
+      "cutoff_oracle_actions_verified": 142,
+      "ordering_pairs_verified": 1350,
+      "deadline_counts": {
+        "on_time": 107,
+        "late": 35
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 107
+        },
+        "drone": {
+          "late": 35
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 401,
+      "cutoff_oracle_actions_verified": 401,
+      "ordering_pairs_verified": 6104,
+      "deadline_counts": {
+        "late": 135,
+        "on_time": 266
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 85
+        },
+        "cloud": {
+          "on_time": 266,
+          "late": 50
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 56,
+      "cutoff_oracle_actions_verified": 56,
+      "ordering_pairs_verified": 56,
+      "deadline_counts": {
+        "late": 4,
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 4
+        },
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 187,
+      "cutoff_oracle_actions_verified": 187,
+      "ordering_pairs_verified": 720,
+      "deadline_counts": {
+        "on_time": 135,
+        "late": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 135
+        },
+        "drone": {
+          "late": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 163,
+      "cutoff_oracle_actions_verified": 163,
+      "ordering_pairs_verified": 1230,
+      "deadline_counts": {
+        "on_time": 124,
+        "late": 39
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 124
+        },
+        "drone": {
+          "late": 39
+        }
+      }
+    },
+    {
+      "deadline_ms": 100,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 374,
+      "cutoff_oracle_actions_verified": 374,
+      "ordering_pairs_verified": 4704,
+      "deadline_counts": {
+        "late": 108,
+        "on_time": 266
+      },
+      "old_100ms_events_and_action_oracles_identical": true,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 58
+        },
+        "cloud": {
+          "on_time": 266,
+          "late": 50
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "fresh",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "fresh",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "fresh",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 104,
+      "cutoff_oracle_actions_verified": 104,
+      "ordering_pairs_verified": 840,
+      "deadline_counts": {
+        "on_time": 104
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 104
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "fresh",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 268,
+      "cutoff_oracle_actions_verified": 268,
+      "ordering_pairs_verified": 2856,
+      "deadline_counts": {
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 268
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 110
+        },
+        "drone": {
+          "late": 4,
+          "on_time": 2
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 14,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 34
+        },
+        "cloud": {
+          "on_time": 234
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 110
+        },
+        "drone": {
+          "late": 4,
+          "on_time": 2
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 14,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 34
+        },
+        "cloud": {
+          "on_time": 234
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 250,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "fresh",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "fresh",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "fresh",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 104,
+      "cutoff_oracle_actions_verified": 104,
+      "ordering_pairs_verified": 840,
+      "deadline_counts": {
+        "on_time": 104
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 104
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "fresh",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 268,
+      "cutoff_oracle_actions_verified": 268,
+      "ordering_pairs_verified": 2856,
+      "deadline_counts": {
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 268
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 110
+        },
+        "drone": {
+          "late": 4,
+          "on_time": 2
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 14,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 34
+        },
+        "cloud": {
+          "on_time": 234
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 110
+        },
+        "drone": {
+          "late": 4,
+          "on_time": 2
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 14,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 287,
+      "cutoff_oracle_actions_verified": 287,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 19,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 19,
+          "on_time": 35
+        },
+        "cloud": {
+          "on_time": 233
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 116,
+      "cutoff_oracle_actions_verified": 116,
+      "ordering_pairs_verified": 480,
+      "deadline_counts": {
+        "on_time": 112,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 93
+        },
+        "drone": {
+          "on_time": 19,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 300,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 288,
+      "cutoff_oracle_actions_verified": 288,
+      "ordering_pairs_verified": 3024,
+      "deadline_counts": {
+        "late": 20,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 20,
+          "on_time": 32
+        },
+        "cloud": {
+          "on_time": 236
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "fresh",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 52
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "fresh",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 112
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "fresh",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 104,
+      "cutoff_oracle_actions_verified": 104,
+      "ordering_pairs_verified": 840,
+      "deadline_counts": {
+        "on_time": 104
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 104
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "fresh",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 268,
+      "cutoff_oracle_actions_verified": 268,
+      "ordering_pairs_verified": 2856,
+      "deadline_counts": {
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 268
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 22
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 284,
+      "cutoff_oracle_actions_verified": 284,
+      "ordering_pairs_verified": 2968,
+      "deadline_counts": {
+        "late": 16,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 16,
+          "on_time": 35
+        },
+        "cloud": {
+          "on_time": 233
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 106
+        },
+        "drone": {
+          "on_time": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 108,
+      "cutoff_oracle_actions_verified": 108,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 4
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 89
+        },
+        "drone": {
+          "on_time": 15,
+          "late": 4
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__static",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 284,
+      "cutoff_oracle_actions_verified": 284,
+      "ordering_pairs_verified": 2968,
+      "deadline_counts": {
+        "late": 16,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 16,
+          "on_time": 37
+        },
+        "cloud": {
+          "on_time": 231
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 22
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__aoi",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 284,
+      "cutoff_oracle_actions_verified": 284,
+      "ordering_pairs_verified": 2968,
+      "deadline_counts": {
+        "late": 16,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 16,
+          "on_time": 35
+        },
+        "cloud": {
+          "on_time": 233
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 106
+        },
+        "drone": {
+          "on_time": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 109,
+      "cutoff_oracle_actions_verified": 109,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 5
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 89
+        },
+        "drone": {
+          "on_time": 15,
+          "late": 5
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__priority",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 284,
+      "cutoff_oracle_actions_verified": 284,
+      "ordering_pairs_verified": 2968,
+      "deadline_counts": {
+        "late": 16,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 16,
+          "on_time": 37
+        },
+        "cloud": {
+          "on_time": 231
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 2,
+      "status": "passed",
+      "model_actions_verified": 52,
+      "cutoff_oracle_actions_verified": 52,
+      "ordering_pairs_verified": 52,
+      "deadline_counts": {
+        "on_time": 52
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "on_time": 4
+        },
+        "cloud": {
+          "on_time": 48
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 4,
+      "status": "passed",
+      "model_actions_verified": 112,
+      "cutoff_oracle_actions_verified": 112,
+      "ordering_pairs_verified": 468,
+      "deadline_counts": {
+        "on_time": 112
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 90
+        },
+        "drone": {
+          "on_time": 22
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 6,
+      "status": "passed",
+      "model_actions_verified": 110,
+      "cutoff_oracle_actions_verified": 110,
+      "ordering_pairs_verified": 870,
+      "deadline_counts": {
+        "on_time": 104,
+        "late": 6
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "cloud": {
+          "on_time": 88
+        },
+        "drone": {
+          "on_time": 16,
+          "late": 6
+        }
+      }
+    },
+    {
+      "deadline_ms": 500,
+      "treatment": "up-1-cpu-1__equal_legacy",
+      "num_agents": 8,
+      "status": "passed",
+      "model_actions_verified": 284,
+      "cutoff_oracle_actions_verified": 284,
+      "ordering_pairs_verified": 2968,
+      "deadline_counts": {
+        "late": 16,
+        "on_time": 268
+      },
+      "old_100ms_events_and_action_oracles_identical": null,
+      "location_deadline_counts": {
+        "drone": {
+          "late": 16,
+          "on_time": 35
+        },
+        "cloud": {
+          "on_time": 233
+        }
+      }
+    }
+  ]
+}

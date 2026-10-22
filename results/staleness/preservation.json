@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "prior_study_files": 1308,
+  "paths_sizes_and_mtimes_unchanged": true,
+  "selected_hashes_unchanged": {
+    "manifest.json": "19b8ebcc6c3ac5ea4d91477f342729f46cf1e7c007d4943167b592ade8765041",
+    "status.json": "14d7b60f54f9ac5c22374bc03044dd13de7336753765c1f487bd08f0373eedaf",
+    "priority_analysis\\validation.json": "ceab721f23b7edaff4e70f073d63baef7609aa85f87c35bf2116bdd86efb5d4e"
+  },
+  "reference_snapshot_sha256": "3c0ff2f31cd8fea8dc1123bde017512ccf04fe7ed1f934ecc8fc5b7f0f692dd4",
+  "source_commit": "6a6198a724a09cf944de9995f3d7c7f65c122e7e"
+}

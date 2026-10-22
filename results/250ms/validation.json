@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "episodes": 1200,
+  "actual_model_actions_verified": 148536,
+  "cutoff_oracle_actions_verified": 148536,
+  "ordering_pairs_verified": 1222946
+}

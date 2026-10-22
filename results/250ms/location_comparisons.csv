@@ -1,0 +1,505 @@
+condition,reference,num_agents,location,primary_comparison,metric,estimate,ci95_low,ci95_high,pairs,excluded_pairs,bootstrap_valid,estimator
+fresh,up-1-cpu-1__equal,2,drone,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,drone,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,drone,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,drone,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,drone,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,drone,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,drone,False,pool_utilization,-0.014978114575722432,-0.016879009693702263,-0.013321848773340814,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,mean_latency,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,latency_p95,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,mean_cpu_elapsed,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,mean_latency,-0.02436909503786284,-0.024642905094468065,-0.023958379952954984,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,latency_p95,-0.0011808058691099236,-0.0015915209540177222,-0.0008214301698155988,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,mean_cpu_elapsed,-0.02436909503786283,-0.02464290509446806,-0.02395837995295498,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,mean_latency,3.212683538779751e-05,1.9104436753552333e-05,4.511090151565808e-05,48,2,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,latency_p95,1.5685518998641752e-06,4.1887258503908093e-07,2.7484937197437633e-06,48,2,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,mean_cpu_elapsed,3.212683538780445e-05,1.9104436753556378e-05,4.511090151566735e-05,48,2,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,mean_latency,-0.02436909503786284,-0.024642905094468065,-0.023958379952954984,48,2,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,latency_p95,-0.0011808058691099236,-0.0015915209540177222,-0.0008214301698155988,48,2,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,mean_cpu_elapsed,-0.02436909503786283,-0.02464290509446806,-0.02395837995295498,48,2,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,drone,True,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,mean_latency,-1.1383634492285905e-05,-1.1511540497853594e-05,-1.1191775483920099e-05,48,2,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,latency_p95,-5.515946490738712e-07,-7.434536571508896e-07,-3.8371801670082177e-07,48,2,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,mean_cpu_elapsed,-1.1383634492275497e-05,-1.1511540497843748e-05,-1.1191775483907971e-05,48,2,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,drone,False,pool_utilization,-7.0082828429463e-18,-1.7034984534092246e-17,-3.8163916471489756e-19,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,cloud,False,mean_latency,-0.05522388251586748,-0.05541823862083873,-0.05504746612666588,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,cloud,False,latency_p95,-0.06130373365827868,-0.061522411612745305,-0.06112535954405413,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,cloud,False,mean_cpu_elapsed,-0.010000000000000208,-0.010000000000000297,-0.010000000000000115,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,cloud,False,pool_utilization,-0.018008128243676026,-0.018281294384919617,-0.017666204522540953,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,cloud,True,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,2,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,2,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,2,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,2,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,2,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,2,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,2,unassigned,True,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,2,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,drone,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,drone,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,drone,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,drone,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,drone,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,drone,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,drone,False,pool_utilization,-0.07176036174823167,-0.07959026262679145,-0.06397329701497396,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,on_time_rate,-0.1390120580799724,-0.22323413224938687,-0.07454877894409143,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,deadline_compliance,-0.1390120580799724,-0.22323413224938687,-0.07454877894409143,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,mean_latency,0.06593203435246646,0.04627439248839308,0.08629396659609237,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,latency_p95,-0.003488351127533802,-0.007262476384571323,-0.0005776504708628458,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,mean_cpu_elapsed,0.06796892157332626,0.04806323933614728,0.08847498333750224,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,48,2,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,drone,False,pool_utilization,-0.031992405447543074,-0.04119323415474893,-0.023001445159490944,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,mean_latency,6.523366995722424e-05,3.155463934094337e-05,0.00011029871158541599,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,latency_p95,0.000124101284469062,2.225836903540407e-05,0.00031218113744886585,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,mean_cpu_elapsed,6.148037480340957e-05,2.898304319868241e-05,0.00010604236626199247,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,drone,False,pool_utilization,2.220446049250313e-18,-1.942890293094024e-18,7.077671781985373e-18,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,on_time_rate,-0.1212374476855983,-0.19339986309641957,-0.0655532843559692,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,deadline_compliance,-0.1212374476855983,-0.19339986309641957,-0.0655532843559692,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,mean_latency,0.049768805097465396,0.03070723552537106,0.06982346937900215,49,1,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,latency_p95,-0.004188676621824732,-0.007176933599387955,-0.0015156530363203934,49,1,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,mean_cpu_elapsed,0.05164186799586113,0.032473795130863806,0.07189684394650758,49,1,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,49,1,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,drone,True,pool_utilization,-0.028667883708412636,-0.037078932933444754,-0.019999139180037075,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,mean_latency,1.6793155283814643e-05,-2.9567308462070537e-06,5.598032005461746e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,latency_p95,8.763637670172686e-05,-4.182695859668822e-06,0.00027060145156581445,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,mean_cpu_elapsed,1.6963834961509218e-05,-2.7929320243589295e-06,5.6150310839095934e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,drone,False,pool_utilization,-2.4771851236948804e-17,-4.191265390307564e-17,-1.0267828254306731e-17,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,cloud,False,mean_latency,-0.058941623662609556,-0.059405067028567335,-0.058447557498320486,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,cloud,False,latency_p95,-0.07165610378103777,-0.07203276758051702,-0.07119996450450675,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,cloud,False,mean_cpu_elapsed,-0.010000000000000168,-0.010000000000000285,-0.01,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,cloud,False,pool_utilization,-0.0233851432333818,-0.02418357214683478,-0.022474991753269887,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,mean_latency,0.0024520372808060713,0.0018045286606331054,0.0030767652240896387,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,latency_p95,0.006455700512937772,0.0046476274530129254,0.008054635864808977,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,mean_cpu_elapsed,-2.0018708912772352e-17,-3.032643580702654e-17,-8.948571050826373e-18,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,cloud,False,pool_utilization,0.003196803851013276,0.0022917868656097615,0.004107340986029417,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,mean_latency,0.0022643020177044904,0.0016414274446239746,0.002861523873228945,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,latency_p95,0.006470276511822161,0.004683683444746838,0.008056234099411256,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,mean_cpu_elapsed,-2.0712598303163076e-17,-3.122849201453448e-17,-9.227861530458631e-18,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,cloud,True,pool_utilization,0.00286435167710022,0.001988323021882594,0.0036990087475546433,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,4,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,4,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,4,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,4,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,4,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,4,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,4,unassigned,True,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,4,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,drone,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,drone,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,drone,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,drone,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,drone,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,drone,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,drone,False,pool_utilization,-0.08937279760427681,-0.09550259457726985,-0.08308604782647165,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,on_time_rate,-0.014527458968757512,-0.030053975083075918,-0.0024698557609027635,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,deadline_compliance,-0.014527458968757512,-0.030053975083075918,-0.0024698557609027635,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,mean_latency,-0.0021187539553135094,-0.009919436066357234,0.007609659748425172,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,latency_p95,-0.015309799410959099,-0.019996204630774908,-0.010741236483272399,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,mean_cpu_elapsed,-0.001601340403067118,-0.00930131970027743,0.008180912437565559,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,drone,False,pool_utilization,-0.00710057827522443,-0.011708458119017856,-0.0031704723161725856,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,on_time_rate,-0.00015948220503203547,-0.0005503494436859879,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,deadline_compliance,-0.00015948220503203547,-0.0005503494436859879,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,mean_latency,0.00018258882789420227,7.673306076140628e-05,0.00036998607439898864,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,latency_p95,0.00019986929017272502,0.00012368762100550148,0.00029188349614421517,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,mean_cpu_elapsed,0.00016175791223132146,6.007147963003754e-05,0.0003498754777175796,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,drone,False,pool_utilization,-7.692307692305562e-05,-0.00023076923076921927,2.970193535567487e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,on_time_rate,-0.027329153849149135,-0.047775892959142426,-0.010941577828150372,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,deadline_compliance,-0.027329153849149135,-0.047775892959142426,-0.010941577828150372,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,mean_latency,-0.00011467346273975554,-0.008640826088747292,0.01067903265951787,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,latency_p95,-0.01569688671633044,-0.020380371576687983,-0.01136677202823852,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,mean_cpu_elapsed,0.0004343635334745025,-0.00809545315957406,0.011228676161523598,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,drone,True,pool_utilization,-0.00933570319069551,-0.01430408071092625,-0.004926584171045671,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,on_time_rate,-0.00015948220503203547,-0.0005503494436859879,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,deadline_compliance,-0.00015948220503203547,-0.0005503494436859879,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,mean_latency,8.591727408173544e-05,-1.9300514791949635e-06,0.0002613455776332176,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,latency_p95,-1.8040725673329482e-06,-2.9116033381414996e-06,-1.7274472326123222e-07,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,mean_cpu_elapsed,8.731330282336469e-05,-1.7048795576818516e-06,0.000265084811444781,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,drone,False,pool_utilization,-7.692307692314631e-05,-0.00023076923076932368,-4.884981308350689e-17,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,cloud,False,mean_latency,-0.06587810847712648,-0.06661054764706094,-0.06507415586722742,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,cloud,False,latency_p95,-0.09324498192962274,-0.09406879490052629,-0.09218941306182561,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,cloud,False,mean_cpu_elapsed,-0.010000000000000113,-0.010000000000000257,-0.009999999999999933,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,cloud,False,pool_utilization,-0.0310321622553593,-0.0321743568240712,-0.029730110606547667,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,mean_latency,0.00025671695623523367,1.216993927532396e-05,0.0005404152372159765,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,latency_p95,0.00020952409057793024,-3.487473885593763e-06,0.0008206349438583066,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,mean_cpu_elapsed,2.463307335887066e-18,-1.4502288259166106e-17,1.9846103926912656e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,cloud,False,pool_utilization,0.00015617802599279495,-0.0004166513791507288,0.0007054395864608591,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,mean_latency,2.1548211144842287e-06,0.0,6.464463343452687e-06,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,latency_p95,-1.4464887499454626e-08,-4.3394662498363876e-08,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,mean_cpu_elapsed,-1.0408340855860842e-19,-3.1225022567582527e-19,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,cloud,False,pool_utilization,7.692307692307512e-06,0.0,2.3076923076922537e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,mean_latency,0.00046778518526543106,0.0002126165115701531,0.0007700859943272932,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,latency_p95,1.693894723152789e-05,-2.245567648868206e-06,4.5795414770032194e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,mean_cpu_elapsed,4.614364446098307e-18,-1.0478597156637903e-17,2.033095913844818e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,cloud,True,pool_utilization,0.0006043918442247845,0.00011841564218500878,0.0011754993871673928,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,mean_latency,2.1548211144842287e-06,0.0,6.464463343452687e-06,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,latency_p95,-1.4464887499454626e-08,-4.3394662498363876e-08,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,mean_cpu_elapsed,-1.0408340855860842e-19,-3.1225022567582527e-19,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,cloud,False,pool_utilization,7.692307692307512e-06,0.0,2.3076923076922537e-05,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,6,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,6,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,6,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,6,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,6,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,6,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,6,unassigned,True,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,6,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,drone,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,drone,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,drone,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,drone,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,drone,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,drone,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,drone,False,pool_utilization,-0.10433729559276884,-0.11037585248412471,-0.09796824199887484,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,drone,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,on_time_rate,-0.002071659898216227,-0.009315388181728262,0.004135497686142072,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,deadline_compliance,-0.002071659898216227,-0.009315388181728262,0.004135497686142072,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,mean_latency,-0.017440108146828778,-0.022165694181049432,-0.012543472799509047,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,latency_p95,-0.021897109243475363,-0.026398414057465753,-0.01741300569415072,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,mean_cpu_elapsed,-0.01696108992983236,-0.021586378942418615,-0.012146995868210065,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,drone,False,pool_utilization,-0.0007775521815448281,-0.002997337762045821,0.0013218570829263707,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,mean_latency,0.00017625640208560221,0.00011301080844933474,0.00024010071234587267,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,latency_p95,0.00026199089206005113,0.00016240961273727555,0.00036444782254568483,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,mean_cpu_elapsed,0.00013694726943012215,8.763854415083842e-05,0.00018690657333752617,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,drone,False,pool_utilization,1.3877787807814457e-17,2.220446049250313e-18,2.6367796834847467e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,on_time_rate,-0.01714406365950716,-0.030615334199145708,-0.005951131849395258,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,deadline_compliance,-0.01714406365950716,-0.030615334199145708,-0.005951131849395258,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,mean_latency,-0.010580235111539653,-0.01756935999728354,-0.0023099276808622735,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,latency_p95,-0.021913052060372605,-0.02620335407020344,-0.01756073522632095,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,mean_cpu_elapsed,-0.01013096674185069,-0.017178685959210026,-0.0019302988220643422,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,drone,True,pool_utilization,-0.005733190315497658,-0.00965682198242166,-0.0023940888238397928,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,mean_latency,2.1310210613486592e-05,4.221016849912677e-06,4.3247257523741055e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,latency_p95,4.77291625128462e-05,-1.518737277588944e-06,0.00011946826344545346,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,mean_cpu_elapsed,1.8020502696606266e-05,2.313454234599749e-06,3.8863278145070626e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,drone,False,pool_utilization,-4.5033421436357914e-17,-6.883556225023568e-17,-2.2759572004815708e-17,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,cloud,False,mean_latency,-0.07516362048473389,-0.07612129349208946,-0.07413867433491152,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,cloud,False,latency_p95,-0.11370037053176166,-0.11483176863293178,-0.11235279934414398,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,cloud,False,mean_cpu_elapsed,-0.010000000000000158,-0.010000000000000248,-0.010000000000000016,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,cloud,False,pool_utilization,-0.04233647960201349,-0.04421325074503994,-0.04039678378343022,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,mean_latency,0.00010065571376759008,5.392296162121363e-05,0.00015181347097353612,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,latency_p95,1.4297966496937264e-05,-3.4629294378871936e-05,7.743361346564894e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,mean_cpu_elapsed,5.551115123125783e-18,-1.6306400674181986e-18,1.2975731600306518e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,cloud,False,pool_utilization,0.00017090868329512328,-5.4833239395816025e-05,0.0004158174426493282,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,mean_latency,0.00018730926131235254,0.00011361992558630805,0.00027795242301426764,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,latency_p95,-0.00019145174661570842,-0.0006112417888277246,5.1096262078667924e-05,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,mean_cpu_elapsed,1.0685896612017132e-17,9.020562075079397e-19,2.0816681711721685e-17,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,cloud,True,pool_utilization,0.000630229110447046,0.0003016233400717688,0.0010018569699961008,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,on_time_rate,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,deadline_compliance,0.0,0.0,0.0,50,0,2000,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,mean_latency,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,latency_p95,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,mean_cpu_elapsed,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,mean_cpu_zero_rate_wait,0.0,0.0,0.0,50,0,2000,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,cloud,False,pool_utilization,0.0,0.0,0.0,50,0,2000,mean paired case difference
+fresh,up-1-cpu-1__equal,8,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+fresh,up-1-cpu-1__equal,8,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+fresh,up-1-cpu-1__equal,8,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal,up-1-cpu-1__equal,8,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__static,up-1-cpu-1__equal,8,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__aoi,up-1-cpu-1__equal,8,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__priority,up-1-cpu-1__equal,8,unassigned,True,pool_utilization,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,on_time_rate,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,deadline_compliance,,,,50,0,0,"difference of pooled task/pair rates, case-cluster bootstrap"
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,mean_latency,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,latency_p95,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_elapsed,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,mean_cpu_zero_rate_wait,,,,0,50,0,mean paired case difference
+up-1-cpu-1__equal_legacy,up-1-cpu-1__equal,8,unassigned,False,pool_utilization,,,,0,50,0,mean paired case difference

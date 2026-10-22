@@ -250,7 +250,7 @@ def subset(bank, cases_per_family):
                   key=lambda c: (c['evaluation_index'], COUNTS.index(c['num_agents']), FAMILIES.index(c['family'])))
 
 
-def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: False):
+def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: False, *, diagnostics=False):
     identity = weights_hash(model)
     existing = read_rows(path)
     if any(r['tag'] != tag or r['model_weights_sha256'] != identity for r in existing):
@@ -267,14 +267,23 @@ def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: Fals
             case['map_path'], case['num_agents'], 250, case['seed'], scenario_for(case))
         obs, _ = env.reset()
         totals = Counter()
+        if diagnostics:
+            from .phase1_cycles import CycleTracker
+            tracker=CycleTracker()
         while time.monotonic() < deadline and not stop():
             active = {a.id for a in env.agents if not a.ever_reached_goal}
             proposed = select_actions({0: model}, {a: 0 for a in active},
                 {a: obs[a] for a in active}, 0.0, np.random.default_rng(0), device)
             actions = env.prepare_actions(proposed).executed
+            if diagnostics:
+                tracker.observe(env,obs)
             totals.update(epoch_metrics(env, actions))
             before = {a.id: a.position for a in env.agents}
+            if diagnostics:
+                physical_before={a.id:(a.position,a.ever_reached_goal) for a in env.agents}
             result = env.step(proposed)
+            if diagnostics:
+                tracker.moved(physical_before,env,active)
             totals['blocked_move_steps'] += sum(actions[a.id] != 4 and a.position == before[a.id]
                 for a in env.agents if a.id in active)
             obs = result.observations
@@ -283,6 +292,10 @@ def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: Fals
                 row = dict(case, tag=tag, protocol=PROTOCOL, metrics=METRICS,
                     model_weights_sha256=identity, steps=env.step_count, success=result.terminated,
                     final_positions=[list(a.position) for a in env.agents], **totals)
+                if diagnostics:
+                    row.update(tracker.record())
+                    row.update(ever_completed_robots=sum(a.ever_reached_goal for a in env.agents),
+                        all_visited_without_completion=all(a.ever_reached_goal for a in env.agents) and not result.terminated)
                 append_jsonl(path, row)
                 existing.append(row)
                 break
@@ -315,7 +328,10 @@ def payload(session, manifest, validation=(), test=(), compatibility=None, ablat
         phase1_qualified=qualified, smoke=ablation, ablation=ablation, compatibility=compatibility,
         model_weights_sha256=weights_hash(session.policy), initialization='new deterministic weights',
         execution_contract='fresh remote-DT physical resolver, priorities and completed local control',
-        observation_contract='unchanged remote_observation with instantaneous fresh state')
+        observation_contract='unchanged remote_observation with instantaneous fresh state',
+        training_run_protocol=spec['full'].get('extended_protocol',PROTOCOL),
+        source_commit=manifest.get('source_commit'),budget_plan_sha256=manifest.get('budget_plan_sha256'),
+        configured_budget_seconds=session.config.training.budget_seconds)
 
 
 def verify_payload(data):
@@ -411,6 +427,10 @@ def run_one(root, manifest, device_name='cuda', resume=False):
             population_episodes=dict(session.population_episodes), population_steps=dict(session.population_steps),
             qualification=state['qualification'], held_out=state['held_out'], hardware=hardware(device),
             ablation=ablation, variant=manifest['variant'], seed=manifest['seed'])
+        if settings.get('extended_protocol'):
+            row.update(training_run_protocol=settings['extended_protocol'],
+                termination_reason=state.get('termination_reason'),
+                held_out_skipped_reason=state.get('held_out_skipped_reason'))
         write_json(root/'status.json', row)
         return row
     def save():
@@ -440,17 +460,30 @@ def run_one(root, manifest, device_name='cuda', resume=False):
                 tag = f'validation-{session.generated_steps}'
                 records = evaluate(config, session.policy, subset(dataset['banks']['validation'],
                     settings['validation_cases_per_family']), device, root/f'{tag}.jsonl', tag,
-                    train_end, lambda: requested['stop'])
+                    train_end, lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')))
                 summaries = [dict(num_agents=n, **summarize([r for r in records if r['num_agents'] == n],
                     5*settings['validation_cases_per_family'])) for n in COUNTS]
-                append_jsonl(root/'validation.jsonl', dict(generated_joint_steps=session.generated_steps,
-                    model_weights_sha256=weights_hash(session.policy), populations=summaries))
+                validation_record=dict(generated_joint_steps=session.generated_steps,
+                    model_weights_sha256=weights_hash(session.policy), populations=summaries)
+                append_jsonl(root/'validation.jsonl', validation_record)
                 state['last_validation_steps'] = session.generated_steps
                 # Validation reports learning progress; it neither gates exposure
                 # nor chooses weights using the untouched test set.
+                if settings.get('extended_protocol'):
+                    from .phase1_stopping import training_stop
+                    history=state.setdefault('validation_history',[])
+                    history.append(validation_record)
+                    decision=training_stop(history,session.population_episodes,
+                        patience=settings['plateau_patience'],min_delta=settings['plateau_min_delta'],
+                        min_steps=settings['plateau_min_steps'])
+                    if decision:
+                        state['termination_reason']=decision
+                        save()
+                        break
                 save()
         if requested['stop']:
             result = status('interrupted_partial'); save(); return result
+        state.setdefault('termination_reason','training_budget_or_step_cap')
         state['mode'] = 'final'; save(); status('final_evaluation')
         if not ablation and state['compatibility'] is None and time.monotonic() < end-shutdown:
             from .phase1_execution import verify_execution_compatibility
@@ -458,7 +491,8 @@ def run_one(root, manifest, device_name='cuda', resume=False):
                 dataset['banks']['validation'], device, root)
             save()
         bank = subset(dataset['banks']['validation'], settings['validation_cases_per_family']) if ablation else dataset['banks']['validation']
-        splits = [('validation', bank)] if ablation else [('validation', bank), ('test', dataset['banks']['test'])]
+        gate_test=bool(settings.get('gate_test_on_validation')) and not ablation
+        splits = [('validation', bank)] if ablation or gate_test else [('validation', bank), ('test', dataset['banks']['test'])]
         ordered = {split: sorted(bank, key=lambda c:(c['evaluation_index'],
             COUNTS.index(c['num_agents']), FAMILIES.index(c['family']))) for split,bank in splits}
         for batch in range(0, max(map(len,ordered.values())), 20):
@@ -466,12 +500,26 @@ def run_one(root, manifest, device_name='cuda', resume=False):
                 prefix = bank[:batch+20]
                 records = evaluate(config, session.policy, prefix,
                     device, root/f'final_{split}_cases.jsonl', f'final-{split}', end-shutdown,
-                    lambda: requested['stop'])
+                    lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')))
                 expected = settings['validation_cases_per_family']*5 if ablation else 200
                 result = [dict(num_agents=n, **summarize([r for r in records if r['num_agents'] == n], expected)) for n in COUNTS]
                 state['qualification' if split == 'validation' else 'held_out'] = result
             if time.monotonic() >= end-shutdown or requested['stop']:
                 break
+        if gate_test:
+            from .phase1_stopping import may_open_heldout
+            if may_open_heldout(state['qualification'],session.population_episodes,state['compatibility']):
+                test_bank=sorted(dataset['banks']['test'],key=lambda c:(c['evaluation_index'],
+                    COUNTS.index(c['num_agents']),FAMILIES.index(c['family'])))
+                for batch in range(0,len(test_bank),20):
+                    records=evaluate(config,session.policy,test_bank[:batch+20],device,
+                        root/'final_test_cases.jsonl','final-test',end-shutdown,
+                        lambda:requested['stop'],diagnostics=True)
+                    state['held_out']=[dict(num_agents=n,**summarize([r for r in records if r['num_agents']==n],200)) for n in COUNTS]
+                    if time.monotonic()>=end-shutdown or requested['stop']:
+                        break
+            else:
+                state['held_out_skipped_reason']='coverage, complete strict final validation or execution compatibility did not pass; test remains untouched'
         save()
         if requested['stop']:
             result = status('interrupted_partial'); save(); return result
@@ -479,6 +527,8 @@ def run_one(root, manifest, device_name='cuda', resume=False):
         atomic_save(final, root/'final_model.pt')
         required = state['qualification'] if ablation else state['qualification']+state['held_out']
         complete = len(required) == (4 if ablation else 8) and all(r['complete'] for r in required)
+        if gate_test and state.get('held_out_skipped_reason') and len(state['qualification'])==4 and all(r['complete'] for r in state['qualification']):
+            complete=True
         if complete:
             state['mode'] = 'complete'
             reason = 'ablation_complete' if ablation else ('qualified' if final['phase1_qualified'] else 'not_qualified')

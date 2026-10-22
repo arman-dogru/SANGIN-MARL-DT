@@ -140,8 +140,8 @@ and does not launch full training automatically.
 .venv\Scripts\python.exe scripts/diagnose_phase1.py --help
 .venv\Scripts\python.exe -m pytest -q --basetemp=tmp/pytest-revised-unique
 .venv\Scripts\python.exe scripts/run_phase1_revised.py --study-id revised-01 --prepare --launch --mode ablations
-# Inspect ablation_comparison.json before requesting the full worker.
-.venv\Scripts\python.exe scripts/run_phase1_revised.py --study-id revised-01 --launch --mode full
+# Current extended workflow: inspect primary selection, then record its budget.
+.venv\Scripts\python.exe scripts/run_phase1_extended.py --analyse --estimate
 ```
 
 Every study freezes source hashes, commit, protocol/configuration, map/data
@@ -154,9 +154,12 @@ checkpoint. An unclosed runtime lease conservatively charges elapsed wall
 time through the next attempt, including downtime; a graceful stop closes the
 lease. Lost work cannot refund the training budget. Interrupting one ablation
 stops the batch instead of launching the next alternative.
-Duplicate launcher/child processes are rejected. A full worker starts fresh
+Duplicate launcher/child processes are rejected. The original full worker starts fresh
 weights under the selected protocol and has the same 10,800-second cap with
 1,800 seconds plus 60 seconds reserved for final evaluation/shutdown.
+The current request supersedes this automatic three-hour choice: use
+`PHASE1_EXTENDED.md` to record measured throughput, budget sufficiency and a new
+explicit full-run cap before execution. The active ablation snapshots are unchanged.
 
 V1 checkpoints remain loadable under their original rules. V2 checkpoints
 declare `clean_mapf_phase1_v2` and `clean_mapf_metrics_v2`; ablations, incomplete

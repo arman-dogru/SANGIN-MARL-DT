@@ -228,7 +228,8 @@ def test_untouched_final_test_is_not_available_to_ablation_evaluate(dataset,spec
     # Each fake cohort row carries valid metrics; intercepting here audits which
     # split reaches evaluation, while the two actual learning steps still run.
     requested=[]
-    def inspect(config,model,bank,device,path,tag,deadline,stop):
+    def inspect(config,model,bank,device,path,tag,deadline,stop,*,diagnostics=False):
+        assert not diagnostics
         assert all(c['split']=='validation' for c in bank)
         requested.extend(c['case_id'] for c in bank)
         return [dict(c,success=False,steps=250,waiting_steps=0,vertex_conflicts=0,edge_conflicts=0,
@@ -244,3 +245,31 @@ def test_untouched_final_test_is_not_available_to_ablation_evaluate(dataset,spec
     model,payload=load_model(tmp_path/'final_model.pt',config,torch.device('cpu'))
     assert payload['training_protocol']==PROTOCOL and payload['ablation']
     with pytest.raises(ValueError,match='qualified'):load_model(tmp_path/'final_model.pt',config,torch.device('cpu'),require_qualified=True)
+
+
+def test_extended_full_run_keeps_test_closed_when_coverage_or_validation_fails(dataset,spec,tmp_path,monkeypatch):
+    import panama_uav.phase1_revised as module
+    import panama_uav.phase1_execution as execution
+    config=cfg(spec)
+    config=replace(config,training=replace(config.training,budget_seconds=30.,target_environment_steps=2))
+    settings=deepcopy(spec)
+    settings['full'].update(evaluation_reserve_seconds=1,shutdown_reserve_seconds=1,
+        extended_protocol='clean_mapf_phase1_v2_extended_v1',gate_test_on_validation=True,
+        plateau_patience=6,plateau_min_delta=.01,plateau_min_steps=90000)
+    requested=[]
+    def inspect(config,model,bank,device,path,tag,deadline,stop,*,diagnostics=False):
+        assert diagnostics and all(c['split']=='validation' for c in bank)
+        requested.extend(c['case_id'] for c in bank)
+        return [dict(c,success=False,steps=250,waiting_steps=0,vertex_conflicts=0,edge_conflicts=0,
+            relevant_pairs=0,directed_pairs=c['num_agents']*(c['num_agents']-1)*250) for c in bank]
+    monkeypatch.setattr(module,'evaluate',inspect)
+    monkeypatch.setattr(execution,'verify_execution_compatibility',lambda *_:dict(status='passed',execution_contract='remote-aligned-v2'))
+    path=Path(dataset['maps'][0]['path']).parent/'dataset.json'
+    manifest=dict(spec=settings,mode='full',seed=42,variant='original_hp',
+        configuration=config.to_dict(),dataset_path=str(path),dataset_sha256=sha256(path))
+    (tmp_path/'manifest.json').write_text(json.dumps(manifest))
+    result=module.run_one(tmp_path,manifest,'cpu')
+    assert result['generated_joint_steps']==2 and requested
+    assert not result['held_out'] and not result['qualified']
+    assert result['held_out_skipped_reason']
+    assert not (tmp_path/'final_test_cases.jsonl').exists()

@@ -132,6 +132,7 @@ class ExperimentEnvironment:
         self.communication = None
         self.remote_inference = None
         self.remote_shadow_inference = None
+        self.remote_communication_class = None
         self.model_version = 0
         self.failure_reason = None
 
@@ -223,7 +224,8 @@ class ExperimentEnvironment:
         if self.config.resource_allocation.enabled:
             if self.config.resource_allocation.execution_mode == "remote_dt":
                 from .remote import RemoteDTCommunication
-                self.communication = RemoteDTCommunication(self.config, self.grid, self.agents,
+                communication_class = self.remote_communication_class or RemoteDTCommunication
+                self.communication = communication_class(self.config, self.grid, self.agents,
                     astar_path, self.base_seed if seed is None else seed, self.max_episode_steps,
                     self.uav, self.remote_inference, self.model_version)
                 self.communication.shadow_inference = self.remote_shadow_inference

@@ -322,6 +322,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
     def _computed(self, completed):
         self._finish(completed.job_id, completed.service_seconds, completed.compute_energy_j)
 
+    def _inference_replica(self, location, report):
+        """Delivered peer inputs; controlled experiments may buffer this read only."""
+        return self.replicas[location]
+
+    def _after_inference(self, report, own, location, observation, action, event):
+        """Optional observational diagnostics; never advances simulated service."""
+
     def _finish(self, job_id, service, energy):
         t, job = self.transport, self.jobs[job_id]
         job.update(stage="computed", compute_completed_at=t.now, compute_service_seconds=service,
@@ -330,7 +337,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
         own = self._state_for_report(report, t.now, job["version"])
         # Own generated state is causal at completion; peer state remains replica-specific.
         own_event = self._publish(own, job["location"], job_id)
-        obs, sources, versions, priorities = remote_observation(report, own, self.replicas[job["location"]],
+        obs, sources, versions, priorities = remote_observation(report, own, self._inference_replica(job["location"], report),
             self.project.map.fov_radius, self.project.map.astar_waypoints,
             self.project.map.communicated_path_steps, max(self.grid.shape))
         versions[job["agent"]]["state_event"] = own_event
@@ -343,6 +350,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
             action=action, model_version=self.model_version)
         job["inference_wall_seconds"] = wall  # Measurement only; never advances virtual service.
         job["inference_event"] = event["event_id"]
+        self._after_inference(report, own, job["location"], obs, action, event)
         if self.parameters.oracle_shadow and self.shadow_inference is not None:
             # Evaluation-only fresh replica built from physical state at this
             # instant. It is never installed at either actual processor.

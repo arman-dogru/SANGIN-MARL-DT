@@ -56,10 +56,12 @@ def trace_frame(env, versions):
 
 
 def run_episode(config, model, case, device, model_version=0, *, decision_deadline_seconds=0.0,
-                max_steps=250):
+                max_steps=250, scenario=None, remote_communication_class=None):
     env = ExperimentEnvironment(
-        config, ExperimentMode.UAV, FIXED_MAP, case["num_agents"], max_steps, case["seed"]
+        config, ExperimentMode.UAV, scenario.map_path if scenario else FIXED_MAP,
+        case["num_agents"], max_steps, case["seed"], scenario=scenario
     )
+    env.remote_communication_class = remote_communication_class
     remote = config.resource_allocation.enabled and config.resource_allocation.execution_mode == "remote_dt"
     if remote:
         def remote_inference(location, agent, observation):
@@ -168,6 +170,8 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
                 on_collision=config.resource_allocation.on_collision)
             trace["outcome"] = dict(success=row["success"], failure_reason=env.failure_reason,
                 steps=env.step_count, final_positions={a.id: list(a.position) for a in env.agents})
+            if hasattr(env.communication, "stress_settings"):
+                trace["remote_settings"]["controlled_staleness"] = env.communication.stress_settings
     return row, trace
 
 

@@ -164,11 +164,27 @@ def parser():
     sub.add_argument("--workers", type=int, default=2)
     sub.add_argument("--bootstrap-samples", type=int, default=2000)
     sub.add_argument("--sensitivity-path")
+    sub = commands.add_parser("stress-study", help="Run a bounded controlled peer-staleness pilot; full sweeps disabled")
+    sub.add_argument("--run-id", required=True)
+    sub.add_argument("--output-root", default="output/controlled_stress")
+    sub.add_argument("--model", required=True)
+    sub.add_argument("--cases", type=int, default=2)
+    sub.add_argument("--agents", type=int, nargs="+", choices=(2,4,6,8), default=[2,4])
+    sub.add_argument("--delays", type=int, nargs="+", choices=range(6), default=list(range(6)))
+    sub.add_argument("--max-steps", type=int, default=60)
+    sub.add_argument("--workers", type=int, default=2)
+    sub.add_argument("--diagnostic", action="store_true", help="Allow test checkpoint; stress maps always remain unqualified")
+    sub = commands.add_parser("stress-report", help="Verify controlled pilot archives and rebuild paired summaries")
+    sub.add_argument("--path", required=True)
     return result
 
 
 def main(argv=None):
     arguments = parser().parse_args(argv)
+    if arguments.command == "stress-report":
+        from .staleness_study import report_stress
+        report_stress(arguments.path)
+        return 0
     if arguments.command == "remote-audit":
         from .remote_audit import audit_archive
         inference = None
@@ -252,6 +268,13 @@ def main(argv=None):
         )
     config = load_config(arguments.config)
     root = Path(arguments.output_root) / arguments.run_id
+    if arguments.command == "stress-study":
+        from .staleness_study import run_stress_pilot
+        rows=run_stress_pilot(config,root,arguments.model,cases=arguments.cases,
+            counts=tuple(arguments.agents),delays=tuple(arguments.delays),max_steps=arguments.max_steps,
+            workers=arguments.workers,diagnostic=arguments.diagnostic)
+        print(f"Measured {len(rows)} controlled stress pilot conditions in {root}")
+        return 0
     if arguments.command == "deadline-study":
         from .deadline_study import run_deadline_study
         if arguments.timeline:

@@ -34,6 +34,10 @@ def replay_trace(trace, inference=None):
     physical, positions, decisions, assignments, consistencies = {}, {}, {}, {}, []
     previous, now, failure, last_cycle = "0"*64, 0.0, None, -1
     by_id, inference_count, verified_actions = {}, 0, 0
+    controlled = settings.get("controlled_staleness")
+    if controlled:
+        from .staleness_state import ReplicaHistory
+        history = ReplicaHistory()
 
     def require(condition, message):
         if not condition:
@@ -84,7 +88,9 @@ def replay_trace(trace, inference=None):
             report = reports[state.report_id]
             full_path = astar_path(np.asarray(trace["grid"]), tuple(report.position), tuple(report.goal))
             own = replace(state, path=full_path or [tuple(report.position)])
-            observation, sources, versions, priorities = remote_observation(report, own, replicas[event["location"]],
+            replica = (history.view(event["location"], robot, now, controlled["peer_delay_steps"])
+                       if controlled else replicas[event["location"]])
+            observation, sources, versions, priorities = remote_observation(report, own, replica,
                 settings["radius"], settings["waypoints"], settings["horizon"], settings["map_extent"])
             versions[robot]["state_event"] = own_ref
             require(observation_hash(observation) == event["observation_hash"], "Rebuilt observation differs from inference input")
@@ -173,6 +179,8 @@ def replay_trace(trace, inference=None):
             positions = {int(k): tuple(v) for k, v in event["after"].items()}
             physical = {int(k): v for k, v in event["physical"].items()}
             failure = event["failure_reason"]
+        if controlled:
+            history.observe(event, by_id)
 
     outcome = trace.get("outcome")
     if outcome:

@@ -108,7 +108,7 @@ def load_model(path, config, device, require_qualified=False):
     map_bytes = config.resolve(FIXED_MAP).read_bytes().replace(b"\r\n", b"\n")
     compatible_hashes = {hashlib.sha256(raw).hexdigest()
                          for raw in (map_bytes, map_bytes.replace(b"\n", b"\r\n"))}
-    phase1 = payload.get("training_protocol") == "clean_mapf_phase1_v1"
+    phase1 = payload.get("training_protocol") in {"clean_mapf_phase1_v1", "clean_mapf_phase1_v2"}
     if not phase1 and payload.get("map_sha256") not in compatible_hashes:
         raise ValueError("Model map mismatch")
     payload["map_compatibility"] = dict(checkpoint_sha256=payload.get("map_sha256"),
@@ -138,7 +138,10 @@ def load_model(path, config, device, require_qualified=False):
             "Mission comparison requires the clean baseline qualified at all four phases"
         )
     if phase1 and require_qualified:
-        from .phase1 import verify_payload
+        if payload["training_protocol"] == "clean_mapf_phase1_v2":
+            from .phase1_revised import verify_payload
+        else:
+            from .phase1 import verify_payload
         if not verify_payload(payload):
             raise ValueError("Phase 1 checkpoint failed current-model validation/held-out/exposure qualification")
     model = DQN(tuple(payload["spatial_shape"]), payload["vector_length"]).to(device)

@@ -1,0 +1,49 @@
+# V2 clean-only protocol. No changes to SAGIN service or PANAMA's interfaces.
+protocol = "clean_mapf_phase1_v2"
+base_config = "configs/phase1_clean.toml"
+dataset_seed = 241022
+train_maps_per_family = 20
+evaluation_maps_per_family = 5
+cases_per_family = 40
+historical_dataset = "output/phase1_clean/phase1-clean-20261021-01/data/dataset.json"
+
+[ablation]
+# Identical learning steps, maps, per-episode seeds and validation bank.
+seeds = [42, 73]
+joint_steps = 6000
+budget_seconds_per_run = 360
+evaluation_reserve_seconds = 120
+validation_cases_per_family = 8
+minimum_success_gain = 0.05
+
+[full]
+budget_seconds = 10800
+evaluation_reserve_seconds = 1800
+shutdown_reserve_seconds = 60
+minimum_episodes_per_population = 500
+validation_interval_steps = 30000
+validation_cases_per_family = 8
+
+[[variants]]
+name = "original_hp"
+learning_rate = 0.001
+gamma = 0.90
+epsilon_decay_steps = 20000
+
+[[variants]]
+name = "lower_lr"
+learning_rate = 0.0003
+gamma = 0.90
+epsilon_decay_steps = 20000
+
+[[variants]]
+name = "long_horizon"
+learning_rate = 0.0003
+gamma = 0.99
+epsilon_decay_steps = 20000
+
+[[variants]]
+name = "long_exploration"
+learning_rate = 0.0003
+gamma = 0.99
+epsilon_decay_steps = 100000

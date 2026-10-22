@@ -112,10 +112,10 @@ def case_for(grid,map_record,count,seed,coordinated=True):
     raise ValueError(f'Could not construct reachable MAPF case for {map_record["map_id"]}')
 
 
-def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40):
+def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40,*,excluded_canonicals=()):
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     reserved={canonical_map(geometry(f)[0]) for f in STRESS_FAMILIES}
-    seen=set(reserved);maps=[];banks={s:[] for s in SPLITS}
+    seen=set(reserved)|set(excluded_canonicals);maps=[];banks={s:[] for s in SPLITS}
     for split_index,split in enumerate(SPLITS):
         for family_index,family in enumerate(FAMILIES):
             for index in range(train_maps if split=='train' else eval_maps):

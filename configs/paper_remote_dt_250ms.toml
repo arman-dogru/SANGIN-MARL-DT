@@ -1,0 +1,69 @@
+# Remote PANAMA on cloud DT or a network-synchronized UAV execution replica.
+# The historical paper_study.toml baseline remains unchanged.
+[map]
+fov_radius = 7
+communicated_path_steps = 5
+meters_per_cell = 1.0
+
+[uav]
+environment = "urban"
+carrier_frequency_hz = 2.5e9
+max_path_loss_db = 85.0
+speed_m_per_step = 1.0
+minimum_altitude_m = 20.0
+
+[communication]
+profile = "physical"
+mission_route = "cloud"
+stale_information = ["task", "intentions", "priorities"]
+seconds_per_step = 1.0
+access_uplink_mbps = 50.0
+access_downlink_mbps = 50.0
+satellite_uplink_mbps = 10.0
+satellite_downlink_mbps = 50.0
+one_way_propagation_seconds = 0.025
+leo_timeline = "data/leo/tremblant_full.npz"
+handover_enabled = true
+contention_enabled = false
+packet_payload_bytes = 65536
+packet_overhead_bytes = 48
+log_service_chunks = true
+
+[resource_allocation]
+enabled = true
+execution_mode = "remote_dt"
+task_input_bits = 100000
+cycles_per_bit = 1000.0
+drone_cycles_per_second = 1e9
+cloud_cycles_per_second = 1e10
+drone_kappa = 1e-28
+include_robot_upload_in_objective = false
+robot_power_w = 0.2
+drone_power_w = 2.0
+weight_min = 1.0
+weight_max = 4.0
+policy = "priority"
+energy_coefficient = 1.0
+latency_coefficient = 1.0
+decision_budget_seconds = 0.25
+command_cutoff_seconds = 0.25
+timeout_action = 4
+dt_replica_sync = "network"
+on_collision = "dt_resolve"
+oracle_shadow = true
+equal_weight_mode = "matched_active_mean"
+task_deadline_seconds = 0.25
+enforce_task_deadlines = false
+remote_acceptance_approved = true
+# Full 250 ms protocol; user explicitly accepted this evaluation on 2026-10-21.
+# No hard solver deadline. The default 100 ms configuration remains gated.
+age_reference_seconds = 1.0
+access_bandwidth_hz = 20e6
+noise_psd_w_hz = 3.9810717055e-21
+access_noise_figure_db = 7.0
+terminal_eirp_dbw = 35.0
+a2s_frequency_hz = 14.25e9
+a2s_bandwidth_hz = 20e6
+satellite_receive_gt_db_k = -5.0
+implementation_loss_db = 3.0
+shannon_efficiency = 0.5

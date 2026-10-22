@@ -1,0 +1,34 @@
+# Phase 1 only. New weights from scratch; existing checkpoints are never overwritten.
+# Measured fast-pilot DQN learning settings; PANAMA rewards/dynamics are unchanged.
+[training]
+learning_rate = 0.001
+gamma = 0.90
+epsilon_decay_steps = 20000
+replay_capacity = 50000
+checkpoint_interval_steps = 10000
+budget_seconds = 10800.0
+shutdown_reserve_seconds = 60.0
+model_broadcast_steps = 16
+validation_interval_episodes = 250
+validation_episodes = 200
+
+[communication]
+profile = "perfect"
+mission_route = "uav"
+stale_information = []
+seconds_per_step = 1.0
+handover_enabled = false
+contention_enabled = false
+
+[[curriculum.stages]]
+name = "agents-2"
+num_agents = 2
+[[curriculum.stages]]
+name = "agents-4"
+num_agents = 4
+[[curriculum.stages]]
+name = "agents-6"
+num_agents = 6
+[[curriculum.stages]]
+name = "agents-8"
+num_agents = 8

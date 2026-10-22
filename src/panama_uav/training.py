@@ -108,11 +108,15 @@ def load_model(path, config, device, require_qualified=False):
     map_bytes = config.resolve(FIXED_MAP).read_bytes().replace(b"\r\n", b"\n")
     compatible_hashes = {hashlib.sha256(raw).hexdigest()
                          for raw in (map_bytes, map_bytes.replace(b"\n", b"\r\n"))}
-    if payload.get("map_sha256") not in compatible_hashes:
+    phase1 = payload.get("training_protocol") == "clean_mapf_phase1_v1"
+    if not phase1 and payload.get("map_sha256") not in compatible_hashes:
         raise ValueError("Model map mismatch")
-    payload["map_compatibility"] = dict(checkpoint_sha256=payload["map_sha256"],
+    payload["map_compatibility"] = dict(checkpoint_sha256=payload.get("map_sha256"),
         checkout_sha256=sha256(config.resolve(FIXED_MAP)), normalized_lf_sha256=hashlib.sha256(map_bytes).hexdigest(),
         equivalence="exact content under LF/CRLF conversion only")
+    if phase1:
+        payload["map_compatibility"] = dict(scope="disjoint multi-map clean MAPF protocol",
+            dataset_sha256=payload["dataset_sha256"], original_map_qualification_claim=False)
     if payload.get("task_reward") != config.to_dict()["reward"]:
         raise ValueError("Model task-reward definition mismatch; use a fresh run ID")
     if (
@@ -133,6 +137,10 @@ def load_model(path, config, device, require_qualified=False):
         raise ValueError(
             "Mission comparison requires the clean baseline qualified at all four phases"
         )
+    if phase1 and require_qualified:
+        from .phase1 import verify_payload
+        if not verify_payload(payload):
+            raise ValueError("Phase 1 checkpoint failed current-model validation/held-out/exposure qualification")
     model = DQN(tuple(payload["spatial_shape"]), payload["vector_length"]).to(device)
     model.load_state_dict(payload["model_state_dict"])
     model.eval()

@@ -158,6 +158,12 @@ def parser():
     sub.add_argument("--resume", action="store_true")
     sub = commands.add_parser("deadline-report", help="Verify pairing and rebuild deadline comparison tables and plots")
     sub.add_argument("--path", required=True)
+    sub = commands.add_parser("priority-report", help="Audit and analyze the accepted 250 ms priority evaluation")
+    sub.add_argument("--path", required=True)
+    sub.add_argument("--model", required=True)
+    sub.add_argument("--workers", type=int, default=2)
+    sub.add_argument("--bootstrap-samples", type=int, default=2000)
+    sub.add_argument("--sensitivity-path")
     return result
 
 
@@ -207,6 +213,12 @@ def main(argv=None):
         from .deadline_study import report_study
         rows = report_study(arguments.path)
         print(f"Verified {len(rows)} deadline/treatment/population comparisons in {arguments.path}")
+        return 0
+    if arguments.command == "priority-report":
+        from .priority_evaluation import report_priority_study
+        rows = report_priority_study(arguments.path,arguments.model,workers=arguments.workers,
+            samples=arguments.bootstrap_samples,sensitivity_path=arguments.sensitivity_path)
+        print(f"Audited 250 ms priority evaluation; {len(rows)} case-paired contrasts in {arguments.path}/priority_analysis")
         return 0
     if arguments.command == "serve-replay":
         serve(arguments.path, arguments.port)

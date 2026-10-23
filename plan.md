@@ -2,15 +2,14 @@
 
 ## Current status
 
-- Phase: **1 scale-16 workflow validation and runtime calibration**.
-- Clean curriculum: implemented **2 / 4 / 6 / 8 / 12 / 16**; no population graduated.
-- Active research workers: **none**. Hourly monitor: **active**, registered before GPU calibration and training.
+- Phase: **1 clean PANAMA training through 16 robots**.
+- Clean curriculum: stage **2**, introduced populations **[2, 4]**; no population graduated.
+- Active research workers: **`output/phase1_scale/clean-16-01`**, frozen source `f84cfe5`. Hourly monitor: **active**, registered before GPU calibration and training.
 - Episode budget: **2,500 completed episodes per population; 15,000 total per clean run**.
   The later communication-aware comparison uses the same episode cap. Measured full-run wall cap: **37 hours (133,200 s)**; final-evaluation reserve: **90 minutes**.
 - Qualified policies: **none**. `PANAMA-CLEAN` and `PANAMA-COMM` do not exist as qualified artifacts.
 - Starting source: `9d52899`. Work stays on `main`; source/configuration/data freeze before each launch.
-- Immediate work: scalable clean training, leakage/feasibility checks, strict six-population qualification,
-  checkpoint/replay compatibility, cumulative budget enforcement and hourly monitoring.
+- Current execution: fresh clean training under the frozen episode/wall limits; complete greedy validation every 1,000 episodes. Later communication experiments remain gated on clean qualification.
 - Scientific stop: the old primary comparison failed its launch rule. No old extended run was launched.
   The scale-16 coverage experiment uses a separate versioned protocol; that result and gate remain unchanged.
 
@@ -157,3 +156,9 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
 - **2026-10-22 23:31 EDT** — Release regression: 342 passed in 124.53 s, with one ITU-R low-elevation advisory. Preservation audit passed: all 260 failed-V1 file hashes, 1,308 historical 250 ms study files, 243 staleness-pilot files, the original input checkpoint and all eight primary-comparison model weights. Scale-16 source is ready to freeze. Next step: bounded disposable GPU cost calibration, then a recorded wall-time plan.
 
 - **2026-10-22 23:36 EDT** — Calibration `calibrate-16-01` (source `947e991`): 3,000 joint learning steps, 12 completed episodes (two/population), 78.657 s total. No held-out cases evaluated; calibration weights are disposable. Conditional training rates: 263,004 / 264,201 / 233,191 / 209,084 / 159,787 / 107,162 joint steps/hour for 2/4/6/8/12/16 robots. The all-250-step training projection is 20.16 h; 15 complete validation checks, checkpoint overhead and 90-minute final evaluation reserve produce 30.81 h before the 20% margin. The fixed full-run cap is 37 h, rounded to 30-minute units, alongside the 15,000-episode / 3,750,000-step caps. Hourly automation registration succeeded. Next step: freeze and launch `clean-16-01`; next automated check follows the hourly cadence. No qualification or clean-performance claim follows from this cost calibration.
+
+- **2026-10-22 23:39 EDT** — `clean-16-01`: continue; 3,072 joint steps, 12 completed episodes; by population {'2': 12}. Runtime 0.01 h; remaining wall budget 36.99 h. Recent loss 0.0023310681651764753; WAITs/blocked moves 64/23 over 256 logged joint steps. Checkpoint valid: True. Next scheduled check: 2026-10-23T00:39:32.804719-04:00. Raw evidence: `D:\Projects\SANGIN-dev\output\phase1_scale\clean-16-01/monitor_history.jsonl`.
+
+- **2026-10-22 23:41 EDT** — `clean-16-01`: continue; 11,392 joint steps, 76 completed episodes; by population {'2': 40, '4': 36}. Runtime 0.05 h; remaining wall budget 36.95 h. Recent loss 0.0036247653993086715; WAITs/blocked moves 81/59 over 256 logged joint steps. Checkpoint valid: True. Next scheduled check: 2026-10-23T00:41:39.539190-04:00. Raw evidence: `D:\Projects\SANGIN-dev\output\phase1_scale\clean-16-01/monitor_history.jsonl`.
+
+- **2026-10-22 23:41 EDT** — `clean-16-01` launched at 23:38 EDT from `f84cfe5`; worker/checkpoint identity and advancing logs verified. Latest status: 11,648 joint steps, 79 completed episodes; by population {'2': 40, '4': 39}. The run has a 15,000-episode ceiling and fixed 37-hour wall cap. First complete greedy validation is pending; early exploratory training outcomes are not qualification evidence. Hourly monitoring is active; next check follows the hourly cadence. Source, data, workload and motion rules remain frozen.

@@ -112,7 +112,12 @@ def case_for(grid,map_record,count,seed,coordinated=True):
     raise ValueError(f'Could not construct reachable MAPF case for {map_record["map_id"]}')
 
 
-def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40,*,excluded_canonicals=()):
+def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40,*,excluded_canonicals=(),
+                    populations=(2,4,6,8)):
+    populations=tuple(populations)
+    if (not populations or populations!=tuple(sorted(set(populations))) or
+        any(type(n) is not int or n<2 for n in populations)):
+        raise ValueError('Distinct increasing integer populations >=2 required')
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     reserved={canonical_map(geometry(f)[0]) for f in STRESS_FAMILIES}
     seen=set(reserved)|set(excluded_canonicals);maps=[];banks={s:[] for s in SPLITS}
@@ -132,7 +137,7 @@ def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40,*,exclu
                 maps.append(record)
             if split!='train':
                 options=[r for r in maps if r['split']==split and r['family']==family]
-                for count in (2,4,6,8):
+                for count in populations:
                     for case in range(eval_cases):
                         record=options[case%len(options)];grid=load_map(record['path'])
                         value=case_for(grid,record,count,
@@ -143,6 +148,8 @@ def prepare_dataset(root,seed=42,train_maps=20,eval_maps=5,eval_cases=40,*,exclu
     dataset=dict(schema='clean_mapf_split_v1',seed=seed,maps=maps,
         reserved_stress_maps=sorted(reserved),banks=banks,
         exclusion='disjoint map content under cropping/translation/rotation/reflection; stress cases never enter training')
+    if populations!=(2,4,6,8):
+        dataset['populations']=list(populations)
     write_json(root/'dataset.json',dataset)
     verify_dataset(dataset)
     return dataset

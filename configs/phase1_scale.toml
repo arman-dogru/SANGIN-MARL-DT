@@ -1,0 +1,35 @@
+# Episode-coverage experiment; historical V2 stays frozen.
+protocol = "clean_mapf_phase1_v3_scale16"
+base_config = "configs/phase1_clean.toml"
+dataset_seed = 241023
+learning_seed = 42
+populations = [2, 4, 6, 8, 12, 16]
+train_maps_per_family = 20
+evaluation_maps_per_family = 5
+cases_per_family = 40
+historical_datasets = [
+  "output/phase1_clean/phase1-clean-20261021-01/data/dataset.json",
+  "output/phase1_revised/phase1-revised-20261022-01/data/dataset.json",
+  "output/phase1_revised/phase1-comparison-20261022-01/data/dataset.json",
+]
+
+[learner]
+learning_rate = 0.001
+gamma = 0.90
+epsilon_decay_steps = 20000
+
+[curriculum]
+episode_cap_per_population = 2500
+introduction_every_episodes = 40
+exploration_clock = "global"
+minimum_episodes_per_population = 500
+
+[evaluation]
+validation_interval_episodes = 1000
+validation_cases_per_family = 40
+plateau_patience = 6
+plateau_min_delta = 0.01
+plateau_min_steps = 90000
+shutdown_reserve_seconds = 60
+maximum_wall_seconds = 259200
+safety_factor = 1.2

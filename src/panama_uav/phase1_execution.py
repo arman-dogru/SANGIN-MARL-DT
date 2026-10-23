@@ -228,11 +228,11 @@ def _paired_trajectory(config, case, inference, root, cap):
     return row
 
 
-def verify_execution_compatibility(config, model, bank, device, root):
+def verify_execution_compatibility(config, model, bank, device, root, *, populations=(2,4,6,8)):
     """Bounded fresh multi-step comparison, plus deterministic completion fixture.
 
     This certifies execution compatibility, never policy qualification or a
-    communication study. Four validation cases run for at most 16 epochs each;
+    communication study. One validation case/population runs for at most 16 epochs;
     a scripted completed robot must yield and return in four more epochs.
     """
     from .models import select_action
@@ -242,7 +242,7 @@ def verify_execution_compatibility(config, model, bank, device, root):
     audit_root = root/'execution_compatibility'
     inference = lambda location,robot,obs: select_action(model,obs,0.,np.random.default_rng(0),device)
     checks = []
-    for count in (2,4,6,8):
+    for count in populations:
         case = next(c for c in bank if c['num_agents']==count)
         checks.append(_paired_trajectory(config,case,inference,audit_root,16))
     fixture_map = audit_root/'completed_control.map'

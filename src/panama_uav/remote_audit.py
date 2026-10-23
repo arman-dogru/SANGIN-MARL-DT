@@ -21,7 +21,12 @@ from .remote_control import DELTAS, completed_action, conflicts, resolve_deliver
 
 
 def digest(value):
-    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
+    # Recorded events already underwent JSON round-trip normalization in
+    # RemoteDTCommunication._record. Rebuilt dictionaries may still have integer
+    # robot IDs; normalize them before sorting (10 sorts differently as a key
+    # of type int versus str). Existing string-key archive checksums are stable.
+    normalized=json.loads(json.dumps(value,allow_nan=False))
+    return hashlib.sha256(json.dumps(normalized, sort_keys=True, separators=(",", ":"),
         allow_nan=False).encode()).hexdigest()
 
 

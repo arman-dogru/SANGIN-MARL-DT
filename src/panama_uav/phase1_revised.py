@@ -175,9 +175,12 @@ class RevisedSession(TrainingSession):
         self.episode_reward = 0.0
         self.epoch_totals = Counter()
 
+    def exploration_step_count(self):
+        return self.generated_steps
+
     def step(self):
         cfg = self.config.training
-        epsilon = cfg.epsilon_end + (cfg.epsilon_start - cfg.epsilon_end) * math.exp(-self.generated_steps/cfg.epsilon_decay_steps)
+        epsilon = cfg.epsilon_end + (cfg.epsilon_start - cfg.epsilon_end) * math.exp(-self.exploration_step_count()/cfg.epsilon_decay_steps)
         active = {a.id for a in self.environment.agents if not a.ever_reached_goal}
         proposed = select_actions(self.actor_models, self.deployed_versions,
             {a: self.observations[a] for a in active}, epsilon, self.action_rng, self.device)
@@ -246,11 +249,13 @@ def subset(bank, cases_per_family):
     designed = (cases_per_family+1)//2
     random_count = cases_per_family-designed
     indices = set(range(designed)) | set(range(size//2,size//2+random_count))
+    counts=sorted({c['num_agents'] for c in bank})
     return sorted([c for c in bank if c['evaluation_index'] in indices],
-                  key=lambda c: (c['evaluation_index'], COUNTS.index(c['num_agents']), FAMILIES.index(c['family'])))
+                  key=lambda c: (c['evaluation_index'], counts.index(c['num_agents']), FAMILIES.index(c['family'])))
 
 
-def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: False, *, diagnostics=False):
+def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: False, *, diagnostics=False,
+             protocol=PROTOCOL,metrics=METRICS):
     identity = weights_hash(model)
     existing = read_rows(path)
     if any(r['tag'] != tag or r['model_weights_sha256'] != identity for r in existing):
@@ -289,7 +294,7 @@ def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: Fals
             obs = result.observations
             env.communication.transport.log.clear()
             if result.terminated or result.truncated:
-                row = dict(case, tag=tag, protocol=PROTOCOL, metrics=METRICS,
+                row = dict(case, tag=tag, protocol=protocol, metrics=metrics,
                     model_weights_sha256=identity, steps=env.step_count, success=result.terminated,
                     final_positions=[list(a.position) for a in env.agents], **totals)
                 if diagnostics:
@@ -304,13 +309,16 @@ def evaluate(config, model, bank, device, path, tag, deadline, stop=lambda: Fals
     return existing
 
 
-def summarize(records, expected=200):
+def summarize(records, expected=200, *, metrics=METRICS):
     result = summarize_cases(records, expected)
-    result.update(metrics=METRICS, blocked_move_steps=sum(r.get('blocked_move_steps', 0) for r in records))
+    result.update(metrics=metrics, blocked_move_steps=sum(r.get('blocked_move_steps', 0) for r in records))
     return result
 
 
 def payload(session, manifest, validation=(), test=(), compatibility=None, ablation=False):
+    if manifest.get('protocol')=='clean_mapf_phase1_v3_scale16':
+        from .phase1_scale import make_payload
+        return make_payload(session,manifest,validation,test,compatibility,ablation)
     spec = manifest['spec']
     exposure = all(session.population_episodes[n] >= spec['full']['minimum_episodes_per_population'] for n in COUNTS)
     qualified = (not ablation and exposure and len(validation) == len(test) == 4
@@ -384,7 +392,16 @@ def run_one(root, manifest, device_name='cuda', resume=False):
     ablation = manifest['mode'] == 'ablation'
     config = ProjectConfig.from_dict(manifest['configuration'])
     dataset = read_json(manifest['dataset_path'])
-    validate_data(dataset)
+    scaled=manifest.get('protocol')=='clean_mapf_phase1_v3_scale16'
+    counts=tuple(manifest.get('populations',COUNTS))
+    protocol=manifest['protocol'] if scaled else PROTOCOL
+    metrics='clean_mapf_metrics_v3_scale16' if scaled else METRICS
+    if scaled:
+        from .phase1_scale import ScaleSession,validate_dataset
+        validate_dataset(dataset)
+    else:
+        validate_data(dataset)
+    evaluation_options=dict(protocol=protocol,metrics=metrics) if scaled else {}
     if sha256(manifest['dataset_path']) != manifest['dataset_sha256']:
         raise ValueError('Dataset identity changed')
     os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
@@ -404,7 +421,9 @@ def run_one(root, manifest, device_name='cuda', resume=False):
             return read_json(root/'status.json')
         reconcile_logs(root, saved['log_offsets'])
     else:
-        session = RevisedSession(config, dataset, manifest['seed'], root.name, device)
+        session = (ScaleSession(config,dataset,manifest['seed'],root.name,device,
+                    manifest['curriculum'],manifest['exploration_clock']) if scaled else
+                   RevisedSession(config, dataset, manifest['seed'], root.name, device))
         state = dict(mode='train', elapsed_seconds=manifest.get('setup_seconds', 0),
             qualification=[], held_out=[], last_validation_steps=0, compatibility=None)
     previous = resume_elapsed(root, state['elapsed_seconds'], started_unix)
@@ -421,12 +440,16 @@ def run_one(root, manifest, device_name='cuda', resume=False):
     def elapsed():
         return previous+time.monotonic()-start
     def status(reason, qualified=False):
-        row = dict(protocol=PROTOCOL, metrics=METRICS, status=reason, mode=state['mode'], qualified=qualified,
+        row = dict(protocol=protocol, metrics=metrics, status=reason, mode=state['mode'], qualified=qualified,
             wall_seconds=elapsed(), budget_seconds=budget, generated_joint_steps=session.generated_steps,
             learner_updates=session.learner_updates, episodes=session.episodes,
             population_episodes=dict(session.population_episodes), population_steps=dict(session.population_steps),
             qualification=state['qualification'], held_out=state['held_out'], hardware=hardware(device),
             ablation=ablation, variant=manifest['variant'], seed=manifest['seed'])
+        if scaled:
+            row.update(populations=list(counts),curriculum_stage=session.introduced_count(),
+                introduced_populations=list(counts[:session.introduced_count()]),
+                updated_utc=datetime.now(timezone.utc).isoformat())
         if settings.get('extended_protocol'):
             row.update(training_run_protocol=settings['extended_protocol'],
                 termination_reason=state.get('termination_reason'),
@@ -443,7 +466,9 @@ def run_one(root, manifest, device_name='cuda', resume=False):
     try:
         status('training'); save()
         target = settings['joint_steps'] if ablation else config.training.target_environment_steps
-        while state['mode'] == 'train' and session.generated_steps < target and time.monotonic() < train_end and not requested['stop']:
+        while (state['mode'] == 'train' and session.generated_steps < target and
+               time.monotonic() < train_end and not requested['stop'] and
+               not (scaled and session.episode_budget_complete())):
             if session.environment.all_agents_at_goals or session.environment.step_count >= 250:
                 session.start_episode()
             record, episode = session.step()
@@ -456,17 +481,23 @@ def run_one(root, manifest, device_name='cuda', resume=False):
                 status('training')
             if session.generated_steps % config.training.checkpoint_interval_steps == 0:
                 save()
-            if not ablation and session.generated_steps-state['last_validation_steps'] >= settings['validation_interval_steps']:
+            validation_due=(False if ablation else
+                (session.episodes-state.get('last_validation_episodes',0)>=settings['validation_interval_episodes']
+                 if scaled else session.generated_steps-state['last_validation_steps']>=settings['validation_interval_steps']))
+            if not ablation and validation_due:
                 tag = f'validation-{session.generated_steps}'
                 records = evaluate(config, session.policy, subset(dataset['banks']['validation'],
                     settings['validation_cases_per_family']), device, root/f'{tag}.jsonl', tag,
-                    train_end, lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')))
+                    train_end, lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')),
+                    **evaluation_options)
                 summaries = [dict(num_agents=n, **summarize([r for r in records if r['num_agents'] == n],
-                    5*settings['validation_cases_per_family'])) for n in COUNTS]
+                    5*settings['validation_cases_per_family'],metrics=metrics)) for n in counts]
                 validation_record=dict(generated_joint_steps=session.generated_steps,
                     model_weights_sha256=weights_hash(session.policy), populations=summaries)
                 append_jsonl(root/'validation.jsonl', validation_record)
                 state['last_validation_steps'] = session.generated_steps
+                if scaled:
+                    state['last_validation_episodes']=session.episodes
                 # Validation reports learning progress; it neither gates exposure
                 # nor chooses weights using the untouched test set.
                 if settings.get('extended_protocol'):
@@ -475,7 +506,7 @@ def run_one(root, manifest, device_name='cuda', resume=False):
                     history.append(validation_record)
                     decision=training_stop(history,session.population_episodes,
                         patience=settings['plateau_patience'],min_delta=settings['plateau_min_delta'],
-                        min_steps=settings['plateau_min_steps'])
+                        min_steps=settings['plateau_min_steps'],populations=counts)
                     if decision:
                         state['termination_reason']=decision
                         save()
@@ -488,34 +519,38 @@ def run_one(root, manifest, device_name='cuda', resume=False):
         if not ablation and state['compatibility'] is None and time.monotonic() < end-shutdown:
             from .phase1_execution import verify_execution_compatibility
             state['compatibility'] = verify_execution_compatibility(config, session.policy,
-                dataset['banks']['validation'], device, root)
+                dataset['banks']['validation'], device, root,**(dict(populations=counts) if scaled else {}))
+            if scaled:
+                state['compatibility']['model_weights_sha256']=weights_hash(session.policy)
+                write_json(root/'compatibility.json',state['compatibility'])
             save()
         bank = subset(dataset['banks']['validation'], settings['validation_cases_per_family']) if ablation else dataset['banks']['validation']
         gate_test=bool(settings.get('gate_test_on_validation')) and not ablation
         splits = [('validation', bank)] if ablation or gate_test else [('validation', bank), ('test', dataset['banks']['test'])]
         ordered = {split: sorted(bank, key=lambda c:(c['evaluation_index'],
-            COUNTS.index(c['num_agents']), FAMILIES.index(c['family']))) for split,bank in splits}
+            counts.index(c['num_agents']), FAMILIES.index(c['family']))) for split,bank in splits}
         for batch in range(0, max(map(len,ordered.values())), 20):
             for split, bank in ordered.items():
                 prefix = bank[:batch+20]
                 records = evaluate(config, session.policy, prefix,
                     device, root/f'final_{split}_cases.jsonl', f'final-{split}', end-shutdown,
-                    lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')))
+                    lambda: requested['stop'],diagnostics=bool(settings.get('extended_protocol')),
+                    **evaluation_options)
                 expected = settings['validation_cases_per_family']*5 if ablation else 200
-                result = [dict(num_agents=n, **summarize([r for r in records if r['num_agents'] == n], expected)) for n in COUNTS]
+                result = [dict(num_agents=n, **summarize([r for r in records if r['num_agents'] == n], expected,metrics=metrics)) for n in counts]
                 state['qualification' if split == 'validation' else 'held_out'] = result
             if time.monotonic() >= end-shutdown or requested['stop']:
                 break
         if gate_test:
             from .phase1_stopping import may_open_heldout
-            if may_open_heldout(state['qualification'],session.population_episodes,state['compatibility']):
+            if may_open_heldout(state['qualification'],session.population_episodes,state['compatibility'],populations=counts):
                 test_bank=sorted(dataset['banks']['test'],key=lambda c:(c['evaluation_index'],
-                    COUNTS.index(c['num_agents']),FAMILIES.index(c['family'])))
+                    counts.index(c['num_agents']),FAMILIES.index(c['family'])))
                 for batch in range(0,len(test_bank),20):
                     records=evaluate(config,session.policy,test_bank[:batch+20],device,
                         root/'final_test_cases.jsonl','final-test',end-shutdown,
-                        lambda:requested['stop'],diagnostics=True)
-                    state['held_out']=[dict(num_agents=n,**summarize([r for r in records if r['num_agents']==n],200)) for n in COUNTS]
+                        lambda:requested['stop'],diagnostics=True,**evaluation_options)
+                    state['held_out']=[dict(num_agents=n,**summarize([r for r in records if r['num_agents']==n],200,metrics=metrics)) for n in counts]
                     if time.monotonic()>=end-shutdown or requested['stop']:
                         break
             else:
@@ -526,8 +561,8 @@ def run_one(root, manifest, device_name='cuda', resume=False):
         final = payload(session, manifest, state['qualification'], state['held_out'], state['compatibility'], ablation)
         atomic_save(final, root/'final_model.pt')
         required = state['qualification'] if ablation else state['qualification']+state['held_out']
-        complete = len(required) == (4 if ablation else 8) and all(r['complete'] for r in required)
-        if gate_test and state.get('held_out_skipped_reason') and len(state['qualification'])==4 and all(r['complete'] for r in state['qualification']):
+        complete = len(required) == (len(counts) if ablation else 2*len(counts)) and all(r['complete'] for r in required)
+        if gate_test and state.get('held_out_skipped_reason') and len(state['qualification'])==len(counts) and all(r['complete'] for r in state['qualification']):
             complete=True
         if complete:
             state['mode'] = 'complete'

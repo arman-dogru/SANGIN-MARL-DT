@@ -108,7 +108,8 @@ def load_model(path, config, device, require_qualified=False):
     map_bytes = config.resolve(FIXED_MAP).read_bytes().replace(b"\r\n", b"\n")
     compatible_hashes = {hashlib.sha256(raw).hexdigest()
                          for raw in (map_bytes, map_bytes.replace(b"\n", b"\r\n"))}
-    phase1 = payload.get("training_protocol") in {"clean_mapf_phase1_v1", "clean_mapf_phase1_v2"}
+    scale16=payload.get("training_protocol")=="clean_mapf_phase1_v3_scale16"
+    phase1 = scale16 or payload.get("training_protocol") in {"clean_mapf_phase1_v1", "clean_mapf_phase1_v2"}
     if not phase1 and payload.get("map_sha256") not in compatible_hashes:
         raise ValueError("Model map mismatch")
     payload["map_compatibility"] = dict(checkpoint_sha256=payload.get("map_sha256"),
@@ -128,17 +129,19 @@ def load_model(path, config, device, require_qualified=False):
     if require_qualified and not (
         payload.get("condition") == "clean"
         and payload.get("curriculum_completed")
-        and [q["num_agents"] for q in payload.get("qualification", [])] == [2, 4, 6, 8]
+        and [q["num_agents"] for q in payload.get("qualification", [])] == ([2,4,6,8,12,16] if scale16 else [2,4,6,8])
         and all(
             q["episodes"] == 200 and q["success_rate"] >= 0.95
             for q in payload["qualification"]
         )
     ):
         raise ValueError(
-            "Mission comparison requires the clean baseline qualified at all four phases"
+            "Mission comparison requires the clean baseline qualified at every required population"
         )
     if phase1 and require_qualified:
-        if payload["training_protocol"] == "clean_mapf_phase1_v2":
+        if scale16:
+            from .phase1_scale import verify_payload
+        elif payload["training_protocol"] == "clean_mapf_phase1_v2":
             from .phase1_revised import verify_payload
         else:
             from .phase1 import verify_payload

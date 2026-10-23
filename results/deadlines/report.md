@@ -1,10 +1,10 @@
-> Historical 96-episode sensitivity pilot (one case per population). Approval statements describe that pilot, before the later full 250 ms study.
+> Historical 96-episode sensitivity pilot (one case per population), preceding the full 250 ms study.
 
 # Command-deadline sensitivity pilot
 
-Implementation commit: `13a9f62d559bd5b8d21eef63ec1ba0675eb3bb9b` (pushed to main). Full suite: **225 passed**, with the existing ITU-R low-elevation approximation advisory.
+Implementation commit: `13a9f62d559bd5b8d21eef63ec1ba0675eb3bb9b`. Regression suite: **225 passed**, with the ITU-R low-elevation approximation advisory.
 
-The pilot ran **96 episodes**: four cutoffs (100/250/300/500 ms), six existing treatments, and one paired held-out case per 2/4/6/8-robot population. All scenarios used a 250-step cap and the same qualified frozen checkpoint, map, case seeds/starts/goals, archived orbital timeline and per-case orbital offsets. All 96 missions succeeded. No full 50-case study was launched; acceptance remains disabled.
+The pilot contains **96 episodes**: four cutoffs (100/250/300/500 ms), six treatments, and one paired held-out case per 2/4/6/8-robot population. All scenarios used a 250-step cap and the same qualified frozen checkpoint, map, case seeds/starts/goals, archived orbital timeline and per-case orbital offsets. All 96 missions succeeded. This pilot provides sensitivity evidence; it is separate from the subsequent 50-case-per-population 250 ms study.
 
 The three timing settings were changed together. Sensing remains at integer seconds; control intervals remain 1 s. CPU capacities (UAV 1 GHz, cloud 10 GHz), task input (100,000 bits), compute requirement (1,000 cycles/bit), energy parameters and all execution kernels are unchanged. `enforce_task_deadlines=false`; no hard deadline constraint was added.
 

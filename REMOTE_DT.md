@@ -189,7 +189,7 @@ in the transport and compute accounting; monitoring never cancels or reroutes it
 ## Motion and completion
 
 Physical vertex conflicts and swaps are detected before arbitration and logged
-with attempted targets and command contexts. The user-selected `dt_resolve` rule
+with attempted targets and command contexts. The `dt_resolve` rule
 uses delivered command priorities, falling back to delivered self-state priority
 on timeout. Stationary occupants keep their cells; swaps stop both robots, and
 new conflicts from stopped robots are resolved to a stable safe configuration.
@@ -251,8 +251,8 @@ counts. Pair counts assess existence within the horizon; step counts compare
 
 Derived consistency records use schema 2. Replay verifies schema-1 archives against
 their original checksums, then derives the new metrics without rewriting evidence.
-This vertex-only variant is an implementation diagnostic requested by the user;
-it is not presented as the author's confirmed revised equation.
+The vertex-only variant is an exploratory implementation diagnostic. It has no
+confirmed revised manuscript equation and remains separate from the original metric.
 
 Replay rebuilds delivered stores, DQN observations, dependency provenance, action
 inboxes, local completion control, physical resolution, directed consistency,
@@ -273,23 +273,22 @@ no-upload-barrier fixtures, fixed-route capacity accounting, stale priorities,
 shadow noninterference, network timing, cache ordering, FoV conflict cases,
 completion control, physical conflicts, archive tampering and legacy regressions.
 
-## Acceptance and author follow-up
+## Execution gates and analytical scope
 
 The new mode runs only the six nominal treatments above. It blocks non-diagnostic
 experiments while `remote_acceptance_approved=false`; no old 97-condition sweep
 or archived outputs are overwritten. Full runs still require a qualified model,
 archived timeline, 50 paired cases per population and a 250-step cap.
 
-The supplied TeX/PDF defines vertex-plus-edge relevance. The user subsequently
-specified preserving that metric and adding a separate exploratory vertex-only
-variant. Both are recorded; this does not claim an author's confirmed revision.
-Full research comparisons still await acceptance of the revised implementation.
-The code monitors the requested 100 ms end-to-end deadline without hard solver
-constraints and supports both UAV/cloud DT
-execution sites. The manuscript's cloud-only descriptions, task-deadline claims,
-robot-applied ordering interpretation, analytical omission of download bytes and
-separate learning-study narrative require author review later. No new LaTeX or
-paper text is produced by this implementation.
+The manuscript defines vertex-plus-edge relevance. The simulator retains it and
+records a separate exploratory vertex-only variant. The full-run gate is enabled
+only in the dedicated 250 ms configuration; other configurations retain their
+own gate settings. The default remote-DT configuration measures a 100 ms
+end-to-end deadline without hard solver constraints and supports UAV and cloud
+execution. Differences from the manuscript include the cloud-only analytical
+execution assumption, deadline enforcement, the interpretation of robot-cached
+ordering, and explicit result-download serialization. These distinctions must be
+retained when interpreting simulation results.
 
 ## Command deadline sensitivity
 

@@ -15,8 +15,8 @@ contains the full 148,536-row task table; decompress it to read the CSV.
 
 The pilots are diagnostic evidence, not full studies. Staleness is an artificial
 stress condition, and vertex-only metrics remain exploratory. Reports preserve
-negative findings, uncertainty and exposure denominators. Historical approval
-statements refer to the original run, not the current training status.
+negative findings, uncertainty and exposure denominators. Configuration and
+qualification statements describe the checkpoint and protocol used in each study.
 
 `files.csv` maps each published artifact to its original local file and SHA-256.
 The original filename/path references in reports have been shortened where
@@ -24,4 +24,4 @@ possible; their findings were not recalculated. Manifests retain original paths
 as provenance, so some refer to local assets absent from this repository.
 
 Multi-gigabyte raw replay archives, checkpoints, orbital input and manuscripts
-remain local. The active Phase 1 training run is not included or modified.
+remain local. Phase 1 training artifacts are excluded from these published summaries.

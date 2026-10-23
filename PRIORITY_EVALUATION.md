@@ -1,10 +1,9 @@
-# Accepted 250 ms evaluation protocol
+# 250 ms priority-allocation evaluation
 
-The user explicitly approved accepting the remote-DT implementation and opening
-the full-run gate for this evaluation on 2026-10-21. Only
-`configs/paper_remote_dt_250ms.toml` records that approval. The default 100 ms
-configuration remains gated. This is user acceptance, not a claim of author
-approval of the exploratory vertex-only metric.
+`configs/paper_remote_dt_250ms.toml` enables the full-run acceptance gate for the
+250 ms protocol. The default 100 ms configuration keeps that gate disabled.
+This configuration flag controls experiment execution; it does not validate the
+exploratory vertex-only metric as a revised manuscript equation.
 
 The evaluation uses all six existing nominal treatments, 50 shared cases per
 2/4/6/8-robot population, a 250-step cap, the qualified frozen checkpoint and the

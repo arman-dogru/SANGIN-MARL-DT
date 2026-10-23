@@ -5,13 +5,14 @@
 - Phase: **0 implementation and Phase 1 six-population protocol validation**.
 - Clean curriculum: preparing **2 / 4 / 6 / 8 / 12 / 16**; no population graduated.
 - Active research workers: **none**. Hourly monitor: **paused** until an authorized worker launches.
-- GPU authorization for the new program: **pending**. The previous run's budget is not reusable authorization.
+- Episode budget: **2,500 completed episodes per population; 15,000 total per clean run**.
+  The later communication-aware comparison uses the same episode cap. Wall-time estimates remain required before launch.
 - Qualified policies: **none**. `PANAMA-CLEAN` and `PANAMA-COMM` do not exist as qualified artifacts.
 - Starting source: `9d52899`. Work stays on `main`; source/configuration/data freeze before each launch.
 - Immediate work: scalable clean training, leakage/feasibility checks, strict six-population qualification,
   checkpoint/replay compatibility, cumulative budget enforcement and hourly monitoring.
 - Scientific stop: the old primary comparison failed its launch rule. No old extended run was launched.
-  This request authorizes a new versioned protocol, not a change to that result or its gate.
+  The scale-16 coverage experiment uses a separate versioned protocol; that result and gate remain unchanged.
 
 ## Research objectives and phase gates
 
@@ -21,7 +22,7 @@ Large results/checkpoints remain local. Commit code, tests, configuration, metho
 
 | Phase | Deliverable | Prerequisites / current disposition |
 | --- | --- | --- |
-| 0 | This plan, provenance, explicit cumulative budgets, functioning hourly monitoring | In implementation; GPU budget pending |
+| 0 | This plan, provenance, explicit budgets, functioning hourly monitoring | Episode cap fixed; runtime estimation and workflow validation in progress |
 | 1 | Frozen `PANAMA-CLEAN`, qualified simultaneously at 2/4/6/8/12/16 robots | Current phase; independent full validation, test, exposure, compatibility and replay required |
 | 2 | Versioned SAGIN benchmark, complete return path and RF/capacity provenance | Independent audits may proceed; scheduler/radio/workload unchanged initially |
 | 3 | Paired frozen-policy communication-degradation curves | Blocked until Phase 1 qualification and Phase 2 validation |
@@ -77,22 +78,26 @@ bottlenecks, warehouses. Full validation and untouched test each contain 200 cas
 independent CBS; feasible paths are checked; timeouts/node limits remain unresolved, never infeasible.
 Keep 32×32 geometry unless measured feasibility/exposure demonstrates a need for separately versioned maps.
 
-Hypothesis for the next bounded comparison: progressive population introduction plus rehearsal needs
+Candidate hypothesis for a subsequent bounded comparison: progressive population introduction plus rehearsal needs
 population-specific exploration exposure for newly introduced 12/16-robot tasks. Compare global-clock
 epsilon with population-clock epsilon under otherwise identical progressive schedules and original gamma
 .90/lr .001. This hypothesis follows residual repeated-state failures and short population exposure;
-it does not claim the old comparison proved exploration collapse. Do not repeat failed gamma .99 runs blindly.
+it does not establish exploration collapse in the old comparison. Gamma .99 alternatives are not repeated
+without new supporting evidence. The initial scale-16 coverage run retains the original global-clock
+exploration and learner. It tests whether increased episode coverage resolves the remaining MAPF failures.
+Population-clock exploration remains a candidate intervention requiring its own controlled comparison.
 
 Introduce populations by a declared joint-step schedule independent of success gates. Rehearse introduced
 populations with least-completed-episode selection and rotate all families within each population.
 An unsuccessful early stage cannot exclude later populations permanently. Track all introduced populations
 on greedy validation to expose forgetting. A graduation record belongs to the current frozen weights only.
 
-Substantial exploration changes require paired learning seeds and validation-only selection. The launch
-criterion remains a >=5 pp paired improvement with a positive lower 95% interval and no >5 pp population
+Substantial exploration changes require paired learning seeds and validation-only selection. The comparison
+selection criterion remains a >=5 pp paired improvement with a positive lower 95% interval and no >5 pp population
 loss, or >=90% in every target population. The new six-population comparison is separate from the old four-population gate.
-Do not launch full training after unsupported selection. Record throughput and a complete coverage/evaluation
-budget before a supported full run. Runtime is evidence about cost, not a promise of qualification.
+The initial scale-16 run is an episode-coverage experiment with the strongest existing validation settings,
+not an algorithm-selection claim. The historical V2 full-run gate remains failed. Record throughput and a
+complete coverage/evaluation budget before launch. Runtime estimates do not establish qualification.
 
 ## Qualification and stopping
 
@@ -113,10 +118,11 @@ and sufficient remaining authorized budget. Opened test outcomes never select in
 
 ## Resource and launch register
 
-No new GPU run is authorized yet. Asked the user for an explicit cumulative budget (6/12/24 GPU-hours).
-Conservatively charge GPU worker wall time including initialization, validation/checkpoints and recovery.
+The clean-run training cap is 2,500 completed episodes per population (15,000 total), equivalent to at most
+3,750,000 joint steps under the 250-step episode cap. A measured wall-time cap also bounds execution.
+Charge GPU worker wall time including initialization, validation/checkpoints and recovery.
 Training/test preparation and bounded CPU regression/feasibility diagnostics are implementation validation.
-Do not infer fresh authorization from the already consumed V1/V2 budgets.
+Consumed V1/V2 budgets remain separate from the new run's accounting.
 
 Before a launch record: source commit + hashes, configuration hash, disjoint dataset hash, seeds, run/output ID,
 comparison hypothesis, individual cap, remaining cumulative budget, checkpoint rule, validation schedule,
@@ -137,7 +143,11 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
 
 ## Progress and decision history (America/Toronto)
 
-- **2026-10-22 22:49 EDT** — Read the new research-program request; pulled `main` (up to date at `9d52899`).
-  No active run. Prior primary comparison remains an unsupported-selection stop. Started Phase 0 and new
-  six-population Phase 1 implementation; requested the missing cumulative GPU budget. Next automated check:
-  paused until an authorized launch; next immediate action is implementation/regression and feasibility validation.
+- **2026-10-22 22:49 EDT** — Phase 0 initialized at `9d52899`; working tree synchronized with `main`.
+  No active run. The primary V2 comparison remains an unsupported-selection stop. Scale-16 workflow,
+  regression and feasibility validation started. Next automated check: paused pending a validated launch.
+- **2026-10-22** — Training budget set to 2,500 completed episodes per population, 15,000 total per run.
+  The initial scale-16 experiment retains original DQN settings and tests additional episode coverage.
+  Communication-cutoff training retains the same future cap and remains gated on clean qualification.
+  Documentation convention: describe implementation, configuration, evidence and limitations; keep
+  conversational approval narratives and assistant progress prose out of repository documentation.

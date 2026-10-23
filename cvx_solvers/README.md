@@ -1,9 +1,9 @@
 # Supplied priority-offloading CVX solver
 
-The default run uses the user's **four-robot Cases A-F**, saved in
+The default run uses the **four-robot validation Cases A-F**, saved in
 `scenarios/test_priority_offloading_cvx_stable_supplied.m` and translated into
 `scenarios/user_validation.json`. All supplied numerical values are retained,
-except every deadline is overridden to **1,000,000 seconds** as requested.
+except every deadline is overridden to **1,000,000 seconds** in the large-deadline configuration.
 Case E therefore repeats Case C; its original `1.10*solC.T` deadline experiment
 is disabled. Case D retains its forced assignment `[1,1,0,0]`.
 
@@ -12,10 +12,9 @@ Both uploaded files are byte-identical (SHA-256
 The two unchanged copies are preserved under `originals/attachment_1` and
 `originals/attachment_2`. They define one unique solver.
 
-MATLAB, CVX, and MOSEK were not discoverable in this environment. With the user's
-approval, `run_equivalent.py` executes the same mathematical binary model using
+`run_equivalent.py` executes the same mathematical binary model using
 CVXPY/Clarabel, enumerating every assignment. This is explicitly **not native
-MATLAB/CVX execution**. Each result is checked against an independent scalar KKT
+MATLAB/CVX execution** and does not require MATLAB, CVX or MOSEK. Each result is checked against an independent scalar KKT
 calculation over every binary assignment. No PANAMA simulation code is changed.
 
 Run from the project root:

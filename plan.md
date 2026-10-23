@@ -3,17 +3,22 @@
 ## Current status
 
 - Phase: **1 clean PANAMA training through 16 robots**.
-- Clean curriculum: stage **6**, introduced populations **[2, 4, 6, 8, 12, 16]**; no population qualified.
-- Active research workers: **`output/phase1_scale/clean-16-01`**, frozen source `f84cfe5`. Hourly monitor: **active**, registered before GPU calibration and training.
+- Clean curriculum: all six populations introduced; training coverage met; clean policy **unqualified**.
+- Active research workers: **none**. `output/phase1_scale/clean-16-01` (frozen source `f84cfe5`)
+  completed with a validation-plateau stop. Hourly monitor: **paused** after the completion audit.
 - Episode budget: **2,500 completed episodes per population; 15,000 total per clean run**.
   The later communication-aware comparison uses the same episode cap. Measured full-run wall cap: **37 hours (133,200 s)**; final-evaluation reserve: **90 minutes**.
 - Qualified policies: **none**. `PANAMA-CLEAN` and `PANAMA-COMM` do not exist as qualified artifacts.
 - Starting source: `9d52899`. Work stays on `main`; source/configuration/data freeze before each launch.
-- Current execution: fresh clean training under the frozen episode/wall limits; complete greedy validation every 1,000 episodes. Later communication experiments remain gated on clean qualification.
-- Latest audited snapshot (**2026-10-23 02:29 EDT**): 306,965 joint steps through completed episodes;
-  6,889 completed episodes, 1,148–1,149 per population. Sixth complete greedy validation:
-  **97.0/93.0/93.0/90.0/85.5/81.0%** success at 2/4/6/8/12/16 robots. Minimum training-episode
-  coverage is met; population/family success gates remain unmet. Test bank closed; no policy qualified.
+- Current execution: stopped; no continuation or new training launched. A subsequent iteration needs a
+  separately declared bounded protocol and cost plan. Communication experiments remain gated on clean qualification.
+- Completed run (**2026-10-23 03:35 EDT**): **394,285 joint steps**, **9,000 completed episodes**,
+  **1,500 per population / 300 per family**. Final current-model validation:
+  **97.0/95.5/96.0/94.0/88.5/82.0%** success at 2/4/6/8/12/16 robots. Worker cost **14,222.391 s
+  (3 h 57 min 02 s)** against the fixed 37-hour cap. Population/family success gates failed; test bank closed.
+- Completion audit: 12,000 validation records and 394,285 learning rows verified; final/last-periodic
+  agreement 1,200/1,200; GPU replays 12/12, CPU replays 11/12. One CPU/GPU near-tie changes a greedy
+  action; cross-device trajectory equivalence is not established. Actual clean/remote execution compatibility passed.
 - Scientific stop: the old primary comparison failed its launch rule. No old extended run was launched.
   The scale-16 coverage experiment uses a separate versioned protocol; that result and gate remain unchanged.
 
@@ -25,8 +30,8 @@ Large results/checkpoints remain local. Commit code, tests, configuration, metho
 
 | Phase | Deliverable | Prerequisites / current disposition |
 | --- | --- | --- |
-| 0 | This plan, provenance, explicit budgets, functioning hourly monitoring | Complete: 342 regression tests; measured 37-hour cap; hourly monitoring active |
-| 1 | Frozen `PANAMA-CLEAN`, qualified simultaneously at 2/4/6/8/12/16 robots | Current phase; independent full validation, test, exposure, compatibility and replay required |
+| 0 | This plan, provenance, explicit budgets, functioning hourly monitoring | Complete: 342 regression tests; measured 37-hour cap; monitor paused after the plateau stop |
+| 1 | Frozen `PANAMA-CLEAN`, qualified simultaneously at 2/4/6/8/12/16 robots | Plateau stop; coverage/compatibility passed, strict population/family success failed; untouched test unavailable |
 | 2 | Versioned SAGIN benchmark, complete return path and RF/capacity provenance | Independent audits may proceed; scheduler/radio/workload unchanged initially |
 | 3 | Paired frozen-policy communication-degradation curves | Blocked until Phase 1 qualification and Phase 2 validation |
 | 4 | `PANAMA-COMM` and equal-budget clean-continued control | Blocked until measured Phase 3 degradation and a declared training/acceptance protocol |
@@ -304,3 +309,33 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
   Continue within unchanged episode/wall caps. Detailed evidence:
   `output/phase1_scale/clean-16-01/monitor_audit_20261023_022952.json` and `monitor_history.jsonl`.
   Next hourly check: **2026-10-23 03:29 EDT**.
+
+- **2026-10-23 03:36 EDT** — `clean-16-01`: complete; 394,285 joint steps, 9,000 completed episodes; by population {'2': 1500, '4': 1500, '6': 1500, '8': 1500, '12': 1500, '16': 1500}. Runtime 3.95 h; remaining wall budget 33.05 h. Recent loss 0.003048160789603571; WAITs/blocked moves 40/13 over 256 logged joint steps. Checkpoint valid: True. Next scheduled check: paused pending review. Raw evidence: `D:\Projects\SANGIN-dev\output\phase1_scale\clean-16-01/monitor_history.jsonl`.
+
+- **2026-10-23 03:54 EDT** — `clean-16-01`: **stopped unqualified** under the frozen
+  validation-plateau rule at 9,000 episodes (1,500/population, 300/population/family), 394,285 joint steps
+  and 394,254 learner updates. Charged worker wall cost 14,222.391 s (3 h 57 min 02 s), including shutdown;
+  the 37-hour cap and all inputs remain unchanged. Worker/launcher/child are confirmed stopped and the
+  conservative lease is closed. No continuation or fresh training is launched.
+  Final current-weight identity `64b38b2d87ab…`, source `f84cfe5`.
+  Complete final validation (200/population): **97.0/95.5/96.0/94.0/88.5/82.0%** at 2/4/6/8/12/16 robots.
+  Coverage and original exposure gates pass; 8/12/16 aggregate rates and 13/30 family cells fail 95%.
+  Strict payload verification returns false; qualified-model loading rejects the checkpoint.
+  **Zero held-out cases evaluated.** All 1,200 final records match the last periodic cohort.
+  Independent stopping audit reproduces the ninth-check stop: recent-six best 92.167%, earlier best
+  91.333% (+0.833 pp); within-window recovery +0.417 pp, both below the declared >1 pp criterion.
+  All 94 failures repeat full states: 43 stationary, 47 period-two, four period-four. Random/corridor
+  cases account for 70/94 failures; 12/16 robots account for 59/94. No failed mission had every robot
+  visit its goal. All 394,285 learning rows have finite loss/Q probes, zero physical collision errors
+  and zero communication-impaired steps; falling training loss does not establish MAPF competence.
+  Actual bounded clean/remote execution compatibility and event replay pass at all six populations.
+  Sampled GPU replays match 12/12; CPU 11/12. A 12-robot corridor case differs at epoch 9: identical-input
+  Q differences of 1.128e-4 cross a ~4.5e-5 top-two margin. Both trajectories fail; cross-device trajectory
+  equivalence is not established. This limitation is retained, with no policy change to force agreement.
+  Source/budget/dataset hashes, 12,000 validation records, case identities, CSV denominators, all 260 V1
+  hashes, eight V2 primary weights, original checkpoint and both historical study inventories passed.
+  Final tables, curves, raw outcomes and diagnosis remain local; see
+  `output/phase1_scale/clean-16-01/final_review_20261023_b/FINAL_REVIEW.md` and `final_audit.json`.
+  Additional coverage alone does not justify another long run. A new bounded paired exploration-clock
+  comparison remains a hypothesis requiring its own protocol, selection evidence and measured cost plan.
+  Hourly automation pause confirmed. **Next check: paused pending review; no worker active.**

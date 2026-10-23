@@ -149,5 +149,82 @@ They identified an audit-only integer-versus-JSON-string key ordering discrepanc
 for two-digit robot IDs. Provenance hashing now normalizes keys before sorting,
 matching recorded event canonicalization. Physical decisions and transport are unchanged.
 
-No scale-16 policy is qualified at protocol introduction. Communication-degradation
-and communication-aware studies remain gated on the required clean baseline.
+## Completed coverage experiment
+
+`output/phase1_scale/clean-16-01` stopped on the predeclared validation-plateau
+rule on 2026-10-23. Frozen source: `f84cfe5`; final weight hash:
+`64b38b2d87ab85be38411c099e10dcdd8cfbb41da488e70bf8fe14f17c543c58`.
+The checkpoint is **unqualified**. No communication experiments follow this run.
+
+The worker completed 394,285 joint steps, 394,254 learner updates and 9,000 training
+episodes: 1,500 per population and 300 per population/family. Charged wall time,
+including validation, compatibility, checkpointing and shutdown, was **14,222.391 s
+(3 h 57 min 02 s)**. The recorded conservative cap was 37 hours; the 2,500-episode
+population cap was a ceiling alongside the stopping rule. Remaining wall time does
+not extend a completed run or authorize fresh initialization.
+
+Final greedy validation uses the same current weights on 200 independent
+validation cases per population. The intervals below are Wilson case intervals;
+local reports also include intervals resampling 25 map clusters. Makespan includes
+250-step failures. WAITs count active-robot WAIT actions per mission.
+
+| Robots | Success | 95% CI | Mean capped makespan | Mean WAITs |
+| --- | --- | --- | --- | --- |
+| 2 | 194/200 (97.0%) | 93.6–98.6% | 23.11 | 3.855 |
+| 4 | 191/200 (95.5%) | 91.7–97.6% | 33.03 | 3.620 |
+| 6 | 192/200 (96.0%) | 92.3–98.0% | 35.36 | 7.235 |
+| 8 | 188/200 (94.0%) | 89.8–96.5% | 42.49 | 9.170 |
+| 12 | 177/200 (88.5%) | 83.3–92.2% | 58.84 | 22.320 |
+| 16 | 164/200 (82.0%) | 76.1–86.7% | 77.43 | 28.125 |
+
+Family success, with 40 cases per cell:
+
+| Robots | Random obstacles | Intersection | Corridor | Bottleneck | Warehouse |
+| --- | --- | --- | --- | --- | --- |
+| 2 | 90.0% | 100.0% | 97.5% | 97.5% | 100.0% |
+| 4 | 92.5% | 97.5% | 90.0% | 100.0% | 97.5% |
+| 6 | 85.0% | 100.0% | 97.5% | 100.0% | 97.5% |
+| 8 | 87.5% | 95.0% | 92.5% | 97.5% | 97.5% |
+| 12 | 70.0% | 95.0% | 87.5% | 97.5% | 92.5% |
+| 16 | 67.5% | 92.5% | 67.5% | 95.0% | 87.5% |
+
+All 94 failures repeat full states: 43 stationary cycles, 47 period-two cycles and
+four period-four cycles. Random-obstacle/corridor cases account for 70/94 failures;
+12/16-robot cases account for 59/94. No failed mission had every robot visit its
+goal. Loss/Q probes remain finite, and the full learning log has
+zero physical collision errors or communication-impaired steps. These findings
+point to persistent greedy-policy cycles and limited generalization; numerical
+stability and low training loss do not establish MAPF competence.
+
+The plateau decision was independently reproduced at the ninth complete check:
+the best aggregate of the last six checks was 92.167%, versus 91.333% before that
+window, below the required improvement greater than one percentage point. Recovery
+within the window also stayed below that threshold. No partial cohort triggered
+the stop. Training coverage and all original exposure gates passed; success failed
+at 8/12/16 robots and in 13/30 population/family cells. **Zero held-out cases were
+evaluated.** Both strict payload verification and qualified-model loading reject
+the checkpoint.
+
+The completion audit verified 12,000 validation records, every learning row, CSV
+denominators and 1,200/1,200 agreement between final and last-periodic evaluation.
+Bounded multistep clean/remote-DT execution and event replay passed at all six
+populations, including completed-robot yielding/return. Twelve sampled GPU case
+replays matched exactly. CPU replay matched 11/12: one 12-robot corridor case
+changed action at epoch 9 because CPU/GPU Q-value differences of about 1.13e-4
+crossed a top-two margin of about 4.5e-5. Both trajectories failed the mission.
+Cross-device bitwise trajectory reproducibility is therefore not established.
+
+Detailed artifacts remain local: `SCALE_REPORT.md`, validation CSVs/JSONLs,
+`validation_curves.png`, `compatibility.json`, and
+`final_review_20261023_b/FINAL_REVIEW.md` / `final_audit.json` /
+`cross_device_action_probe.json`. Preservation checks passed for all 260 failed-V1
+file hashes, all eight V2 primary model weights, the original checkpoint and
+historical SAGIN/staleness study inventories.
+
+Additional episode coverage alone does not support another long run. A separately
+versioned, bounded paired comparison could test population-local exploration
+against the global clock while retaining the learner and execution interfaces.
+The current run does not establish that exploration caused the generalization
+deficit; any subsequent intervention needs validation evidence and a recorded cost
+plan. No new trial is launched. Monitoring is paused pending review; held-out tests,
+communication-degradation studies and communication-aware training remain closed.

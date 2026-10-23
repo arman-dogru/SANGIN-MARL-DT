@@ -14,7 +14,13 @@ The [extended training workflow](PHASE1_EXTENDED.md) requires measured throughpu
 and a recorded budget before any new full run, with explicit plateau stopping
 and a strict validation gate before opening the held-out test.
 
-This README explains the code paths and how to run them. It is based on repository commit [`ac49dc19`](https://github.com/arman-dogru/SANGIN-dev/commit/ac49dc19d5cdfb05623cd1ce783987098b348f77). It describes code behavior rather than claiming that the experiments have established a particular performance gain. Completed result bundles are available in [`results/`](results/README.md). Frozen checkpoints, archived orbital input, and large raw replay archives remain local assets and are not assumed to be present in a fresh Git clone.
+The current [scale-16 clean protocol](PHASE1_SCALE16.md) extends training and
+qualification to 2/4/6/8/12/16 robots with a 2,500-episode cap per population,
+remote-aligned execution, full validation cohorts, measured runtime limits and
+hourly monitoring. [`plan.md`](plan.md) records phase gates, current runs,
+budgets, evidence and experiment decisions. Historical V1/V2 remain reproducible.
+
+This README describes implementation, configuration and reproducibility. Versioned protocol documents and run manifests identify the source and evidence for each experiment. Completed result bundles are available in [`results/`](results/README.md). Frozen checkpoints, archived orbital input and large replay archives remain local assets and are not included in a fresh Git clone.
 
 ## Research model and paper references
 
@@ -178,7 +184,7 @@ The four curriculum stages use 2, 4, 6 and 8 robots. The learner periodically co
 
 A new Phase 1 checkpoint is explicitly tagged with its training protocol, data hash, observation contract, current-weight identity, and separate validation/held-out summaries. The qualification logic in [`phase1.py:verify_payload()`](src/panama_uav/phase1.py) and [`training.py:load_model()`](src/panama_uav/training.py) requires the expected populations, complete case counts, success/exposure thresholds and compatibility status before a Phase 1 checkpoint can be accepted for a non-diagnostic mission comparison. This does not imply the checkpoint has been empirically qualified on every remote-stress geometry or real robot hardware.
 
-### Running Phase 1 training
+### Reproducing historical V1 training
 
 The launch wrapper, [`scripts/run_phase1_clean.py`](scripts/run_phase1_clean.py), prepares a new run directory, snapshots the source, builds the data and starts the training worker in a separate process when `--launch` is specified. The worker writes status and logs into `output/phase1_clean/<run-id>/`.
 
@@ -202,7 +208,7 @@ python scripts/run_phase1_clean.py --run-id phase1-clean-01 --resume --launch --
 
 The `--launch` option starts a detached worker; its log and `status.json` are the correct sources of execution progress. The wrapper checks process identity to prevent a second live worker for the same run. The full protocol outputs `checkpoint.pt` (resumable learner state), `latest_model.pt`, `final_model.pt`, `compatibility.json`, training/evaluation records and `PHASE1_REPORT.md`. Check the recorded `qualified` status and cohort results instead of assuming that the existence of `final_model.pt` means successful qualification.
 
-[`phase1_compatibility.py`](src/panama_uav/phase1_compatibility.py) verifies that clean MAPF active-agent observations and actions agree with short ideal remote-DT rollouts and that the remote trace replays. The already-existing post-goal local controller is different from the clean actor's physical environment, so this is an **active-inference interface check**, not a claim that both implementations always produce identical full missions.
+The historical [`phase1_compatibility.py`](src/panama_uav/phase1_compatibility.py) checks active inference interfaces. The V2/V3 [`phase1_execution.py`](src/panama_uav/phase1_execution.py) additionally compares multi-step physical movement, priorities, rewards and completed-robot yielding/return with actual ideal remote-DT execution and event replay. The scale-16 workflow applies those checks to all six populations. The [current training commands and qualification requirements](PHASE1_SCALE16.md) are separate from historical V1 reproduction.
 
 ## Physical robot environment and priorities
 

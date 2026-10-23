@@ -42,7 +42,7 @@ The earlier fixtures are available only with `--benchmarks`.
 round-trip propagation, 1/10 GHz processors, and 2 W drone forwarding power.
 Weights range from 4 to 1. The runner checks 2/4/6/8 tasks with `kappaD=0` and
 `kappaD=1e-28`. These are declared fixtures, not measurements or trained priorities.
-These fixtures also use the requested large `tau=1000000` seconds.
+These fixtures use the large-deadline configuration `tau=1000000` seconds.
 
 The upload differs from the earlier project objective by optionally adding drone
 CPU energy `kappaD*C*fD^2`. Its energy objective includes that term and forwarding

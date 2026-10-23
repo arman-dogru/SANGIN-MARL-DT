@@ -24,7 +24,7 @@ sequenceDiagram
         C->>U: Networked DT state synchronization
         C->>R: State and separate action command through LEO and UAV
     end
-    Note over R: At n + 0.1 seconds: current command or WAIT, then one motion
+    Note over R: At n + tau_i seconds: current command or WAIT, then one motion
 ```
 
 The cloud is the authoritative DT store; the UAV maintains a delivered replica.

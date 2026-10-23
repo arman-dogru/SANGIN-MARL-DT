@@ -10,9 +10,10 @@
 - Qualified policies: **none**. `PANAMA-CLEAN` and `PANAMA-COMM` do not exist as qualified artifacts.
 - Starting source: `9d52899`. Work stays on `main`; source/configuration/data freeze before each launch.
 - Current execution: fresh clean training under the frozen episode/wall limits; complete greedy validation every 1,000 episodes. Later communication experiments remain gated on clean qualification.
-- Latest audited snapshot (**2026-10-23 00:38 EDT**): 106,880 joint steps; 2,009 completed episodes,
-  334–335 per population. Second complete greedy validation: **98.0/95.0/92.5/89.0/87.5/80.0%**
-  success at 2/4/6/8/12/16 robots. Coverage and population/family success gates remain unmet; test bank closed.
+- Latest audited snapshot (**2026-10-23 01:32 EDT**): 204,318 joint steps through completed episodes;
+  4,386 completed episodes, 731 per population. Fourth complete greedy validation:
+  **96.5/96.0/95.5/91.0/90.0/81.5%** success at 2/4/6/8/12/16 robots. Minimum training-episode
+  coverage is met; population/family success gates remain unmet. Test bank closed; no policy qualified.
 - Scientific stop: the old primary comparison failed its launch rule. No old extended run was launched.
   The scale-16 coverage experiment uses a separate versioned protocol; that result and gate remain unchanged.
 
@@ -218,3 +219,45 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
   500 completed training episodes, and population/family success gates remain unmet.
   The untouched test bank remains closed. Continue the unchanged frozen run within its existing caps.
   Next hourly check: **2026-10-23 01:38 EDT**.
+
+- **2026-10-23 01:31 EDT** — `clean-16-01`: continue; 202,624 joint steps, 4,353 completed episodes; by population {'2': 726, '4': 726, '6': 726, '8': 725, '12': 725, '16': 725}. Runtime 1.88 h; remaining wall budget 35.12 h. Recent loss 0.003072034031902149; WAITs/blocked moves 41/8 over 256 logged joint steps. Checkpoint valid: True. Next scheduled check: 2026-10-23T02:31:23.039588-04:00. Raw evidence: `D:\Projects\SANGIN-dev\output\phase1_scale\clean-16-01/monitor_history.jsonl`.
+
+- **2026-10-23 01:32 EDT** — `clean-16-01`: continue. Minimum training coverage is now met:
+  4,386 completed episodes, **731 per population**, and 204,318 joint steps through those episodes.
+  Population training steps (2/4/6/8/12/16): 21,188 / 24,705 / 28,355 / 32,943 / 44,372 / 52,755;
+  each population has 146–147 episodes per family. Advancing learning/episode logs and four complete
+  1,200-case validation cohorts establish progress. Worker PID 78484 and its creation time/full command
+  match the recorded Windows launcher/child identity. CPU 86%, RSS 2.18 GiB; device-wide RTX 3070
+  utilization 46% / 0% (01:31 snapshot). Lease elapsed **1.89 h**, remaining **35.11 h** of the fixed 37 h.
+  The 200,000-step checkpoint passed manifest identity and was 57 s old at 01:31. All 59 frozen source
+  hashes, budget/dataset/map hashes, evaluation case/model identities and denominator checks passed;
+  stderr remains empty. Last 256 learning rows: loss mean 0.002879, 43 active WAITs, 36 blocked moves,
+  16/1 attempted vertex/edge conflicts and zero physical collision errors. Latest finite probe:
+  Q absolute maximum 2.082, clipped gradient norm 0.04175, replay 50,000, epsilon 0.10003.
+
+  Fourth complete greedy validation (188,572-step weights `fa498a73e762…`), 200 cases/population.
+  Success intervals are Wilson; map-cluster intervals resample the 25 validation maps.
+  Makespan includes 250-step failures; WAITs count active-robot WAIT actions per mission.
+
+  | Robots | Success | Wilson 95% CI | Map-cluster 95% CI | Mean capped makespan | Mean WAITs | Relevant / directed pairs |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 2 | 193/200 (96.5%) | 93.0–98.3% | 92.0–100.0% | 24.11 | 6.200 | 1,242 / 9,644 |
+  | 4 | 192/200 (96.0%) | 92.3–98.0% | 92.0–99.5% | 32.12 | 8.025 | 3,666 / 77,076 |
+  | 6 | 191/200 (95.5%) | 91.7–97.6% | 91.5–98.5% | 36.95 | 9.700 | 7,454 / 221,700 |
+  | 8 | 182/200 (91.0%) | 86.2–94.2% | 86.0–95.0% | 49.52 | 21.880 | 17,616 / 554,624 |
+  | 12 | 180/200 (90.0%) | 85.1–93.4% | 85.5–94.0% | 56.81 | 17.210 | 32,098 / 1,499,784 |
+  | 16 | 163/200 (81.5%) | 75.5–86.3% | 75.0–88.0% | 80.20 | 39.825 | 76,746 / 3,849,360 |
+
+  Third-to-fourth validation rates: 99.0/95.5/94.5/88.0/90.0/81.0% to
+  96.5/96.0/95.5/91.0/90.0/81.5%. Gains are mixed: two-robot performance regressed 2.5 pp,
+  while larger populations improved or stayed level. All 99 fourth-cohort failures contain repeated
+  full states; none visited every goal without simultaneous completion. Random-obstacle family success
+  remains below 95% everywhere: 82.5/87.5/85.0/82.5/85.0/65.0%. The 16-robot corridor family is 75.0%.
+  Latest attempted vertex/edge conflicts total 6,572/342 before physical resolution; blocked moves total
+  11,127. These are distinct from physical collisions. Original exposure gates pass in every population.
+  No policy qualifies: 8/12/16 aggregate success and multiple family gates remain unmet, and final
+  current-model compatibility/test evaluation has not begun. The test bank remains closed.
+  Four complete checks cannot trigger the frozen seven-check minimum for a plateau stop.
+  Continue the unchanged run within its existing caps. Raw evidence remains local in
+  `output/phase1_scale/clean-16-01/monitor_audit_20261023_013202.json` and `monitor_history.jsonl`.
+  Next hourly check: **2026-10-23 02:32 EDT**.

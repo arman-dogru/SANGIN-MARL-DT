@@ -2,8 +2,8 @@
 
 ## Current status
 
-- Phase: **0 implementation and Phase 1 six-population protocol validation**.
-- Clean curriculum: preparing **2 / 4 / 6 / 8 / 12 / 16**; no population graduated.
+- Phase: **1 scale-16 workflow validation and runtime calibration**.
+- Clean curriculum: implemented **2 / 4 / 6 / 8 / 12 / 16**; no population graduated.
 - Active research workers: **none**. Hourly monitor: **paused** until an authorized worker launches.
 - Episode budget: **2,500 completed episodes per population; 15,000 total per clean run**.
   The later communication-aware comparison uses the same episode cap. Wall-time estimates remain required before launch.
@@ -151,3 +151,5 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
   Communication-cutoff training retains the same future cap and remains gated on clean qualification.
   Documentation convention: describe implementation, configuration, evidence and limitations; keep
   conversational approval narratives and assistant progress prose out of repository documentation.
+
+- **2026-10-22 23:29 EDT** — New disjoint dataset `output/phase1_scale/data-16-01`: 150 maps, 1,200 validation cases and 1,200 untouched test cases. Independent bounded CBS verified 16/20 sampled large-population missions: 9/10 at 12 robots and 7/10 at 16 robots. Four 2-second timeouts remain unresolved; no sampled case was proven infeasible. Feasible witness makespan was at most 37 steps. The full regression suite passed 340 tests; 22 targeted checks passed after the final budget/monitor guards. The hourly scheduler is configured and paused; activation precedes GPU calibration/training. Next step: final regression, frozen code commit and measured runtime calibration.

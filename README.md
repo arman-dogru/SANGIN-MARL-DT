@@ -17,8 +17,14 @@ and a strict validation gate before opening the held-out test.
 The current [scale-16 clean protocol](PHASE1_SCALE16.md) extends training and
 qualification to 2/4/6/8/12/16 robots with a 2,500-episode cap per population,
 remote-aligned execution, full validation cohorts, measured runtime limits and
-hourly monitoring. [`plan.md`](plan.md) records phase gates, current runs,
-budgets, evidence and experiment decisions. Historical V1/V2 remain reproducible.
+recorded provenance. Run manifests retain configuration, budgets and source
+identities. Historical V1/V2 remain reproducible.
+
+The [frozen-policy communication experiment](COMMUNICATION_EFFECTS.md) compares
+allocated, all-UAV, all-cloud and instant-baseline inference with paired cases and independent
+uplink, downlink, information-age, inference-service and interruption controls.
+The [completed communication results](results/communication/report.md) include
+1,640 paired simulations, comparison tables and publication figures.
 
 This README describes implementation, configuration and reproducibility. Versioned protocol documents and run manifests identify the source and evidence for each experiment. Completed result bundles are available in [`results/`](results/README.md). Frozen checkpoints, archived orbital input and large replay archives remain local assets and are not included in a fresh Git clone.
 

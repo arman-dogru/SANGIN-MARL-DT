@@ -1,0 +1,151 @@
+{
+  "manifest_sha256": "2f90ca1b462193ec261e82fc48c16388191a47e0a5723d74d555be88de0b1e03",
+  "population": 8,
+  "source": "all ten cases in each listed condition; archived tasks and controlled_peer_shadow records",
+  "conditions": {
+    "allocated__nominal": {
+      "cases": 10,
+      "admission_radio": {
+        "unavailable": {
+          "tasks": 163,
+          "uav": 163,
+          "cloud": 0,
+          "late": 125,
+          "on_time": 38
+        },
+        "available": {
+          "tasks": 2173,
+          "uav": 215,
+          "cloud": 1958,
+          "on_time": 2173
+        }
+      },
+      "peer_age": {
+        "active_peers": {
+          "pairs": 11058,
+          "age_seconds_sum": 6623.9810991446575,
+          "relevant_pairs": 516,
+          "mean_age_seconds": 0.5990216222775057
+        },
+        "completed_peers": {
+          "pairs": 5294,
+          "age_seconds_sum": 343283.82835194183,
+          "relevant_pairs": 10,
+          "mean_age_seconds": 64.84394188740873
+        }
+      }
+    },
+    "allocated__uplink-0.05": {
+      "cases": 10,
+      "admission_radio": {
+        "available": {
+          "tasks": 2215,
+          "uav": 215,
+          "cloud": 2000,
+          "on_time": 2215
+        }
+      },
+      "peer_age": {
+        "active_peers": {
+          "pairs": 10330,
+          "age_seconds_sum": 6271.501703793837,
+          "relevant_pairs": 514,
+          "mean_age_seconds": 0.6071153633875931
+        },
+        "completed_peers": {
+          "pairs": 5175,
+          "age_seconds_sum": 343593.62440179806,
+          "relevant_pairs": 8,
+          "mean_age_seconds": 66.39490326604793
+        }
+      }
+    },
+    "cloud__nominal": {
+      "cases": 10,
+      "admission_radio": {
+        "unavailable": {
+          "tasks": 161,
+          "uav": 0,
+          "cloud": 161,
+          "on_time": 161
+        },
+        "available": {
+          "tasks": 2056,
+          "uav": 0,
+          "cloud": 2056,
+          "on_time": 2056
+        }
+      },
+      "peer_age": {
+        "active_peers": {
+          "pairs": 10314,
+          "age_seconds_sum": 5633.1726403477505,
+          "relevant_pairs": 514,
+          "mean_age_seconds": 0.5461676013523125
+        },
+        "completed_peers": {
+          "pairs": 5205,
+          "age_seconds_sum": 343638.15792190953,
+          "relevant_pairs": 8,
+          "mean_age_seconds": 66.0207796199634
+        }
+      }
+    },
+    "cloud__ideal_network": {
+      "cases": 10,
+      "admission_radio": {
+        "available": {
+          "tasks": 2212,
+          "uav": 0,
+          "cloud": 2212,
+          "on_time": 2212
+        }
+      },
+      "peer_age": {
+        "active_peers": {
+          "pairs": 10322,
+          "age_seconds_sum": 5542.496683249286,
+          "relevant_pairs": 522,
+          "mean_age_seconds": 0.5369595701655965
+        },
+        "completed_peers": {
+          "pairs": 5162,
+          "age_seconds_sum": 342839.45203450276,
+          "relevant_pairs": 9,
+          "mean_age_seconds": 66.41601163008578
+        }
+      }
+    },
+    "cloud__aoi-3": {
+      "cases": 10,
+      "admission_radio": {
+        "unavailable": {
+          "tasks": 163,
+          "uav": 0,
+          "cloud": 163,
+          "on_time": 163
+        },
+        "available": {
+          "tasks": 2060,
+          "uav": 0,
+          "cloud": 2060,
+          "on_time": 2060
+        }
+      },
+      "peer_age": {
+        "active_peers": {
+          "pairs": 10244,
+          "age_seconds_sum": 32194.76221373001,
+          "relevant_pairs": 508,
+          "mean_age_seconds": 3.142792094272746
+        },
+        "completed_peers": {
+          "pairs": 5317,
+          "age_seconds_sum": 346829.17197417736,
+          "relevant_pairs": 7,
+          "mean_age_seconds": 65.23023734703355
+        }
+      }
+    }
+  }
+}

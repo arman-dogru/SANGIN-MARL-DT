@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "case_transactions": 1640,
+  "populations": {
+    "2": 410,
+    "4": 410,
+    "6": 410,
+    "8": 410
+  },
+  "totals": {
+    "on_time": 152595,
+    "late": 666430,
+    "undelivered": 20,
+    "tasks": 819045,
+    "rounds": 169876,
+    "cutoff_waits": 666450
+  },
+  "aggregate_transactions_match": true,
+  "deadline_partition_verified": true,
+  "round_denominators_verified": true,
+  "assignments_and_cpu_bounds_verified": true,
+  "source_manifest_sha256": "2f90ca1b462193ec261e82fc48c16388191a47e0a5723d74d555be88de0b1e03"
+}

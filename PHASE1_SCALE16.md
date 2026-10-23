@@ -2,8 +2,8 @@
 
 `clean_mapf_phase1_v3_scale16` evaluates whether additional episode coverage can
 produce one reliable clean policy for 2, 4, 6, 8, 12 and 16 robots. Configuration:
-[`configs/phase1_scale.toml`](configs/phase1_scale.toml). Operational status and
-the later research phases are recorded in [`plan.md`](plan.md).
+[`configs/phase1_scale.toml`](configs/phase1_scale.toml). Run manifests and the
+completion review below record provenance, outcomes and unmet qualification gates.
 
 ## Execution and learning
 
@@ -126,8 +126,8 @@ snapshots, memory, remaining wall budget, steps/episodes by population, recent
 loss/Q/replay/epsilon, WAITs, blocked motion and greedy validation. Device GPU
 utilization is labelled as a device-wide snapshot. The monitor never launches work.
 
-Each check appends compact local JSONL evidence and a timestamped operational
-entry to `plan.md`. A paused or completed worker has no implied active monitoring.
+Each check appends compact local JSONL evidence. A paused or completed worker
+has no implied active monitoring.
 Source, dataset and conservative budget-lease checks precede any continuation.
 
 Local artifacts include `manifest.json`, `protocol.toml`, `budget_plan.json`,

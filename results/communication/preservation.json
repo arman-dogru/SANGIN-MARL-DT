@@ -1,0 +1,22 @@
+{
+  "output\\resources\\full-250ms-priority-20261021-01": {
+    "files": 1308,
+    "unchanged": true,
+    "changes": [],
+    "selected_checksums": {
+      "manifest.json": true,
+      "status.json": true
+    }
+  },
+  "output\\controlled_stress\\peer-staleness-pilot-20261021-01": {
+    "files": 243,
+    "unchanged": true,
+    "changes": [],
+    "selected_checksums": {
+      "manifest.json": true,
+      "status.json": true
+    }
+  },
+  "original_checkpoint_unchanged": true,
+  "status": "passed"
+}

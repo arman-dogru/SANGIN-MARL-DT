@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "source_artifacts": 43,
+  "published_hashes_verified": true,
+  "gzip_source_bytes_verified": true,
+  "paired_case_identity_verified": true,
+  "csv_widths_verified": true,
+  "record_counts": {
+    "episodes": 1640,
+    "tasks": 819045,
+    "rounds": 169876
+  },
+  "replay_audit_records": 1640,
+  "source_regression_tests": 360,
+  "largest_file_bytes": 55275651
+}

@@ -7,11 +7,16 @@ Completed results, copied without moving or changing the original runs.
 | [250ms](250ms/report.md) | Full priority-allocation evaluation at 250 ms | 1,200 |
 | [staleness](staleness/report.md) | Controlled peer-staleness pilot | 216 |
 | [deadlines](deadlines/report.md) | 100/250/300/500 ms sensitivity pilot | 96 |
+| [communication](communication/report.md) | Four execution placements and controlled communication sensitivities | 1,640 |
 
 Each folder contains `report.md`, `summary.csv`, `episodes.csv`,
 `comparisons.csv`, provenance/audit JSON files, and `plots/`.
 Original CSV columns and numerical values are preserved. `250ms/tasks.csv.gz`
 contains the full 148,536-row task table; decompress it to read the CSV.
+`communication/tasks.csv.gz` and `communication/rounds.csv.gz` contain all
+819,045 tasks and 169,876 inference rounds from the frozen-policy study.
+The communication folder also includes `primary.csv`, `primary_comparisons.csv`
+and a README describing its validation and reproduction inputs.
 
 The pilots are diagnostic evidence, not full studies. Staleness is an artificial
 stress condition, and vertex-only metrics remain exploratory. Reports preserve

@@ -4,9 +4,9 @@
 
 - Phase: **1 scale-16 workflow validation and runtime calibration**.
 - Clean curriculum: implemented **2 / 4 / 6 / 8 / 12 / 16**; no population graduated.
-- Active research workers: **none**. Hourly monitor: **paused** until an authorized worker launches.
+- Active research workers: **none**. Hourly monitor: **active**, registered before GPU calibration and training.
 - Episode budget: **2,500 completed episodes per population; 15,000 total per clean run**.
-  The later communication-aware comparison uses the same episode cap. Wall-time estimates remain required before launch.
+  The later communication-aware comparison uses the same episode cap. Measured full-run wall cap: **37 hours (133,200 s)**; final-evaluation reserve: **90 minutes**.
 - Qualified policies: **none**. `PANAMA-CLEAN` and `PANAMA-COMM` do not exist as qualified artifacts.
 - Starting source: `9d52899`. Work stays on `main`; source/configuration/data freeze before each launch.
 - Immediate work: scalable clean training, leakage/feasibility checks, strict six-population qualification,
@@ -155,3 +155,5 @@ Only resume a confirmed stopped authorized worker from its matching checkpoint a
 - **2026-10-22 23:29 EDT** — New disjoint dataset `output/phase1_scale/data-16-01`: 150 maps, 1,200 validation cases and 1,200 untouched test cases. Independent bounded CBS verified 16/20 sampled large-population missions: 9/10 at 12 robots and 7/10 at 16 robots. Four 2-second timeouts remain unresolved; no sampled case was proven infeasible. Feasible witness makespan was at most 37 steps. The full regression suite passed 340 tests; 22 targeted checks passed after the final budget/monitor guards. The hourly scheduler is configured and paused; activation precedes GPU calibration/training. Next step: final regression, frozen code commit and measured runtime calibration.
 
 - **2026-10-22 23:31 EDT** — Release regression: 342 passed in 124.53 s, with one ITU-R low-elevation advisory. Preservation audit passed: all 260 failed-V1 file hashes, 1,308 historical 250 ms study files, 243 staleness-pilot files, the original input checkpoint and all eight primary-comparison model weights. Scale-16 source is ready to freeze. Next step: bounded disposable GPU cost calibration, then a recorded wall-time plan.
+
+- **2026-10-22 23:36 EDT** — Calibration `calibrate-16-01` (source `947e991`): 3,000 joint learning steps, 12 completed episodes (two/population), 78.657 s total. No held-out cases evaluated; calibration weights are disposable. Conditional training rates: 263,004 / 264,201 / 233,191 / 209,084 / 159,787 / 107,162 joint steps/hour for 2/4/6/8/12/16 robots. The all-250-step training projection is 20.16 h; 15 complete validation checks, checkpoint overhead and 90-minute final evaluation reserve produce 30.81 h before the 20% margin. The fixed full-run cap is 37 h, rounded to 30-minute units, alongside the 15,000-episode / 3,750,000-step caps. Hourly automation registration succeeded. Next step: freeze and launch `clean-16-01`; next automated check follows the hourly cadence. No qualification or clean-performance claim follows from this cost calibration.

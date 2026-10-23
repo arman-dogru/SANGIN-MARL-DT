@@ -38,6 +38,12 @@ if __name__=='__main__':
         manifest=prepare(root,config,episode_authorization=2500,
             wall_seconds=plan['proposed_budget_seconds'],evaluation_reserve_seconds=plan['final_evaluation_reserve_seconds'],
             dataset_path=dataset,benchmark_path=benchmark_path)
+        import platform
+        import torch
+        manifest['software']=dict(python=sys.version,platform=platform.platform(),torch=torch.__version__,
+            numpy=__import__('numpy').__version__,cuda_runtime=torch.version.cuda,
+            device=args.device,deterministic_algorithms=True)
+        write_json(root/'manifest.json',manifest)
         print(json.dumps(dict(root=str(root),source_commit=manifest['source_commit'],wall_seconds=plan['proposed_budget_seconds'])))
     if args.launch:print(json.dumps(launch(root,args.device,args.resume,monitor_registered=args.monitor_registered)))
     if args.monitor:

@@ -109,7 +109,7 @@ For the physical SAGIN experiments, the configuration points to the local orbita
 
 ## Clean MAPF training: Phase 1
 
-Phase 1 trains PANAMA without modeled radio delay, packet queues, remote CPU scheduling or stale DT states. Its purpose is to obtain a new, qualified clean-policy baseline whose **observation constructor matches the remote inference input format**. The training flow is documented in [`PHASE1_CLEAN_MAPF.md`](PHASE1_CLEAN_MAPF.md).
+Phase 1 trains PANAMA without modeled radio delay, packet queues, remote CPU scheduling or stale DT states. Its purpose is a qualified clean-policy baseline with the same observation constructor as remote inference. The current [scale-16 protocol](PHASE1_SCALE16.md) adds episode-based population introduction, rehearsal and six-population qualification. The following historical V1 examples document [`PHASE1_CLEAN_MAPF.md`](PHASE1_CLEAN_MAPF.md); V2/V3 additionally use remote-aligned completed-robot control and active-only replay.
 
 ### Dataset generation and scenario families
 

@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "label": "Parameter-only pilot results",
+  "episodes": 4,
+  "tasks": 24,
+  "replay_audits": 4,
+  "model_qualification_enforced": true,
+  "excluded_populations": [],
+  "paired_case_identity_verified": true,
+  "partition_and_cutoff_denominators_verified": true,
+  "fixed_previous_assignments_verified": true,
+  "protected_files_verified": 211,
+  "only_parameter_change": {
+    "resource_allocation.drone_cycles_per_second": [
+      1000000000.0,
+      6000000000.0
+    ]
+  },
+  "policy_updates": 0
+}

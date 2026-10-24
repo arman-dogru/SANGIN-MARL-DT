@@ -25,6 +25,8 @@ allocated, all-UAV, all-cloud and instant-baseline inference with paired cases a
 uplink, downlink, information-age, inference-service and interruption controls.
 The [completed communication results](results/communication/report.md) include
 1,640 paired simulations, comparison tables and publication figures.
+The [parameter-only UAV CPU pilot](UAV6_PILOT.md) changes UAV capacity to 6 GHz
+and publishes [paired diagnostic results](results/uav6/report.md) for 2/4/8 robots.
 
 This README describes implementation, configuration and reproducibility. Versioned protocol documents and run manifests identify the source and evidence for each experiment. Completed result bundles are available in [`results/`](results/README.md). Frozen checkpoints, archived orbital input and large replay archives remain local assets and are not included in a fresh Git clone.
 

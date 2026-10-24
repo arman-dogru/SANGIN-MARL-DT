@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "label": "Parameter-only pilot results",
+  "aggregate_records": {
+    "episodes": 60,
+    "tasks": 8746,
+    "rounds": 2883,
+    "audits": 60
+  },
+  "aggregate_transactions_identical": true,
+  "historical_reference_cases": 30,
+  "baseline_frames_identical": true,
+  "all_cloud_frames_identical_except_capacity_event_checksum": true,
+  "placement_and_command_times_identical": true,
+  "active_count_stratification": true,
+  "script_sha256": "6075de0a448c04dece32bfac42d4872c088c577362e3acd7427707f6b014da5f",
+  "manifest_sha256": "7089f7531e51ffc5ba26ff6598a388c510500ae4c6029ce128c7097b8dbcdcf2"
+}

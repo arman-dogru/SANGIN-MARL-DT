@@ -8,6 +8,7 @@ Completed results, copied without moving or changing the original runs.
 | [staleness](staleness/report.md) | Controlled peer-staleness pilot | 216 |
 | [deadlines](deadlines/report.md) | 100/250/300/500 ms sensitivity pilot | 96 |
 | [communication](communication/report.md) | Four execution placements and controlled communication sensitivities | 1,640 |
+| [uav6](uav6/report.md) | Parameter-only 1/6 GHz UAV CPU pilot | 60 |
 
 Each folder contains `report.md`, `summary.csv`, `episodes.csv`,
 `comparisons.csv`, provenance/audit JSON files, and `plots/`.
@@ -17,6 +18,9 @@ contains the full 148,536-row task table; decompress it to read the CSV.
 819,045 tasks and 169,876 inference rounds from the frozen-policy study.
 The communication folder also includes `primary.csv`, `primary_comparisons.csv`
 and a README describing its validation and reproduction inputs.
+`uav6/` compares four placements on five cases per supported population; 16 robots
+are explicitly excluded by model qualification. All UAV CPU pilot tables and
+figures are diagnostic parameter-only evidence.
 
 The pilots are diagnostic evidence, not full studies. Staleness is an artificial
 stress condition, and vertex-only metrics remain exploratory. Reports preserve

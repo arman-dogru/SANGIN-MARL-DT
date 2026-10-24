@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "label": "Parameter-only pilot results",
+  "source_artifacts": 32,
+  "published_hashes_verified": true,
+  "gzip_original_bytes_verified": true,
+  "only_uav_capacity_changed": true,
+  "episodes": 60,
+  "tasks": 8746,
+  "rounds": 2883,
+  "command_partitions": {
+    "on_time": 8659,
+    "late": 87,
+    "undelivered": 0
+  },
+  "cutoff_waits": 87,
+  "replay_audits": 60,
+  "full_suite_tests": 374,
+  "unsupported_population": 16,
+  "qualified_scope_enforced": true
+}

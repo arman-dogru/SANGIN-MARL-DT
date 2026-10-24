@@ -1,0 +1,212 @@
+[
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-2-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-2-case-000.json.gz",
+    "historical_archive_sha256": "21e5ebed6f0751d2b1a6bac48822260aeac3ce088e844f5e71bc46b56014eee5"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-2-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-2-case-001.json.gz",
+    "historical_archive_sha256": "393d2196d1acd4208e7285946f741fe939e8aaa5a0631b8bf8d00566819b8973"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-2-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-2-case-002.json.gz",
+    "historical_archive_sha256": "95cfbc63876936daa0897c9bafc3855bd3635b01db4d4a85b22c958a5ad9144b"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-2-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-2-case-003.json.gz",
+    "historical_archive_sha256": "1c8ee3c9d7776b2d706a3bc78f35fe6a7f1d9c664889b50aef856e1c3a3b5556"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-2-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-2-case-004.json.gz",
+    "historical_archive_sha256": "bb50449706278fa97b3a5e8d18c9f2b97982e922d0391df15778b9fed56a725f"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-4-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-4-case-000.json.gz",
+    "historical_archive_sha256": "7981f016bc906ba20504400e660441f883aa4798b94db3aa17fb892cebfa9a97"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-4-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-4-case-001.json.gz",
+    "historical_archive_sha256": "a5dbc656de57dbac5f0c7e81597a06e331d7a0b1a1a14b8a427b1837f6d3d9a6"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-4-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-4-case-002.json.gz",
+    "historical_archive_sha256": "4f83e2bfd1b0337a6082890129d9cf61d59bad9d541b578feed8a989ecab6381"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-4-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-4-case-003.json.gz",
+    "historical_archive_sha256": "1f64686aedbbbb75b187a1551cf1fcf5bf2a5de7858a24cfc8fde8ed3b881849"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-4-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-4-case-004.json.gz",
+    "historical_archive_sha256": "38cccb34307aca8e6f69cfffd5fac608a25f9039012fafccf77d8ee1ce95b04f"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-8-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-8-case-000.json.gz",
+    "historical_archive_sha256": "4ac6f8ee989ad450f810dd76badfe99eb7f06cb1306bd08711a2b55b9d5e96fb"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-8-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-8-case-001.json.gz",
+    "historical_archive_sha256": "674ff1731fe44b2d8dbce1f3306d29664d648b3ebe2d5bda906ba25c39c512c0"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-8-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-8-case-002.json.gz",
+    "historical_archive_sha256": "1dc4bb6ee8fca48032ef5d64462045ef28d38c474765f1ed26924fde43e422ec"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-8-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-8-case-003.json.gz",
+    "historical_archive_sha256": "6b11a936ffe122883ce670c54e8d234de9f478f7cb702c5ed9251ee33e9baa5c"
+  },
+  {
+    "condition": "allocated-1ghz",
+    "case_id": "agents-8-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\allocated__nominal\\agents-8-case-004.json.gz",
+    "historical_archive_sha256": "3f5ad6f1225899743844db4904766189c39ccae0f090e17505af49f3727bd25a"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-2-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-2-case-000.json.gz",
+    "historical_archive_sha256": "432175623dbe717689c8c4a187df4ac60a05ef2e30cd2301454b3e98ad0a8ad8"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-2-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-2-case-001.json.gz",
+    "historical_archive_sha256": "a1bfbf9fa8956034eef0c9e33e07f244c6024391cb2b3333745c5621f17e546a"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-2-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-2-case-002.json.gz",
+    "historical_archive_sha256": "e1ff65bbade8bd171eb7e1ef7373afce5f5ca7650e78f2873acc1aa4c1876697"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-2-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-2-case-003.json.gz",
+    "historical_archive_sha256": "f279794244da01eb728b93f8e9f34bb1a1e1669ae96471de960565455e8373b8"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-2-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-2-case-004.json.gz",
+    "historical_archive_sha256": "6bd25f8c671b1c6ff44f81d881f947f12a31dfd4489e02a3021db07bc342ebe0"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-4-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-4-case-000.json.gz",
+    "historical_archive_sha256": "04cce211403024c38a838146c362a69287cfb8794ac755dfcf069f8ea49b0691"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-4-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-4-case-001.json.gz",
+    "historical_archive_sha256": "a9ee8a0211ba9e12a60f13918286e640a36c966d08988624d33ea16f6a3bb42e"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-4-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-4-case-002.json.gz",
+    "historical_archive_sha256": "46af951cf8474a0832bb6386ffa0941773e94a84e3741ac3b92786ee3bf005e6"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-4-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-4-case-003.json.gz",
+    "historical_archive_sha256": "0ca389864becce6af65f5f56c19b18a5c31614e46649606c1752ee107c03048f"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-4-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-4-case-004.json.gz",
+    "historical_archive_sha256": "3ce8f26253db9f0e436a9cc7ce9b3bd300ff01ae23be41c2ff049115ef2e777d"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-8-case-000",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-8-case-000.json.gz",
+    "historical_archive_sha256": "b9c959a8edd7969da543a1d7a2f9e56e9636351af921961507f74841152a91bb"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-8-case-001",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-8-case-001.json.gz",
+    "historical_archive_sha256": "4be9f611cb6f3a3be74114f8184a8a39b2495c04f448706c9b70bf0191c4df5a"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-8-case-002",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-8-case-002.json.gz",
+    "historical_archive_sha256": "3fb7a1f7c9e1b8a08ab42c49de6211c9db5b0979fcb49ff6e99b278b8651a9ac"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-8-case-003",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-8-case-003.json.gz",
+    "historical_archive_sha256": "4ce569fb3bd3c3cf4c87d09f069812e0945f3015429f02646ddbc427eb0f2d52"
+  },
+  {
+    "condition": "cloud-6ghz",
+    "case_id": "agents-8-case-004",
+    "matched": true,
+    "historical_archive": "D:\\Projects\\SANGIN-dev\\output\\communication_effects\\inference-20261023-01\\episodes\\cloud__nominal\\agents-8-case-004.json.gz",
+    "historical_archive_sha256": "c3f1a01caa83b0cf0d594b4a8d35825b63a35ffbe59fa9bb933f613d6a0b2643"
+  }
+]

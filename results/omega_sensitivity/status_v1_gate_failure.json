@@ -1,0 +1,9 @@
+{
+  "status": "error",
+  "completed_episodes": 75,
+  "expected_episodes": 375,
+  "elapsed_seconds": 4965.287101268768,
+  "error": "The (1,1) baseline reproduction failed: D:\\Projects\\SANGIN-dev\\output\\omega_sensitivity\\omega-20261025-01\\baseline_audit\\allocated-6ghz__agents-8-case-002.json",
+  "error_type": "ValueError",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\Projects\\SANGIN-dev\\output\\omega_sensitivity\\omega-20261025-01\\code\\run_omega_sensitivity.py\", line 377, in run\n    status('baseline_reproduction_audit');baseline_gate(root,jobs)\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Projects\\SANGIN-dev\\output\\omega_sensitivity\\omega-20261025-01\\code\\run_omega_sensitivity.py\", line 325, in baseline_gate\n    write(root/'baseline_validation.json',dict(status='failed',cases=results));raise ValueError('The (1,1) baseline reproduction failed: '+str(path))\n                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: The (1,1) baseline reproduction failed: D:\\Projects\\SANGIN-dev\\output\\omega_sensitivity\\omega-20261025-01\\baseline_audit\\allocated-6ghz__agents-8-case-002.json\n"
+}

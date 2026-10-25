@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "episodes": 375,
+  "first_round_solver_snapshots": 4650,
+  "only_coefficient_changes": true,
+  "fixed_capacities_workload_radio_and_policy": true,
+  "priority_range": [
+    1,
+    4
+  ],
+  "hard_solver_deadlines": false,
+  "original_model_and_timeline_unchanged": true,
+  "production_and_historical_hashes_unchanged": true
+}

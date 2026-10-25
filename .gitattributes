@@ -1,2 +1,3 @@
 # Preserve the exact bytes recorded by the population-extension artifact hashes.
 /results/uav6/agents16-32/** -text
+/results/omega_sensitivity/** -text

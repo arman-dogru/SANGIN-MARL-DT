@@ -1,0 +1,13 @@
+{
+  "analysis_sha256": "29c8187f8af2a7d7e1fd81cec0ecc6369b55b29af630e38159c7f20d969ee0fa",
+  "figure_source_sha256": "8f5022e3a10d67839fb81db05b421bd0ee544602147bb3addef5cc1011abe6f1",
+  "simulation_changes": 0,
+  "solver_changes": 0,
+  "finalization_sources": {
+    "analyse_omega_sensitivity.py": "29c8187f8af2a7d7e1fd81cec0ecc6369b55b29af630e38159c7f20d969ee0fa",
+    "report_omega_sensitivity.py": "8f5022e3a10d67839fb81db05b421bd0ee544602147bb3addef5cc1011abe6f1",
+    "audit_omega_sensitivity.py": "6967309f9525693c71ba2b7d2e54a7e4365c93d3d2470fbb79d27b609043281b",
+    "finalize_omega_report.py": "134012ae7254709abce03f73f06ceaa90c603a02c9597cd664b9cfe4483bc0bb",
+    "verify_omega_bundle.py": "666cb8a19fe640e4b16b792a55721b2c672857c46cf80a95255bd4c369211ef9"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "status": "failed",
+  "cases": [
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-2-case-000",
+      "num_agents": 2,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 0.0,
+      "relaxation_gap_max_absolute_difference": 0.0,
+      "historical_packet_sha256": "93d9f931f53334b99d2c4e560e90fca82bc4e4528f85f66ce6c7df688cc46a61",
+      "historical_archive_sha256": "bde7eaa16b996229e784e92ebfdc5b9b6d95d98e690f4806423a3d9c84118f22",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-2-case-001",
+      "num_agents": 2,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 0.0,
+      "relaxation_gap_max_absolute_difference": 0.0,
+      "historical_packet_sha256": "058f6791ed701966afbcc9778adba5e918d513017113b8c3aa8855e982bcf250",
+      "historical_archive_sha256": "3366dfe2f1e261b34146a0478370e0730f8ae87ba1e09492c4059d633a9013c0",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-2-case-002",
+      "num_agents": 2,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 4.767103695989767e-07,
+      "relaxation_gap_max_absolute_difference": 0.0,
+      "historical_packet_sha256": "a5640903db22122d4f4d5ebc11919a54c415bfa1b6805bcb897c467c5da8aecc",
+      "historical_archive_sha256": "e54d43dc237613cf3b528cbc5b36e2cf8fac7414ad37372c1cd28a45a59f1d90",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-2-case-003",
+      "num_agents": 2,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 2.360334150353083e-13,
+      "relaxation_gap_max_absolute_difference": 0.0,
+      "historical_packet_sha256": "2ca7b45528329b3e939b340ab52122ef62582a69ce520e60b525ef398d2bad70",
+      "historical_archive_sha256": "93ab704e39ce2577c9d5209d0699a11ef1526e74005136873aa27472a0523faf",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-2-case-004",
+      "num_agents": 2,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 1.3249828596419669e-12,
+      "relaxation_gap_max_absolute_difference": 0.0,
+      "historical_packet_sha256": "e97234f8f29afb91ce7daf75bfc44f3ff1fcc270b1dfb300bc2b117b41c2d49c",
+      "historical_archive_sha256": "62ead760c6a6b70c68a5e3b94d23ffab9c823098e92d562d35921c34bcfb5944",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-4-case-000",
+      "num_agents": 4,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 8.465589963546627e-05,
+      "relaxation_gap_max_absolute_difference": 8.163271447703124e-11,
+      "historical_packet_sha256": "2e083170b66976d277f96e0e7e297706fa31c6abe7e03dcae3de11bc054a17e1",
+      "historical_archive_sha256": "7c49a76ad4144fdf1cd32c96de4fcdc0ff8ec703452c3da9137ea60198929566",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-4-case-001",
+      "num_agents": 4,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 1.0271639613257388e-05,
+      "relaxation_gap_max_absolute_difference": 9.746231599550015e-13,
+      "historical_packet_sha256": "cd9b44e28ce4bd4e667c4ff92832bd770a769b2ceb9e33d81976b2ed82eef95a",
+      "historical_archive_sha256": "7ac4df276e11088deab4d50f7c7e823a6f1a734e4808c9e5d2ecc269211afb3f",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-4-case-002",
+      "num_agents": 4,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 7.38483272327839e-05,
+      "relaxation_gap_max_absolute_difference": 2.4556412459020294e-11,
+      "historical_packet_sha256": "e6d1e3c3c7a407931a3dcce31ad85ea7dd63b91db5d22fe79f0bbbc32e096389",
+      "historical_archive_sha256": "7ee116c1b361c425fcf85ddd592490dca5aec637bec0095b07f1fa0cdfc4cff5",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-4-case-003",
+      "num_agents": 4,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 8.374881476602702e-05,
+      "relaxation_gap_max_absolute_difference": 5.992695228940192e-11,
+      "historical_packet_sha256": "e660f0468f7fe556e4ae0cfc98db127591461c863620cff4496c9338e5b6c893",
+      "historical_archive_sha256": "e0d18d2f3430bc6a848abe3c569b38442d8cd424be669f92c68382fb77bdaba5",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-4-case-004",
+      "num_agents": 4,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 7.813732979755628e-05,
+      "relaxation_gap_max_absolute_difference": 5.1913168208628235e-11,
+      "historical_packet_sha256": "a52e738cd2ead39fd3cd17da53769d8794a9389de28f50dcc2a043c525b1bb76",
+      "historical_archive_sha256": "e1f0a1018f7b81abf9a295436ec9c2e80f5877eba1a9aea1b76ff93f16655f2f",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-8-case-000",
+      "num_agents": 8,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 2.7761822939176284e-05,
+      "relaxation_gap_max_absolute_difference": 1.6603207697585276e-10,
+      "historical_packet_sha256": "c89f082250cb6c8fbd424969f8fd5a8e35656d9ac0204ef6c0775908c5910c1d",
+      "historical_archive_sha256": "0299f514ddd8a632f250abc12a050b3185523bbdf30760e8579c81321540a45d",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-8-case-001",
+      "num_agents": 8,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 1.441308452609924e-05,
+      "relaxation_gap_max_absolute_difference": 2.7463920027059885e-11,
+      "historical_packet_sha256": "8c5f599391cbce7ea1b160493347c86c95feb5c426b4cc52469c849bf8d73895",
+      "historical_archive_sha256": "68217e304c3b501e6671be2d5522b93f1b0f12a7bb9429724132405dcd4a8d8d",
+      "passed": true
+    },
+    {
+      "condition": "allocated-6ghz",
+      "case_id": "agents-8-case-002",
+      "num_agents": 8,
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "relaxed_x_max_absolute_difference": 0.00013736340148395865,
+      "relaxation_gap_max_absolute_difference": 1.9371164394765827e-10,
+      "historical_packet_sha256": "1217f8e6280b2173854b0f46575fc38b4c13ef8dc09086aec409a98bdb6f1b53",
+      "historical_archive_sha256": "8a0f8ede72ecc1202b20d5c61a0203e6f8109a0109c8e5f9256ffd837ffb126a",
+      "passed": false
+    }
+  ]
+}

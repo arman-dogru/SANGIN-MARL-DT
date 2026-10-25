@@ -1,0 +1,14 @@
+{
+  "reason": "Unused fractional minimizers vary within conic tolerance; exact executed outputs unchanged. Compare conic objective and feasibility instead of arbitrary x-vector distance.",
+  "production_changes": 0,
+  "simulator_changes": 0,
+  "solver_changes": 0,
+  "rerun_completed_episodes": 0,
+  "original_manifest_sha256": "43ac936ad5b06a6ab6c82fdcdf005faeacdfdcd434ee3d7851ab0c185d9059aa",
+  "files": {
+    "audit_omega_reproduction.py": "dec3e8f8a31223218124f042eccce7399e8d3b1308cc4129a95cd3c2e4f3d852",
+    "controller.py": "6df09f1752497f5147884aa6b512906a7f325eb3a2e273169d96a6cdf436343d"
+  },
+  "created_unix": 1792916545.9422283,
+  "original_lease_started": 1792911567.1710677
+}

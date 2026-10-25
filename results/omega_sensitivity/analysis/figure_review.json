@@ -1,0 +1,26 @@
+{
+  "status": "reviewed",
+  "png_figures": 9,
+  "vector_pdf_files": 9,
+  "svg_files": 9,
+  "checks": [
+    "all nine PNG figures inspected",
+    "consistent route colors and legends",
+    "common comparison axes",
+    "250 ms reference on latency charts",
+    "first-round and mission-wide denominators distinct",
+    "16/32 exploratory labels",
+    "discrete scatter points and readable labels"
+  ],
+  "png_sha256": {
+    "figures/01_allocation/allocation_sensitivity.png": "96364d2e6fc4d088782be03eba7a9313838ad9f382c572fefab2e48971dc63ad",
+    "figures/02_latency/e2e_p95.png": "1eec18527eea18836c4ec0c4251c722429dee0cb2f72b26efb326a0dc1cc5da5",
+    "figures/03_energy/episode_energy.png": "dd019d153f2d43b1977ee5be8749480a2950f554231d13ec7f51db715a7cd25f",
+    "figures/03_energy/energy_components.png": "71fc6c39c40eca33e898cb462992ba2ad5adf04db3834f5dac06e22a5bb2380f",
+    "figures/04_deadline_misses/deadline_misses.png": "24946a8cc17027244732710d959e53a74309e9c55deee1d2d7c6dca3f876a188",
+    "figures/05_cpu/uav_utilization.png": "123f1118dcca20fefd0e874bb655f02f0a947213ba74a64da1fb7c81b7adf398",
+    "figures/05_cpu/cloud_utilization.png": "129bd57bf915955331e4c5d85acaec800234ce8b0e65db7dac79a69fde7012b0",
+    "figures/06_mission_success/mission_success.png": "a3ae3eff953396337044d41adcb8e9454ab9a3d2a64bdb01ee4ecfefbf1899d2",
+    "figures/07_tradeoff/latency_energy_tradeoff.png": "b675aba6540dbed8e93fe290a80c0d686d34d1dab4d8733902ef3a1e28eafa8f"
+  }
+}

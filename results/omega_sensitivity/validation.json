@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "episodes": 375,
+  "expected_episodes": 375,
+  "causal_replays": 375,
+  "paired_case_identities": true,
+  "exclusive_deadline_partition": true,
+  "binary_placements": true,
+  "unsuccessful_missions": 77,
+  "solver_failures": 0
+}

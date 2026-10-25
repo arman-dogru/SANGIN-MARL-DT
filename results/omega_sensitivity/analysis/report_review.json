@@ -1,0 +1,9 @@
+{
+  "status": "reviewed",
+  "matrix_simulations": 375,
+  "task_records": 314007,
+  "source_sha256": "134012ae7254709abce03f73f06ceaa90c603a02c9597cd664b9cfe4483bc0bb",
+  "simulation_changes": 0,
+  "solver_changes": 0,
+  "findings": "Mixed trade-off; no sharp UAV-to-cloud transition; W2 descriptive compromise; small exploratory scale cohorts"
+}

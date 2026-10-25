@@ -103,6 +103,9 @@ def audit(root,read_back=False):
 def export(root,destination):
     """Export only a completed, independently audited matrix; raw traces stay local."""
     root,destination=Path(root).resolve(),Path(destination).resolve()
+    repository_results=Path(__file__).resolve().parents[1]/'results'
+    if destination.is_relative_to(repository_results):
+        raise ValueError('Full-cohort exports stay local; use publish_omega_completed.py for repository results')
     if read(root/'status.json')['status']!='complete':raise ValueError('The matrix is not complete')
     if read(root/'independent_audit.json')['status']!='passed':raise ValueError('Independent audit required')
     if destination.exists():raise ValueError('Use a new destination; result snapshots cannot be overwritten')

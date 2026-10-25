@@ -1,32 +1,17 @@
 {
   "status": "passed",
-  "tests": 396,
-  "duration_seconds": 145.46,
-  "warning": "Existing ITU gaseous-attenuation elevation-range warning",
-  "command": ".venv/Scripts/python.exe -m pytest -q --basetemp tmp/pytest-omega-final --tb=short",
-  "previous": {
-    "status": "passed",
-    "tests": 395,
-    "duration_seconds": 160.4,
-    "focused_tests": 35,
-    "focused_duration_seconds": 6.83,
-    "warning": "Existing ITU gaseous-attenuation elevation-range warning",
-    "command": ".venv/Scripts/python.exe -m pytest -q --basetemp tmp/pytest-omega-full-03 --tb=short",
-    "previous": {
-      "status": "passed",
-      "tests": 394,
-      "duration_seconds": 154.19,
-      "focused_tests": 34,
-      "focused_duration_seconds": 7.09,
-      "warning": "Existing ITU gaseous-attenuation elevation-range warning",
-      "command": ".venv/Scripts/python.exe -m pytest -q --basetemp tmp/pytest-omega-full-02 --tb=short",
-      "initial_run": {
-        "status": "passed",
-        "tests": 393,
-        "duration_seconds": 150.95,
-        "warning": "Existing ITU gaseous-attenuation elevation-range warning",
-        "command": ".venv/Scripts/python.exe -m pytest -q --basetemp tmp/pytest-omega-full-01 --tb=short"
-      }
-    }
-  }
+  "tests_passed": 403,
+  "warnings": 1,
+  "elapsed_seconds": 139.31,
+  "command": ".venv\\Scripts\\python.exe -m pytest -q --basetemp tmp/pytest-omega-completed-retained --tb=short",
+  "warning": "Existing ITU gaseous-attenuation approximation elevation range warning",
+  "new_checks": [
+    "completed-case intersection pairing",
+    "undefined empty-cohort metrics",
+    "failed-mission rejection",
+    "duplicate-pair rejection",
+    "ZIP exclusion of local success figures",
+    "legacy repository export guard",
+    "byte-for-byte retention of source audits and frozen code"
+  ]
 }

@@ -1,11 +1,41 @@
 {
   "status": "passed",
-  "episodes": 375,
-  "expected_episodes": 375,
-  "causal_replays": 375,
+  "cohort": "completed_missions",
+  "included_episodes": 298,
+  "source_episodes": 375,
+  "task_records": 69274,
+  "source_packet_transactions_checked": 375,
+  "causal_replay_passes": 298,
   "paired_case_identities": true,
   "exclusive_deadline_partition": true,
   "binary_placements": true,
-  "unsuccessful_missions": 77,
-  "solver_failures": 0
+  "unsuccessful_episodes_in_published_tables": 0,
+  "mission_success_figures_exported": 0,
+  "empty_cells": [
+    {
+      "weight_id": "W1",
+      "route": "edge",
+      "num_agents": 32
+    },
+    {
+      "weight_id": "W2",
+      "route": "edge",
+      "num_agents": 32
+    },
+    {
+      "weight_id": "W3",
+      "route": "edge",
+      "num_agents": 32
+    },
+    {
+      "weight_id": "W4",
+      "route": "edge",
+      "num_agents": 32
+    },
+    {
+      "weight_id": "W5",
+      "route": "edge",
+      "num_agents": 32
+    }
+  ]
 }

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "episodes": 298,
+  "tasks": 69274,
+  "paired_cases": 25,
+  "exploratory_populations": [
+    16,
+    32
+  ],
+  "production_and_historical_hashes_unchanged": true,
+  "simulations_rerun": 0,
+  "mission_success_plots_exported": 0,
+  "source_audit_and_frozen_harness_retained": true,
+  "local_full_cohort_backup": "D:\\Projects\\SANGIN-dev\\output\\omega_sensitivity\\omega-20261025-01\\published_all_missions_01"
+}

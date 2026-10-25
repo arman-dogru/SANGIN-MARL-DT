@@ -1,11 +1,10 @@
 # Latency–energy sensitivity
 
-Parameter-only results from five weights, three execution routes, five populations and five paired cases: 375 episodes. The 16/32-robot results are exploratory scale tests.
+Completed-mission parameter-only results. Included counts are recorded per cell; empty cells have undefined metrics. The 16/32-robot cohorts are exploratory.
 
-- [Numerical report and research questions](report.md)
-- [Comparative table](summary.csv) and [all episodes](episodes.csv)
-- [Paired differences and confidence intervals](comparisons.csv)
-- [Independent audit](independent_audit.json) and [baseline reproduction](baseline_validation.json)
-- [Figures ZIP](charts.zip) and [tables, configurations and report ZIP](results.zip)
+- [Numerical report](report.md) and [complete comparison table](analysis/comparison_tables.md)
+- [Summary](summary.csv), [included episodes](episodes.csv), [paired differences](comparisons.csv)
+- [Publication provenance](publication.json) and [validation](validation.json)
+- [Charts ZIP](charts.zip) and [tables/configurations/report ZIP](results.zip)
 
-Task and allocation CSVs use gzip. Full replay traces and the checkpoint remain local under the manifest run directory. Run `python verify_bundle.py` to verify file hashes and accounting.
+Mission-success plots and full-cohort outcome tables remain local. The retained source audit, status, read-back and frozen-harness files document the complete 375-episode source study; `publication.json`, `publication_audit.json` and `validation.json` describe the selected publication. Full traces and model assets are not distributed. Run `python verify_bundle.py` to check the bundle.

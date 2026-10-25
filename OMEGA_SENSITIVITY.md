@@ -68,20 +68,26 @@ this changes storage serialization only. Checkpoints and full traces are omitted
 from distributable result bundles. Only verified, locally generated pickle
 archives should be opened.
 
-`episodes.csv` records every mission; `tasks.csv.gz` records every generated task;
-`allocations.csv.gz` retains admission allocations and conditional CPU rates.
-`summary.csv` contains each weight/route/population cell. `first_round.csv`,
-`active_count.csv` and `handover.csv` retain allocation and exposure denominators.
-`comparisons.csv` contains paired treatment differences with 2,000-resample
-percentile-bootstrap 95% intervals. Five-case intervals remain descriptive.
+The local run's `episodes.csv` records every mission; its `tasks.csv.gz` records
+every generated task. The repository publication selects completed missions
+before aggregating any telemetry. Published episode, task, allocation, first-round,
+active-count and handover tables all use that same selection. `summary.csv`
+records included and excluded episode counts for each weight/route/population.
+`comparisons.csv` uses the intersection of completed case identities in both
+conditions, with 2,000-resample percentile-bootstrap 95% intervals. Cohorts of
+one paired case give degenerate intervals and cannot establish precise effects.
 
 Observed E2E latency uses sensing-to-command-arrival time and is separate from
 the optimizer's predicted snapshot latency. On-time, late and undelivered task
 counts are exclusive and complete; censored and pending counts are also saved.
 CPU utilization averages over the full mission duration, including idle periods.
 Energy uses the existing mission tally and component definitions, with generated
-tasks as the per-task denominator. Failed missions remain in energy and deadline
-totals.
+tasks in included episodes as the per-task denominator. Empty completed cohorts
+have undefined outcome metrics, rather than zero energy, latency or miss rates.
+Full-cohort accounting and unsuccessful-episode records remain local.
+Original source audit, read-back, status and frozen-harness evidence remains in
+the repository for the complete 375-episode execution. Publication metadata and
+validation identify the completed-mission subset used in all outcome tables.
 
 Matched-snapshot controls rerun the unchanged binary solver on saved W1
 first-round admissions. Only objective weights change; radio inputs, priorities
@@ -90,9 +96,11 @@ separate direct objective effects from mission trajectory and admission effects.
 
 ## Outputs
 
-The run directory contains the report, configurations, manifests, CSVs and seven
-figure groups. Each figure is exported as PNG, PDF and SVG. `charts.zip` contains
-the figures; `results.zip` contains the tables, configurations and report.
+The local run retains the complete report, configurations, manifests, CSVs and
+all figures. The repository contains eight completed-mission figures in six
+groups, each exported as PNG, PDF and SVG. Mission-success plots remain local
+and are excluded from both published ZIPs. `charts.zip` contains the published
+figures; `results.zip` contains the tables, configurations and report.
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/run_omega_sensitivity.py `
@@ -112,8 +120,9 @@ unchanged.
 .\.venv\Scripts\python.exe scripts/finalize_omega_report.py `
   output/omega_sensitivity/<run-id>
 .\.venv\Scripts\python.exe scripts/audit_omega_sensitivity.py `
-  output/omega_sensitivity/<run-id> --read-back `
-  --export results/omega_sensitivity
+  output/omega_sensitivity/<run-id> --read-back
+.\.venv\Scripts\python.exe scripts/publish_omega_completed.py `
+  output/omega_sensitivity/<run-id> <new-publication-directory>
 ```
 
 The standalone bundle verifier checks file hashes, case pairing, task placement,
@@ -124,10 +133,11 @@ Read-back evidence is retained in `readback_audit.json`, tied to the manifest an
 archive inventory. A later accounting-only refresh preserves that evidence.
 Exports require a new directory when an earlier snapshot already exists.
 
-The completed study contains 375 episodes and 314,007 generated tasks. All 75 W1
+The source study contains 375 episodes and 314,007 generated tasks. All 75 W1
 execution reproductions pass, all 375 episode audits pass, and 30 complete trace
 archives pass read-back checks. The primary workflow takes 7.37 hours. The
-[numerical report](results/omega_sensitivity/report.md) explains the mixed
-trade-offs: W2 reduces mean energy with unchanged success counts, W3 minimizes
-modeled energy, and larger latency coefficients give uneven tail latency and
-mission outcomes. None of the settings becomes cloud-majority at 16 robots.
+published [numerical report](results/omega_sensitivity/report.md) and CSVs use
+completed missions only. `publication.json` records the source manifest, selected
+episode identities and reporting-source hashes. The original all-mission
+publication is preserved locally under
+`output/omega_sensitivity/omega-20261025-01/published_all_missions_01`.

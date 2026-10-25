@@ -197,7 +197,7 @@ def save_figure(fig,folder,name):
     plt.close(fig)
 
 
-def figures(root,summary):
+def figures(root,summary,*,include_mission_success=True,cohort_label='Five paired cases per bar'):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -215,6 +215,9 @@ def figures(root,summary):
                 values=[table.get((w,route,n),{}).get(field) for n in COUNTS]
                 values=[np.nan if v is None else v for v in values]
                 ax.bar(x+(j-1)*width,values,width,label=LABELS[route],color=COLORS[route],edgecolor='white',linewidth=.4)
+                for position,value in zip(x+(j-1)*width,values):
+                    if np.isnan(value):
+                        ax.text(position,.025,'n=0',transform=ax.get_xaxis_transform(),ha='center',va='bottom',rotation=90,fontsize=6)
             setting=next(v for v in WEIGHTS if v[0]==w)
             ax.set_title(f'{w}: latency {setting[1]:g}, energy {setting[2]:g}')
             ax.set_xticks(x,[str(n)+('*' if n>=16 else '') for n in COUNTS]);ax.set_xlabel('Robots')
@@ -223,7 +226,7 @@ def figures(root,summary):
             ax.set_ylim(*limits)
         handles,labels=axes[0,0].get_legend_handles_labels()
         fig.legend(handles,labels,ncol=4,loc='upper center',bbox_to_anchor=(.5,1.04),frameon=False)
-        fig.text(.5,-.01,'Parameter-only sensitivity results | * Exploratory scale tests | Five paired cases per bar',ha='center',fontsize=8)
+        fig.text(.5,-.01,'Parameter-only sensitivity results | * Exploratory scale tests | '+cohort_label,ha='center',fontsize=8)
         fig.tight_layout();save_figure(fig,root/'figures'/folder,name)
     # Stacked panels distinguish admission-round counts from full-mission fractions.
     fig,axes=plt.subplots(2,len(weights),figsize=(3.4*len(weights),6.3),squeeze=False)
@@ -237,7 +240,7 @@ def figures(root,summary):
             if i==0:ax.set_ylabel(label)
             if row==1:ax.set_ylim(0,100)
     fig.legend(*axes[0,0].get_legend_handles_labels(),loc='upper center',ncol=2,frameon=False)
-    fig.text(.5,-.01,'Allocated policy | First-round counts and mission percentages use different denominators | * Exploratory scale tests',ha='center',fontsize=8)
+    fig.text(.5,-.01,'Allocated policy | First-round counts and mission percentages use different denominators | * Exploratory scale tests | '+cohort_label,ha='center',fontsize=8)
     fig.tight_layout(rect=(0,0,1,.96));save_figure(fig,root/'figures/01_allocation','allocation_sensitivity')
     panels('02_latency','e2e_p95','observed_latency_p95_seconds','Observed E2E p95 latency (s)',deadline=.25)
     panels('03_energy','episode_energy','mean_episode_energy_j','Modeled energy per episode (J)')
@@ -249,25 +252,30 @@ def figures(root,summary):
         ax=axes[0,i];labels=[w+'\n'+{'allocated':'A','edge':'U','cloud':'C'}[r] for w in weights for r in ROUTES]
         bottom=np.zeros(len(labels))
         for field,label,color in components:
-            values=np.array([table[(w,r,n)][field] for w in weights for r in ROUTES])
+            values=np.array([np.nan if table[(w,r,n)][field] is None else table[(w,r,n)][field] for w in weights for r in ROUTES])
             ax.bar(np.arange(len(labels)),values,bottom=bottom,label=label,color=color);bottom+=values
+        for position,(w,route) in enumerate((w,r) for w in weights for r in ROUTES):
+            if table[(w,route,n)]['mean_episode_energy_j'] is None:
+                ax.text(position,.025,'n=0',transform=ax.get_xaxis_transform(),ha='center',va='bottom',rotation=90,fontsize=6)
         ax.set_xticks(range(len(labels)),labels,fontsize=6);ax.set_title(f'{n} robots'+(' (exploratory)' if n>=16 else ''))
         if i==0:ax.set_ylabel('Mean energy per episode (J)')
     fig.legend(*axes[0,0].get_legend_handles_labels(),loc='upper center',ncol=4,frameon=False)
-    fig.text(.5,-.01,'A: Allocated, U: All UAV, C: All Cloud | Cloud computation energy is absent from the preserved model',ha='center',fontsize=8)
+    fig.text(.5,-.01,'A: Allocated, U: All UAV, C: All Cloud | Cloud computation energy is absent from the preserved model | '+cohort_label,ha='center',fontsize=8)
     fig.tight_layout(rect=(0,0,1,.9));save_figure(fig,root/'figures/03_energy','energy_components')
     panels('04_deadline_misses','deadline_misses','deadline_miss_percent','Commands missing 250 ms (%)',ylim=(0,105))
     for pool,label in (('drone','UAV'),('cloud','Cloud')):
-        upper=max(5.,5.*np.ceil(max(r[pool+'_cpu_utilization_percent'] for r in summary)*1.1/5.))
+        upper=max(5.,5.*np.ceil(max([r[pool+'_cpu_utilization_percent'] for r in summary if r[pool+'_cpu_utilization_percent'] is not None]+[0])*1.1/5.))
         panels('05_cpu',('uav' if pool=='drone' else pool)+'_utilization',pool+'_cpu_utilization_percent',
             label+' CPU utilization (%)\nMission-time mean, including idle',ylim=(0,upper))
-    panels('06_mission_success','mission_success','successful_missions','Successful missions out of five',ylim=(0,5.4))
+    if include_mission_success:
+        panels('06_mission_success','mission_success','successful_missions','Successful missions out of five',ylim=(0,5.4))
     fig,axes=plt.subplots(1,len(COUNTS),figsize=(17,3.6),squeeze=False)
     palette=plt.get_cmap('tab10')
     for i,n in enumerate(COUNTS):
         ax=axes[0,i]
         for j,w in enumerate(weights):
             row=table[(w,'allocated',n)];a,b=row['mean_episode_energy_j'],row['observed_latency_p95_seconds']
+            if a is None or b is None:continue
             offsets=((5,6),(5,-13),(-23,9),(-23,-15),(8,20))
             ax.scatter(a,b,s=40,color=palette(j),label=w)
             ax.annotate(w,(a,b),xytext=offsets[j],textcoords='offset points',fontsize=8,
@@ -275,7 +283,7 @@ def figures(root,summary):
         ax.axhline(.25,color='#922B21',ls='--',lw=.8);ax.set_title(f'{n} robots'+(' (exploratory)' if n>=16 else ''));ax.set_xlabel('Mean modeled energy / episode (J)')
         if i==0:ax.set_ylabel('Observed E2E p95 latency (s)')
         ax.margins(.22)
-    fig.text(.5,-.01,'Allocated policy | Discrete tested weights; no interpolation | 250 ms dashed reference',ha='center',fontsize=8)
+    fig.text(.5,-.01,'Allocated policy | Discrete tested weights; no interpolation | 250 ms dashed reference | '+cohort_label,ha='center',fontsize=8)
     fig.tight_layout();save_figure(fig,root/'figures/07_tradeoff','latency_energy_tradeoff')
 
 

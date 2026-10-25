@@ -30,6 +30,8 @@ cloud shares are 47.08% and 53.13% at 16 and 32 robots.
 - [Combined diagnostic figure](agents16-32/figures/combined_diagnostics.png) and
   [first-round placement](agents16-32/figures/first_round_placement.png), also
   supplied as PDF and SVG.
+- [Additional PNG plots](agents16-32/README.md#additional-plots): first-round
+  placement, p95 command latency and deadline misses.
 - [Added cohort](agents16-32/): 40 simulations, 64,342 tasks and 4,050 rounds,
   with compressed task records, handover strata, paired inputs and provenance.
 - [Instantaneous MAPF reference](agents16-32/mapf_reference_serial.json): the

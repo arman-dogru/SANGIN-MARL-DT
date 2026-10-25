@@ -46,3 +46,12 @@ See [the experiment guide](../../../UAV6_PILOT.md) and
 [local reproduction commands](analysis/REPRODUCE.md). The fixed model, timeline
 and map hashes match the original cohort. Raw numerical files are copied
 unchanged; `tasks.csv.gz` and `audits.jsonl.gz` use lossless gzip compression.
+
+## Additional plots
+
+Additional PNG exports from `Results.zip` retain their original filenames and
+bytes. Source hashes are recorded in [`results/files.csv`](../../files.csv).
+
+- [First-round UAV/cloud placement](figures/01_first_round_placement.png)
+- [Observed E2E command latency p95](figures/02_latency_p95.png)
+- [Commands missing the 250 ms cutoff](figures/04_deadline_misses.png)

@@ -1,0 +1,13 @@
+{
+  "packages": {
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "torch": "2.11.0+cu128",
+    "matplotlib": "3.10.9",
+    "simpy": "4.1.1",
+    "psutil": "7.2.2",
+    "cvxpy": "1.9.3",
+    "clarabel": "0.11.1"
+  },
+  "base_versions_match": true
+}

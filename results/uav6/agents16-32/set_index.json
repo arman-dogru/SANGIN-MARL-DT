@@ -1,0 +1,23 @@
+{
+  "populations": [
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "cases_per_population": 5,
+  "conditions": [
+    "allocated-1ghz",
+    "allocated-6ghz",
+    "uav-6ghz",
+    "cloud-6ghz"
+  ],
+  "primary_episodes": 100,
+  "base_experiment": "D:\\Projects\\SANGIN-dev\\output\\uav6_pilot\\uav6-20261024-01",
+  "extension": "D:\\Projects\\SANGIN-dev\\output\\uav6_pilot\\uav6-20261024-01\\extensions\\agents16-32-01",
+  "report": "REPORT.md",
+  "supplementary_mapf_cases": 10,
+  "base_manifest_sha256": "7089f7531e51ffc5ba26ff6598a388c510500ae4c6029ce128c7097b8dbcdcf2",
+  "extension_manifest_sha256": "91b50a62c9cb299121c0fa0c02e688f812ef62ca4035bba81c9a4e7125c8a16a"
+}

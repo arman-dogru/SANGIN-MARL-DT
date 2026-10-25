@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "label": "Parameter-only pilot results",
+  "episodes": 40,
+  "replay_audits": 40,
+  "tasks": 64342,
+  "rounds": 4050,
+  "paired_case_identity_verified": true,
+  "deadline_partition_verified": true,
+  "original_summary_reproduced": true,
+  "preserved_files": 211,
+  "policy_updates": 0
+}

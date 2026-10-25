@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "label": "Parameter-only pilot results",
+  "source_artifacts": 43,
+  "primary_episodes": 100,
+  "added_episodes": 40,
+  "added_tasks": 64342,
+  "added_rounds": 4050,
+  "added_replay_audits": 40,
+  "paired_cases_verified": true,
+  "deadline_partition_verified": true,
+  "combined_summaries_reproduced": true,
+  "latency_quantiles_recomputed": true,
+  "only_uav_capacity_changed": true,
+  "command_partition": {
+    "on_time": 20792,
+    "late": 43550,
+    "undelivered": 0
+  },
+  "cutoff_waits": 43550,
+  "reference_action_comparisons": 6682,
+  "reference_action_disagreements": 0,
+  "policy_updates": 0
+}

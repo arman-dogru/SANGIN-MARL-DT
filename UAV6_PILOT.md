@@ -37,18 +37,19 @@ allocation, admission, CVXPY, transport, compute pools, movement or production
 instrumentation. Fixed routes are experimental controls; the allocated arms
 delegate admission to the existing production implementation.
 
-## Cohort and qualification
+## Paired cohort
 
-The diagnostic requests 2/4/8/16 robots and uses five paired cases per supported
-population with a 250-step cap. The archived checkpoint is qualified at
-2/4/6/8 robots, so 16 is excluded explicitly. No checkpoint qualification is
-bypassed. The resulting cohort contains 15 paired cases and 60 simulations.
+The experiment set uses five paired cases at each of 2/4/8/16/32 robots with a
+250-step cap: 25 cases, four conditions and 100 simulations. The original
+60-episode cohort covers 2/4/8; an immutable 40-episode extension adds 16/32.
+The ten added cases also have a separate instantaneous MAPF reference.
 
-The same nominal map, seeds, starts/goals and orbital offsets are retained from
+For 2/4/8, the nominal map, seeds, starts/goals and orbital offsets are retained from
 the first five cases in each matching population of
 [`results/communication/cases.json`](results/communication/cases.json).
-Preparation checks these identities before execution. Treatment trajectories
-can diverge after commands affect movement.
+Preparation checks these identities before execution. The extension uses the
+same case-generator seed and orbital-offset formula at its added populations.
+Treatment trajectories can diverge after commands affect movement.
 
 Frozen checkpoint SHA-256:
 `be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f`.
@@ -66,8 +67,20 @@ From the repository root, with matching assets and dependencies installed:
 
 ```powershell
 .venv\Scripts\python.exe scripts/run_uav6_pilot.py --root output/uav6_pilot/smoke-20261024-01 --prepare --launch --counts 2 --cases 1 --cap 3 --workers 2 --budget-seconds 300
-.venv\Scripts\python.exe scripts/run_uav6_pilot.py --root output/uav6_pilot/uav6-20261024-01 --prepare --launch --counts 2 4 8 16 --cases 5 --cap 250 --workers 4 --budget-seconds 3600
+.venv\Scripts\python.exe scripts/run_uav6_pilot.py --root output/uav6_pilot/uav6-repeat-01 --prepare --launch --counts 2 4 8 --cases 5 --cap 250 --workers 4 --budget-seconds 3600
 ```
+
+After the base cohort completes, run the added populations with the isolated
+population driver. It reuses the base run's frozen code and assets:
+
+```powershell
+.venv\Scripts\python.exe results/uav6/agents16-32/analysis/extend.py --base output/uav6_pilot/uav6-repeat-01 --root output/uav6_pilot/uav6-repeat-01/extensions/agents16-32-repeat-01 --prepare --launch --counts 16 32 --cases 5 --cap 250 --workers 2
+```
+
+The extension records a four-hour wall cap. The completed 40-episode extension
+took 9,799 seconds, including replay, archive serialization and report creation.
+The archive adapter buffers the same JSON encoding rather than retaining a
+second complete trace in memory. It changes no simulation events or timing.
 
 Use a new output folder for a new run. Preparation freezes source, the isolated
 harness, both configs, model, map, orbital timeline and case bank. Workers use
@@ -133,13 +146,32 @@ checkpoints and the immutable run snapshot remain local.
 
 ## Completed diagnostic
 
-The [published parameter-only pilot](results/uav6/report.md) contains 60 episodes,
-8,746 tasks and 2,883 inference rounds. The 6 GHz allocator meets every observed
-cutoff at 2/4/8 robots, but its cloud shares of 47.4%/44.6%/45.4% do not establish
-an increasing cloud-placement transition. Energy rises and mission-success
-counts remain unchanged. Sixteen robots remain outside checkpoint qualification.
-The full suite passes 374 tests; the four-condition smoke and all 60 causal
-replay/action audits pass.
+The [combined parameter-only pilot](results/uav6/README.md) contains 100 episodes,
+73,088 tasks and 6,933 inference rounds. The original 60-episode snapshot is
+retained unchanged. The added 40 episodes pass causal replay/action audits and
+independent record accounting; the published verifier independently recomputes
+task partitions and latency quantiles. The original full-suite record contains
+374 passing tests.
+
+At 16 robots, the 1/6 GHz allocators both complete 5/5 missions, while all-UAV
+completes 3/5 and all-cloud 5/5. At 32 robots, both allocators complete 2/5,
+all-UAV 0/5 and all-cloud 3/5. The 6 GHz allocator improves on-time delivery from
+94.11% to 98.17% at 16 and from 75.93% to 95.24% at 32. The instantaneous MAPF
+reference completes 5/5 and 2/5 respectively.
+
+For the 6 GHz allocator, first-round placements favor the UAV at 2/4/8 robots
+and the cloud at 16/32. Mean initial UAV/cloud counts are 7.2/8.8 at 16 and
+12.6/19.4 at 32. Mission-wide cloud shares are 47.08% and 53.13%; these include
+later rounds with fewer active robots. The
+[combined report](results/uav6/agents16-32/report.md) retains mixed mission
+outcomes, energy changes and paired confidence intervals.
+
+Verify published artifacts without external assets:
+
+```powershell
+python results/uav6/analysis/verify_bundle.py
+python results/uav6/agents16-32/analysis/verify_bundle.py
+```
 
 The independent postprocessing harness adds load/availability strata and checks
 the 1 GHz baseline and cloud-only control against preserved historical archives:

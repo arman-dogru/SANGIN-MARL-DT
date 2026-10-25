@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "primary_episodes": 100,
+  "new_episodes": 40,
+  "new_replay_audits": 40,
+  "new_aggregate_counts": {
+    "tasks": 64342,
+    "rounds": 4050
+  },
+  "new_command_partition": {
+    "on_time": 20792,
+    "late": 43550,
+    "undelivered": 0
+  },
+  "new_cutoff_waits": 43550,
+  "atomic_transactions_match": true,
+  "paired_case_identity": true,
+  "preserved_source_and_history_files": 211,
+  "package_versions_unchanged": true,
+  "policy_updates": 0,
+  "model_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "timeline_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+  "extension_manifest_sha256": "91b50a62c9cb299121c0fa0c02e688f812ef62ca4035bba81c9a4e7125c8a16a",
+  "postprocessor_sha256": "ac236472db2fe94b3e6fb1bf1976934b719785bef38d87e335bc4840f77fba77",
+  "supplementary_reference_action_comparisons": 6682,
+  "supplementary_reference_action_disagreements": 0
+}

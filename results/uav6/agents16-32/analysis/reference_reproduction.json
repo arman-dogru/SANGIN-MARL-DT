@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "case_count": 10,
+  "records": [
+    {
+      "case_id": "agents-16-case-000",
+      "num_agents": 16,
+      "seed": 50160000,
+      "steps": 67,
+      "success": true,
+      "inference_comparisons": 383,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-16-case-001",
+      "num_agents": 16,
+      "seed": 50160001,
+      "steps": 39,
+      "success": true,
+      "inference_comparisons": 361,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-16-case-002",
+      "num_agents": 16,
+      "seed": 50160002,
+      "steps": 40,
+      "success": true,
+      "inference_comparisons": 347,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-16-case-003",
+      "num_agents": 16,
+      "seed": 50160003,
+      "steps": 31,
+      "success": true,
+      "inference_comparisons": 343,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-16-case-004",
+      "num_agents": 16,
+      "seed": 50160004,
+      "steps": 40,
+      "success": true,
+      "inference_comparisons": 298,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-32-case-000",
+      "num_agents": 32,
+      "seed": 50320000,
+      "steps": 250,
+      "success": false,
+      "inference_comparisons": 1113,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-32-case-001",
+      "num_agents": 32,
+      "seed": 50320001,
+      "steps": 250,
+      "success": false,
+      "inference_comparisons": 1141,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-32-case-002",
+      "num_agents": 32,
+      "seed": 50320002,
+      "steps": 60,
+      "success": true,
+      "inference_comparisons": 887,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-32-case-003",
+      "num_agents": 32,
+      "seed": 50320003,
+      "steps": 56,
+      "success": true,
+      "inference_comparisons": 680,
+      "batch_serial_disagreements": 0
+    },
+    {
+      "case_id": "agents-32-case-004",
+      "num_agents": 32,
+      "seed": 50320004,
+      "steps": 250,
+      "success": false,
+      "inference_comparisons": 1129,
+      "batch_serial_disagreements": 0
+    }
+  ],
+  "inference_comparisons": 6682,
+  "batch_serial_disagreements": 0,
+  "model_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "case_bank_sha256": "a9d8bd790ebac59bc524cfa5e69480d9713a8e48ca75636701e6df2b48aed654",
+  "reference_sha256": "1e1e3e81aefd9f1b5212f66e6a549030f292ab71e48274987b5735cad533d7cf",
+  "script_sha256": "74566bbc41bb1698167819da3d07640e612746b0f4728f94e52f41e9f255ac20",
+  "wall_seconds": 39.312999999150634,
+  "policy_updates": 0
+}

@@ -1,45 +1,60 @@
-# Parameter-only UAV CPU pilot results
+# Parameter-only UAV CPU experiment set
 
-All outputs in this folder are **parameter-only pilot results**, not validated
-paper findings. The sole parameter change is UAV CPU capacity from 1 to 6 GHz;
-the four conditions are original allocation, 6 GHz allocation, all-UAV at 6 GHz
-and all-cloud. The 60 episodes use five paired cases each at 2/4/8 robots.
-Sixteen robots are excluded because the frozen model lacks that qualification.
+The combined set contains **100 simulations**: five paired cases at each of
+2/4/8/16/32 robots, four execution conditions and a 250-step episode cap. UAV
+capacity changes from 1 to 6 GHz; the frozen policy, cloud capacity, workload,
+radio model, priorities and physical controllers retain their existing settings.
+These are parameter-only pilot results on one map.
 
-- [report.md](report.md): findings, suitability and limitations.
-- [overview.md](overview.md): all four conditions' numerical comparison.
-- [summary.csv](summary.csv), [comparisons.csv](comparisons.csv): full metrics and
-  paired differences with 95% intervals.
-- [handover_details.csv](handover_details.csv), [handover.csv](handover.csv):
-  exposure counts, latency, cutoff WAITs, active-peer AoI and prior-fixed-job strata.
-- [first_round.csv](first_round.csv), [placement_by_active_count.csv](placement_by_active_count.csv):
-  initial placements and active-load/availability strata.
-- [episodes.csv](episodes.csv), [rounds.csv](rounds.csv), `tasks.csv.gz`:
-  all 60 missions, 2,883 rounds and 8,746 tasks.
-- [plots/](plots/): placement, E2E latency, CPU utilization/concurrency and
-  deadline compliance in PDF/SVG/PNG.
-- [base.toml](base.toml), [pilot.toml](pilot.toml), [manifest.json](manifest.json),
-  [cases.json](cases.json): exact configurations, paired inputs, hashes and provenance.
-- [validation.json](validation.json), [independent_audit.json](independent_audit.json),
-  [baseline_reproduction.json](baseline_reproduction.json), `audits.jsonl.gz`,
-  [tests.xml](tests.xml), [focused_tests.xml](focused_tests.xml): validation evidence.
-- [smoke_validation.json](smoke_validation.json), [smoke_status.json](smoke_status.json):
-  the separate four-condition three-step smoke; not included in the 60-episode cohort.
+| Condition | 16-robot mission success | 32-robot mission success |
+| --- | ---: | ---: |
+| Allocator, UAV 1 GHz | 5/5 | 2/5 |
+| Allocator, UAV 6 GHz | 5/5 | 2/5 |
+| All-UAV, 6 GHz | 3/5 | 0/5 |
+| All-cloud | 5/5 | 3/5 |
 
-Gzip files decompress to the exact original CSV/JSONL bytes.
-[../files.csv](../files.csv) maps copied artifacts to original paths and SHA-256.
-Manifests retain original local paths as provenance. No numerical values were
-changed for publication. The immutable source snapshot, checkpoint, timeline and
-raw replay archives remain local under `output/uav6_pilot/uav6-20261024-01`.
-The existing result bundles remain unchanged.
+At 32 robots, the 6 GHz allocator raises on-time command delivery from 75.93% to
+95.24%; mission success remains 2/5. Its first-round placements average 12.6 UAV
+and 19.4 cloud tasks. At 16 robots those averages are 7.2 and 8.8. Mission-wide
+cloud shares are 47.08% and 53.13% at 16 and 32 robots.
 
-[../../UAV6_PILOT.md](../../UAV6_PILOT.md) gives exact commands and input identities.
-[../../scripts/audit_uav6_pilot.py](../../scripts/audit_uav6_pilot.py) reproduces
-independent audits using local transactions/historical archives. The supplemental
-[analysis/plot_cpu.py](analysis/plot_cpu.py) expects the original run layout.
+- [Combined report](agents16-32/report.md): all populations, findings and parameters.
+- [Combined summary](agents16-32/combined_summary.csv): placement, observed and
+  predicted latency, deadline compliance, CPU utilization/concurrency, energy,
+  mission outcomes and active-peer AoI.
+- [Paired differences](agents16-32/combined_pairwise.csv): treatment comparisons
+  with 95% case-bootstrap intervals.
+- [Paired mission outcomes](agents16-32/case_outcomes.csv) and
+  [coordination metrics](agents16-32/combined_coordination.csv): individual
+  outcomes and ordering/action-disagreement exposure denominators.
+- [Combined diagnostic figure](agents16-32/figures/combined_diagnostics.png) and
+  [first-round placement](agents16-32/figures/first_round_placement.png), also
+  supplied as PDF and SVG.
+- [Added cohort](agents16-32/): 40 simulations, 64,342 tasks and 4,050 rounds,
+  with compressed task records, handover strata, paired inputs and provenance.
+- [Instantaneous MAPF reference](agents16-32/mapf_reference_serial.json): the
+  ten added cases evaluated separately with fresh information. Mission success
+  is 5/5 at 16 and 2/5 at 32 robots; 6,682 serial/batched action comparisons agree.
+- [Accounting audit](agents16-32/accounting_audit.json) and
+  [bundle validation](agents16-32/bundle_validation.json): all 40 added replay
+  audits pass, record partitions match and 211 existing source/history files
+  retain their hashes.
 
-Verify this published bundle without external model/orbital files:
+The original 60-episode snapshot remains in this directory, including its
+[report](report.md), [summary](summary.csv), [cases](cases.json), raw metric
+tables and [plots](plots/). Its numerical records remain unchanged. The added
+cohort and combined tables are stored under `agents16-32/`.
+
+Verify both bundles without model or orbital assets:
 
 ```powershell
 python results/uav6/analysis/verify_bundle.py
+python results/uav6/agents16-32/analysis/verify_bundle.py
 ```
+
+[../files.csv](../files.csv) records source and published hashes. Gzip files
+decompress to the original CSV/JSONL bytes. Run manifests retain original local
+paths. Checkpoints, orbital assets and large replay archives stay local.
+[UAV6_PILOT.md](../../UAV6_PILOT.md) describes the configuration and commands;
+the extension's [analysis directory](agents16-32/analysis/) contains the exact
+driver, postprocessing and reference-replay sources.

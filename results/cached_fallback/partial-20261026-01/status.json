@@ -1,0 +1,24 @@
+{
+  "status": "stopped_by_user",
+  "stage": "primary_250ms_matrix",
+  "completed_episodes": 279,
+  "expected_episodes": 375,
+  "updated_utc": "2026-10-26T21:26:58.1392600+00:00",
+  "elapsed_seconds": 6649.756148815155,
+  "remaining_seconds": 79750.24385118484,
+  "latest": {
+    "job": "W2/cloud-6ghz/agents-16-case-004",
+    "path": "D:\\Projects\\SANGIN-dev\\output\\cached_fallback\\cached-20261026-01\\episodes\\W2\\cloud-6ghz\\agents-16-case-004.result.json",
+    "sha256": "1214fbd0f39f43c7ffdf7aa2dca902e6c5b8889fd31f811a71d1ee5e564bdb52",
+    "success": true,
+    "steps": 41,
+    "tasks": 298,
+    "wall_seconds": 27.687000000849366,
+    "simulation_seconds": 13.640000000596046,
+    "measurement_seconds": 3.0939999986439943,
+    "audit_seconds": 9.328000001609325,
+    "archive_seconds": 1.2029999997466803,
+    "variant": "primary"
+  },
+  "stop_reason": "Stopped at user request before experimental changes. Completed results and partial artifacts preserved; no automatic restart."
+}

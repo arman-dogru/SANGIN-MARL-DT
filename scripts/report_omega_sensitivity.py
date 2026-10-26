@@ -233,8 +233,12 @@ def figures(root,summary,*,include_mission_success=True,cohort_label='Five paire
     for i,w in enumerate(weights):
         for row,(uf,cf,label) in enumerate((('first_round_uav_mean','first_round_cloud_mean','First-round tasks per case (mean)'),
                 ('uav_percent','cloud_percent','Mission-wide tasks (%)'))):
-            ax=axes[row,i];u=[table[(w,'allocated',n)][uf] for n in COUNTS];c=[table[(w,'allocated',n)][cf] for n in COUNTS]
+            ax=axes[row,i]
+            u=[np.nan if table[(w,'allocated',n)][uf] is None else table[(w,'allocated',n)][uf] for n in COUNTS]
+            c=[np.nan if table[(w,'allocated',n)][cf] is None else table[(w,'allocated',n)][cf] for n in COUNTS]
             ax.bar(x,u,color=COLORS['edge'],label='UAV');ax.bar(x,c,bottom=u,color=COLORS['cloud'],label='Cloud')
+            for position,value in zip(x,u):
+                if np.isnan(value):ax.text(position,.025,'n=0',transform=ax.get_xaxis_transform(),ha='center',fontsize=6)
             ax.set_xticks(x,[str(n)+('*' if n>=16 else '') for n in COUNTS]);ax.set_xlabel('Robots')
             if row==0:ax.set_title(w)
             if i==0:ax.set_ylabel(label)

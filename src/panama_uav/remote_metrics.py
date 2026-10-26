@@ -101,4 +101,21 @@ def remote_metrics(trace):
             for b in valid])
         metrics[f"{name}_rf_budget_samples"] = len(valid)
     metrics.update(command_deadline_metrics(tasks, trace["frames"][-1]["time"]))
+    if trace["remote_settings"].get("missed_command_fallback") == "cached_astar":
+        fallback = [e for e in decisions if e.get("cached_fallback")]
+        by_epoch = {(e["cycle"],e["robot_id"]):e for e in fallback}
+        moved = blocked = 0
+        for event in motion:
+            for robot in event["before"]:
+                decision = by_epoch.get((event["cycle"],int(robot)))
+                if decision is None:continue
+                actual_move = event["before"][robot] != event["after"][robot]
+                moved += actual_move
+                blocked += decision["action"] != 4 and not actual_move
+        metrics.update(cached_fallback_decisions=len(fallback),
+            cached_fallback_move_intents=sum(e["action"] != 4 for e in fallback),
+            cached_fallback_wait_intents=sum(e["action"] == 4 for e in fallback),
+            cached_fallback_motion_steps=moved, cached_fallback_resolver_blocks=blocked,
+            cached_fallback_source_age_sum=sum(e["fallback_source_age_seconds"] for e in fallback),
+            command_cutoff_waits=sum(e["command_cutoff_missed"] and e["action"] == 4 for e in decisions))
     return metrics

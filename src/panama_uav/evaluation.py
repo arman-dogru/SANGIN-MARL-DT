@@ -168,6 +168,8 @@ def run_episode(config, model, case, device, model_version=0, *, decision_deadli
                 seconds_per_step=config.communication.seconds_per_step,
                 cutoff_seconds=config.resource_allocation.decision_budget_seconds,
                 on_collision=config.resource_allocation.on_collision)
+            if config.resource_allocation.missed_command_fallback != "wait":
+                trace["remote_settings"]["missed_command_fallback"] = config.resource_allocation.missed_command_fallback
             trace["outcome"] = dict(success=row["success"], failure_reason=env.failure_reason,
                 steps=env.step_count, final_positions={a.id: list(a.position) for a in env.agents})
             if hasattr(env.communication, "stress_settings"):

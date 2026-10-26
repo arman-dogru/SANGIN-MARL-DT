@@ -1,0 +1,243 @@
+--- baseline/communication_effects.py
++++ cached/communication_effects.py
+@@ -102,7 +102,8 @@
+         drone_tx_energy_j=sum(e['energy_j'] for e in transmit if e['link']=='satellite_up'))
+     if sum(row[k] for k in ('deadline_commands_on_time','deadline_commands_late','deadline_commands_undelivered'))!=len(tasks):
+         raise ValueError('Command arrival partition mismatch')
+-    if row['deadline_cutoff_wait_tasks']!=row['command_cutoff_misses']:
++    cutoff_waits=row.get('command_cutoff_waits',row['command_cutoff_misses'])
++    if row['deadline_cutoff_wait_tasks']!=cutoff_waits:
+         raise ValueError('Cutoff WAIT denominator mismatch')
+     expected_x=0 if condition.route=='cloud' else 1
+     if condition.route!='allocated' and any(t.get('executed_x') not in (None,expected_x) for t in tasks):
+--- baseline/config.py
++++ cached/config.py
+@@ -214,6 +214,7 @@
+     execution_mode: str = "support"
+     command_cutoff_seconds: float | None = None
+     timeout_action: int = 4
++    missed_command_fallback: str = "wait"
+     dt_replica_sync: str = "network"
+     on_collision: str = "dt_resolve"
+     oracle_shadow: bool = True
+@@ -244,7 +245,11 @@
+         if self.execution_mode not in ("support", "remote_dt"):
+             raise ValueError("Unknown DT execution mode")
+         if self.timeout_action != 4 or self.dt_replica_sync != "network":
+-            raise ValueError("Remote DT requires WAIT on timeout and networked replica synchronization")
++            raise ValueError("Remote DT requires WAIT as the terminal fallback and networked replica synchronization")
++        if self.missed_command_fallback not in ("wait", "cached_astar"):
++            raise ValueError("Unknown missed-command fallback")
++        if self.enabled and self.missed_command_fallback != "wait" and self.execution_mode != "remote_dt":
++            raise ValueError("Cached command fallback requires remote DT execution")
+         if self.on_collision not in ("terminate", "dt_resolve"):
+             raise ValueError("Unknown physical collision outcome")
+         if self.equal_weight_mode not in ("legacy", "matched_active_mean"):
+--- baseline/evaluation.py
++++ cached/evaluation.py
+@@ -168,6 +168,8 @@
+                 seconds_per_step=config.communication.seconds_per_step,
+                 cutoff_seconds=config.resource_allocation.decision_budget_seconds,
+                 on_collision=config.resource_allocation.on_collision)
++            if config.resource_allocation.missed_command_fallback != "wait":
++                trace["remote_settings"]["missed_command_fallback"] = config.resource_allocation.missed_command_fallback
+             trace["outcome"] = dict(success=row["success"], failure_reason=env.failure_reason,
+                 steps=env.step_count, final_positions={a.id: list(a.position) for a in env.agents})
+             if hasattr(env.communication, "stress_settings"):
+--- baseline/remote.py
++++ cached/remote.py
+@@ -452,6 +452,13 @@
+             action = command.action if command is not None and not agent.ever_reached_goal else 4
+             local_sources, local_details = None, None
+             own_priority = self.states[agent.id][agent.id].value["priority"]
++            cached_fallback = (command is None and not agent.ever_reached_goal
++                               and self.parameters.missed_command_fallback == "cached_astar")
++            if cached_fallback:
++                from .remote_control import cached_path_action
++                local_report = self._sense(agent, agents, cycle, cutoff)
++                action, local_sources, local_details = cached_path_action(
++                    local_report, self.states[agent.id], self.project.map.communicated_path_steps)
+             if agent.ever_reached_goal:
+                 from .remote_control import completed_action
+                 local_report = self._sense(agent, agents, cycle, cutoff)
+@@ -485,6 +492,9 @@
+             context.update(local_sources=local_sources, local_control=local_details,
+                 resolution_priority=(command.dt_priorities.get(agent.id, own_priority)
+                                      if command is not None and not agent.ever_reached_goal else own_priority))
++            if cached_fallback:
++                context.update(cached_fallback=True, fallback_source_min=source_min(local_sources),
++                    fallback_source_age_seconds=cutoff-source_min(local_sources))
+             self.command_contexts[agent.id] = context
+             self._record("decision_event", **context)
+             if command is not None:
+@@ -531,7 +541,13 @@
+         views = {}
+         for receiver, context in self.command_contexts.items():
+             command = context["command"]
+-            if command is None or context["cycle"] != self.current_cycle:
++            if context["cycle"] != self.current_cycle:
++                continue
++            if command is None:
++                if context.get("cached_fallback"):
++                    caches = self.states[receiver]
++                    views[receiver] = dict(priorities={p: c.value["priority"] for p,c in caches.items()},
++                        states={p: c.value for p,c in caches.items()})
+                 continue
+             priorities = {int(k): v for k, v in command["dt_priorities"].items()}
+             states = {int(peer): self.events_by_id[value["state_event"]]["state"]
+--- baseline/remote_audit.py
++++ cached/remote_audit.py
+@@ -17,7 +17,7 @@
+ from .information import InformationCache
+ from .remote_state import (REMOTE_SCHEMA, ActionCommand, CommandInbox, DTReplica, DTState,
+                            PhysicalReport, observation_hash, remote_observation, source_min)
+-from .remote_control import DELTAS, completed_action, conflicts, resolve_delivered
++from .remote_control import DELTAS, cached_path_action, completed_action, conflicts, resolve_delivered
+ 
+ 
+ def digest(value):
+@@ -117,6 +117,8 @@
+                 decisions, last_cycle = {}, cycle
+             delivery = inboxes.setdefault(robot, CommandInbox()).decision(cycle, event["cutoff_time"])
+             require((delivery is not None) == (event["command"] is not None), "Decision used a command absent from inbox")
++            if delivery is None and not event["completed_local_control"] and settings.get("missed_command_fallback") == "cached_astar":
++                require(event.get("cached_fallback", False), "Cached fallback activation missing")
+             if delivery:
+                 command, arrival = delivery
+                 require(digest(command.payload()) == digest(event["command"]), "Executed command mismatch")
+@@ -124,9 +126,14 @@
+                         "Executed-command causality violated")
+                 if not event["completed_local_control"]:
+                     require(command.action == event["action"], "Robot bypassed delivered action")
+-            elif not event["completed_local_control"]:
++            elif not event["completed_local_control"] and not event.get("cached_fallback"):
+                 require(event["action"] == 4 and event["command_cutoff_missed"], "Timeout did not execute WAIT")
+-            if event["completed_local_control"]:
++            cached_fallback = event.get("cached_fallback", False)
++            if cached_fallback:
++                require(settings.get("missed_command_fallback") == "cached_astar"
++                        and delivery is None and not event["completed_local_control"]
++                        and event["command_cutoff_missed"], "Invalid cached fallback activation")
++            if event["completed_local_control"] or cached_fallback:
+                 grid, radius = np.asarray(trace["grid"]), settings["radius"]
+                 row, col = positions[robot]
+                 obstacles = np.pad(grid, radius, constant_values=1)[row:row+2*radius+1, col:col+2*radius+1]
+@@ -135,9 +142,18 @@
+                     dr, dc = point[0]-row, point[1]-col
+                     if peer != robot and max(abs(dr), abs(dc)) <= radius:
+                         occupancy[dr+radius, dc+radius] = 1
+-                report = PhysicalReport(robot, cycle, now, (row, col), tuple(physical[robot]["goal"]), True,
++                report = PhysicalReport(robot, cycle, now, (row, col), tuple(physical[robot]["goal"]), not cached_fallback,
+                     0., obstacles.tolist(), occupancy.tolist(), f"report:{cycle}:{robot}")
+-                action, sources, _ = completed_action(report, caches[robot], grid.size+robot*1e-6)
++                if cached_fallback:
++                    action, sources, details = cached_path_action(report, caches[robot], settings["horizon"])
++                    require(digest(details) == digest(event["local_control"]), "Cached fallback input replay mismatch")
++                    require(event["resolution_priority"] == caches[robot][robot].value["priority"],
++                            "Cached fallback used an unavailable priority")
++                    require(event["fallback_source_min"] == source_min(sources)
++                            and abs(event["fallback_source_age_seconds"]-(now-source_min(sources))) < 1e-9,
++                            "Cached fallback source age mismatch")
++                else:
++                    action, sources, _ = completed_action(report, caches[robot], grid.size+robot*1e-6)
+                 require(action == event["action"] and digest(sources) == digest(event["local_sources"]),
+                         "Local completion controller replay mismatch")
+             decisions[robot] = event
+@@ -152,6 +168,9 @@
+                 if command:
+                     views[robot] = dict(priorities={int(k): v for k, v in command["dt_priorities"].items()},
+                         states={int(k): by_id[v["state_event"]]["state"] for k, v in command["dt_versions"].items()})
++                elif decision.get("cached_fallback"):
++                    views[robot] = dict(priorities={p:c.value["priority"] for p,c in caches[robot].items()},
++                        states={p:c.value for p,c in caches[robot].items()})
+             snapshot = consistency_snapshot(positions, physical, caches, now,
+                 settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata,
+                 schema_version=event.get("consistency_schema", 1))
+--- baseline/remote_control.py
++++ cached/remote_control.py
+@@ -75,3 +75,61 @@
+     action = min(choices)[-1] if choices else 4
+     return action, sources, dict(threatened_cells=[list(p) for p in sorted(threatened)],
+         local_position=list(report.position), returning=report.position != tuple(report.goal))
++
++
++def cached_path_action(report, cached, horizon=5):
++    """Follow a delivered own-path successor, yielding to delivered peer priorities.
++
++    Local sensing supplies pose, obstacles and occupancy only. No pathfinding,
++    DQN inference, DT refresh or peer-truth priority query occurs here. A stale
++    path that no longer contains the robot cannot authorize a movement.
++    """
++    own = cached[report.robot_id]
++    state = own.value
++    point = tuple(report.position)
++    path = [tuple(cell) for cell in state["path"]]
++    sources = {}
++    for cache in cached.values():
++        for robot, timestamp in cache.source_timestamps.items():
++            robot, timestamp = int(robot), float(timestamp)
++            sources[robot] = min(sources.get(robot, timestamp), timestamp)
++    details = dict(local_position=list(point), local_sensed_at=report.sensed_at,
++        self_cache_version=own.version, self_generation_time=own.timestamp,
++        cached_priority=state["priority"], path_index=None, candidate_action=4,
++        target=None, blocking_peers=[], reason="cached_path_unavailable")
++    if not path or point not in path or state["completed"]:
++        return 4, sources, details
++    index = path.index(point)
++    details["path_index"] = index
++    if index+1 >= len(path):
++        details["reason"] = "cached_path_exhausted"
++        return 4, sources, details
++    target = path[index+1]
++    delta = target[0]-point[0], target[1]-point[1]
++    action = next((a for a, step in DELTAS.items() if step == delta and a != 4), None)
++    details["target"] = list(target)
++    if action is None:
++        details["reason"] = "cached_step_not_adjacent"
++        return 4, sources, details
++    details["candidate_action"] = action
++    radius = len(report.obstacles)//2
++    dr, dc = delta
++    if max(abs(dr), abs(dc)) > radius or report.obstacles[radius+dr][radius+dc]:
++        details["reason"] = "local_obstacle"
++        return 4, sources, details
++    if report.occupancy[radius+dr][radius+dc]:
++        details["reason"] = "local_occupancy"
++        return 4, sources, details
++    for peer, cache in sorted(cached.items()):
++        other = cache.value
++        if peer == report.robot_id or other["completed"] or other["priority"] >= state["priority"]:
++            continue
++        intentions = [tuple(cell) for cell in other["path"][1:horizon+1]
++                      if max(abs(cell[0]-point[0]), abs(cell[1]-point[1])) <= radius]
++        if target in intentions:
++            details["blocking_peers"].append(peer)
++    if details["blocking_peers"]:
++        details["reason"] = "higher_priority_cached_intention"
++        return 4, sources, details
++    details["reason"] = "cached_successor"
++    return action, sources, details
+--- baseline/remote_metrics.py
++++ cached/remote_metrics.py
+@@ -101,4 +101,21 @@
+             for b in valid])
+         metrics[f"{name}_rf_budget_samples"] = len(valid)
+     metrics.update(command_deadline_metrics(tasks, trace["frames"][-1]["time"]))
++    if trace["remote_settings"].get("missed_command_fallback") == "cached_astar":
++        fallback = [e for e in decisions if e.get("cached_fallback")]
++        by_epoch = {(e["cycle"],e["robot_id"]):e for e in fallback}
++        moved = blocked = 0
++        for event in motion:
++            for robot in event["before"]:
++                decision = by_epoch.get((event["cycle"],int(robot)))
++                if decision is None:continue
++                actual_move = event["before"][robot] != event["after"][robot]
++                moved += actual_move
++                blocked += decision["action"] != 4 and not actual_move
++        metrics.update(cached_fallback_decisions=len(fallback),
++            cached_fallback_move_intents=sum(e["action"] != 4 for e in fallback),
++            cached_fallback_wait_intents=sum(e["action"] == 4 for e in fallback),
++            cached_fallback_motion_steps=moved, cached_fallback_resolver_blocks=blocked,
++            cached_fallback_source_age_sum=sum(e["fallback_source_age_seconds"] for e in fallback),
++            command_cutoff_waits=sum(e["command_cutoff_missed"] and e["action"] == 4 for e in decisions))
+     return metrics

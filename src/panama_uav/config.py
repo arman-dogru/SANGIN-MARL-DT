@@ -214,6 +214,7 @@ class ResourceAllocationConfig:
     execution_mode: str = "support"
     command_cutoff_seconds: float | None = None
     timeout_action: int = 4
+    missed_command_fallback: str = "wait"
     dt_replica_sync: str = "network"
     on_collision: str = "dt_resolve"
     oracle_shadow: bool = True
@@ -244,7 +245,11 @@ class ResourceAllocationConfig:
         if self.execution_mode not in ("support", "remote_dt"):
             raise ValueError("Unknown DT execution mode")
         if self.timeout_action != 4 or self.dt_replica_sync != "network":
-            raise ValueError("Remote DT requires WAIT on timeout and networked replica synchronization")
+            raise ValueError("Remote DT requires WAIT as the terminal fallback and networked replica synchronization")
+        if self.missed_command_fallback not in ("wait", "cached_astar"):
+            raise ValueError("Unknown missed-command fallback")
+        if self.enabled and self.missed_command_fallback != "wait" and self.execution_mode != "remote_dt":
+            raise ValueError("Cached command fallback requires remote DT execution")
         if self.on_collision not in ("terminate", "dt_resolve"):
             raise ValueError("Unknown physical collision outcome")
         if self.equal_weight_mode not in ("legacy", "matched_active_mean"):

@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "primary_changes": {
+    "resource_allocation.missed_command_fallback": [
+      "wait",
+      "cached_astar"
+    ]
+  },
+  "source_changes": [
+    "communication_effects.py",
+    "config.py",
+    "evaluation.py",
+    "remote.py",
+    "remote_audit.py",
+    "remote_control.py",
+    "remote_metrics.py"
+  ],
+  "path_relocations_only": [
+    "project_root",
+    "communication.leo_timeline"
+  ],
+  "asset_hashes": {
+    "checkpoint.pt": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+    "orbit.npz": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+    "maps/random-32-32-10.map": "4240fddfa77d88b72ce779e02acf46a5ff056a3b04af5a4e35f7bc86cdfba3ec"
+  },
+  "asset_identities_match": true
+}

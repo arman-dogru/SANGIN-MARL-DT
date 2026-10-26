@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "pilot_episodes": 36,
+  "primary_reusable_episodes": 9,
+  "baseline_reproductions": 9,
+  "causal_audits": 36,
+  "primary_cutoff_seconds": 0.25,
+  "pilot_cutoffs_seconds": [
+    0.1,
+    0.25
+  ],
+  "fallback_decisions": 318,
+  "fallback_motion_steps": 314,
+  "paired_inputs": true,
+  "all_attempts_retained": true,
+  "solver_failures": 0
+}

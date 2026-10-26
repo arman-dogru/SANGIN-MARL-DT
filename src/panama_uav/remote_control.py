@@ -75,3 +75,61 @@ def completed_action(report, cached, own_priority):
     action = min(choices)[-1] if choices else 4
     return action, sources, dict(threatened_cells=[list(p) for p in sorted(threatened)],
         local_position=list(report.position), returning=report.position != tuple(report.goal))
+
+
+def cached_path_action(report, cached, horizon=5):
+    """Follow a delivered own-path successor, yielding to delivered peer priorities.
+
+    Local sensing supplies pose, obstacles and occupancy only. No pathfinding,
+    DQN inference, DT refresh or peer-truth priority query occurs here. A stale
+    path that no longer contains the robot cannot authorize a movement.
+    """
+    own = cached[report.robot_id]
+    state = own.value
+    point = tuple(report.position)
+    path = [tuple(cell) for cell in state["path"]]
+    sources = {}
+    for cache in cached.values():
+        for robot, timestamp in cache.source_timestamps.items():
+            robot, timestamp = int(robot), float(timestamp)
+            sources[robot] = min(sources.get(robot, timestamp), timestamp)
+    details = dict(local_position=list(point), local_sensed_at=report.sensed_at,
+        self_cache_version=own.version, self_generation_time=own.timestamp,
+        cached_priority=state["priority"], path_index=None, candidate_action=4,
+        target=None, blocking_peers=[], reason="cached_path_unavailable")
+    if not path or point not in path or state["completed"]:
+        return 4, sources, details
+    index = path.index(point)
+    details["path_index"] = index
+    if index+1 >= len(path):
+        details["reason"] = "cached_path_exhausted"
+        return 4, sources, details
+    target = path[index+1]
+    delta = target[0]-point[0], target[1]-point[1]
+    action = next((a for a, step in DELTAS.items() if step == delta and a != 4), None)
+    details["target"] = list(target)
+    if action is None:
+        details["reason"] = "cached_step_not_adjacent"
+        return 4, sources, details
+    details["candidate_action"] = action
+    radius = len(report.obstacles)//2
+    dr, dc = delta
+    if max(abs(dr), abs(dc)) > radius or report.obstacles[radius+dr][radius+dc]:
+        details["reason"] = "local_obstacle"
+        return 4, sources, details
+    if report.occupancy[radius+dr][radius+dc]:
+        details["reason"] = "local_occupancy"
+        return 4, sources, details
+    for peer, cache in sorted(cached.items()):
+        other = cache.value
+        if peer == report.robot_id or other["completed"] or other["priority"] >= state["priority"]:
+            continue
+        intentions = [tuple(cell) for cell in other["path"][1:horizon+1]
+                      if max(abs(cell[0]-point[0]), abs(cell[1]-point[1])) <= radius]
+        if target in intentions:
+            details["blocking_peers"].append(peer)
+    if details["blocking_peers"]:
+        details["reason"] = "higher_priority_cached_intention"
+        return 4, sources, details
+    details["reason"] = "cached_successor"
+    return action, sources, details

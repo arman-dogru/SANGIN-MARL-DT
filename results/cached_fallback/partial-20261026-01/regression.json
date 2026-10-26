@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "tests_passed": 427,
+  "warnings": 1,
+  "elapsed_seconds": 139.88,
+  "command": ".venv/Scripts/python.exe -m pytest -q --basetemp tmp/pytest-cached-final --tb=short",
+  "warning": "Existing ITU gaseous-attenuation approximation elevation-range warning",
+  "primary_cutoff_seconds": 0.25,
+  "sensitivity_pilot_cutoff_seconds": 0.1,
+  "frozen_policy_updates": 0
+}

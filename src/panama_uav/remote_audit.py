@@ -17,7 +17,7 @@ from .environment import astar_path
 from .information import InformationCache
 from .remote_state import (REMOTE_SCHEMA, ActionCommand, CommandInbox, DTReplica, DTState,
                            PhysicalReport, observation_hash, remote_observation, source_min)
-from .remote_control import DELTAS, completed_action, conflicts, resolve_delivered
+from .remote_control import DELTAS, cached_path_action, completed_action, conflicts, resolve_delivered
 
 
 def digest(value):
@@ -117,6 +117,8 @@ def replay_trace(trace, inference=None):
                 decisions, last_cycle = {}, cycle
             delivery = inboxes.setdefault(robot, CommandInbox()).decision(cycle, event["cutoff_time"])
             require((delivery is not None) == (event["command"] is not None), "Decision used a command absent from inbox")
+            if delivery is None and not event["completed_local_control"] and settings.get("missed_command_fallback") == "cached_astar":
+                require(event.get("cached_fallback", False), "Cached fallback activation missing")
             if delivery:
                 command, arrival = delivery
                 require(digest(command.payload()) == digest(event["command"]), "Executed command mismatch")
@@ -124,9 +126,14 @@ def replay_trace(trace, inference=None):
                         "Executed-command causality violated")
                 if not event["completed_local_control"]:
                     require(command.action == event["action"], "Robot bypassed delivered action")
-            elif not event["completed_local_control"]:
+            elif not event["completed_local_control"] and not event.get("cached_fallback"):
                 require(event["action"] == 4 and event["command_cutoff_missed"], "Timeout did not execute WAIT")
-            if event["completed_local_control"]:
+            cached_fallback = event.get("cached_fallback", False)
+            if cached_fallback:
+                require(settings.get("missed_command_fallback") == "cached_astar"
+                        and delivery is None and not event["completed_local_control"]
+                        and event["command_cutoff_missed"], "Invalid cached fallback activation")
+            if event["completed_local_control"] or cached_fallback:
                 grid, radius = np.asarray(trace["grid"]), settings["radius"]
                 row, col = positions[robot]
                 obstacles = np.pad(grid, radius, constant_values=1)[row:row+2*radius+1, col:col+2*radius+1]
@@ -135,9 +142,18 @@ def replay_trace(trace, inference=None):
                     dr, dc = point[0]-row, point[1]-col
                     if peer != robot and max(abs(dr), abs(dc)) <= radius:
                         occupancy[dr+radius, dc+radius] = 1
-                report = PhysicalReport(robot, cycle, now, (row, col), tuple(physical[robot]["goal"]), True,
+                report = PhysicalReport(robot, cycle, now, (row, col), tuple(physical[robot]["goal"]), not cached_fallback,
                     0., obstacles.tolist(), occupancy.tolist(), f"report:{cycle}:{robot}")
-                action, sources, _ = completed_action(report, caches[robot], grid.size+robot*1e-6)
+                if cached_fallback:
+                    action, sources, details = cached_path_action(report, caches[robot], settings["horizon"])
+                    require(digest(details) == digest(event["local_control"]), "Cached fallback input replay mismatch")
+                    require(event["resolution_priority"] == caches[robot][robot].value["priority"],
+                            "Cached fallback used an unavailable priority")
+                    require(event["fallback_source_min"] == source_min(sources)
+                            and abs(event["fallback_source_age_seconds"]-(now-source_min(sources))) < 1e-9,
+                            "Cached fallback source age mismatch")
+                else:
+                    action, sources, _ = completed_action(report, caches[robot], grid.size+robot*1e-6)
                 require(action == event["action"] and digest(sources) == digest(event["local_sources"]),
                         "Local completion controller replay mismatch")
             decisions[robot] = event
@@ -152,6 +168,9 @@ def replay_trace(trace, inference=None):
                 if command:
                     views[robot] = dict(priorities={int(k): v for k, v in command["dt_priorities"].items()},
                         states={int(k): by_id[v["state_event"]]["state"] for k, v in command["dt_versions"].items()})
+                elif decision.get("cached_fallback"):
+                    views[robot] = dict(priorities={p:c.value["priority"] for p,c in caches[robot].items()},
+                        states={p:c.value for p,c in caches[robot].items()})
             snapshot = consistency_snapshot(positions, physical, caches, now,
                 settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata,
                 schema_version=event.get("consistency_schema", 1))

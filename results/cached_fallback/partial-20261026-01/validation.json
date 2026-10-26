@@ -1,0 +1,30 @@
+{
+  "status": "passed_partial_inventory",
+  "study_status": "stopped_by_user",
+  "primary_completed": 279,
+  "primary_planned": 375,
+  "primary_uncompleted": 96,
+  "successful_episodes": 245,
+  "conditional_tasks": 37820,
+  "recorded_episode_replay_audits_passed": 279,
+  "raw_archives_hash_verified": 279,
+  "packet_partitions_verified": true,
+  "binary_placements_verified": true,
+  "energy_scope_verified": true,
+  "model_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "timeline_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+  "pilot_episodes": 36,
+  "baseline_reproductions": 9,
+  "solver_failures": 0,
+  "mission_success_figures_exported": 0,
+  "totals": {
+    "episodes": 279,
+    "successes": 245,
+    "tasks": 100130,
+    "on_time": 57099,
+    "late": 43031,
+    "undelivered": 0,
+    "fallbacks": 43031,
+    "fallback_moves": 5448
+  }
+}

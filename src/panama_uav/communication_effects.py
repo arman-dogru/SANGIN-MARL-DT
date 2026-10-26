@@ -102,7 +102,8 @@ def measurements(row,trace,condition):
         drone_tx_energy_j=sum(e['energy_j'] for e in transmit if e['link']=='satellite_up'))
     if sum(row[k] for k in ('deadline_commands_on_time','deadline_commands_late','deadline_commands_undelivered'))!=len(tasks):
         raise ValueError('Command arrival partition mismatch')
-    if row['deadline_cutoff_wait_tasks']!=row['command_cutoff_misses']:
+    cutoff_waits=row.get('command_cutoff_waits',row['command_cutoff_misses'])
+    if row['deadline_cutoff_wait_tasks']!=cutoff_waits:
         raise ValueError('Cutoff WAIT denominator mismatch')
     expected_x=0 if condition.route=='cloud' else 1
     if condition.route!='allocated' and any(t.get('executed_x') not in (None,expected_x) for t in tasks):

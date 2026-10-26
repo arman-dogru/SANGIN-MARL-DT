@@ -1,0 +1,142 @@
+{
+  "status": "passed",
+  "cases": 9,
+  "exact_executed_records": true,
+  "details": [
+    {
+      "case_id": "agents-2-case-000",
+      "condition": "allocated-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 52,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-4-case-000",
+      "condition": "allocated-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 112,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-8-case-000",
+      "condition": "allocated-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 268,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-2-case-000",
+      "condition": "uav-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 52,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-4-case-000",
+      "condition": "uav-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 112,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-8-case-000",
+      "condition": "uav-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 268,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-2-case-000",
+      "condition": "cloud-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 52,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-4-case-000",
+      "condition": "cloud-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 112,
+      "failed_certificates": 0,
+      "passed": true
+    },
+    {
+      "case_id": "agents-8-case-000",
+      "condition": "cloud-6ghz",
+      "matches": {
+        "mission": true,
+        "tasks": true,
+        "rounds": true,
+        "frames": true,
+        "allocations": true,
+        "cpu": true
+      },
+      "fractional_certificates": 268,
+      "failed_certificates": 0,
+      "passed": true
+    }
+  ]
+}

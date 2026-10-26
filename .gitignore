@@ -32,3 +32,6 @@ docs/
 
 # Mission-success figures are retained only in local experiment records.
 /results/omega_sensitivity/figures/06_mission_success/
+/results/cached_fallback/**/mission_success.png
+/results/cached_fallback/**/mission_success.pdf
+/results/cached_fallback/**/mission_success.svg

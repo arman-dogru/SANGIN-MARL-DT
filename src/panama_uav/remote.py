@@ -452,6 +452,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
             action = command.action if command is not None and not agent.ever_reached_goal else 4
             local_sources, local_details = None, None
             own_priority = self.states[agent.id][agent.id].value["priority"]
+            cached_fallback = (command is None and not agent.ever_reached_goal
+                               and self.parameters.missed_command_fallback == "cached_astar")
+            if cached_fallback:
+                from .remote_control import cached_path_action
+                local_report = self._sense(agent, agents, cycle, cutoff)
+                action, local_sources, local_details = cached_path_action(
+                    local_report, self.states[agent.id], self.project.map.communicated_path_steps)
             if agent.ever_reached_goal:
                 from .remote_control import completed_action
                 local_report = self._sense(agent, agents, cycle, cutoff)
@@ -485,6 +492,9 @@ class RemoteDTCommunication(PaperMissionCommunication):
             context.update(local_sources=local_sources, local_control=local_details,
                 resolution_priority=(command.dt_priorities.get(agent.id, own_priority)
                                      if command is not None and not agent.ever_reached_goal else own_priority))
+            if cached_fallback:
+                context.update(cached_fallback=True, fallback_source_min=source_min(local_sources),
+                    fallback_source_age_seconds=cutoff-source_min(local_sources))
             self.command_contexts[agent.id] = context
             self._record("decision_event", **context)
             if command is not None:
@@ -531,7 +541,13 @@ class RemoteDTCommunication(PaperMissionCommunication):
         views = {}
         for receiver, context in self.command_contexts.items():
             command = context["command"]
-            if command is None or context["cycle"] != self.current_cycle:
+            if context["cycle"] != self.current_cycle:
+                continue
+            if command is None:
+                if context.get("cached_fallback"):
+                    caches = self.states[receiver]
+                    views[receiver] = dict(priorities={p: c.value["priority"] for p,c in caches.items()},
+                        states={p: c.value for p,c in caches.items()})
                 continue
             priorities = {int(k): v for k, v in command["dt_priorities"].items()}
             states = {int(peer): self.events_by_id[value["state_event"]]["state"]

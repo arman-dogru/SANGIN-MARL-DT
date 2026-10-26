@@ -549,6 +549,7 @@ def _plots_and_report(output, manifest, episodes, strata, differences, service):
 
 def latency_distributions(output, episodes):
     """Exact pooled quantiles, with censored counts and separate priority/site CDFs."""
+    from .latency_plotting import plot_empirical_latency
     groups = defaultdict(list)
     counts = defaultdict(lambda: defaultdict(int))
     for episode in episodes:
@@ -624,10 +625,8 @@ def latency_distributions(output, episodes):
                     continue
                 if view != "all" and condition not in (PRIMARY,BASELINE):
                     continue
-                sorted_values = np.sort(values)
-                indices = np.unique(np.linspace(0,len(values)-1,min(1500,len(values))).astype(int))
                 caption = condition.split("__")[-1]+(" / "+group if view != "all" else "")
-                ax.step(sorted_values[indices]*1000,(indices+1)/len(values),where="post",label=caption,
+                plot_empirical_latency(ax,values,unit_scale=1000,label=caption,
                     linestyle="--" if condition == BASELINE else "-")
             ax.axvline(250,color="black",lw=.7,ls=":")
             ax.set(xscale="symlog",xlabel="Command latency (ms; symlog)",ylabel="Delivered-command CDF",

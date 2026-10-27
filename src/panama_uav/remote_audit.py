@@ -39,7 +39,30 @@ def replay_trace(trace, inference=None):
     physical, positions, decisions, assignments, consistencies = {}, {}, {}, {}, []
     previous, now, failure, last_cycle = "0"*64, 0.0, None, -1
     by_id, inference_count, verified_actions = {}, 0, 0
+    fallback_diagnostics = {}
+    for diagnostic in trace.get("oracle_events",[]):
+        if diagnostic["event"] == "fallback_shadow":
+            fallback_diagnostics.setdefault(diagnostic["causal_anchor_event_id"],[]).append(diagnostic)
     controlled = settings.get("controlled_staleness")
+    extra_decisions,last_round = {},(-1,-1)
+    executions,bundles,bundle_inferences,delayed={},{},{},{}
+    if settings.get('discrete_command_protocol'):
+        from .bundled_actions import DelayedCommandInbox
+        delayed={int(r):DelayedCommandInbox(settings['seconds_per_step'],settings['cutoff_seconds'])
+            for r,v in settings['speed_assignments'].items() if v['speed_class']=='slow'}
+    reversal_records={(e['cycle'],e['substep'],e['first'],e['second']):e
+        for e in trace.get('oracle_events',[]) if e['event']=='priority_reversal_event'}
+    pending_reversals={};expected_durations=[]
+    def close_reversal(key,at,reason,censored):
+        record=pending_reversals.pop(key)
+        expected_durations.append(dict(event='priority_reversal_cache_duration',time=at,
+            reversal_time=record['time'],receiver=key[0],peer=key[1],duration_seconds=at-record['time'],
+            censored=censored,reason=reason,physically_relevant=record['physically_relevant']))
+
+    def check_reversal_caches(at):
+        for (receiver,peer),record in list(pending_reversals.items()):
+            if (caches[receiver][peer].value['priority']<caches[receiver][receiver].value['priority'])==record['physical_peer_higher']:
+                close_reversal((receiver,peer),at,'cached_order_matches',False)
     if controlled:
         from .staleness_state import ReplicaHistory
         history = ReplicaHistory()
@@ -80,6 +103,7 @@ def replay_trace(trace, inference=None):
             require(accepted == event["accepted"], "Robot cache acceptance replay mismatch")
             if accepted:
                 metadata.setdefault(receiver, {})[peer] = event
+                check_reversal_caches(now)
         elif kind == "robot_state_event":
             report = PhysicalReport(**event["report"])
             reports[report.report_id] = report
@@ -107,6 +131,45 @@ def replay_trace(trace, inference=None):
                 require(int(inference(event["location"], robot, observation)) == event["action"], "Frozen DQN action mismatch")
                 verified_actions += 1
             inference_count += 1
+        elif kind == 'bundle_inference':
+            from types import SimpleNamespace
+            from .bundled_actions import second_input
+            from .remote import RemoteDTCommunication
+            parent=by_id[event['parent_inference_event']];robot=event['robot_id']
+            require(parent['event']=='remote_inference' and parent['job_id']==event['job_id'] and parent['time']==now,
+                'Second inference does not belong to its single remote task')
+            speed=settings['speed_assignments'].get(str(robot),settings['speed_assignments'].get(robot))
+            require(speed['speed_class']=='fast','Non-fast task received two remote actions')
+            own_ref=parent['dt_versions'][str(robot)]['state_event'];report=reports[states[own_ref].report_id]
+            grid=np.asarray(trace['grid']);builder=SimpleNamespace(grid=grid,pathfinder=astar_path)
+            obs,sources,versions,priorities,prediction=second_input(report,replicas[event['location']],grid,parent['action'],
+                lambda r,t,v:RemoteDTCommunication._state_for_report(builder,r,t,v),now,settings)
+            versions[robot]['state_event']=own_ref
+            for actual,expected,label in ((event['sources'],sources,'sources'),(event['dt_versions'],versions,'versions'),
+                (event['dt_priorities'],priorities,'priorities'),(event['prediction'],prediction,'predicted DT state')):
+                require(digest(actual)==digest(expected),'Second inference '+label+' mismatch')
+            require(observation_hash(obs)==event['observation_hash']==observation_hash(event['observation']),
+                'Second remote observation mismatch')
+            require(event['first_action']==parent['action'] and event['required_cycles_unchanged'], 'Remote bundle workload mismatch')
+            if inference is not None:
+                require(int(inference(event['location'],robot,obs))==event['action'],'Second frozen DQN action mismatch')
+            bundle_inferences[event['job_id']]=event
+        elif kind == 'action_bundle_arrived':
+            second=bundle_inferences[event['job_id']];bundle=event['bundle']
+            expected=dict(actions=[second['first_action'],second['action']],second_inference_event=second['event_id'],
+                predicted_position=second['prediction']['predicted_position'],sources=second['sources'],
+                dt_versions=second['dt_versions'],dt_priorities=second['dt_priorities'])
+            require(digest(bundle)==digest(expected),'Delivered action bundle differs from remote inference')
+            previous_event=by_id[f'rdt:{index-1}']
+            require(previous_event['event']=='command_arrived' and previous_event['packet_id']==event['packet_id']
+                and previous_event['command']['job_id']==event['job_id'] and event['arrived_at']==now,
+                'Action bundle did not arrive in the original command packet')
+            bundles[event['job_id']]=bundle
+        elif kind == 'delayed_command_arrived':
+            command=ActionCommand(**event['command'])
+            accepted,reason=delayed[event['robot_id']].accept(command,now,bundles.get(command.job_id))
+            require((accepted,reason)==(event['accepted'],event['reason']) and event['execution_cycle']==command.cycle+1,
+                'Delayed command acceptance mismatch')
         elif kind == "command_arrived":
             command = ActionCommand(**event["command"])
             accepted, reason = inboxes.setdefault(event["robot_id"], CommandInbox()).accept(command, now)
@@ -163,7 +226,13 @@ def replay_trace(trace, inference=None):
             assignments[event["job_id"]] = next(r for r in event["assignments"] if r["task_id"] == event["job_id"])
         elif kind == "consistency_event":
             views = {}
-            for robot, decision in decisions.items():
+            actual_decisions={r:dict(d) for r,d in decisions.items()}
+            if settings.get('discrete_command_protocol'):
+                for robot,inbox in delayed.items():
+                    candidate=inbox.peek(event['cycle'],now)
+                    actual_decisions[robot]=dict(command=candidate[0].payload() if candidate else None,
+                        cached_fallback=candidate is None and event['cycle']>0 and settings['missed_command_fallback']=='cached_astar')
+            for robot, decision in actual_decisions.items():
                 command = decision["command"]
                 if command:
                     views[robot] = dict(priorities={int(k): v for k, v in command["dt_priorities"].items()},
@@ -173,7 +242,10 @@ def replay_trace(trace, inference=None):
                         states={p:c.value for p,c in caches[robot].items()})
             snapshot = consistency_snapshot(positions, physical, caches, now,
                 settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata,
-                schema_version=event.get("consistency_schema", 1))
+                schema_version=event.get("consistency_schema", 1),
+                dt_references={r: (d["command"]["location"] if d.get("command") else "drone",
+                    replicas[d["command"]["location"] if d.get("command") else "drone"].states)
+                    for r,d in actual_decisions.items()} if settings.get("dt_reference") else None)
             require(digest(snapshot) == event["consistency_sha256"], "Consistency/AoI replay mismatch")
             require(digest({k: v for k, v in snapshot.items() if k != "pairs"}) == digest(event["summary"]), "Consistency summary mismatch")
             if snapshot.get("consistency_schema", 1) < CONSISTENCY_SCHEMA:
@@ -182,7 +254,120 @@ def replay_trace(trace, inference=None):
                 snapshot = consistency_snapshot(positions, physical, caches, now,
                     settings["radius"], settings["horizon"], settings["age_reference"], replicas["cloud"].states, views, metadata)
             consistencies.append(snapshot)
-        elif kind == "motion_event":
+        elif kind == 'extra_local_decision_event':
+            robot,cycle=event['robot_id'],event['cycle']
+            speed=settings['speed_assignments'].get(str(robot),settings['speed_assignments'].get(robot))
+            require(speed['decisions_per_step']==2 and last_round==(cycle,0),'Extra decision is not a fast second round')
+            grid,radius=np.asarray(trace['grid']),settings['radius'];row,col=positions[robot]
+            obstacles=np.pad(grid,radius,constant_values=1)[row:row+2*radius+1,col:col+2*radius+1]
+            occupancy=np.zeros_like(obstacles)
+            for peer,point in positions.items():
+                dr,dc=point[0]-row,point[1]-col
+                if peer!=robot and max(abs(dr),abs(dc))<=radius:occupancy[dr+radius,dc+radius]=1
+            report=PhysicalReport(robot,cycle,now,(row,col),tuple(physical[robot]['goal']),physical[robot]['completed'],
+                0.,obstacles.tolist(),occupancy.tolist(),f'report:{cycle}:{robot}')
+            completed=physical[robot]['completed']
+            priority=grid.size+robot*1e-6 if completed else caches[robot][robot].value['priority']
+            action,sources,details=(completed_action(report,caches[robot],priority) if completed
+                else cached_path_action(report,caches[robot],settings['horizon']))
+            require(action==event['action'] and digest(sources)==digest(event['local_sources'])
+                and digest(details)==digest(event['local_control']) and priority==event['resolution_priority'],
+                'Extra local action did not use available sensing and caches')
+            require(event['command'] is None and not event['command_cutoff_missed'],'Extra local action created a command deadline')
+            extra_decisions[robot]=event
+        elif kind == 'execution_decision_event':
+            from .redesign_audit import replay_execution
+            executions[event['robot_id']]=replay_execution(event,positions,physical,caches,decisions,executions,delayed,bundles,settings,np.asarray(trace['grid']))
+        elif kind == 'frequency_motion_event':
+            from .redesign_audit import replay_frequency
+            phase=event['cycle'],event['substep']
+            require(phase>(last_round) and (phase[1]==0 or last_round==(phase[0],0)), 'Invalid movement-round ordering')
+            prior_physical=physical
+            positions,physical=replay_frequency(event,positions,decisions,executions,settings,np.asarray(trace['grid']),physical)
+            for i,first in enumerate(sorted(physical)):
+                for second in sorted(physical)[i+1:]:
+                    a,b=first,second
+                    old_order=prior_physical[a]['priority']<prior_physical[b]['priority']
+                    new_order=physical[a]['priority']<physical[b]['priority']
+                    if old_order==new_order or prior_physical[a]['completed'] or prior_physical[b]['completed']:continue
+                    record=reversal_records.pop((phase[0],phase[1],a,b),None)
+                    require(record is not None,'Missing physical priority reversal')
+                    require(record['time']==now and record['old_order']==int(old_order) and record['new_order']==int(new_order),
+                        'Priority reversal timing or ordering mismatch')
+                    completion=physical[a]['completed'] or physical[b]['completed']
+                    require(record['cause']==('goal_completion' if completion else 'movement'),'Priority reversal cause mismatch')
+                    cached_orders=[dict(receiver=r,peer=p,
+                        cached_peer_higher=caches[r][p].value['priority']<caches[r][r].value['priority'],
+                        stale=(caches[r][p].value['priority']<caches[r][r].value['priority'])!=(physical[p]['priority']<physical[r]['priority']),
+                        self_source_time=source_min(caches[r][r].source_timestamps),peer_source_time=source_min(caches[r][p].source_timestamps))
+                        for r,p in ((a,b),(b,a))]
+                    require(digest(cached_orders)==digest(record['cached_orders']),'Reversal cached ordering provenance mismatch')
+                    if completion:
+                        for key in ((a,b),(b,a)):
+                            if key in pending_reversals:close_reversal(key,now,'goal_completion',True)
+                        continue
+                    for receiver,peer in ((a,b),(b,a)):
+                        key=receiver,peer
+                        if key in pending_reversals:close_reversal(key,now,'superseded',True)
+                        pending_reversals[key]=dict(record,physical_peer_higher=physical[peer]['priority']<physical[receiver]['priority'])
+            check_reversal_caches(now)
+            last_round=phase
+            failure = event["failure_reason"]
+        for diagnostic in fallback_diagnostics.pop(event["event_id"],[]):
+            require(diagnostic["time"] == now,"Fallback diagnostic is not anchored at its cutoff")
+            report = PhysicalReport(**diagnostic["local_report"])
+            robot = diagnostic["robot_id"]
+            require(tuple(report.position) == positions[robot] and report.cycle == diagnostic["cycle"]
+                    and report.sensed_at == now,"Fallback diagnostic local pose or timestamp mismatch")
+            grid,radius = np.asarray(trace["grid"]),settings["radius"]
+            row,col = positions[robot]
+            obstacles = np.pad(grid,radius,constant_values=1)[row:row+2*radius+1,col:col+2*radius+1]
+            occupancy = np.zeros_like(obstacles)
+            for peer,point in positions.items():
+                dr,dc = point[0]-row,point[1]-col
+                if peer != robot and max(abs(dr),abs(dc)) <= radius:occupancy[dr+radius,dc+radius] = 1
+            require(np.array_equal(report.obstacles,obstacles) and np.array_equal(report.occupancy,occupancy),
+                    "Fallback diagnostic accessed incorrect local sensing")
+            action,sources,details = cached_path_action(report,caches[diagnostic["robot_id"]],settings["horizon"])
+            require(action == diagnostic["stale_action"] and digest(sources) == digest(diagnostic["stale_sources"])
+                    and digest(details) == digest(diagnostic["stale_details"]), "Stale fallback diagnostic replay mismatch")
+            fresh = {}
+            for peer,values in physical.items():
+                cache = InformationCache()
+                value = {k:values[k] for k in ("position","path","priority","completed")}
+                value["path"] = value["path"][:settings["horizon"]+1]
+                cache.accept(now,value,diagnostic["cycle"],{peer:now});fresh[peer] = cache
+            action,sources,details = cached_path_action(report,fresh,settings["horizon"])
+            require(digest({p:c.value for p,c in fresh.items()}) == digest(diagnostic["fresh_states"])
+                and action == diagnostic["fresh_action"] and digest(details) == digest(diagnostic["fresh_details"]),
+                "Fresh fallback diagnostic truth or action mismatch")
+            require(diagnostic["stale_vs_fresh_disagreement"] == (diagnostic["stale_action"] != action),
+                "Fallback disagreement mismatch")
+            if settings.get('discrete_command_protocol'):
+                require(tuple(report.goal)==tuple(physical[robot]['goal']) and report.completed==physical[robot]['completed']
+                    and report.initial_distance==reports[f'report:0:{robot}'].initial_distance,
+                    'Diagnostic changed own goal, completion or observation normalizer')
+                fresh_replica=DTReplica('cloud');fresh_states={}
+                for peer,values in physical.items():
+                    path=astar_path(grid,positions[peer],tuple(values['goal']))
+                    state=DTState(peer,positions[peer],tuple(values['goal']),path or [positions[peer]],values['priority'],
+                        values['completed'],now,diagnostic['cycle'],{peer:now},f"report:{diagnostic['cycle']}:{peer}")
+                    fresh_states[peer]=state;fresh_replica.accept(state,now,f"extra-oracle:{diagnostic['cycle']}:{peer}")
+                expected_obs=remote_observation(report,fresh_states[robot],fresh_replica,settings['radius'],settings['waypoints'],
+                    settings['horizon'],settings['map_extent'])[0]
+                if diagnostic['substep']==0:
+                    oracle=next(e for e in trace['oracle_events'] if e['event']=='decision_action_shadow'
+                        and e['robot_id']==robot and e['cycle']==diagnostic['cycle'])
+                    require(observation_hash(expected_obs)==oracle['observation_hash'],'First-round fresh oracle is not current physical state')
+                else:
+                    require(observation_hash(expected_obs)==observation_hash(diagnostic['fresh_dqn_observation']),
+                        'Second-round fresh oracle is not current physical state')
+                if inference is not None:
+                    require(int(inference('cloud',robot,expected_obs))==diagnostic['fresh_dqn_action'],'Execution oracle action mismatch')
+                require(diagnostic['actual_action']==event['action'] and diagnostic['action_source']==event['action_source']
+                    and diagnostic['invoked']==bool(event.get('cached_fallback')),
+                    'Diagnostic does not describe its actual executed selection')
+        if kind == "motion_event":
             require({int(k): tuple(v) for k, v in event["before"].items()} == positions, "Motion starts from unknown physical state")
             require(all(event["actions"][str(robot)] == decision["action"] for robot, decision in decisions.items()), "Motion differs from cutoff decision")
             grid = np.asarray(trace["grid"])
@@ -205,6 +390,12 @@ def replay_trace(trace, inference=None):
             failure = event["failure_reason"]
         if controlled:
             history.observe(event, by_id)
+
+    require(not fallback_diagnostics,"Fallback diagnostic has an unknown causal anchor")
+    require(not reversal_records,'Unsubstantiated priority reversal diagnostic')
+    for key in list(pending_reversals):close_reversal(key,trace['frames'][-1]['time'],'mission_observation_end',True)
+    recorded_durations=[e for e in trace.get('oracle_events',[]) if e['event']=='priority_reversal_cache_duration']
+    require(digest(recorded_durations)==digest(expected_durations),'Priority reversal duration/censoring replay mismatch')
 
     outcome = trace.get("outcome")
     if outcome:

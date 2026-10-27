@@ -26,7 +26,8 @@ def verify_ordering_quantities(pair):
 
 
 def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age_reference=1.0,
-                         dt_states=None, action_views=None, cache_metadata=None, *, schema_version=CONSISTENCY_SCHEMA):
+                         dt_states=None, action_views=None, cache_metadata=None, *, schema_version=CONSISTENCY_SCHEMA,
+                         dt_references=None):
     if radius < 0 or horizon < 0 or age_reference <= 0:
         raise ValueError("Invalid FoV, prediction horizon, or age reference")
     if schema_version not in (1, CONSISTENCY_SCHEMA):
@@ -40,6 +41,7 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
         return (cells+[cells[-1]]*(horizon+1))[:horizon+1]
 
     for receiver, point in positions.items():
+        receiver_dt = dt_references[receiver][1] if dt_references is not None else dt_states
         own = states[receiver][receiver]
         own_path = path(own.value)
         own_age = own.age(now)
@@ -56,8 +58,8 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
             peer_path = path(cached.value)
             vertex, edge = intersections(own_path, peer_path)
             current = int(truth[peer]["priority"] < truth[receiver]["priority"])
-            digital_twin = (int(dt_states[peer].value["priority"] < dt_states[receiver].value["priority"])
-                            if dt_states is not None else current)
+            digital_twin = (int(receiver_dt[peer].value["priority"] < receiver_dt[receiver].value["priority"])
+                            if receiver_dt is not None else current)
             perceived = int(cached.value["priority"] < own.value["priority"])
             error = abs(current-perceived)
             uplink, downlink = abs(digital_twin-current), abs(perceived-digital_twin)
@@ -110,17 +112,17 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
                 self_pre_age_seconds=own.timestamp-self_source, self_post_age_seconds=now-own.timestamp,
                 peer_pre_age_seconds=cached.timestamp-peer_source, peer_post_age_seconds=now-cached.timestamp)
             if schema_version >= 2:
-                twin_self = dt_states[receiver].value if dt_states is not None else truth[receiver]
-                twin_peer = dt_states[peer].value if dt_states is not None else truth[peer]
+                twin_self = receiver_dt[receiver].value if receiver_dt is not None else truth[receiver]
+                twin_peer = receiver_dt[peer].value if receiver_dt is not None else truth[peer]
                 vertex_relevant = int(bool(vertex))
                 # Compare predicted (step, cell) events, not just existence of
                 # any vertex conflict somewhere in the horizon.
                 missed_steps = [k for k in pv if k not in vertex or physical_self[k] != own_path[k]]
                 false_steps = [k for k in vertex if k not in pv or physical_self[k] != own_path[k]] if physical_known else None
                 def twin_time(robot):
-                    if dt_states is None:
+                    if receiver_dt is None:
                         return None
-                    cache = dt_states[robot]
+                    cache = receiver_dt[robot]
                     return dict(source_time=min(cache.source_timestamps.values()) if cache.source_timestamps else cache.timestamp,
                         generation_time=cache.timestamp, version=cache.version)
                 def raw_path(state):
@@ -133,7 +135,7 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
                     false_positive_vertex_conflict=int(vertex_relevant and not pv) if physical_known else None,
                     missed_vertex_conflict_steps=missed_steps if physical_known else None,
                     false_positive_vertex_conflict_steps=false_steps,
-                    digital_twin_available=dt_states is not None,
+                    digital_twin_available=receiver_dt is not None,
                     digital_twin_self_priority=twin_self["priority"], digital_twin_peer_priority=twin_peer["priority"],
                     digital_twin_self_path=path(twin_self) if "path" in twin_self else None,
                     digital_twin_peer_path=path(twin_peer) if "path" in twin_peer else None,
@@ -142,6 +144,8 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
                         digital_twin_self=raw_path(twin_self), digital_twin_peer=raw_path(twin_peer),
                         cached_self=raw_path(own.value), cached_peer=raw_path(cached.value)))
                 pair["ordering_equations_verified"] = verify_ordering_quantities(pair)
+            if dt_references is not None:
+                pair["digital_twin_location"] = dt_references[receiver][0]
             pairs.append(pair)
     relevant = sum(p["relevant"] for p in pairs)
     errors = sum(p["fov_error"] for p in pairs)
@@ -181,4 +185,9 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
             false_positive_vertex_conflicts=sum(p["false_positive_vertex_conflict"] or 0 for p in pairs),
             missed_vertex_conflict_step_count=sum(len(p["missed_vertex_conflict_steps"] or []) for p in pairs),
             false_positive_vertex_conflict_step_count=sum(len(p["false_positive_vertex_conflict_steps"] or []) for p in pairs))
+    if dt_references is not None:
+        result['physical_relevant_ordering_errors']=sum((p['physical_relevant'] or 0)*p['ordering_error'] for p in pairs)
+        active_pairs=[p for p in pairs if not truth[p['receiver']]['completed'] and not truth[p['peer']]['completed']]
+        result['active_peer_aoi_sum']=sum(p['peer_age_seconds'] for p in active_pairs)
+        result['active_peer_aoi_samples']=len(active_pairs)
     return result

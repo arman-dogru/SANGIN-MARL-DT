@@ -9,7 +9,7 @@ from .remote_state import DTReplica, DTState, PhysicalReport, observation_hash, 
 from .staleness_state import ReplicaHistory
 
 
-def audit_stress(trace, inference=None):
+def audit_stress(trace, inference=None, *, include_observations=False):
     result = replay_trace(trace, inference)
     settings = trace['remote_settings']
     stress = settings['controlled_staleness']
@@ -38,7 +38,7 @@ def audit_stress(trace, inference=None):
             reports[report.report_id] = report
             physical[report.robot_id] = event['physical']
             positions[report.robot_id] = tuple(report.position)
-        elif kind == 'motion_event':
+        elif kind in ('motion_event','frequency_motion_event'):
             physical = {int(k):v for k,v in event['physical'].items()}
             positions = {int(k):tuple(v) for k,v in event['after'].items()}
         elif kind == 'remote_inference':
@@ -108,8 +108,19 @@ def audit_stress(trace, inference=None):
             raise ValueError('Cutoff oracle observation hash mismatch')
         if inference and int(inference('cloud',shadow['robot_id'],shadow['observation'])) != shadow['oracle_action']:
             raise ValueError('Cutoff oracle model action mismatch')
-    return dict(status='passed', causal_events=result['events'],
+    audit=dict(status='passed', causal_events=result['events'],
         actual_actions_verified=result['model_actions_verified'], peer_shadows_rebuilt=rebuilt,
         peer_shadow_actions_verified=2*rebuilt if inference else 0,
         cutoff_oracles_verified=len(cutoffs) if inference else 0,
         ordering_pairs_verified=result['ordering_pairs_verified'], diagnostic_checksum=previous)
+    if include_observations:
+        snapshots=result['pair_consistency'];pairs=[p for s in snapshots for p in s['pairs']]
+        size=int(np.asarray(trace['grid']).size)
+        active=[p for p in pairs if p['physical_self_priority']<size and p['physical_peer_priority']<size]
+        fields=('directed_pairs','ordering_errors','relevant_pairs','fov_errors','fov_uplink_errors',
+            'fov_downlink_errors','physical_relevant_pairs','vertex_relevant_pairs','vertex_e2e_errors','vertex_aoi_error_sum')
+        audit['observation_aggregates']={k:sum(s[k] for s in snapshots) for k in fields}
+        audit['observation_aggregates'].update(aoi_weighted_error_sum=sum(p['aoi_weighted_error'] for p in pairs),
+            physical_relevant_ordering_errors=sum((p['physical_relevant'] or 0)*p['ordering_error'] for p in pairs),
+            active_peer_aoi_sum=sum(p['peer_age_seconds'] for p in active),active_peer_aoi_samples=len(active))
+    return audit

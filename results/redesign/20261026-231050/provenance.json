@@ -1,0 +1,15 @@
+{
+  "parent_manifest_sha256": "1d17a4370f0ba27861b062da7da9914fd7240a82fee2cacd75ee9829fd512a15",
+  "model_sha256": "be085bec93c4b8603629b0e964b10f7b5a99220386e9c968ac17f960759ffc0f",
+  "timeline_sha256": "c24a66247cbf13e0b08a285e918b4b4e6115fe29d268e862cd5d5bd71efe187f",
+  "map_sha256": "4240fddfa77d88b72ce779e02acf46a5ff056a3b04af5a4e35f7bc86cdfba3ec",
+  "protocol": "dt_bundle_slow_pipeline_v2",
+  "raw_results": "Local committed episode packets and event archives; preserved unchanged",
+  "validation": {
+    "full_suite_tests": 466,
+    "focused_tests": 76,
+    "preflight": "passed",
+    "reproduction": "passed"
+  },
+  "worker_count_comparison": "deferred scheduling diagnostic"
+}

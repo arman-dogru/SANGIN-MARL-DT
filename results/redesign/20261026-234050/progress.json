@@ -1,0 +1,18 @@
+{
+  "phase": "A4_initial",
+  "a4_completed": 37,
+  "a4_total": 45,
+  "completed": 46,
+  "total": 1380,
+  "successful": 30,
+  "failed_missions": 16,
+  "execution_errors": 0,
+  "measured_episodes_per_hour": 4.000031221951363,
+  "eta_seconds": 7199.943800926208,
+  "eta_scope": "A4 first cohort",
+  "observed_at": 1793072450.8024058,
+  "completed_new": 21,
+  "worker_state": "running",
+  "preliminary": true,
+  "findings": "A4 successes 22/37; failed missions retained; conditional metrics exclude failures"
+}

@@ -203,3 +203,43 @@ Thirty-minute scheduled checkpoints invoke the publisher once, then report
 episode counts, preliminary findings, failures/errors, measured throughput and
 ETA. Computation continues independently between checkpoints. No training is
 performed. Historical results are immutable.
+
+## Lossless telemetry recovery
+
+The 350 ms All-UAV/32-robot workload can accumulate unfinished jobs: its
+initial offered compute demand is about 9.14 GHz against a 6 GHz pool. An
+in-memory trace attempt reached approximately 45 GiB before completing the
+250-second horizon. This is a recording-resource limitation, not a solver
+infeasibility or completed mission. The suspended attempt and its original
+benchmark files remain local and intact.
+
+`scripts/compact_telemetry.py` replaces only append-only event containers with
+SQLite-backed compressed records. Lazy immutable records preserve all fields,
+event IDs, ordering, timestamps and diagnostic observations. Exported pickle
+archives contain their compressed payloads and do not depend on working
+databases. Replay requires the accompanying `compact_telemetry.py` module.
+There is no downsampling or change to admission, service, commands, allocation,
+energy or physical execution. Historical source files are never rewritten.
+
+`scripts/validate_redesign_storage.py` independently replays a preserved full
+episode with this storage backend, checks its executed signature, and audits
+the restored archive. Existing host timing and relaxed-minimizer exclusions
+remain unchanged; causal event comparisons in deterministic fixtures are exact.
+`scripts/run_redesign_storage.py` requires this evidence before dispatch. Its
+new frozen revision lives under `accelerated/revisions/storage-v1/`; the old
+frozen scheduler stays intact. A same-case retry of the suspended attempt uses
+the primary namespace and records the original attempt's identity explicitly.
+The original wall lease, cohort, scheduling priority and 8 GiB RAM reserve
+remain in force. Pagefile headroom and a 20 GiB disk reserve also constrain
+dispatch. Execution exceptions retain evidence and block the affected condition.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/validate_redesign_storage.py --root output/redesign/redesign-20261026-01
+.\.venv\Scripts\python.exe scripts/run_redesign_storage.py --root output/redesign/redesign-20261026-01 --launch
+```
+
+Checkpoint status verifies the dispatcher's recorded process identity and
+recent status timestamp. A stale `running` field cannot establish progress;
+stopped or resource-paused dispatchers have no forward ETA. Snapshot
+`20261026-224408` predates this operational-status check; its completed-episode
+tables remain valid, while its running flag and projected ETA were stale.

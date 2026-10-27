@@ -25,11 +25,30 @@ CODE_FILES=('EXPERIMENT_REDESIGN.md','.gitattributes',
     'src/panama_uav/redesign_audit.py','src/panama_uav/redesign_metrics.py',
     'scripts/run_redesign.py','scripts/report_redesign.py','scripts/record_redesign_validation.py',
     'scripts/run_redesign_accelerated.py','scripts/checkpoint_redesign.py',
+    'scripts/run_redesign_storage.py','scripts/compact_telemetry.py','scripts/validate_redesign_storage.py','tests/test_compact_telemetry.py',
+    'tests/test_redesign_storage.py',
     'tests/test_bundled_actions.py','tests/test_frequency_motion.py','tests/test_redesign_workflow.py',
     'tests/test_redesign_acceleration.py')
 
 
 def ratio(a,b):return a/b if b else None
+
+
+def worker_state(root,status):
+    """A saved running flag cannot establish a live, advancing dispatcher."""
+    import psutil
+    launch_path=Path(root)/'accelerated/launch.json'
+    if launch_path.exists():
+        launch=read(launch_path)
+        try:
+            p=psutil.Process(launch['pid'])
+            valid=abs(p.create_time()-launch['creation_time'])<1 and p.cmdline()==launch['command']
+        except (psutil.NoSuchProcess,psutil.AccessDenied):valid=False
+        if valid:
+            age=time.time()-status.get('updated_at',0)
+            return status.get('status','unknown') if age<180 else 'unverified_progress'
+    if (Path(root)/'accelerated/resource_pause.json').exists():return 'resource_paused'
+    return 'stopped' if status.get('status')=='running' else status.get('status','unknown')
 def csv_file(path,rows):
     import csv
     fields=sorted({k for r in rows for k in r}) or ['case_id']
@@ -157,13 +176,15 @@ def checkpoint(root,push=False):
         throughput=(completed_new-previous['completed_new'])/max(1.,time.time()-previous['observed_at'])*3600
     remaining=(45-len(a4)) if len(a4)<45 else (len(primary)-len(rows))
     eta_seconds=remaining/throughput*3600 if throughput else None
+    observed_state=worker_state(root,status)
+    if observed_state not in ('running','complete'):eta_seconds=None
     errors=list(root.rglob('error.json'))
     summary=summaries(rows,cache)
     progress=dict(phase=status.get('phase',status.get('stage')),a4_completed=len(a4),a4_total=45,
         completed=len(rows),total=len(primary),successful=sum(r['success'] for r in rows),
         failed_missions=sum(not r['success'] for r in rows),execution_errors=len(errors)+(status.get('status')=='error'),
         measured_episodes_per_hour=throughput,eta_seconds=eta_seconds,eta_scope='A4 first cohort' if len(a4)<45 else 'remaining sweep',
-        observed_at=time.time(),completed_new=completed_new,worker_state=status.get('status'),preliminary=True,
+        observed_at=time.time(),completed_new=completed_new,worker_state=observed_state,preliminary=True,
         findings=f"A4 successes {sum(r['success'] for r in a4)}/{len(a4)}; failed missions retained; conditional metrics exclude failures")
     fingerprint=hashlib.sha256(json.dumps(sorted(r['result_sha256'] for r in rows)).encode()).hexdigest()
     if previous and previous.get('result_fingerprint')==fingerprint and (PROJECT/'results/redesign/latest.json').exists():

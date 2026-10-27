@@ -1,0 +1,38 @@
+{
+  "protocol": "sqlite_zlib_v1",
+  "status": "passed",
+  "tests": {
+    "tests": "476",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "155.347"
+  },
+  "parent_manifest_sha256": "1d17a4370f0ba27861b062da7da9914fd7240a82fee2cacd75ee9829fd512a15",
+  "reference_sha256": "37ca3342b93cfe71b664342293cc46837de806269cde4c25aeecd770bd349a42",
+  "exact_executed_signature": true,
+  "archive_replay": {
+    "status": "passed",
+    "causal_events": 9129,
+    "actual_actions_verified": 273,
+    "peer_shadows_rebuilt": 273,
+    "peer_shadow_actions_verified": 546,
+    "cutoff_oracles_verified": 273,
+    "ordering_pairs_verified": 2968,
+    "diagnostic_checksum": "e0028d25da95ad0eadf2f54950bb274110f5f1817c67397102101212ce6652e9",
+    "frequency_motion_events": 105,
+    "bundled_second_inferences_verified": 27,
+    "fallback_shadows_verified": 298,
+    "cutoff_dqn_oracles_verified": 273,
+    "policy_updates": 0
+  },
+  "source_sha256": {
+    "run_redesign_storage.py": "7126286c698d7a4f83081c81440d32ad27f95950403c763d9839c690cdea82bc",
+    "compact_telemetry.py": "2b34f09c60e705ad73e0fe3a7c039c134d86dd85cb077670a5e7bff475baac06",
+    "run_redesign_accelerated.py": "1c43038fc6566c7ab0043855e65879b3a978b635d77301fd1afb97cbf77d9b30"
+  },
+  "validation_wall_seconds": 28.15599999949336,
+  "validation_peak_rss_bytes": 796688384,
+  "original_lease_preserved": true,
+  "old_attempt_preserved": true
+}

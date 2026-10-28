@@ -38,17 +38,20 @@ def cycle(env,motion,n):
 @pytest.mark.parametrize('interval',[.35,1.])
 def test_frequencies_are_per_step_not_a_continuous_motion_clock(tmp_path,interval):
     env,motion,_,_=fixture(tmp_path,settings=MotionSettings(control_interval_seconds=interval,horizon_seconds=5.))
-    motion.speeds={0:dict(speed_class='slow',decisions_per_step=.5),1:dict(speed_class='normal',decisions_per_step=1.),
+    motion.speeds={0:dict(speed_class='slow',decisions_per_step=.5,phase=0),1:dict(speed_class='normal',decisions_per_step=1.),
                    2:dict(speed_class='fast',decisions_per_step=2.)}
     for n in range(4):cycle(env,motion,n)
-    assert motion.distance=={0:3,1:4,2:8}
-    assert len(env.communication.jobs)==12
-    assert sum(e['event']=='remote_inference' for e in env.communication.remote_events)==12
+    # leo_study half-rate protocol: slow acts (and uploads) only on cycles 0 and 2.
+    assert motion.distance=={0:2,1:4,2:8}
+    assert len(env.communication.jobs)==10
+    assert sum(e['event']=='remote_inference' for e in env.communication.remote_events)==10
     extra=[e for e in env.communication.remote_events if e['event']=='bundle_inference']
     assert len(extra)==4
     slow=[e for e in env.communication.remote_events if e['event']=='execution_decision_event' and e['robot_id']==0]
-    assert slow[0]['slow_pipeline_warmup'] and slow[0]['action']==4
-    assert [e['source_cycle'] for e in slow[1:]]==[0,1,2]
+    assert [e['cycle'] for e in slow]==[0,2] and not any(e['slow_pipeline_warmup'] for e in slow)
+    assert [e['source_cycle'] for e in slow]==[0,2]
+    motion_events=[e for e in env.communication.remote_events if e['event']=='frequency_motion_event' and e['substep']==0]
+    assert [e['reasons']['0'] for e in motion_events][1::2]==['speed_limited','speed_limited']
 
 
 def test_fast_second_move_checks_intermediate_cell_and_local_obstacle(tmp_path):
@@ -63,14 +66,28 @@ def test_fast_second_move_checks_intermediate_cell_and_local_obstacle(tmp_path):
     assert not any(e['conflicts_after_resolution'] for e in env.communication.remote_events if e['event']=='frequency_motion_event')
 
 
-def test_slow_previous_command_is_used_without_a_replacement_request(tmp_path):
+def test_slow_robots_act_every_other_step_with_current_command_and_staggered_phase(tmp_path):
     env,motion,_,_=fixture(tmp_path)
-    motion.speeds={r:dict(speed_class='slow',decisions_per_step=.5) for r in range(3)}
+    motion.speeds={0:dict(speed_class='slow',decisions_per_step=.5,phase=0),1:dict(speed_class='slow',decisions_per_step=.5,phase=1),
+                   2:dict(speed_class='slow',decisions_per_step=.5,phase=0)}
     cycle(env,motion,0);cycle(env,motion,1)
-    event=[e for e in env.communication.remote_events if e['event']=='frequency_motion_event'][-1]
-    assert event['due']==[0,1,2] and set(event['reasons'].values())=={'move_attempt'}
-    assert all(v['source_cycle']==0 and v['cycle']==1 for v in event['contexts'].values())
-    assert len(env.communication.jobs)==6
+    first,second=[e for e in env.communication.remote_events if e['event']=='frequency_motion_event']
+    assert first['due']==[0,2] and first['reasons']['1']=='speed_limited'
+    assert second['due']==[1] and second['reasons']['0']==second['reasons']['2']=='speed_limited'
+    assert second['contexts']['1']['source_cycle']==1 and second['contexts']['0']['action_source']=='speed_limited'
+    assert not second['contexts']['0']['command_cutoff_missed'] and not second['contexts']['0']['cached_fallback']
+    decisions=[e for e in env.communication.remote_events if e['event']=='decision_event']
+    assert {(e['cycle'],e['robot_id']) for e in decisions}=={(0,0),(0,2),(1,1)}
+    # Initial briefing uploads all robots at t=0; cycle 1 only robot 1 uploads.
+    assert len(env.communication.jobs)==4
+
+
+def test_speed_assignment_halfrate_phases_are_seeded():
+    values=speed_assignment(32,123)
+    slow=[v for v in values.values() if v['speed_class']=='slow']
+    assert all(v['decisions_per_step']==.5 and v['command_lag_steps']==0 and v['phase'] in (0,1) for v in slow)
+    assert {v['phase'] for v in slow}=={0,1}
+    assert all(v['phase']==0 for v in values.values() if v['speed_class']!='slow')
 
 
 def test_movement_frequency_naturally_reverses_astar_distance_priorities(tmp_path):
@@ -114,7 +131,7 @@ def test_episode_replay_telemetry_and_energy(tmp_path):
     from panama_uav.redesign_metrics import measure
     row,tasks=measure(row,trace,'A4',dict(id='W1'),InferenceCondition('edge','edge'))
     assert row['post_resolution_conflicts']==0 and row['extra_remote_requests']==0
-    assert len(tasks)==18
+    assert len(tasks)==15  # half-rate slow robot uploads on active steps only
     assert row['modeled_energy_lower_j']==pytest.approx(row['radio_energy_lower_j']+row['drone_compute_energy_j'])
     assert all(e['time']==pytest.approx(e['cycle']*.35+.25) for e in trace['remote_events'] if e['event']=='frequency_motion_event')
 

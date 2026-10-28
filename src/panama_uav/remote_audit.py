@@ -227,7 +227,13 @@ def replay_trace(trace, inference=None):
         elif kind == "consistency_event":
             views = {}
             actual_decisions={r:dict(d) for r,d in decisions.items()}
-            if settings.get('discrete_command_protocol'):
+            halfrate=settings.get('discrete_command_protocol')=='dt_bundle_halfrate_slow_v1'
+            if halfrate:
+                # leo_study: off-step slow robots have no decision at this cycle.
+                from .frequency_motion import active_step
+                speeds={int(r):v for r,v in settings['speed_assignments'].items()}
+                actual_decisions={r:d for r,d in actual_decisions.items() if d.get('cycle')==event['cycle']}
+            if settings.get('discrete_command_protocol') and not halfrate:
                 for robot,inbox in delayed.items():
                     candidate=inbox.peek(event['cycle'],now)
                     actual_decisions[robot]=dict(command=candidate[0].payload() if candidate else None,
@@ -245,7 +251,13 @@ def replay_trace(trace, inference=None):
                 schema_version=event.get("consistency_schema", 1),
                 dt_references={r: (d["command"]["location"] if d.get("command") else "drone",
                     replicas[d["command"]["location"] if d.get("command") else "drone"].states)
-                    for r,d in actual_decisions.items()} if settings.get("dt_reference") else None)
+                    for r,d in ({p: actual_decisions.get(p, {}) for p in positions} if halfrate else actual_decisions).items()}
+                    if settings.get("dt_reference") else None)
+            if halfrate:
+                from .consistency import summarize_pairs
+                kept=[q for q in snapshot["pairs"] if active_step(speeds[q["receiver"]],event["cycle"])]
+                if len(kept)!=len(snapshot["pairs"]):
+                    snapshot=summarize_pairs(kept,physical,dt_references={p:None for p in positions})
             require(digest(snapshot) == event["consistency_sha256"], "Consistency/AoI replay mismatch")
             require(digest({k: v for k, v in snapshot.items() if k != "pairs"}) == digest(event["summary"]), "Consistency summary mismatch")
             if snapshot.get("consistency_schema", 1) < CONSISTENCY_SCHEMA:

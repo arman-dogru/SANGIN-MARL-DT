@@ -5,6 +5,8 @@ consume uploaded sensing and their own delivered replica stores at completion.
 """
 from dataclasses import asdict, replace
 import hashlib
+import os as _os
+LEAN=_os.environ.get("LEO_STUDY_LEAN")=="1"  # leo_study: drop audit-only observation payloads
 import json
 import math
 from time import perf_counter
@@ -345,7 +347,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
         action = int(self.inference(job["location"], job["agent"], obs))
         wall = perf_counter()-start
         event = self._record("remote_inference", job_id=job_id, robot_id=job["agent"], location=job["location"],
-            observation={k: v.tolist() for k, v in obs.items()}, observation_hash=observation_hash(obs),
+            observation=None if LEAN else {k: v.tolist() for k, v in obs.items()}, observation_hash=observation_hash(obs),
             sources=sources, source_min=source_min(sources), dt_versions=versions, dt_priorities=priorities,
             action=action, model_version=self.model_version)
         job["inference_wall_seconds"] = wall  # Measurement only; never advances virtual service.
@@ -368,7 +370,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
             oracle_action = int(self.shadow_inference(job["location"], job["agent"], oracle_obs))
             self.oracle_events.append(dict(event="action_shadow", time=t.now, job_id=job_id,
                 actual_action=action, oracle_action=oracle_action, disagrees=action != oracle_action,
-                observation={k: v.tolist() for k, v in oracle_obs.items()},
+                observation=None if LEAN else {k: v.tolist() for k, v in oracle_obs.items()},
                 observation_hash=observation_hash(oracle_obs), sources=oracle_sources))
         command = ActionCommand(job["agent"], report.cycle, action, t.now,
             report.cycle*self.config.seconds_per_step+self.parameters.decision_budget_seconds,
@@ -376,6 +378,10 @@ class RemoteDTCommunication(PaperMissionCommunication):
         self._send_remote(job["agent"], "remote_action_command", dict(job_id=job_id, command=command.payload()),
             ("access_down",) if job["location"] == "drone" else ("satellite_down", "access_down"),
             version=job["version"])
+
+    def _scheduled(self, robot_id, cycle):
+        """Speed-class hook (leo_study): False => no upload and no decision this cycle."""
+        return True
 
     def update(self, agents, now, generate_tasks=True):
         self._agents = agents
@@ -409,6 +415,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
             self.position_history[agent.id].append((now, tuple(agent.position)))
             if agent.ever_reached_goal and agent.id in self.completion_sent:
                 continue
+            if not self._scheduled(agent.id, self.current_cycle):
+                continue  # half-rate robot off step: no state upload (DT/AoI ages)
             report = self._sense(agent, agents, self.current_cycle, now)
             event = self._record("robot_state_event", report=report.payload(), physical=self.truth[agent.id])
             self.physical_refs[agent.id] = event["event_id"]
@@ -447,6 +455,8 @@ class RemoteDTCommunication(PaperMissionCommunication):
         cycle = int(round(cycle_start/self.config.seconds_per_step))
         self.execution_actions, self.command_contexts = {}, {}
         for agent in agents:
+            if not self._scheduled(agent.id, cycle):
+                continue  # off step: not a decision, fallback or cutoff miss
             delivered = self.inboxes[agent.id].decision(cycle, cutoff)
             command, arrival = delivered if delivered else (None, None)
             action = command.action if command is not None and not agent.ever_reached_goal else 4
@@ -516,7 +526,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
             for robot, state in fresh_states.items():
                 oracle_replica.accept(state, cutoff, f"decision-oracle:{cycle}:{robot}")
             for agent in agents:
-                if agent.ever_reached_goal:
+                if agent.ever_reached_goal or not self._scheduled(agent.id, cycle):
                     continue  # Completed robots retain the separate local-control shadow.
                 observation, sources, versions, priorities = remote_observation(
                     fresh_reports[agent.id], fresh_states[agent.id], oracle_replica,
@@ -533,7 +543,7 @@ class RemoteDTCommunication(PaperMissionCommunication):
                     timeout_reason=context["timeout_reason"],
                     actual_command_job_id=context["command"]["job_id"] if context["command"] else None,
                     actual_command_arrived_at=context["arrived_at"], model_version=self.model_version,
-                    observation={k: v.tolist() for k, v in observation.items()},
+                    observation=None if LEAN else {k: v.tolist() for k, v in observation.items()},
                     observation_hash=observation_hash(observation), sources=sources,
                     source_min=source_min(sources), dt_versions=versions, dt_priorities=priorities))
 

@@ -22,15 +22,11 @@ def replay_execution(event,positions,physical,caches,decisions,executions,delaye
     obstacles=np.pad(grid,radius,constant_values=1)[row:row+2*radius+1,col:col+2*radius+1]
     report=PhysicalReport(robot,cycle,now,(row,col),tuple(physical[robot]['goal']),physical[robot]['completed'],
         0.,obstacles.tolist(),occupancy.tolist(),f'report:{cycle}:{robot}')
-    if substep==0 and speed=='slow':
-        candidate=delayed[robot].decision(cycle,now)
-        command=candidate[0].payload() if candidate else None
-        arrival=candidate[1] if candidate else None
-    else:
+    if True:  # leo_study: half-rate slow robots use the current-cycle command
         parent=executions[robot] if substep else decisions[robot]
         command=parent['command'];arrival=parent['arrived_at']
     bundle=bundles.get(command['job_id']) if command else None
-    completed=physical[robot]['completed'];warmup=speed=='slow' and cycle==0
+    completed=physical[robot]['completed'];warmup=False
     cached=False;sources={};details=None;mismatch=None
     if completed:
         command=None;arrival=None;priority=grid.size+robot*1e-6
@@ -51,11 +47,11 @@ def replay_execution(event,positions,physical,caches,decisions,executions,delaye
         source='cached_fallback' if cached and action!=4 else 'safety_wait'
     expected=dict(robot_id=robot,cycle=cycle,substep=substep,cutoff_time=now,action=action,command=command,
         arrived_at=arrival,source_cycle=command['cycle'] if command else None,
-        scheduled_source_cycle=cycle-1 if speed=='slow' else cycle,
+        scheduled_source_cycle=cycle,
         command_cutoff_missed=command is None and not completed and not warmup,slow_pipeline_warmup=warmup,
         completed_local_control=completed,cached_fallback=cached,action_source=source,local_sources=sources,
         local_control=details,resolution_priority=priority,
-        decision_reason='slow_previous_command' if speed=='slow' else 'fast_bundle_second' if substep else 'current_command',
+        decision_reason='slow_active_step' if speed=='slow' else 'fast_bundle_second' if substep else 'current_command',
         speed_class=speed,bundle_prediction_mismatch=mismatch,
         bundle_inference_event=bundle['second_inference_event'] if bundle and substep else None)
     actual={k:v for k,v in event.items() if k not in ('event','schema','event_id','time','checksum','previous_checksum')}
@@ -73,14 +69,25 @@ def replay_frequency(event,positions,decisions,executions,settings,grid,physical
         raise ValueError('Movement does not occur at the existing cycle cutoff')
     targets,reasons,due,expected_contexts=dict(positions),{},[],{}
     for robot,point in positions.items():
-        speed=settings['speed_assignments'].get(str(robot),settings['speed_assignments'].get(robot))['speed_class']
-        participates=eligible(speed,event['cycle'],event['substep'])
-        decision=executions[robot]
-        expected_contexts[robot]=dict(decision) if participates else dict(decision,action=4,substep=event['substep'],command=None,action_source='not_scheduled')
+        assignment=settings['speed_assignments'].get(str(robot),settings['speed_assignments'].get(robot))
+        speed=assignment['speed_class']
+        participates=eligible(speed,event['cycle'],event['substep'],assignment.get('phase',0))
+        off_step=speed=='slow' and not eligible(speed,event['cycle'],0,assignment.get('phase',0))
+        decision=executions.get(robot)
+        if off_step:
+            # Half-rate off step: verify the invariants of the recorded speed-limited context.
+            recorded=event['contexts'][str(robot)]
+            if (recorded['action']!=4 or recorded['command'] is not None or recorded['command_cutoff_missed']
+                    or recorded['cached_fallback'] or recorded['cycle']!=event['cycle']
+                    or recorded['action_source']!=('speed_limited' if event['substep']==0 else 'not_scheduled')):
+                raise ValueError('Off-step slow robot context violates the half-rate protocol')
+            expected_contexts[robot]=dict(recorded)
+        else:
+            expected_contexts[robot]=dict(decision) if participates else dict(decision,action=4,substep=event['substep'],command=None,action_source='not_scheduled')
         action=decision['action'] if participates else 4
         if event['actions'][str(robot)]!=action:raise ValueError('Movement violates decision frequency or selected action')
         if participates:due.append(robot)
-        reasons[robot]='not_scheduled' if not participates else 'slow_pipeline_warmup' if decision['slow_pipeline_warmup'] else 'controller_wait' if action==4 else 'move_attempt'
+        reasons[robot]=('speed_limited' if event['substep']==0 else 'not_scheduled') if not participates else 'slow_pipeline_warmup' if decision['slow_pipeline_warmup'] else 'controller_wait' if action==4 else 'move_attempt'
         dr,dc=DELTAS[action];target=point[0]+dr,point[1]+dc
         if not (0 <= target[0] < grid.shape[0] and 0 <= target[1] < grid.shape[1] and not grid[target]):
             target=point;reasons[robot]='local_obstacle'

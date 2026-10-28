@@ -147,6 +147,11 @@ def consistency_snapshot(positions, truth, states, now, radius=7, horizon=5, age
             if dt_references is not None:
                 pair["digital_twin_location"] = dt_references[receiver][0]
             pairs.append(pair)
+    return summarize_pairs(pairs, truth, schema_version, dt_references)
+
+
+def summarize_pairs(pairs, truth, schema_version=CONSISTENCY_SCHEMA, dt_references=None):
+    """Aggregate directed pair records (factored out unchanged for receiver filtering)."""
     relevant = sum(p["relevant"] for p in pairs)
     errors = sum(p["fov_error"] for p in pairs)
     uplink = sum(p["fov_uplink_error"] for p in pairs)

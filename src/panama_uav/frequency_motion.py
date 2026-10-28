@@ -1,7 +1,13 @@
-"""Discrete movements: delayed slow commands and bundled fast DQN actions.
+"""Discrete movements: half-rate slow robots and bundled fast DQN actions.
 
-Each robot uploads once per global step. Slow commands execute one epoch later;
-fast commands contain two DT-based actions. There is no separate motion clock.
+LOCAL STUDY VARIANT (leo_study): a slow robot is *active* only on every other
+global step. On an active step it uploads its state at n*interval and executes
+the current step's remote command at the cutoff (no command lag, no delayed
+inbox). On an off step it neither uploads nor acts; the step is recorded as
+speed-limited non-movement (not a fallback, WAIT or deadline miss). Each slow
+robot has a seeded phase in {0,1}; it is active when (cycle+phase) % 2 == 0.
+Normal robots act and upload every step; fast robots upload once and execute
+a two-action bundle per step. There is no separate motion clock.
 """
 from dataclasses import dataclass
 import math
@@ -27,17 +33,31 @@ class MotionSettings:
         if self.fallback not in ('wait','cached_astar'):raise ValueError('Unknown fallback')
 
 
+SLOW_PHASE_SALT=918274
+
+
 def speed_assignment(count,seed,heterogeneous=True):
     if not heterogeneous:
-        return {i:dict(speed_class='normal',decisions_per_step=1.,command_lag_steps=0) for i in range(count)}
-    classes=(('slow',1.,1),('normal',1.,0),('fast',2.,0))
+        return {i:dict(speed_class='normal',decisions_per_step=1.,command_lag_steps=0,phase=0) for i in range(count)}
+    classes=(('slow',.5,0),('normal',1.,0),('fast',2.,0))
+    # Class order is unchanged from the registered protocol (same RNG draw).
     order=np.random.default_rng(int(seed)+918273).permutation(count)
-    return {int(robot):dict(speed_class=classes[k%3][0],decisions_per_step=classes[k%3][1],command_lag_steps=classes[k%3][2])
+    # Slow-robot phase: independent seeded Bernoulli(1/2) per robot id.
+    phases=np.random.default_rng([int(seed),SLOW_PHASE_SALT]).integers(0,2,size=count)
+    return {int(robot):dict(speed_class=classes[k%3][0],decisions_per_step=classes[k%3][1],command_lag_steps=classes[k%3][2],
+                            phase=int(phases[robot]) if classes[k%3][0]=='slow' else 0)
             for k,robot in enumerate(order)}
 
 
-def eligible(speed_class,cycle,substep):
-    return substep==0 or speed_class=='fast'
+def active_step(speed,cycle):
+    """True when a robot's speed class permits a first-round action (and upload) at this cycle."""
+    return speed['speed_class']!='slow' or (int(cycle)+int(speed.get('phase',0)))%2==0
+
+
+def eligible(speed_class,cycle,substep,phase=0):
+    if substep==0:
+        return speed_class!='slow' or (int(cycle)+int(phase))%2==0
+    return speed_class=='fast'
 
 
 class FrequencyMotion:
@@ -58,9 +78,7 @@ class FrequencyMotion:
         report=c._sense(agent,self.env.agents,cycle,now)
         speed_class=self.speeds[agent.id]['speed_class']
         candidate=None;bundle=None
-        if substep==0 and speed_class=='slow':
-            candidate=c.delayed_inboxes[agent.id].decision(cycle,now)
-        elif substep==0:
+        if substep==0:
             nominal=c.command_contexts[agent.id]
             if nominal['command'] is not None:
                 from .remote_state import ActionCommand
@@ -72,7 +90,7 @@ class FrequencyMotion:
                 candidate=ActionCommand(**first['command']),first['arrived_at'],c.arrived_bundles.get(first['command']['job_id'])
         command,arrival,bundle=candidate if candidate else (None,None,None)
         cached=False;details=None;sources={};prediction_mismatch=None
-        warmup=speed_class=='slow' and cycle==0
+        warmup=False
         if agent.ever_reached_goal:
             priority=self.env.grid.size+agent.id*1e-6
             action,sources,details=completed_action(report,c.states[agent.id],priority)
@@ -98,11 +116,11 @@ class FrequencyMotion:
         context=dict(robot_id=agent.id,cycle=cycle,substep=substep,cutoff_time=now,action=action,
             command=command.payload() if command else None,arrived_at=arrival,
             source_cycle=command.cycle if command else None,
-            scheduled_source_cycle=cycle-1 if speed_class=='slow' else cycle,
+            scheduled_source_cycle=cycle,
             command_cutoff_missed=command is None and not agent.ever_reached_goal and not warmup,
             slow_pipeline_warmup=warmup,completed_local_control=agent.ever_reached_goal,cached_fallback=cached,
             action_source=source,local_sources=sources,local_control=details,resolution_priority=priority,
-            decision_reason='slow_previous_command' if speed_class=='slow' else 'fast_bundle_second' if substep else 'current_command',
+            decision_reason='slow_active_step' if speed_class=='slow' else 'fast_bundle_second' if substep else 'current_command',
             speed_class=speed_class,bundle_prediction_mismatch=prediction_mismatch,
             bundle_inference_event=bundle['second_inference_event'] if bundle and substep else None)
         c._record('execution_decision_event',**context)
@@ -118,19 +136,20 @@ class FrequencyMotion:
         self.account_time(now)
         self.first_contexts={}
         for substep in (0,1):
-            due=[a.id for a in env.agents if eligible(self.speeds[a.id]['speed_class'],cycle,substep)]
+            due=[a.id for a in env.agents if eligible(self.speeds[a.id]['speed_class'],cycle,substep,self.speeds[a.id].get('phase',0))]
             if not due and substep==1:continue
             before={a.id:a.position for a in env.agents}
             prior={a.id:dict(priority=a.priority,completed=a.ever_reached_goal,path=list(a.path or []),position=a.position) for a in env.agents}
             contexts={a.id:(self.select(a,cycle,now,substep) if a.id in due else
-                dict(self.first_contexts[a.id],action=4,substep=substep,command=None,action_source='not_scheduled')) for a in env.agents}
+                dict(self.first_contexts[a.id],action=4,substep=substep,command=None,action_source='not_scheduled')
+                if substep else self.off_step_context(a,cycle,now)) for a in env.agents}
             if substep==0:self.first_contexts=contexts
             intended,actions,reasons={},{},{}
             for agent in env.agents:
                 robot=agent.id;action=contexts[robot]['action'] if robot in due else 4
                 actions[robot]=action
                 dr,dc=DELTAS[action];target=agent.position[0]+dr,agent.position[1]+dc
-                reason='not_scheduled' if robot not in due else 'slow_pipeline_warmup' if contexts[robot]['slow_pipeline_warmup'] else 'controller_wait' if action==4 else 'move_attempt'
+                reason=('speed_limited' if substep==0 else 'not_scheduled') if robot not in due else 'slow_pipeline_warmup' if contexts[robot]['slow_pipeline_warmup'] else 'controller_wait' if action==4 else 'move_attempt'
                 if not env._valid(target):target=agent.position;reason='local_obstacle'
                 intended[robot]=target;reasons[robot]=reason
             attempted=conflicts(before,intended)
@@ -156,6 +175,18 @@ class FrequencyMotion:
             if substep==0:c.execution_actions={r:contexts[r]['action'] for r in due}
             self._reversals(prior,now,cycle,substep);self.check_cache_updates(now);self.rounds+=1
             if env.all_agents_at_goals or env.failure_reason:return
+
+    def off_step_context(self,agent,cycle,now):
+        """Slow robot off step: no upload, no command, no fallback, no deadline."""
+        c=self.env.communication
+        priority=(self.env.grid.size+agent.id*1e-6 if agent.ever_reached_goal
+                  else c.states[agent.id][agent.id].value['priority'])
+        return dict(robot_id=agent.id,cycle=cycle,substep=0,cutoff_time=now,action=4,command=None,arrived_at=None,
+            source_cycle=None,scheduled_source_cycle=None,command_cutoff_missed=False,slow_pipeline_warmup=False,
+            completed_local_control=agent.ever_reached_goal,cached_fallback=False,action_source='speed_limited',
+            local_sources={},local_control=None,resolution_priority=priority,decision_reason='slow_off_step',
+            speed_class=self.speeds[agent.id]['speed_class'],bundle_prediction_mismatch=None,bundle_inference_event=None,
+            speed_limited=True)
 
     def _reversals(self,prior,now,cycle,substep):
         from .consistency import consistency_snapshot

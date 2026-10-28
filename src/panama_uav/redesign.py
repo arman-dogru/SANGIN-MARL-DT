@@ -12,7 +12,30 @@ from .environment import ExperimentEnvironment
 from .config import ExperimentMode
 from .information import InformationCache
 from .inference_controls import inference_class
-from .frequency_motion import FrequencyMotion, MotionSettings
+from .frequency_motion import FrequencyMotion, MotionSettings, active_step
+from collections import Counter
+import os as _os
+LEAN=_os.environ.get('LEO_STUDY_LEAN')=='1'
+
+AOI_BIN_SECONDS = 0.05
+AOI_MAX_BIN = 1200  # 60 s; larger ages are clipped into the last bin
+
+
+def _pair_stat_keys(pair, truth):
+    """Compact per-pair classification used for AoI/inconsistency and conflict-detection plots."""
+    age = max(pair["self_age_seconds"], pair["peer_age_seconds"])
+    active = int(not truth[pair["receiver"]]["completed"] and not truth[pair["peer"]]["completed"])
+    aoi_key = (min(int(age/AOI_BIN_SECONDS), AOI_MAX_BIN), active, pair["relevant"], pair["e2e_ordering_error"],
+               pair["uplink_ordering_error"], pair["downlink_ordering_error"])
+    conflict_key = None
+    if pair["physical_conflict_known"] and (pair["relevant"] or pair["physical_relevant"]):
+        cs, cp = pair["cached_self_path"], pair["cached_peer_path"]
+        ps, pp = pair["physical_self_path"], pair["physical_peer_path"]
+        conflict_key = (active, pair["relevant"], pair["physical_relevant"],
+            int(tuple(cs[0]) != tuple(ps[0])), int(tuple(cp[0]) != tuple(pp[0])),
+            int([tuple(x) for x in cs] != [tuple(x) for x in ps]), int([tuple(x) for x in cp] != [tuple(x) for x in pp]),
+            int(bool(pair["within_square_fov"])))
+    return aoi_key, conflict_key
 from .remote_control import cached_path_action
 from .remote_state import PhysicalReport
 
@@ -63,8 +86,11 @@ def experimental_class(condition):
             from .bundled_actions import DelayedCommandInbox
             self.action_bundles={};self.arrived_bundles={}
             super().__init__(*args,**kwargs)
-            self.delayed_inboxes={r:DelayedCommandInbox(self.config.seconds_per_step,self.parameters.decision_budget_seconds)
-                for r in self.states}
+            self.delayed_inboxes={}  # leo_study: half-rate slow robots use the normal inbox
+            self.pair_aoi_stats=Counter();self.pair_conflict_stats=Counter();self.receiver_cycles=Counter()
+
+        def _scheduled(self,robot_id,cycle):
+            return self.motion is None or active_step(self.motion.speeds[robot_id],cycle)
 
         def _after_inference(self,report,own,location,observation,action,event):
             super()._after_inference(report,own,location,observation,action,event)
@@ -79,7 +105,7 @@ def experimental_class(condition):
             from .remote_state import observation_hash
             inferred=self._record('bundle_inference',job_id=event['job_id'],robot_id=report.robot_id,location=location,
                 parent_inference_event=event['event_id'],first_action=action,action=second,
-                observation={k:v.tolist() for k,v in obs.items()},observation_hash=observation_hash(obs),
+                observation=None if LEAN else {k:v.tolist() for k,v in obs.items()},observation_hash=observation_hash(obs),
                 sources=sources,dt_versions=versions,dt_priorities=priorities,prediction=prediction,
                 required_cycles_unchanged=True,model_version=self.model_version)
             self.action_bundles[event['job_id']]=dict(actions=[action,second],second_inference_event=inferred['event_id'],
@@ -120,11 +146,6 @@ def experimental_class(condition):
                     self.arrived_bundles[command.job_id]=bundle
                     self._record('action_bundle_arrived',robot_id=packet.agent,job_id=command.job_id,
                         bundle=bundle,arrived_at=self.transport.now,packet_id=packet.id)
-                if self.motion.speeds[packet.agent]['speed_class']=='slow':
-                    accepted,reason=self.delayed_inboxes[packet.agent].accept(command,self.transport.now,bundle)
-                    self._record('delayed_command_arrived',robot_id=packet.agent,command=command.payload(),
-                        execution_cycle=command.cycle+1,arrived_at=self.transport.now,accepted=accepted,reason=reason,
-                        packet_id=packet.id)
             if self.motion is not None:
                 self.motion.check_cache_updates(self.transport.now)
             return result
@@ -134,11 +155,6 @@ def experimental_class(condition):
             for receiver in self.states:
                 context = self.command_contexts.get(receiver,{})
                 command = context.get("command")
-                if self.motion is not None and self.motion.speeds[receiver]['speed_class']=='slow':
-                    candidate=self.delayed_inboxes[receiver].peek(self.current_cycle,self.transport.now)
-                    command=candidate[0].payload() if candidate else None
-                    context=dict(command=command,cached_fallback=command is None and self.current_cycle>0
-                        and self.parameters.missed_command_fallback=='cached_astar')
                 location = command["location"] if command else "drone"
                 references[receiver] = location,self.replicas[location].states
                 if command:
@@ -148,17 +164,24 @@ def experimental_class(condition):
                     views[receiver] = dict(priorities={p:c.value["priority"] for p,c in self.states[receiver].items()},
                         states={p:c.value for p,c in self.states[receiver].items()})
             metadata = {r:{p:self.events_by_id[ref] for p,ref in refs.items()} for r,refs in self.receiver_refs.items()}
-            return consistency_snapshot(self.positions,self.truth,self.states,self.transport.now,
+            snapshot = consistency_snapshot(self.positions,self.truth,self.states,self.transport.now,
                 self.project.map.fov_radius,self.project.map.communicated_path_steps,
                 self.parameters.age_reference_seconds,None,views,metadata,dt_references=references)
+            # leo_study: only receivers that decide at this cycle (slow off steps excluded).
+            cycle=self.current_cycle
+            pairs=[p for p in snapshot["pairs"] if self._scheduled(p["receiver"],cycle)]
+            if len(pairs)!=len(snapshot["pairs"]):
+                from .consistency import summarize_pairs
+                snapshot=summarize_pairs(pairs,self.truth,dt_references=references)
+            for pair in pairs:
+                aoi_key,conflict_key=_pair_stat_keys(pair,self.truth)
+                self.pair_aoi_stats[aoi_key]+=1
+                if conflict_key is not None:self.pair_conflict_stats[conflict_key]+=1
+            self.receiver_cycles[len({p["receiver"] for p in pairs})]+=1
+            return snapshot
 
         def prepare_decision(self, agents, cycle_start, deadline_seconds):
             super().prepare_decision(agents,cycle_start,deadline_seconds)
-            if self.motion is not None:
-                for robot,context in self.command_contexts.items():
-                    if self.motion.speeds[robot]['speed_class']=='slow' and context['command']:
-                        job=self.jobs[context['command']['job_id']]
-                        job['nominal_selected_at']=job.pop('used_at')
 
         def fallback_diagnostic(self,agent,local,cycle,now,context,substep=0):
             fresh = {}
@@ -191,14 +214,14 @@ def experimental_class(condition):
                     local_report=local.payload(),stale_action=stale_action,fresh_action=fresh_action,
                     stale_sources=stale_sources,fresh_sources=fresh_sources,
                     stale_details=details,fresh_details=fresh_details,
-                    fresh_states={p:c.value for p,c in fresh.items()},
+                    fresh_states=None if LEAN else {p:c.value for p,c in fresh.items()},
                     stale_vs_fresh_disagreement=stale_action != fresh_action,
                     fallback_vs_fresh_dqn_disagreement=stale_action != dqn_action,
                     fresh_fallback_vs_fresh_dqn_disagreement=fresh_action != dqn_action,
                     invoked=bool(context.get("cached_fallback")),actual_action=context['action'],
                     action_source=context['action_source'],actual_vs_fresh_dqn_disagreement=context['action']!=dqn_action,
                     decision_reason=context['decision_reason'],fresh_dqn_action=dqn_action)
-            if extra_observation is not None:diagnostic['fresh_dqn_observation']=extra_observation
+            if extra_observation is not None and not LEAN:diagnostic['fresh_dqn_observation']=extra_observation
             self.oracle_events.append(json.loads(json.dumps(diagnostic,allow_nan=False)))
 
     return TimedRemote
@@ -272,7 +295,13 @@ def run_frequency_episode(config, model, case, device, version, scenario, condit
             missed_command_fallback=settings.fallback,controlled_staleness=c.stress_settings,
             frequency_motion=asdict(settings),speed_assignments=motion.speeds,
             dt_reference="executed_command_location_else_drone",
-            discrete_command_protocol="dt_bundle_slow_pipeline_v2"),
+            discrete_command_protocol="dt_bundle_halfrate_slow_v1"),
+        pair_stats=dict(aoi_bin_seconds=AOI_BIN_SECONDS,
+            aoi_fields=["aoi_bin","active","relevant","e2e_error","ul_error","dl_error","count"],
+            aoi=[list(k)+[v] for k,v in sorted(c.pair_aoi_stats.items())],
+            conflict_fields=["active","cached_relevant","physical_relevant","self_position_stale","peer_position_stale",
+                             "self_path_differs","peer_path_differs","peer_within_fov","count"],
+            conflict=[list(k)+[v] for k,v in sorted(c.pair_conflict_stats.items())]),
         outcome=dict(success=success,failure_reason=env.failure_reason,steps=cycle,
             final_positions={a.id:list(a.position) for a in env.agents}),
         physical_summary=dict(distance_cells=motion.distance,active_pair_seconds=motion.active_pair_seconds,

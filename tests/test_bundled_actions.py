@@ -34,20 +34,23 @@ def test_delayed_buffer_never_substitutes_current_or_older_source_cycles():
 
 
 @pytest.mark.parametrize('fallback,expected_move',[('wait',False),('cached_astar',True)])
-def test_slow_missing_previous_command_preserves_treatment_rule(tmp_path,fallback,expected_move):
+def test_slow_missing_current_command_preserves_treatment_rule(tmp_path,fallback,expected_move):
     from panama_uav.frequency_motion import MotionSettings
     env,motion,_,_=fixture(tmp_path,settings=MotionSettings(fallback=fallback),parameters=dict(drone_cycles_per_second=1e5,cloud_cycles_per_second=1e5))
-    motion.speeds={r:dict(speed_class='slow',decisions_per_step=1.,command_lag_steps=1) for r in range(3)}
+    motion.speeds={r:dict(speed_class='slow',decisions_per_step=.5,command_lag_steps=0,phase=0) for r in range(3)}
     c=env.communication
     # Keep all uploads in flight; the initial briefing remains the only cache.
     for r in range(3):c.transport.agent_rate_caps[(r,'access_up')]=100.
     cycle(env,motion,0)
-    assert all(a.position[1]==1 for a in env.agents)
-    cycle(env,motion,1)
-    actual=[e for e in c.remote_events if e['event']=='execution_decision_event' and e['cycle']==1]
-    assert all(e['command'] is None and e['cached_fallback']==expected_move for e in actual)
+    actual=[e for e in c.remote_events if e['event']=='execution_decision_event' and e['cycle']==0]
+    assert len(actual)==3 and all(e['command'] is None and e['cached_fallback']==expected_move for e in actual)
     assert all((e['action']!=4)==expected_move for e in actual)
-    assert len(c.jobs)==6
+    assert all((a.position[1]!=1)==expected_move for a in env.agents)
+    positions=[a.position for a in env.agents]
+    cycle(env,motion,1)  # off step: no movement, no uploads, no decisions
+    assert [a.position for a in env.agents]==positions
+    assert not [e for e in c.remote_events if e['event'] in ('execution_decision_event','decision_event') and e['cycle']==1]
+    assert len(c.jobs)==3
 
 
 def test_fast_actions_are_both_remote_dt_inferences_in_one_response(tmp_path):

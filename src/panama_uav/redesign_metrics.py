@@ -48,7 +48,7 @@ def measure(row,trace,treatment,weight,condition):
         delivered=raw.get('delivered_at');source=raw['source_time']
         generated=inference_by_job.get(raw['job_id'],{}).get('time')
         speed=settings['speed_assignments'][raw['agent']]
-        execution_cycle=cycle+(1 if speed['speed_class']=='slow' else 0)
+        execution_cycle=cycle  # leo_study: no slow command lag
         execution=first.get((execution_cycle,raw['agent']))
         uses=used[raw['job_id']]
         task=dict({k:v for k,v in raw.items() if not isinstance(v,(dict,list))},**identity,cycle=cycle,
@@ -108,7 +108,7 @@ def measure(row,trace,treatment,weight,condition):
         safety_wait_decisions=sum(e['action_source']=='safety_wait' for e in executable),
         controller_wait_decisions=sum(e['action']==4 for e in executable),
         fallback_movements=sum(fallback_motion.values()),fallback_decisions_with_movement=len(fallback_motion),
-        speed_limited_nonmovement=0,slow_pipeline_warmup_waits=sum(e['slow_pipeline_warmup'] for e in executions),
+        speed_limited_nonmovement=sum(reason=='speed_limited' and not e['completed_before'][r] for e in motion for r,reason in e['reasons'].items()),slow_pipeline_warmup_waits=sum(e['slow_pipeline_warmup'] for e in executions),
         slow_delayed_command_uses=sum(e['speed_class']=='slow' and e['command'] is not None for e in executable),
         slow_late_command_uses=sum(e['speed_class']=='slow' and e['command'] is not None
             and e['arrived_at']>e['command']['expires_at']+1e-12 for e in executable),
@@ -142,7 +142,7 @@ def measure(row,trace,treatment,weight,condition):
         controller_wait_seconds=sum(e['action']==4 and e['substep']==0 for e in executable)*settings['seconds_per_step'],
         executed_fresh_dqn_disagreements=sum(e['actual_vs_fresh_dqn_disagreement'] for e in fallback))
     row['waiting_steps']=sum(e['substep']==0 and not e['completed_before'][r] and e['before'][r]==e['after'][r]
-        for e in motion for r in e['before'])
+        and e['reasons'][r]!='speed_limited' for e in motion for r in e['before'])
     row['scheduled_command_misses']=sum(e['command_cutoff_missed'] for e in executable)
     row['scheduled_cutoff_waits']=sum(e['command_cutoff_missed'] and e['action']==4 for e in executable)
     row['physical_distance_m']=row['physical_distance_cells']*settings['meters_per_cell']

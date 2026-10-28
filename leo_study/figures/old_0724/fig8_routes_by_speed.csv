@@ -1,0 +1,209 @@
+metric,route,speed,num_agents,episodes,value,ci_low,ci_high
+Mission success,allocator,same speed (A3),2,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,same speed (A3),4,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,same speed (A3),8,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,same speed (A3),16,10,0.7,0.39677321997956516,0.892210712513788
+Mission success,allocator,same speed (A3),32,9,1.0,0.7008472464490407,1.0
+Successful completion time [s],allocator,same speed (A3),2,10,9.139999999999997,6.864125,10.994999999999997
+Successful completion time [s],allocator,same speed (A3),4,10,11.87,10.364124999999998,13.55
+Successful completion time [s],allocator,same speed (A3),8,10,11.66,9.453249999999999,13.864999999999998
+Successful completion time [s],allocator,same speed (A3),16,10,16.55,15.299999999999997,17.75
+Successful completion time [s],allocator,same speed (A3),32,9,16.93333333333333,15.611111111111107,18.216666666666665
+Waiting steps / episode,allocator,same speed (A3),2,10,0.0,0.0,0.0
+Waiting steps / episode,allocator,same speed (A3),4,10,0.1,0.0,0.3
+Waiting steps / episode,allocator,same speed (A3),8,10,1.3,0.1,3.3
+Waiting steps / episode,allocator,same speed (A3),16,10,352.8,11.995000000000001,699.3575
+Waiting steps / episode,allocator,same speed (A3),32,9,23.22222222222222,15.552777777777777,32.11388888888889
+Attempted collisions / episode,allocator,same speed (A3),2,10,0.0,0.0,0.0
+Attempted collisions / episode,allocator,same speed (A3),4,10,0.1,0.0,0.3
+Attempted collisions / episode,allocator,same speed (A3),8,10,0.0,0.0,0.0
+Attempted collisions / episode,allocator,same speed (A3),16,10,2.6,0.5,5.4
+Attempted collisions / episode,allocator,same speed (A3),32,9,5.555555555555555,3.441666666666667,8.002777777777775
+Modeled energy / mission [J],allocator,same speed (A3),2,10,1.351648725495189,1.0055076075300347,1.6339262481867245
+Modeled energy / mission [J],allocator,same speed (A3),4,10,4.212862651847073,3.421798642103468,5.377897346111265
+Modeled energy / mission [J],allocator,same speed (A3),8,10,4.9538457016042035,3.902980070076964,6.06099097344454
+Modeled energy / mission [J],allocator,same speed (A3),16,10,23.271921347559147,9.235420848686335,41.38868216727914
+Modeled energy / mission [J],allocator,same speed (A3),32,9,14.372081289067093,13.261861844199304,15.597034042417405
+p95 task latency [ms],allocator,same speed (A3),2,10,62.86573236425753,62.86513076425739,62.866156604257455
+p95 task latency [ms],allocator,same speed (A3),4,10,65.95865005615093,63.700787972358306,68.4755076674069
+p95 task latency [ms],allocator,same speed (A3),8,10,91.4810909544358,86.85309387909793,96.81493556126124
+p95 task latency [ms],allocator,same speed (A3),16,10,125.33233356961398,121.28273344199005,128.97222896047498
+p95 task latency [ms],allocator,same speed (A3),32,9,230.0157161434014,225.73338678965916,233.6242185116138
+E2E ordering-error rate (all pairs),allocator,same speed (A3),2,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),allocator,same speed (A3),4,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),allocator,same speed (A3),8,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),allocator,same speed (A3),16,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),allocator,same speed (A3),32,9,0.00011967889232582119,2.3908448192940882e-05,0.00024702639313262516
+FoV ordering-error rate (xi_FoV),allocator,same speed (A3),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,same speed (A3),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,same speed (A3),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,same speed (A3),16,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,same speed (A3),32,9,0.0,0.0,0.0
+Mission success,all-UAV,same speed (A3),2,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,same speed (A3),4,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,same speed (A3),8,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,same speed (A3),16,10,0.7,0.39677321997956516,0.892210712513788
+Successful completion time [s],all-UAV,same speed (A3),2,10,9.139999999999999,6.969999999999999,11.099999999999998
+Successful completion time [s],all-UAV,same speed (A3),4,10,11.8,10.224124999999997,13.479999999999999
+Successful completion time [s],all-UAV,same speed (A3),8,10,11.625,9.35,13.934999999999999
+Successful completion time [s],all-UAV,same speed (A3),16,10,14.950000000000001,13.099999999999998,16.749999999999996
+Waiting steps / episode,all-UAV,same speed (A3),2,10,0.0,0.0,0.0
+Waiting steps / episode,all-UAV,same speed (A3),4,10,0.1,0.0,0.3
+Waiting steps / episode,all-UAV,same speed (A3),8,10,0.9,0.2,1.7
+Waiting steps / episode,all-UAV,same speed (A3),16,10,168.3,26.9975,369.5025
+Attempted collisions / episode,all-UAV,same speed (A3),2,10,0.0,0.0,0.0
+Attempted collisions / episode,all-UAV,same speed (A3),4,10,0.1,0.0,0.3
+Attempted collisions / episode,all-UAV,same speed (A3),8,10,0.1,0.0,0.3
+Attempted collisions / episode,all-UAV,same speed (A3),16,10,2.4,0.5,5.4
+Modeled energy / mission [J],all-UAV,same speed (A3),2,10,2.7420198247881995,2.077491466534952,3.3197175503718306
+Modeled energy / mission [J],all-UAV,same speed (A3),4,10,3.905621818068507,3.4003021640419755,4.490617876388641
+Modeled energy / mission [J],all-UAV,same speed (A3),8,10,3.440538763368617,2.808915095946898,4.112360113476511
+Modeled energy / mission [J],all-UAV,same speed (A3),16,10,19.177816264292986,4.140515680103433,34.322271253419004
+p95 task latency [ms],all-UAV,same speed (A3),2,10,62.86569076425766,62.86516276425804,62.86608276425794
+p95 task latency [ms],all-UAV,same speed (A3),4,10,81.98531434953432,81.58906458519995,82.52082608023349
+p95 task latency [ms],all-UAV,same speed (A3),8,10,143.96621489785713,142.18842070489288,145.54812850090514
+p95 task latency [ms],all-UAV,same speed (A3),16,10,268.90485552714335,265.29276980384816,272.8116607031774
+E2E ordering-error rate (all pairs),all-UAV,same speed (A3),2,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-UAV,same speed (A3),4,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-UAV,same speed (A3),8,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-UAV,same speed (A3),16,10,0.0002131941601855642,9.093857597609302e-05,0.0006520009251160553
+FoV ordering-error rate (xi_FoV),all-UAV,same speed (A3),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,same speed (A3),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,same speed (A3),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,same speed (A3),16,10,0.0,0.0,0.0
+Mission success,all-cloud,same speed (A3),2,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,same speed (A3),4,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,same speed (A3),8,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,same speed (A3),16,10,0.9,0.5958436145024278,0.9821242504842788
+Successful completion time [s],all-cloud,same speed (A3),2,10,9.139999999999999,6.934125,11.099999999999998
+Successful completion time [s],all-cloud,same speed (A3),4,10,11.87,10.259125,13.586749999999997
+Successful completion time [s],all-cloud,same speed (A3),8,10,11.695,9.525,13.969999999999999
+Successful completion time [s],all-cloud,same speed (A3),16,10,15.416666666666666,14.288888888888888,16.467638888888885
+Waiting steps / episode,all-cloud,same speed (A3),2,10,0.0,0.0,0.0
+Waiting steps / episode,all-cloud,same speed (A3),4,10,0.1,0.0,0.3
+Waiting steps / episode,all-cloud,same speed (A3),8,10,0.6,0.1,1.4
+Waiting steps / episode,all-cloud,same speed (A3),16,10,141.2,2.9,414.0025
+Attempted collisions / episode,all-cloud,same speed (A3),2,10,0.0,0.0,0.0
+Attempted collisions / episode,all-cloud,same speed (A3),4,10,0.1,0.0,0.3
+Attempted collisions / episode,all-cloud,same speed (A3),8,10,0.1,0.0,0.3
+Attempted collisions / episode,all-cloud,same speed (A3),16,10,1.3,0.4,2.5
+Modeled energy / mission [J],all-cloud,same speed (A3),2,10,1.1007300480000004,0.8160857356800002,1.3470603072000005
+Modeled energy / mission [J],all-cloud,same speed (A3),4,10,2.2643602720000016,1.9519616576000012,2.657671806720001
+Modeled energy / mission [J],all-cloud,same speed (A3),8,10,3.6717612608000096,2.9238266761600036,4.3901488246400175
+Modeled energy / mission [J],all-cloud,same speed (A3),16,10,10.550887507199942,7.3104487828800675,16.451664450319694
+p95 task latency [ms],all-cloud,same speed (A3),2,10,65.62207830841172,60.931316844954274,74.56956445014656
+p95 task latency [ms],all-cloud,same speed (A3),4,10,83.49971170464266,82.61794447229951,84.21874375237478
+p95 task latency [ms],all-cloud,same speed (A3),8,10,128.09349691727624,127.38527164632674,128.89877827119165
+p95 task latency [ms],all-cloud,same speed (A3),16,10,193.49902812998874,179.72322268698076,202.2787122574577
+E2E ordering-error rate (all pairs),all-cloud,same speed (A3),2,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-cloud,same speed (A3),4,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-cloud,same speed (A3),8,10,0.0,0.0,0.0
+E2E ordering-error rate (all pairs),all-cloud,same speed (A3),16,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,same speed (A3),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,same speed (A3),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,same speed (A3),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,same speed (A3),16,10,0.0,0.0,0.0
+Mission success,allocator,mixed speed (A4),2,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,mixed speed (A4),4,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,mixed speed (A4),8,10,1.0,0.7224598312333834,1.0
+Mission success,allocator,mixed speed (A4),16,10,0.8,0.49015684672072335,0.9433190520193067
+Mission success,allocator,mixed speed (A4),32,10,0.4,0.16817758120350967,0.6873304525498135
+Successful completion time [s],allocator,mixed speed (A4),2,10,17.854999999999997,13.409125,21.354999999999997
+Successful completion time [s],allocator,mixed speed (A4),4,10,23.034999999999997,20.41,25.450875
+Successful completion time [s],allocator,mixed speed (A4),8,10,19.08,15.474124999999999,22.930874999999997
+Successful completion time [s],allocator,mixed speed (A4),16,10,25.75625,24.4875,27.331249999999997
+Successful completion time [s],allocator,mixed speed (A4),32,10,27.6375,24.7325,30.174999999999997
+Waiting steps / episode,allocator,mixed speed (A4),2,10,0.0,0.0,0.0
+Waiting steps / episode,allocator,mixed speed (A4),4,10,0.1,0.0,0.3
+Waiting steps / episode,allocator,mixed speed (A4),8,10,0.9,0.3,1.7
+Waiting steps / episode,allocator,mixed speed (A4),16,10,111.6,4.0975,278.615
+Waiting steps / episode,allocator,mixed speed (A4),32,10,196.7,35.89,401.8375
+Attempted collisions / episode,allocator,mixed speed (A4),2,10,0.0,0.0,0.0
+Attempted collisions / episode,allocator,mixed speed (A4),4,10,0.1,0.0,0.3
+Attempted collisions / episode,allocator,mixed speed (A4),8,10,0.4,0.0,1.1
+Attempted collisions / episode,allocator,mixed speed (A4),16,10,1.9,0.8,3.2
+Attempted collisions / episode,allocator,mixed speed (A4),32,10,10.6,6.7975,15.2
+Modeled energy / mission [J],allocator,mixed speed (A4),2,10,1.5570835972714738,1.1460393168204461,1.9296728828540153
+Modeled energy / mission [J],allocator,mixed speed (A4),4,10,3.3074535288670623,2.84400618734316,3.761712368308017
+Modeled energy / mission [J],allocator,mixed speed (A4),8,10,4.978831490284948,3.9938590488483077,6.095362247318757
+Modeled energy / mission [J],allocator,mixed speed (A4),16,10,13.934938094070773,7.9964767963915335,22.475307880270357
+Modeled energy / mission [J],allocator,mixed speed (A4),32,10,23.95637813131604,16.06097740777588,34.684562871600704
+p95 task latency [ms],allocator,mixed speed (A4),2,10,56.524209472269455,52.94029986085702,59.88239272612946
+p95 task latency [ms],allocator,mixed speed (A4),4,10,62.13462740455894,59.78815359068151,64.1447601464265
+p95 task latency [ms],allocator,mixed speed (A4),8,10,86.1260563232186,80.44041781193833,94.80273391663867
+p95 task latency [ms],allocator,mixed speed (A4),16,10,111.99829850750936,107.15597393526302,116.26115718136816
+p95 task latency [ms],allocator,mixed speed (A4),32,10,193.4755554880091,183.96901156346593,201.35632603265728
+E2E ordering-error rate (all pairs),allocator,mixed speed (A4),2,10,0.00517464424320828,0.001377363102072368,0.008906420392584513
+E2E ordering-error rate (all pairs),allocator,mixed speed (A4),4,10,0.003356831151393085,0.0016289434989223339,0.0050631262201293065
+E2E ordering-error rate (all pairs),allocator,mixed speed (A4),8,10,0.006613756613756613,0.003967973565910253,0.010569608602914527
+E2E ordering-error rate (all pairs),allocator,mixed speed (A4),16,10,0.001602661790104643,0.0008503237474239473,0.004734647769248792
+E2E ordering-error rate (all pairs),allocator,mixed speed (A4),32,10,0.0007622035911667985,0.0005416768410287481,0.0014161017905456228
+FoV ordering-error rate (xi_FoV),allocator,mixed speed (A4),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,mixed speed (A4),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,mixed speed (A4),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),allocator,mixed speed (A4),16,10,0.006699147381242387,0.00020597356163269473,0.05233323133414932
+FoV ordering-error rate (xi_FoV),allocator,mixed speed (A4),32,10,0.0010753651760910476,0.00029808961482448074,0.004315532577180115
+Mission success,all-UAV,mixed speed (A4),2,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,mixed speed (A4),4,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,mixed speed (A4),8,10,1.0,0.7224598312333834,1.0
+Mission success,all-UAV,mixed speed (A4),16,10,0.7,0.39677321997956516,0.892210712513788
+Successful completion time [s],all-UAV,mixed speed (A4),2,10,17.574999999999996,13.617375,21.355874999999997
+Successful completion time [s],all-UAV,mixed speed (A4),4,10,23.174999999999997,20.69,25.520875
+Successful completion time [s],all-UAV,mixed speed (A4),8,10,18.939999999999998,15.474124999999999,22.510875
+Successful completion time [s],all-UAV,mixed speed (A4),16,10,26.149999999999995,23.998749999999998,28.30125
+Waiting steps / episode,all-UAV,mixed speed (A4),2,10,0.0,0.0,0.0
+Waiting steps / episode,all-UAV,mixed speed (A4),4,10,0.2,0.0,0.6
+Waiting steps / episode,all-UAV,mixed speed (A4),8,10,0.8,0.1,1.7
+Waiting steps / episode,all-UAV,mixed speed (A4),16,10,144.9,6.9975000000000005,304.5
+Attempted collisions / episode,all-UAV,mixed speed (A4),2,10,0.0,0.0,0.0
+Attempted collisions / episode,all-UAV,mixed speed (A4),4,10,0.2,0.0,0.6
+Attempted collisions / episode,all-UAV,mixed speed (A4),8,10,0.3,0.0,0.8
+Attempted collisions / episode,all-UAV,mixed speed (A4),16,10,1.6,0.9,2.4
+Modeled energy / mission [J],all-UAV,mixed speed (A4),2,10,3.211831536535538,2.3974116193222947,3.9515146066544022
+Modeled energy / mission [J],all-UAV,mixed speed (A4),4,10,4.680823072714967,4.1535111523677415,5.431018498539885
+Modeled energy / mission [J],all-UAV,mixed speed (A4),8,10,4.425429299637956,3.6959613317303037,5.294901603120932
+Modeled energy / mission [J],all-UAV,mixed speed (A4),16,10,17.447765756484515,5.971270588847434,29.96210786557247
+p95 task latency [ms],all-UAV,mixed speed (A4),2,10,61.782405964258,61.157733964258306,62.407557964257926
+p95 task latency [ms],all-UAV,mixed speed (A4),4,10,75.61533235451626,71.58467776315987,79.65115407631264
+p95 task latency [ms],all-UAV,mixed speed (A4),8,10,129.44674495846337,125.46184588429712,134.13336059415036
+p95 task latency [ms],all-UAV,mixed speed (A4),16,10,228.50534938276277,219.67289099118625,237.28690907915419
+E2E ordering-error rate (all pairs),all-UAV,mixed speed (A4),2,10,0.005256241787122208,0.0014000289771080848,0.00902237582005623
+E2E ordering-error rate (all pairs),all-UAV,mixed speed (A4),4,10,0.00333667000333667,0.0016394723982395057,0.005205628230879317
+E2E ordering-error rate (all pairs),all-UAV,mixed speed (A4),8,10,0.006781576716586606,0.004161188465310971,0.010490241057949717
+E2E ordering-error rate (all pairs),all-UAV,mixed speed (A4),16,10,0.0013132594985386865,0.0007157282329110578,0.004368190412105165
+FoV ordering-error rate (xi_FoV),all-UAV,mixed speed (A4),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,mixed speed (A4),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,mixed speed (A4),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-UAV,mixed speed (A4),16,10,0.006165228113440197,0.0,0.05731346484884149
+Mission success,all-cloud,mixed speed (A4),2,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,mixed speed (A4),4,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,mixed speed (A4),8,10,1.0,0.7224598312333834,1.0
+Mission success,all-cloud,mixed speed (A4),16,10,0.8,0.49015684672072335,0.9433190520193067
+Successful completion time [s],all-cloud,mixed speed (A4),2,10,17.854999999999997,13.865,21.529999999999994
+Successful completion time [s],all-cloud,mixed speed (A4),4,10,23.035,20.408249999999995,25.275
+Successful completion time [s],all-cloud,mixed speed (A4),8,10,18.974999999999998,15.229124999999998,22.724374999999995
+Successful completion time [s],all-cloud,mixed speed (A4),16,10,25.625,24.093749999999996,27.374999999999996
+Waiting steps / episode,all-cloud,mixed speed (A4),2,10,0.0,0.0,0.0
+Waiting steps / episode,all-cloud,mixed speed (A4),4,10,0.1,0.0,0.3
+Waiting steps / episode,all-cloud,mixed speed (A4),8,10,1.5,0.4,2.9
+Waiting steps / episode,all-cloud,mixed speed (A4),16,10,105.4,4.7,263.5025
+Attempted collisions / episode,all-cloud,mixed speed (A4),2,10,0.0,0.0,0.0
+Attempted collisions / episode,all-cloud,mixed speed (A4),4,10,0.1,0.0,0.3
+Attempted collisions / episode,all-cloud,mixed speed (A4),8,10,0.7,0.0,1.6
+Attempted collisions / episode,all-cloud,mixed speed (A4),16,10,2.0,0.9,3.3
+Modeled energy / mission [J],all-cloud,mixed speed (A4),2,10,1.0991448384000004,0.8439146836800004,1.3393428950400006
+Modeled energy / mission [J],all-cloud,mixed speed (A4),4,10,1.973545686400001,1.6932842601600007,2.311238080080001
+Modeled energy / mission [J],all-cloud,mixed speed (A4),8,10,3.2533300704000054,2.6346989194400026,3.941892975840012
+Modeled energy / mission [J],all-cloud,mixed speed (A4),16,10,8.715101708800024,6.5006397880800515,11.896145532479972
+p95 task latency [ms],all-cloud,mixed speed (A4),2,10,65.42893137111267,60.868228049793785,74.35724906023908
+p95 task latency [ms],all-cloud,mixed speed (A4),4,10,79.33520570388097,75.7114930009191,82.77563807274966
+p95 task latency [ms],all-cloud,mixed speed (A4),8,10,111.5885136641808,108.84210175272078,114.35614188885482
+p95 task latency [ms],all-cloud,mixed speed (A4),16,10,161.0484580877982,152.58133590361464,167.47611646658623
+E2E ordering-error rate (all pairs),all-cloud,mixed speed (A4),2,10,0.00517464424320828,0.001398358585858586,0.008849837571412568
+E2E ordering-error rate (all pairs),all-cloud,mixed speed (A4),4,10,0.003356831151393085,0.0016166711173472093,0.005271166976889904
+E2E ordering-error rate (all pairs),all-cloud,mixed speed (A4),8,10,0.006647328982354363,0.0038929228374372966,0.01061889294777533
+E2E ordering-error rate (all pairs),all-cloud,mixed speed (A4),16,10,0.0017144237984407392,0.0008791212347043177,0.005092093013936249
+FoV ordering-error rate (xi_FoV),all-cloud,mixed speed (A4),2,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,mixed speed (A4),4,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,mixed speed (A4),8,10,0.0,0.0,0.0
+FoV ordering-error rate (xi_FoV),all-cloud,mixed speed (A4),16,10,0.01483679525222552,0.0,0.05663562458290357

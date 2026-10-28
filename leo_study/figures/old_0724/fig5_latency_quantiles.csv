@@ -1,0 +1,1006 @@
+condition,quantile,latency_ms
+"allocator, nominal",0.0,39.13999498640386
+"allocator, nominal",0.005,41.37016138640401
+"allocator, nominal",0.01,41.66329310471703
+"allocator, nominal",0.015,42.31935498643935
+"allocator, nominal",0.02,42.32559498638011
+"allocator, nominal",0.025,42.32559498638011
+"allocator, nominal",0.03,42.32559498640853
+"allocator, nominal",0.035,43.48021738642217
+"allocator, nominal",0.04,44.137940314168844
+"allocator, nominal",0.045,45.54239644082901
+"allocator, nominal",0.05,47.05564622774361
+"allocator, nominal",0.055,48.56231319051929
+"allocator, nominal",0.06,49.10651206884257
+"allocator, nominal",0.065,49.301220149083306
+"allocator, nominal",0.07,49.496840724468356
+"allocator, nominal",0.075,49.738395880703834
+"allocator, nominal",0.08,49.94192115767462
+"allocator, nominal",0.085,50.24961774979658
+"allocator, nominal",0.09,50.428084382782146
+"allocator, nominal",0.095,50.55743693076378
+"allocator, nominal",0.1,50.71426393227103
+"allocator, nominal",0.105,50.77848230584095
+"allocator, nominal",0.11,50.85177848891295
+"allocator, nominal",0.115,50.89036674845399
+"allocator, nominal",0.12,50.949671321027026
+"allocator, nominal",0.125,51.01618118044726
+"allocator, nominal",0.13,51.08938349996743
+"allocator, nominal",0.135,51.181408499363634
+"allocator, nominal",0.14,51.296999281455555
+"allocator, nominal",0.145,51.38975997021191
+"allocator, nominal",0.15,51.477061098397314
+"allocator, nominal",0.155,51.59260967212273
+"allocator, nominal",0.16,51.729580754882676
+"allocator, nominal",0.165,51.82936927554838
+"allocator, nominal",0.17,51.912092896728446
+"allocator, nominal",0.175,51.98928595602481
+"allocator, nominal",0.18,52.106372771301146
+"allocator, nominal",0.185,52.30004329416573
+"allocator, nominal",0.19,52.37338741031323
+"allocator, nominal",0.195,52.433781284535996
+"allocator, nominal",0.2,52.473700613217034
+"allocator, nominal",0.205,52.51609752761382
+"allocator, nominal",0.21,52.55970421461775
+"allocator, nominal",0.215,52.61755067952521
+"allocator, nominal",0.22,52.68623763736635
+"allocator, nominal",0.225,52.73484845419176
+"allocator, nominal",0.23,52.817231901983064
+"allocator, nominal",0.235,52.95843051477539
+"allocator, nominal",0.24,53.19153302402725
+"allocator, nominal",0.245,53.322061468841184
+"allocator, nominal",0.25,53.389195305172166
+"allocator, nominal",0.255,53.443297954398766
+"allocator, nominal",0.26,53.483736687375085
+"allocator, nominal",0.265,53.53445518518896
+"allocator, nominal",0.27,53.57870956148906
+"allocator, nominal",0.275,53.61100302516175
+"allocator, nominal",0.28,53.66230219147809
+"allocator, nominal",0.285,53.72856616761748
+"allocator, nominal",0.29,53.806165434634536
+"allocator, nominal",0.295,53.93191155368586
+"allocator, nominal",0.3,54.05420229092783
+"allocator, nominal",0.305,54.18855952485771
+"allocator, nominal",0.31,54.299414109480715
+"allocator, nominal",0.315,54.426403318935
+"allocator, nominal",0.32,54.54047670758115
+"allocator, nominal",0.325,54.736662467469834
+"allocator, nominal",0.33,54.85532911765688
+"allocator, nominal",0.335,54.98341751929957
+"allocator, nominal",0.34,55.11546431508009
+"allocator, nominal",0.345,55.21793146021977
+"allocator, nominal",0.35,55.30505092896476
+"allocator, nominal",0.355,55.36435393180348
+"allocator, nominal",0.36,55.427597059565976
+"allocator, nominal",0.365,55.478190882468894
+"allocator, nominal",0.37,55.5387831385292
+"allocator, nominal",0.375,55.62188824585235
+"allocator, nominal",0.38,55.72784936019559
+"allocator, nominal",0.385,55.90966224280164
+"allocator, nominal",0.39,56.122798404709435
+"allocator, nominal",0.395,56.436168223396805
+"allocator, nominal",0.4,56.774501817307055
+"allocator, nominal",0.405,57.08712406655338
+"allocator, nominal",0.41,57.251718415006025
+"allocator, nominal",0.415,57.605125281554365
+"allocator, nominal",0.42,58.03772314113047
+"allocator, nominal",0.425,58.97179424843974
+"allocator, nominal",0.43,59.86026115482446
+"allocator, nominal",0.435,59.87738115472041
+"allocator, nominal",0.44,59.87738115516095
+"allocator, nominal",0.445,59.87738115516095
+"allocator, nominal",0.45,61.09040035481228
+"allocator, nominal",0.455,61.68153514960707
+"allocator, nominal",0.46,62.12949736221326
+"allocator, nominal",0.465,62.30783518856976
+"allocator, nominal",0.47,62.57450472838652
+"allocator, nominal",0.475,62.87051419564733
+"allocator, nominal",0.48,63.01954629853239
+"allocator, nominal",0.485,63.332477456336356
+"allocator, nominal",0.49,63.90839409325608
+"allocator, nominal",0.495,63.954754764210975
+"allocator, nominal",0.5,63.96099476427253
+"allocator, nominal",0.505,63.96099476427253
+"allocator, nominal",0.51,63.96099476428674
+"allocator, nominal",0.515,64.14357174214716
+"allocator, nominal",0.52,64.64150727232732
+"allocator, nominal",0.525,64.98584479987889
+"allocator, nominal",0.53,65.1969947642641
+"allocator, nominal",0.535,65.20755476432782
+"allocator, nominal",0.54,65.20771476432685
+"allocator, nominal",0.545,65.22435476466626
+"allocator, nominal",0.55,65.22435476466626
+"allocator, nominal",0.555,65.2248347642228
+"allocator, nominal",0.56,65.22483476467755
+"allocator, nominal",0.565,65.22483476467755
+"allocator, nominal",0.57,65.50839070562655
+"allocator, nominal",0.575,65.93125159370913
+"allocator, nominal",0.58,66.59495667407349
+"allocator, nominal",0.585,67.28003476426281
+"allocator, nominal",0.59,67.29075476432911
+"allocator, nominal",0.595,67.30803476466463
+"allocator, nominal",0.6,67.30803476466463
+"allocator, nominal",0.605,67.5323829882606
+"allocator, nominal",0.61,68.41830098928097
+"allocator, nominal",0.615,69.62157560457737
+"allocator, nominal",0.62,70.9812741198666
+"allocator, nominal",0.625,72.2840275891401
+"allocator, nominal",0.63,73.27365962708305
+"allocator, nominal",0.635,73.72150071135809
+"allocator, nominal",0.64,74.15390849303165
+"allocator, nominal",0.645,74.597852427301
+"allocator, nominal",0.65,75.33902011649744
+"allocator, nominal",0.655,75.57506403486988
+"allocator, nominal",0.66,76.00622737189948
+"allocator, nominal",0.665,76.56213720318046
+"allocator, nominal",0.67,77.64536543920782
+"allocator, nominal",0.675,78.73873648886708
+"allocator, nominal",0.68,80.15954903633475
+"allocator, nominal",0.685,82.21577536767495
+"allocator, nominal",0.69,84.1440121414358
+"allocator, nominal",0.695,84.98549823839895
+"allocator, nominal",0.7,85.71103088612885
+"allocator, nominal",0.705,86.21074804659244
+"allocator, nominal",0.71,86.86104073844179
+"allocator, nominal",0.715,87.34967286151453
+"allocator, nominal",0.72,88.17456933007296
+"allocator, nominal",0.725,88.96801517429218
+"allocator, nominal",0.73,90.18990471074915
+"allocator, nominal",0.735,92.38050315440331
+"allocator, nominal",0.74,95.12174631305476
+"allocator, nominal",0.745,95.83398314002812
+"allocator, nominal",0.75,96.79669999028118
+"allocator, nominal",0.755,97.25949933183404
+"allocator, nominal",0.76,97.93772639806625
+"allocator, nominal",0.765,98.70309440034536
+"allocator, nominal",0.77,99.78790325705195
+"allocator, nominal",0.775,101.3555029325175
+"allocator, nominal",0.78,103.80368610884206
+"allocator, nominal",0.785,106.084822753783
+"allocator, nominal",0.79,107.19197549684343
+"allocator, nominal",0.795,107.82042110047362
+"allocator, nominal",0.8,108.56956804116268
+"allocator, nominal",0.805,109.7961154746547
+"allocator, nominal",0.81,111.15427355094893
+"allocator, nominal",0.815,113.3299359291518
+"allocator, nominal",0.82,116.14734081742793
+"allocator, nominal",0.825,117.89838890356533
+"allocator, nominal",0.83,119.0516390058732
+"allocator, nominal",0.835,120.45314293062702
+"allocator, nominal",0.84,122.16274830204182
+"allocator, nominal",0.845,124.40825929938603
+"allocator, nominal",0.85,127.23839826865127
+"allocator, nominal",0.855,129.41092303272083
+"allocator, nominal",0.86,131.02690117955962
+"allocator, nominal",0.865,132.4087047331063
+"allocator, nominal",0.87,134.34253900087208
+"allocator, nominal",0.875,137.8375742215947
+"allocator, nominal",0.88,140.75497054052258
+"allocator, nominal",0.885,142.05623138479064
+"allocator, nominal",0.89,143.80406582832916
+"allocator, nominal",0.895,146.57048196790944
+"allocator, nominal",0.9,149.83560971454392
+"allocator, nominal",0.905,152.19338909472685
+"allocator, nominal",0.91,154.0730197123734
+"allocator, nominal",0.915,156.7116854472268
+"allocator, nominal",0.92,160.9824629575603
+"allocator, nominal",0.925,163.59000013710912
+"allocator, nominal",0.93,165.29739367068026
+"allocator, nominal",0.935,167.91108957394445
+"allocator, nominal",0.94,170.720958828674
+"allocator, nominal",0.945,174.46452341001083
+"allocator, nominal",0.95,176.85587283372942
+"allocator, nominal",0.955,180.16883881620936
+"allocator, nominal",0.96,184.4307960594197
+"allocator, nominal",0.965,187.1826107817043
+"allocator, nominal",0.97,190.19495728635104
+"allocator, nominal",0.975,195.8707610730798
+"allocator, nominal",0.98,200.89869862789155
+"allocator, nominal",0.985,208.13953883174307
+"allocator, nominal",0.99,218.68224791550912
+"allocator, nominal",0.995,232.7943048151081
+"allocator, nominal",1.0,323.5659213446054
+"all-UAV, nominal",0.0,39.13551498640366
+"all-UAV, nominal",0.005,39.139674986405026
+"all-UAV, nominal",0.01,39.14175498640304
+"all-UAV, nominal",0.015,39.14191498640385
+"all-UAV, nominal",0.02,39.14287498640334
+"all-UAV, nominal",0.025,39.142874986406895
+"all-UAV, nominal",0.03,39.142874986406895
+"all-UAV, nominal",0.035,39.14335498640398
+"all-UAV, nominal",0.04,39.2867149864049
+"all-UAV, nominal",0.045,39.295194986402215
+"all-UAV, nominal",0.05,39.296314986401626
+"all-UAV, nominal",0.055,39.2963149864034
+"all-UAV, nominal",0.06,39.29647498640065
+"all-UAV, nominal",0.065,39.38253818640353
+"all-UAV, nominal",0.07,39.58959498639203
+"all-UAV, nominal",0.075,39.602394986401926
+"all-UAV, nominal",0.08,40.00731976158512
+"all-UAV, nominal",0.085,40.19989418642396
+"all-UAV, nominal",0.09,40.22575498638048
+"all-UAV, nominal",0.095,40.226234986381115
+"all-UAV, nominal",0.1,40.23167498635871
+"all-UAV, nominal",0.105,40.2316749864724
+"all-UAV, nominal",0.11,40.2319961376687
+"all-UAV, nominal",0.115,40.23759498642221
+"all-UAV, nominal",0.12,40.23759498642221
+"all-UAV, nominal",0.125,40.23759498642221
+"all-UAV, nominal",0.13,40.23759498642221
+"all-UAV, nominal",0.135,40.23759498643642
+"all-UAV, nominal",0.14,40.501274986421976
+"all-UAV, nominal",0.145,40.519514986314675
+"all-UAV, nominal",0.15,40.519514986314675
+"all-UAV, nominal",0.155,40.51951498643547
+"all-UAV, nominal",0.16,40.51951498643547
+"all-UAV, nominal",0.165,40.52591498626157
+"all-UAV, nominal",0.17,40.52591498626157
+"all-UAV, nominal",0.175,40.52591498626157
+"all-UAV, nominal",0.18,40.52591498626157
+"all-UAV, nominal",0.185,40.52591498626157
+"all-UAV, nominal",0.19,40.52591498626157
+"all-UAV, nominal",0.195,40.52591498626157
+"all-UAV, nominal",0.2,40.52591498626157
+"all-UAV, nominal",0.205,40.52591498626157
+"all-UAV, nominal",0.21,40.525914986517364
+"all-UAV, nominal",0.215,40.525914986517364
+"all-UAV, nominal",0.22,40.53009367828864
+"all-UAV, nominal",0.225,41.22111498640457
+"all-UAV, nominal",0.23,41.225914986402934
+"all-UAV, nominal",0.235,41.36660858640289
+"all-UAV, nominal",0.24,41.37919498639775
+"all-UAV, nominal",0.245,41.66588311303975
+"all-UAV, nominal",0.25,42.26339498638332
+"all-UAV, nominal",0.255,42.31935498643935
+"all-UAV, nominal",0.26,42.319354986446456
+"all-UAV, nominal",0.265,42.32559498638011
+"all-UAV, nominal",0.27,42.32559498638011
+"all-UAV, nominal",0.275,42.32559498638011
+"all-UAV, nominal",0.28,42.32559498638011
+"all-UAV, nominal",0.285,42.32559498640853
+"all-UAV, nominal",0.29,42.32559498640853
+"all-UAV, nominal",0.295,43.684679354033214
+"all-UAV, nominal",0.3,44.90455982275624
+"all-UAV, nominal",0.305,45.84740644923668
+"all-UAV, nominal",0.31,46.910478255063545
+"all-UAV, nominal",0.315,48.033721061865386
+"all-UAV, nominal",0.32,49.05969082190339
+"all-UAV, nominal",0.325,50.205552515241756
+"all-UAV, nominal",0.33,51.28377610758254
+"all-UAV, nominal",0.335,52.01988783737832
+"all-UAV, nominal",0.34,52.95610833480706
+"all-UAV, nominal",0.345,54.09709497567761
+"all-UAV, nominal",0.35,54.81037674892007
+"all-UAV, nominal",0.355,56.351254724171255
+"all-UAV, nominal",0.36,57.764848298425235
+"all-UAV, nominal",0.365,59.192540421787825
+"all-UAV, nominal",0.37,60.7813147642573
+"all-UAV, nominal",0.375,60.7829147642569
+"all-UAV, nominal",0.38,60.85031358904913
+"all-UAV, nominal",0.385,60.93619476425616
+"all-UAV, nominal",0.39,60.93651476425599
+"all-UAV, nominal",0.395,61.24243476425306
+"all-UAV, nominal",0.4,61.24243476425484
+"all-UAV, nominal",0.405,61.84524660190613
+"all-UAV, nominal",0.41,61.870914764206475
+"all-UAV, nominal",0.415,61.870914764244525
+"all-UAV, nominal",0.42,61.8713947642604
+"all-UAV, nominal",0.425,61.876994764276105
+"all-UAV, nominal",0.43,61.876994764276105
+"all-UAV, nominal",0.435,61.876994764276105
+"all-UAV, nominal",0.44,61.876994764276105
+"all-UAV, nominal",0.445,61.876994764290316
+"all-UAV, nominal",0.45,61.94944243701004
+"all-UAV, nominal",0.455,62.36216263491716
+"all-UAV, nominal",0.46,62.86499476425722
+"all-UAV, nominal",0.465,62.88982446072322
+"all-UAV, nominal",0.47,63.019394764255665
+"all-UAV, nominal",0.475,63.29939684917125
+"all-UAV, nominal",0.48,63.79576161705898
+"all-UAV, nominal",0.485,63.95459476421195
+"all-UAV, nominal",0.49,63.954594764325634
+"all-UAV, nominal",0.495,63.96083476428771
+"all-UAV, nominal",0.5,63.96083476428771
+"all-UAV, nominal",0.505,63.96083476428771
+"all-UAV, nominal",0.51,63.96083476428771
+"all-UAV, nominal",0.515,63.96083476428771
+"all-UAV, nominal",0.52,63.96083476428771
+"all-UAV, nominal",0.525,64.17922814432681
+"all-UAV, nominal",0.53,65.5043824794773
+"all-UAV, nominal",0.535,66.31300258544596
+"all-UAV, nominal",0.54,67.30028624647765
+"all-UAV, nominal",0.545,68.56586477791619
+"all-UAV, nominal",0.55,69.28194947557832
+"all-UAV, nominal",0.555,70.51548441452874
+"all-UAV, nominal",0.56,71.7581027909711
+"all-UAV, nominal",0.565,72.88528859786159
+"all-UAV, nominal",0.57,74.14046360187035
+"all-UAV, nominal",0.575,76.3845476965827
+"all-UAV, nominal",0.58,78.34667184959251
+"all-UAV, nominal",0.585,79.53847758031988
+"all-UAV, nominal",0.59,80.64309505129187
+"all-UAV, nominal",0.595,81.74264974733616
+"all-UAV, nominal",0.6,82.44592431117859
+"all-UAV, nominal",0.605,83.41523490910878
+"all-UAV, nominal",0.61,84.4449259485359
+"all-UAV, nominal",0.615,85.54770395765513
+"all-UAV, nominal",0.62,86.57007675712242
+"all-UAV, nominal",0.625,87.59274040803122
+"all-UAV, nominal",0.63,88.98181902718457
+"all-UAV, nominal",0.635,90.21657708341701
+"all-UAV, nominal",0.64,91.72254131808153
+"all-UAV, nominal",0.645,93.04203738043398
+"all-UAV, nominal",0.65,94.49772131467658
+"all-UAV, nominal",0.655,95.70473971640322
+"all-UAV, nominal",0.66,96.69653334230814
+"all-UAV, nominal",0.665,97.75422692910816
+"all-UAV, nominal",0.67,98.66826892643383
+"all-UAV, nominal",0.675,99.53503930575603
+"all-UAV, nominal",0.68,101.01445750078561
+"all-UAV, nominal",0.685,102.16333063165261
+"all-UAV, nominal",0.69,103.41062091212807
+"all-UAV, nominal",0.695,104.72498445416211
+"all-UAV, nominal",0.7,106.30702465843451
+"all-UAV, nominal",0.705,107.66053287079893
+"all-UAV, nominal",0.71,109.4789978825552
+"all-UAV, nominal",0.715,110.79381399506985
+"all-UAV, nominal",0.72,112.03203040074236
+"all-UAV, nominal",0.725,113.89687209225578
+"all-UAV, nominal",0.73,115.2658773798859
+"all-UAV, nominal",0.735,116.42555032191234
+"all-UAV, nominal",0.74,117.70654557359339
+"all-UAV, nominal",0.745,118.96366565082916
+"all-UAV, nominal",0.75,120.51558867491296
+"all-UAV, nominal",0.755,122.44457705840483
+"all-UAV, nominal",0.76,124.33201703206493
+"all-UAV, nominal",0.765,126.16016605661886
+"all-UAV, nominal",0.77,127.82677367167425
+"all-UAV, nominal",0.775,129.94368702284683
+"all-UAV, nominal",0.78,131.58440468648863
+"all-UAV, nominal",0.785,134.0079086983385
+"all-UAV, nominal",0.79,137.86826820822893
+"all-UAV, nominal",0.795,140.85819574004842
+"all-UAV, nominal",0.8,143.42315648064815
+"all-UAV, nominal",0.805,145.56477799021872
+"all-UAV, nominal",0.81,147.58079177708848
+"all-UAV, nominal",0.815,148.82659536078452
+"all-UAV, nominal",0.82,150.67959643502022
+"all-UAV, nominal",0.825,153.05004549637255
+"all-UAV, nominal",0.83,155.53781587127668
+"all-UAV, nominal",0.835,157.31448429676595
+"all-UAV, nominal",0.84,159.04152444363518
+"all-UAV, nominal",0.845,161.88715987834397
+"all-UAV, nominal",0.85,164.05364849173867
+"all-UAV, nominal",0.855,167.1478445438079
+"all-UAV, nominal",0.86,169.84650284969442
+"all-UAV, nominal",0.865,172.7424771065151
+"all-UAV, nominal",0.87,175.0091708507866
+"all-UAV, nominal",0.875,178.24895921410732
+"all-UAV, nominal",0.88,180.70458961096284
+"all-UAV, nominal",0.885,183.22995526702405
+"all-UAV, nominal",0.89,185.40025277641652
+"all-UAV, nominal",0.895,187.80838695106397
+"all-UAV, nominal",0.9,189.99599627392422
+"all-UAV, nominal",0.905,192.35821724295985
+"all-UAV, nominal",0.91,194.57725383948363
+"all-UAV, nominal",0.915,196.77934703006815
+"all-UAV, nominal",0.92,198.70617135784934
+"all-UAV, nominal",0.925,201.09450750217908
+"all-UAV, nominal",0.93,203.1434397757253
+"all-UAV, nominal",0.935,205.15515648006348
+"all-UAV, nominal",0.94,208.25612318879143
+"all-UAV, nominal",0.945,210.7615679638751
+"all-UAV, nominal",0.95,213.73141558658136
+"all-UAV, nominal",0.955,216.7213655890882
+"all-UAV, nominal",0.96,219.19632685815125
+"all-UAV, nominal",0.965,222.28972209634648
+"all-UAV, nominal",0.97,225.70672550701076
+"all-UAV, nominal",0.975,231.73006153550583
+"all-UAV, nominal",0.98,238.09391656370505
+"all-UAV, nominal",0.985,246.00661348037173
+"all-UAV, nominal",0.99,257.24544267699537
+"all-UAV, nominal",0.995,267.53129971982605
+"all-UAV, nominal",1.0,279.49608340553317
+"all-cloud, nominal",0.0,48.006757866021864
+"all-cloud, nominal",0.005,48.72396704422606
+"all-cloud, nominal",0.01,49.17998722253554
+"all-cloud, nominal",0.015,49.237033556687315
+"all-cloud, nominal",0.02,49.30134977134202
+"all-cloud, nominal",0.025,49.37516395735142
+"all-cloud, nominal",0.03,49.454734825572096
+"all-cloud, nominal",0.035,49.5701610349264
+"all-cloud, nominal",0.04,49.66726864689548
+"all-cloud, nominal",0.045,49.813954167651445
+"all-cloud, nominal",0.05,49.85469355975136
+"all-cloud, nominal",0.055,49.94161704227799
+"all-cloud, nominal",0.06,50.09040161309315
+"all-cloud, nominal",0.065,50.21949732490463
+"all-cloud, nominal",0.07,50.30783455402519
+"all-cloud, nominal",0.075,50.40162550571381
+"all-cloud, nominal",0.08,50.45077085453258
+"all-cloud, nominal",0.085,50.5166229813732
+"all-cloud, nominal",0.09,50.56841422948626
+"all-cloud, nominal",0.095,50.64296943025335
+"all-cloud, nominal",0.1,50.71033527798363
+"all-cloud, nominal",0.105,50.729793443113635
+"all-cloud, nominal",0.11,50.752101811919204
+"all-cloud, nominal",0.115,50.789427515780616
+"all-cloud, nominal",0.12,50.8194859767336
+"all-cloud, nominal",0.125,50.840879117079446
+"all-cloud, nominal",0.13,50.86319766669102
+"all-cloud, nominal",0.135,50.877211993358884
+"all-cloud, nominal",0.14,50.894600191281825
+"all-cloud, nominal",0.145,50.91688609229135
+"all-cloud, nominal",0.15,50.94002651400098
+"all-cloud, nominal",0.155,50.96350515872538
+"all-cloud, nominal",0.16,50.99140058062481
+"all-cloud, nominal",0.165,51.0209875986096
+"all-cloud, nominal",0.17,51.05000215842668
+"all-cloud, nominal",0.175,51.08759988841882
+"all-cloud, nominal",0.18,51.12342325596373
+"all-cloud, nominal",0.185,51.1667810049131
+"all-cloud, nominal",0.19,51.19755889892996
+"all-cloud, nominal",0.195,51.24701570114843
+"all-cloud, nominal",0.2,51.30893431516448
+"all-cloud, nominal",0.205,51.36812453184039
+"all-cloud, nominal",0.21,51.43547242392024
+"all-cloud, nominal",0.215,51.504810977032456
+"all-cloud, nominal",0.22,51.587083314441884
+"all-cloud, nominal",0.225,51.677116105991686
+"all-cloud, nominal",0.23,51.7075607411444
+"all-cloud, nominal",0.235,51.74617988161998
+"all-cloud, nominal",0.24,51.77651321388268
+"all-cloud, nominal",0.245,51.79925986703395
+"all-cloud, nominal",0.25,51.82301437382408
+"all-cloud, nominal",0.255,51.85197727996638
+"all-cloud, nominal",0.26,51.871916556044084
+"all-cloud, nominal",0.265,51.89780121314236
+"all-cloud, nominal",0.27,51.92040768278616
+"all-cloud, nominal",0.275,51.93505295213674
+"all-cloud, nominal",0.28,51.95726902082143
+"all-cloud, nominal",0.285,51.979026032340236
+"all-cloud, nominal",0.29,52.00438462579946
+"all-cloud, nominal",0.295,52.04339876805362
+"all-cloud, nominal",0.3,52.107221338554055
+"all-cloud, nominal",0.305,52.223546072995994
+"all-cloud, nominal",0.31,52.36282140174237
+"all-cloud, nominal",0.315,52.50391212358556
+"all-cloud, nominal",0.32,52.56693898261844
+"all-cloud, nominal",0.325,52.623082767039534
+"all-cloud, nominal",0.33,52.75872896847415
+"all-cloud, nominal",0.335,52.98572023788058
+"all-cloud, nominal",0.34,53.42134739139368
+"all-cloud, nominal",0.345,53.5336170314122
+"all-cloud, nominal",0.35,53.61278523701962
+"all-cloud, nominal",0.355,53.74923863626391
+"all-cloud, nominal",0.36,54.31239703332267
+"all-cloud, nominal",0.365,59.46037196793495
+"all-cloud, nominal",0.37,60.64094858274114
+"all-cloud, nominal",0.375,60.777470464266955
+"all-cloud, nominal",0.38,60.81863485416328
+"all-cloud, nominal",0.385,60.88215954127629
+"all-cloud, nominal",0.39,61.13116303155761
+"all-cloud, nominal",0.395,61.2431899727192
+"all-cloud, nominal",0.4,61.285235630576196
+"all-cloud, nominal",0.405,61.50319783592509
+"all-cloud, nominal",0.41,61.59790255944206
+"all-cloud, nominal",0.415,61.70209338860948
+"all-cloud, nominal",0.42,61.817895579880044
+"all-cloud, nominal",0.425,61.96368734983515
+"all-cloud, nominal",0.43,62.03925083826234
+"all-cloud, nominal",0.435,62.11878228392802
+"all-cloud, nominal",0.44,62.14407516128695
+"all-cloud, nominal",0.445,62.16593467296008
+"all-cloud, nominal",0.45,62.19587373847047
+"all-cloud, nominal",0.455,62.23305467272713
+"all-cloud, nominal",0.46,62.25637527401204
+"all-cloud, nominal",0.465,62.276941074033495
+"all-cloud, nominal",0.47,62.29267986491145
+"all-cloud, nominal",0.475,62.312016289670865
+"all-cloud, nominal",0.48,62.33160156142921
+"all-cloud, nominal",0.485,62.35755050449274
+"all-cloud, nominal",0.49,62.38901326039383
+"all-cloud, nominal",0.495,62.41876539573881
+"all-cloud, nominal",0.5,62.4482538454334
+"all-cloud, nominal",0.505,62.48120161075308
+"all-cloud, nominal",0.51,62.526762864172944
+"all-cloud, nominal",0.515,62.62591728437586
+"all-cloud, nominal",0.52,62.72452739862295
+"all-cloud, nominal",0.525,62.87922811788249
+"all-cloud, nominal",0.53,63.069873724233716
+"all-cloud, nominal",0.535,63.599934570376746
+"all-cloud, nominal",0.54,63.8995618704378
+"all-cloud, nominal",0.545,63.96825322672477
+"all-cloud, nominal",0.55,64.07706853204154
+"all-cloud, nominal",0.555,64.20128271789505
+"all-cloud, nominal",0.56,64.77983939168156
+"all-cloud, nominal",0.565,65.00150692747528
+"all-cloud, nominal",0.57,65.441828707915
+"all-cloud, nominal",0.575,69.88818912752164
+"all-cloud, nominal",0.58,71.7097694307638
+"all-cloud, nominal",0.585,72.13128980858738
+"all-cloud, nominal",0.59,72.44822726715867
+"all-cloud, nominal",0.595,72.63907771681876
+"all-cloud, nominal",0.6,72.7991331206006
+"all-cloud, nominal",0.605,72.98632141074238
+"all-cloud, nominal",0.61,73.16037365400588
+"all-cloud, nominal",0.615,73.53696623376298
+"all-cloud, nominal",0.62,73.59410121668901
+"all-cloud, nominal",0.625,73.65882004358681
+"all-cloud, nominal",0.63,73.69869172920644
+"all-cloud, nominal",0.635,73.74155675301535
+"all-cloud, nominal",0.64,73.78921780008999
+"all-cloud, nominal",0.645,73.86510756089896
+"all-cloud, nominal",0.65,74.16314573139383
+"all-cloud, nominal",0.655,74.39123778781556
+"all-cloud, nominal",0.66,74.63867166713563
+"all-cloud, nominal",0.665,75.37361471950055
+"all-cloud, nominal",0.67,75.45006074493214
+"all-cloud, nominal",0.675,75.64619970051245
+"all-cloud, nominal",0.68,76.02393574574391
+"all-cloud, nominal",0.685,83.15583737772842
+"all-cloud, nominal",0.69,83.86610716462066
+"all-cloud, nominal",0.695,84.04052816755237
+"all-cloud, nominal",0.7,84.14460069990426
+"all-cloud, nominal",0.705,84.23411458633909
+"all-cloud, nominal",0.71,84.40822731796852
+"all-cloud, nominal",0.715,84.61177051413048
+"all-cloud, nominal",0.72,84.71067881764576
+"all-cloud, nominal",0.725,84.95958312254015
+"all-cloud, nominal",0.73,85.1134992734778
+"all-cloud, nominal",0.735,85.20834949715415
+"all-cloud, nominal",0.74,85.75770544110047
+"all-cloud, nominal",0.745,85.8744231697844
+"all-cloud, nominal",0.75,86.13139207825427
+"all-cloud, nominal",0.755,86.42744018147567
+"all-cloud, nominal",0.76,94.44558672676324
+"all-cloud, nominal",0.765,94.89449272252897
+"all-cloud, nominal",0.77,95.11462890649769
+"all-cloud, nominal",0.775,95.20813652013538
+"all-cloud, nominal",0.78,95.3387540413727
+"all-cloud, nominal",0.785,95.52865154763249
+"all-cloud, nominal",0.79,95.64868055945527
+"all-cloud, nominal",0.795,95.86760019401753
+"all-cloud, nominal",0.8,96.17812584404994
+"all-cloud, nominal",0.805,96.37520286076254
+"all-cloud, nominal",0.81,97.19008632702685
+"all-cloud, nominal",0.815,98.36530360596629
+"all-cloud, nominal",0.82,105.30251980740938
+"all-cloud, nominal",0.825,105.75075436430946
+"all-cloud, nominal",0.83,105.93557401874105
+"all-cloud, nominal",0.835,106.10115762876625
+"all-cloud, nominal",0.84,106.42439886560958
+"all-cloud, nominal",0.845,106.63799003951836
+"all-cloud, nominal",0.85,107.14706629846837
+"all-cloud, nominal",0.855,107.61238505843103
+"all-cloud, nominal",0.86,108.10654202084017
+"all-cloud, nominal",0.865,115.77613624690196
+"all-cloud, nominal",0.87,116.45983317250119
+"all-cloud, nominal",0.875,117.0014314509682
+"all-cloud, nominal",0.88,117.31182778686673
+"all-cloud, nominal",0.885,117.51009737797102
+"all-cloud, nominal",0.89,118.03881236245975
+"all-cloud, nominal",0.895,119.15425838084964
+"all-cloud, nominal",0.9,127.63994343863739
+"all-cloud, nominal",0.905,128.02445582851263
+"all-cloud, nominal",0.91,128.63652419677922
+"all-cloud, nominal",0.915,128.9538469631031
+"all-cloud, nominal",0.92,130.09893332670967
+"all-cloud, nominal",0.925,139.04259182568723
+"all-cloud, nominal",0.93,139.20419802281262
+"all-cloud, nominal",0.935,139.3871375288917
+"all-cloud, nominal",0.94,140.0269252870606
+"all-cloud, nominal",0.945,142.43821276477746
+"all-cloud, nominal",0.95,150.08968485401473
+"all-cloud, nominal",0.955,150.65529886721004
+"all-cloud, nominal",0.96,151.58539006083654
+"all-cloud, nominal",0.965,161.06025039221484
+"all-cloud, nominal",0.97,161.5922582500875
+"all-cloud, nominal",0.975,162.66297600280643
+"all-cloud, nominal",0.98,172.08603362746035
+"all-cloud, nominal",0.985,173.1109036788555
+"all-cloud, nominal",0.99,183.34673310711224
+"all-cloud, nominal",0.995,194.3049455670888
+"all-cloud, nominal",1.0,217.3394939054647
+"allocator, +150 ms DL",0.0,190.52783498641367
+"allocator, +150 ms DL",0.005,192.30959498637645
+"allocator, +150 ms DL",0.01,192.31935498645214
+"allocator, +150 ms DL",0.015,192.3255949863858
+"allocator, +150 ms DL",0.02,192.32559498640057
+"allocator, +150 ms DL",0.025,193.4835172984961
+"allocator, +150 ms DL",0.03,194.39695728893548
+"allocator, +150 ms DL",0.035,196.4769717849144
+"allocator, +150 ms DL",0.04,196.50465178487764
+"allocator, +150 ms DL",0.045,196.50465178531817
+"allocator, +150 ms DL",0.05,196.50465178531817
+"allocator, +150 ms DL",0.055,197.75214688595966
+"allocator, +150 ms DL",0.06,198.57057178496973
+"allocator, +150 ms DL",0.065,198.58785178487892
+"allocator, +150 ms DL",0.07,198.58785178530525
+"allocator, +150 ms DL",0.075,199.25092659159196
+"allocator, +150 ms DL",0.08,199.86129178502665
+"allocator, +150 ms DL",0.085,200.43861718184317
+"allocator, +150 ms DL",0.09,200.73314951264797
+"allocator, +150 ms DL",0.095,200.83431622206234
+"allocator, +150 ms DL",0.1,200.88903874309594
+"allocator, +150 ms DL",0.105,200.96367745040453
+"allocator, +150 ms DL",0.11,201.05432535098373
+"allocator, +150 ms DL",0.115,201.15505178489457
+"allocator, +150 ms DL",0.12,201.25365797609837
+"allocator, +150 ms DL",0.125,201.37105504451114
+"allocator, +150 ms DL",0.13,201.4406430981694
+"allocator, +150 ms DL",0.135,201.52562897449624
+"allocator, +150 ms DL",0.14,201.63265656872142
+"allocator, +150 ms DL",0.145,201.73055002214141
+"allocator, +150 ms DL",0.15,201.82389350152886
+"allocator, +150 ms DL",0.155,201.90470184227658
+"allocator, +150 ms DL",0.16,201.98076800964128
+"allocator, +150 ms DL",0.165,202.09481053334514
+"allocator, +150 ms DL",0.17,202.3219635657759
+"allocator, +150 ms DL",0.175,202.3906092287504
+"allocator, +150 ms DL",0.18,202.44635743400863
+"allocator, +150 ms DL",0.185,202.49643920400356
+"allocator, +150 ms DL",0.19,202.5273167852069
+"allocator, +150 ms DL",0.195,202.56646970727192
+"allocator, +150 ms DL",0.2,202.61053215041986
+"allocator, +150 ms DL",0.205,202.66597841173308
+"allocator, +150 ms DL",0.21,202.7128362724676
+"allocator, +150 ms DL",0.215,202.77009820615606
+"allocator, +150 ms DL",0.22,202.8634986685995
+"allocator, +150 ms DL",0.225,203.06718694730048
+"allocator, +150 ms DL",0.23,203.34728322833797
+"allocator, +150 ms DL",0.235,203.44988654320957
+"allocator, +150 ms DL",0.24,203.50482105750308
+"allocator, +150 ms DL",0.245,203.5385656562346
+"allocator, +150 ms DL",0.25,203.5860224075634
+"allocator, +150 ms DL",0.255,203.6292961931125
+"allocator, +150 ms DL",0.26,203.69029930557815
+"allocator, +150 ms DL",0.265,203.72403221773055
+"allocator, +150 ms DL",0.27,203.76330955096478
+"allocator, +150 ms DL",0.275,203.8395518174525
+"allocator, +150 ms DL",0.28,203.95334228638058
+"allocator, +150 ms DL",0.285,204.0653248677438
+"allocator, +150 ms DL",0.29,204.14379900208303
+"allocator, +150 ms DL",0.295,204.26707298662336
+"allocator, +150 ms DL",0.3,204.4615813305217
+"allocator, +150 ms DL",0.305,204.53250728049198
+"allocator, +150 ms DL",0.31,204.7095716691767
+"allocator, +150 ms DL",0.315,204.8276318262368
+"allocator, +150 ms DL",0.32,204.96790493665617
+"allocator, +150 ms DL",0.325,205.11341865873672
+"allocator, +150 ms DL",0.33,205.2537572680319
+"allocator, +150 ms DL",0.335,205.36750809213686
+"allocator, +150 ms DL",0.34,205.45286742505553
+"allocator, +150 ms DL",0.345,205.55005891306678
+"allocator, +150 ms DL",0.35,205.69472549317425
+"allocator, +150 ms DL",0.355,205.92957553862414
+"allocator, +150 ms DL",0.36,206.1803659906721
+"allocator, +150 ms DL",0.365,206.52747063195432
+"allocator, +150 ms DL",0.37,206.8182994452809
+"allocator, +150 ms DL",0.375,207.1392997625372
+"allocator, +150 ms DL",0.38,207.38995700877012
+"allocator, +150 ms DL",0.385,207.77898295298428
+"allocator, +150 ms DL",0.39,208.55634303332621
+"allocator, +150 ms DL",0.395,210.00834941279481
+"allocator, +150 ms DL",0.4,211.55260338394476
+"allocator, +150 ms DL",0.405,212.12396128320074
+"allocator, +150 ms DL",0.41,212.31704290829768
+"allocator, +150 ms DL",0.415,212.75441612196934
+"allocator, +150 ms DL",0.42,213.3254747642539
+"allocator, +150 ms DL",0.425,213.78555641657684
+"allocator, +150 ms DL",0.43,213.95394306822269
+"allocator, +150 ms DL",0.435,214.1648213642921
+"allocator, +150 ms DL",0.44,214.5733823225128
+"allocator, +150 ms DL",0.445,214.93101931319222
+"allocator, +150 ms DL",0.45,215.1971547642617
+"allocator, +150 ms DL",0.455,215.21299476430045
+"allocator, +150 ms DL",0.46,215.22451476468518
+"allocator, +150 ms DL",0.465,215.22451476468518
+"allocator, +150 ms DL",0.47,215.39385261618534
+"allocator, +150 ms DL",0.475,215.72603428118848
+"allocator, +150 ms DL",0.48,216.04964123544292
+"allocator, +150 ms DL",0.485,216.72111446791007
+"allocator, +150 ms DL",0.49,217.42721169185413
+"allocator, +150 ms DL",0.495,218.22467576661637
+"allocator, +150 ms DL",0.5,219.56502439060444
+"allocator, +150 ms DL",0.505,221.02499265533686
+"allocator, +150 ms DL",0.51,222.12591700765662
+"allocator, +150 ms DL",0.515,223.23439455621616
+"allocator, +150 ms DL",0.52,223.72226732979843
+"allocator, +150 ms DL",0.525,224.05035608996684
+"allocator, +150 ms DL",0.53,224.58319511665465
+"allocator, +150 ms DL",0.535,225.32117112318164
+"allocator, +150 ms DL",0.54,225.50061592550185
+"allocator, +150 ms DL",0.545,225.7855118469014
+"allocator, +150 ms DL",0.55,226.24651765506505
+"allocator, +150 ms DL",0.555,226.9744222637992
+"allocator, +150 ms DL",0.56,227.6392901892257
+"allocator, +150 ms DL",0.565,228.5525935273588
+"allocator, +150 ms DL",0.57,229.91870937694762
+"allocator, +150 ms DL",0.575,231.5372007247717
+"allocator, +150 ms DL",0.58,233.35955248630282
+"allocator, +150 ms DL",0.585,234.39948263292456
+"allocator, +150 ms DL",0.59,235.21169710263845
+"allocator, +150 ms DL",0.595,235.85179240205366
+"allocator, +150 ms DL",0.6,236.37439301377708
+"allocator, +150 ms DL",0.605,236.8687144599613
+"allocator, +150 ms DL",0.61,237.3597208633755
+"allocator, +150 ms DL",0.615,237.9875760607685
+"allocator, +150 ms DL",0.62,238.51539779776218
+"allocator, +150 ms DL",0.625,239.411011179544
+"allocator, +150 ms DL",0.63,240.27753630521204
+"allocator, +150 ms DL",0.635,241.9264894200022
+"allocator, +150 ms DL",0.64,243.48166195333573
+"allocator, +150 ms DL",0.645,245.20590388207776
+"allocator, +150 ms DL",0.65,246.07066682342898
+"allocator, +150 ms DL",0.655,246.8607319929931
+"allocator, +150 ms DL",0.66,247.29306261133655
+"allocator, +150 ms DL",0.665,247.87706479012454
+"allocator, +150 ms DL",0.67,248.4630960394613
+"allocator, +150 ms DL",0.675,249.0787093252152
+"allocator, +150 ms DL",0.68,249.81891417264575
+"allocator, +150 ms DL",0.685,250.9096383142426
+"allocator, +150 ms DL",0.69,252.62186347257008
+"allocator, +150 ms DL",0.695,254.3495270063792
+"allocator, +150 ms DL",0.7,256.01613638313313
+"allocator, +150 ms DL",0.705,256.9059159058244
+"allocator, +150 ms DL",0.71,257.59609901176356
+"allocator, +150 ms DL",0.715,258.16115931621715
+"allocator, +150 ms DL",0.72,258.79038839151144
+"allocator, +150 ms DL",0.725,259.64218550552806
+"allocator, +150 ms DL",0.73,260.30374515728715
+"allocator, +150 ms DL",0.735,261.3287774444096
+"allocator, +150 ms DL",0.74,263.47230212229607
+"allocator, +150 ms DL",0.745,265.81605820652953
+"allocator, +150 ms DL",0.75,267.4684952809336
+"allocator, +150 ms DL",0.755,268.37603920313666
+"allocator, +150 ms DL",0.76,269.2681231421774
+"allocator, +150 ms DL",0.765,270.2611789969388
+"allocator, +150 ms DL",0.77,271.0818797205779
+"allocator, +150 ms DL",0.775,272.727851143055
+"allocator, +150 ms DL",0.78,274.71195555781844
+"allocator, +150 ms DL",0.785,276.84895670631516
+"allocator, +150 ms DL",0.79,278.39849639984277
+"allocator, +150 ms DL",0.795,280.0542604719756
+"allocator, +150 ms DL",0.8,280.91255596222794
+"allocator, +150 ms DL",0.805,282.0172758769266
+"allocator, +150 ms DL",0.81,283.3313609620426
+"allocator, +150 ms DL",0.815,285.07052673529745
+"allocator, +150 ms DL",0.82,287.3239914177865
+"allocator, +150 ms DL",0.825,289.9619446450256
+"allocator, +150 ms DL",0.83,291.299324034416
+"allocator, +150 ms DL",0.835,292.328558222215
+"allocator, +150 ms DL",0.84,293.6360435004184
+"allocator, +150 ms DL",0.845,295.33158701617685
+"allocator, +150 ms DL",0.85,297.57686786695854
+"allocator, +150 ms DL",0.855,299.7778422409835
+"allocator, +150 ms DL",0.86,301.3593047873219
+"allocator, +150 ms DL",0.865,302.9939770349394
+"allocator, +150 ms DL",0.87,304.239297969162
+"allocator, +150 ms DL",0.875,305.83554124954884
+"allocator, +150 ms DL",0.88,308.4047293140427
+"allocator, +150 ms DL",0.885,311.075327480619
+"allocator, +150 ms DL",0.89,313.0453263590487
+"allocator, +150 ms DL",0.895,314.61946863807816
+"allocator, +150 ms DL",0.9,315.67565641706875
+"allocator, +150 ms DL",0.905,317.57800181123764
+"allocator, +150 ms DL",0.91,319.7224395827852
+"allocator, +150 ms DL",0.915,321.8792929866553
+"allocator, +150 ms DL",0.92,324.0458175406692
+"allocator, +150 ms DL",0.925,325.70142396944556
+"allocator, +150 ms DL",0.93,327.55807897869323
+"allocator, +150 ms DL",0.935,330.0474855703221
+"allocator, +150 ms DL",0.94,332.8572446485476
+"allocator, +150 ms DL",0.945,335.1729790455387
+"allocator, +150 ms DL",0.95,336.8195180290031
+"allocator, +150 ms DL",0.955,338.4094458166504
+"allocator, +150 ms DL",0.96,340.72732521210327
+"allocator, +150 ms DL",0.965,344.3262510199653
+"allocator, +150 ms DL",0.97,347.54781686141405
+"allocator, +150 ms DL",0.975,351.05018014523574
+"allocator, +150 ms DL",0.98,356.2344991728594
+"allocator, +150 ms DL",0.985,360.2787001164855
+"allocator, +150 ms DL",0.99,370.49622980565334
+"allocator, +150 ms DL",0.995,387.2059972690884
+"allocator, +150 ms DL",1.0,490.6331073735073
+"allocator, +300 ms DL",0.0,339.7719949864353
+"allocator, +300 ms DL",0.005,343.797208623144
+"allocator, +300 ms DL",0.01,343.8072886233101
+"allocator, +300 ms DL",0.015,347.36194688519544
+"allocator, +300 ms DL",0.02,348.3284535152791
+"allocator, +300 ms DL",0.025,348.6960538959849
+"allocator, +300 ms DL",0.03,348.8631384371246
+"allocator, +300 ms DL",0.035,348.871460405519
+"allocator, +300 ms DL",0.04,349.831659702875
+"allocator, +300 ms DL",0.045,350.2042427051289
+"allocator, +300 ms DL",0.05,350.216549255407
+"allocator, +300 ms DL",0.055,350.2583711413854
+"allocator, +300 ms DL",0.06,350.41789498441176
+"allocator, +300 ms DL",0.065,350.61661385810413
+"allocator, +300 ms DL",0.07,350.7142849467707
+"allocator, +300 ms DL",0.075,350.7546265504239
+"allocator, +300 ms DL",0.08,350.7976812467649
+"allocator, +300 ms DL",0.085,350.8495692788293
+"allocator, +300 ms DL",0.09,350.90357193441207
+"allocator, +300 ms DL",0.095,350.93929556924763
+"allocator, +300 ms DL",0.1,350.97393249610127
+"allocator, +300 ms DL",0.105,351.04318232257697
+"allocator, +300 ms DL",0.11,351.1825722057456
+"allocator, +300 ms DL",0.115,351.30929977762605
+"allocator, +300 ms DL",0.12,351.3388017610737
+"allocator, +300 ms DL",0.125,351.3913058664144
+"allocator, +300 ms DL",0.13,351.4073302463635
+"allocator, +300 ms DL",0.135,351.46370620049083
+"allocator, +300 ms DL",0.14,351.52064667023507
+"allocator, +300 ms DL",0.145,351.5351799601376
+"allocator, +300 ms DL",0.15,351.5499276451976
+"allocator, +300 ms DL",0.155,351.60912015972485
+"allocator, +300 ms DL",0.16,351.64472592076027
+"allocator, +300 ms DL",0.165,351.70626620043777
+"allocator, +300 ms DL",0.17,351.7524270777014
+"allocator, +300 ms DL",0.175,351.7885967568361
+"allocator, +300 ms DL",0.18,351.8500327090396
+"allocator, +300 ms DL",0.185,351.90195083331514
+"allocator, +300 ms DL",0.19,351.94969307799647
+"allocator, +300 ms DL",0.195,352.0159172245309
+"allocator, +300 ms DL",0.2,352.12567012228817
+"allocator, +300 ms DL",0.205,352.1903847372698
+"allocator, +300 ms DL",0.21,352.3202604377416
+"allocator, +300 ms DL",0.215,352.4581617614331
+"allocator, +300 ms DL",0.22,352.49290262181546
+"allocator, +300 ms DL",0.225,352.52584176114965
+"allocator, +300 ms DL",0.23,352.56991346975497
+"allocator, +300 ms DL",0.235,352.6582106895154
+"allocator, +300 ms DL",0.24,352.71495035618614
+"allocator, +300 ms DL",0.245,352.80866134234253
+"allocator, +300 ms DL",0.25,353.0122023799578
+"allocator, +300 ms DL",0.255,353.2484303715421
+"allocator, +300 ms DL",0.26,353.41722912412365
+"allocator, +300 ms DL",0.265,353.5582150338419
+"allocator, +300 ms DL",0.27,353.7030199597382
+"allocator, +300 ms DL",0.275,353.7909883121017
+"allocator, +300 ms DL",0.28,353.8838373762002
+"allocator, +300 ms DL",0.285,353.9698518492867
+"allocator, +300 ms DL",0.29,354.1122999597235
+"allocator, +300 ms DL",0.295,354.1390585743329
+"allocator, +300 ms DL",0.3,354.2300773748764
+"allocator, +300 ms DL",0.305,354.2790493691399
+"allocator, +300 ms DL",0.31,354.2898650306654
+"allocator, +300 ms DL",0.315,354.40806141077957
+"allocator, +300 ms DL",0.32,354.51000348435
+"allocator, +300 ms DL",0.325,354.5487847372044
+"allocator, +300 ms DL",0.33,354.63703987113604
+"allocator, +300 ms DL",0.335,354.73135837218024
+"allocator, +300 ms DL",0.34,354.86196277631734
+"allocator, +300 ms DL",0.345,355.0965873350975
+"allocator, +300 ms DL",0.35,355.1069541895231
+"allocator, +300 ms DL",0.355,355.35125529082734
+"allocator, +300 ms DL",0.36,355.36691281001254
+"allocator, +300 ms DL",0.365,355.80161458521786
+"allocator, +300 ms DL",0.37,355.8128700727252
+"allocator, +300 ms DL",0.375,356.07235281042904
+"allocator, +300 ms DL",0.38,356.07987281038334
+"allocator, +300 ms DL",0.385,357.3526857334315
+"allocator, +300 ms DL",0.39,357.37009381645635
+"allocator, +300 ms DL",0.395,358.5422857332503
+"allocator, +300 ms DL",0.4,358.56977381641286
+"allocator, +300 ms DL",0.405,359.9147657332651
+"allocator, +300 ms DL",0.41,359.9544138165527
+"allocator, +300 ms DL",0.415,359.9651324138051
+"allocator, +300 ms DL",0.42,359.97553979788677
+"allocator, +300 ms DL",0.425,360.5286505715952
+"allocator, +300 ms DL",0.43,360.6936176146171
+"allocator, +300 ms DL",0.435,361.73336687481674
+"allocator, +300 ms DL",0.44,361.7927005375918
+"allocator, +300 ms DL",0.445,362.15404523397865
+"allocator, +300 ms DL",0.45,362.2307541141083
+"allocator, +300 ms DL",0.455,362.31541116019514
+"allocator, +300 ms DL",0.46,362.38367511906404
+"allocator, +300 ms DL",0.465,362.46643700002664
+"allocator, +300 ms DL",0.47,362.6190567726866
+"allocator, +300 ms DL",0.475,362.7555977032472
+"allocator, +300 ms DL",0.48,362.79253195413105
+"allocator, +300 ms DL",0.485,362.8297843228779
+"allocator, +300 ms DL",0.49,362.8701266313553
+"allocator, +300 ms DL",0.495,362.9146205375946
+"allocator, +300 ms DL",0.5,362.9720966706742
+"allocator, +300 ms DL",0.505,363.0767306250215
+"allocator, +300 ms DL",0.51,363.16159936262693
+"allocator, +300 ms DL",0.515,363.21634886369793
+"allocator, +300 ms DL",0.52,363.3060649697768
+"allocator, +300 ms DL",0.525,363.32995476423235
+"allocator, +300 ms DL",0.53,363.3301147642314
+"allocator, +300 ms DL",0.535,363.33363476427394
+"allocator, +300 ms DL",0.54,363.33363476427394
+"allocator, +300 ms DL",0.545,363.33363476427394
+"allocator, +300 ms DL",0.55,363.33379476425876
+"allocator, +300 ms DL",0.555,363.33379476427297
+"allocator, +300 ms DL",0.56,363.3646249697904
+"allocator, +300 ms DL",0.565,363.82796072298675
+"allocator, +300 ms DL",0.57,363.9236520663002
+"allocator, +300 ms DL",0.575,364.015813965986
+"allocator, +300 ms DL",0.58,364.1610897841725
+"allocator, +300 ms DL",0.585,364.2876713012535
+"allocator, +300 ms DL",0.59,364.49330770214686
+"allocator, +300 ms DL",0.595,364.6113877469013
+"allocator, +300 ms DL",0.6,364.6168277469286
+"allocator, +300 ms DL",0.605,364.62801384712407
+"allocator, +300 ms DL",0.61,364.69722948905314
+"allocator, +300 ms DL",0.615,364.70122948902883
+"allocator, +300 ms DL",0.62,364.7766290879133
+"allocator, +300 ms DL",0.625,364.780629087889
+"allocator, +300 ms DL",0.63,364.8840331038926
+"allocator, +300 ms DL",0.635,365.0173632508603
+"allocator, +300 ms DL",0.64,365.1687797756881
+"allocator, +300 ms DL",0.645,365.26547015731126
+"allocator, +300 ms DL",0.65,365.48129178037243
+"allocator, +300 ms DL",0.655,365.89618211495633
+"allocator, +300 ms DL",0.66,366.04339476429004
+"allocator, +300 ms DL",0.665,366.05093595596827
+"allocator, +300 ms DL",0.67,366.0549147644474
+"allocator, +300 ms DL",0.675,366.5883278295894
+"allocator, +300 ms DL",0.68,366.86200764694377
+"allocator, +300 ms DL",0.685,366.92613298029926
+"allocator, +300 ms DL",0.69,367.0069784861312
+"allocator, +300 ms DL",0.695,367.78034219717364
+"allocator, +300 ms DL",0.7,367.85134248776785
+"allocator, +300 ms DL",0.705,368.2415538344088
+"allocator, +300 ms DL",0.71,368.2601843610706
+"allocator, +300 ms DL",0.715,368.2709810200231
+"allocator, +300 ms DL",0.72,368.2713842200229
+"allocator, +300 ms DL",0.725,368.5871211825429
+"allocator, +300 ms DL",0.73,368.59064118274887
+"allocator, +300 ms DL",0.735,368.70278279158697
+"allocator, +300 ms DL",0.74,368.71654340379325
+"allocator, +300 ms DL",0.745,369.9967750928792
+"allocator, +300 ms DL",0.75,370.00860261872504
+"allocator, +300 ms DL",0.755,370.37141202903
+"allocator, +300 ms DL",0.76,370.38277570118794
+"allocator, +300 ms DL",0.765,370.52335845329765
+"allocator, +300 ms DL",0.77,370.5347541818753
+"allocator, +300 ms DL",0.775,370.6263624583528
+"allocator, +300 ms DL",0.78,370.63068245811337
+"allocator, +300 ms DL",0.785,371.90972767965036
+"allocator, +300 ms DL",0.79,372.08300767966307
+"allocator, +300 ms DL",0.795,373.0745740111523
+"allocator, +300 ms DL",0.8,373.52410208614515
+"allocator, +300 ms DL",0.805,373.5835158338341
+"allocator, +300 ms DL",0.81,373.63986241967723
+"allocator, +300 ms DL",0.815,373.70452560066025
+"allocator, +300 ms DL",0.82,373.7905939135311
+"allocator, +300 ms DL",0.825,373.85979236753997
+"allocator, +300 ms DL",0.83,373.98037178021383
+"allocator, +300 ms DL",0.835,374.19103763157466
+"allocator, +300 ms DL",0.84,374.3210077961862
+"allocator, +300 ms DL",0.845,374.4248312993477
+"allocator, +300 ms DL",0.85,374.54879737857993
+"allocator, +300 ms DL",0.855,374.56050560314225
+"allocator, +300 ms DL",0.86,375.00889471912444
+"allocator, +300 ms DL",0.865,375.21426560299176
+"allocator, +300 ms DL",0.87,375.3529856029729
+"allocator, +300 ms DL",0.875,375.61551503897306
+"allocator, +300 ms DL",0.88,376.0008380190152
+"allocator, +300 ms DL",0.885,376.5437832710461
+"allocator, +300 ms DL",0.89,377.40846107446663
+"allocator, +300 ms DL",0.895,378.2157923676692
+"allocator, +300 ms DL",0.9,379.2094467144409
+"allocator, +300 ms DL",0.905,379.22417156440247
+"allocator, +300 ms DL",0.91,379.8872361850414
+"allocator, +300 ms DL",0.915,379.89899033371444
+"allocator, +300 ms DL",0.92,382.4150859454818
+"allocator, +300 ms DL",0.925,382.4265046346511
+"allocator, +300 ms DL",0.93,383.2395829015809
+"allocator, +300 ms DL",0.935,384.6592560972965
+"allocator, +300 ms DL",0.94,384.92059884550713
+"allocator, +300 ms DL",0.945,385.64127858913747
+"allocator, +300 ms DL",0.95,386.80664687408813
+"allocator, +300 ms DL",0.955,387.1177588137442
+"allocator, +300 ms DL",0.96,387.1177588139574
+"allocator, +300 ms DL",0.965,390.2053905121974
+"allocator, +300 ms DL",0.97,391.99711837324
+"allocator, +300 ms DL",0.975,395.1730743767423
+"allocator, +300 ms DL",0.98,397.1951946118775
+"allocator, +300 ms DL",0.985,403.37784171208534
+"allocator, +300 ms DL",0.99,407.6786339126263
+"allocator, +300 ms DL",0.995,417.8799840169213
+"allocator, +300 ms DL",1.0,453.3845642536853

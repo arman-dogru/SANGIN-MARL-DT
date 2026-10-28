@@ -1,0 +1,96 @@
+figure,metric,series,num_agents,runs,mean_errors_per_run,ci_low,ci_high,total_errors,per_run,y_scale
+redesign_xi_run_level,ordering_errors,"allocator, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"allocator, same speed",16,5,1.6,0.0,3.2,8.0,0 0 0 4 4,log
+redesign_xi_run_level,ordering_errors,"allocator, same speed",32,2,8.0,4.0,12.0,16.0,12 4,log
+redesign_xi_run_level,ordering_errors,"all-cloud, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"all-cloud, same speed",16,5,0.8,0.0,2.4,4.0,0 0 0 4 0,log
+redesign_xi_run_level,ordering_errors,"all-cloud, same speed",32,3,10.666666666666666,10.0,12.0,32.0,12 10 10,log
+redesign_xi_run_level,ordering_errors,"all-UAV, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"all-UAV, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"allocator, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"allocator, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"allocator, mixed speed",32,5,3.6,0.2,9.0,18.0,0 14 3 0 1,log
+redesign_xi_run_level,ordering_errors,"all-cloud, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"all-cloud, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"all-cloud, mixed speed",32,5,146.4,115.2,186.0,732.0,149 118 96 148 221,log
+redesign_xi_run_level,ordering_errors,"all-UAV, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,log
+redesign_xi_run_level,ordering_errors,"all-UAV, mixed speed",16,5,26.4,15.2,39.2,132.0,24 10 16 32 50,log
+redesign_xi_run_level,fov_errors,"allocator, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"allocator, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"allocator, same speed",32,2,0.0,0.0,0.0,0.0,0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, same speed",32,3,0.0,0.0,0.0,0.0,0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-UAV, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-UAV, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"allocator, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"allocator, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"allocator, mixed speed",32,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-cloud, mixed speed",32,5,1.6,0.0,3.2,8.0,4 4 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-UAV, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,fov_errors,"all-UAV, mixed speed",16,5,0.4,0.0,1.2,2.0,2 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"allocator, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"allocator, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-cloud, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-cloud, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-UAV, same speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-UAV, same speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"allocator, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"allocator, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"allocator, mixed speed",32,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-cloud, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-cloud, mixed speed",16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-cloud, mixed speed",32,5,3.2,0.0,8.8,16.0,14 0 0 2 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-UAV, mixed speed",8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level,physical_relevant_ordering_errors,"all-UAV, mixed speed",16,5,0.4,0.0,1.2,2.0,2 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:1,16,5,1.6,0.0,3.2,8.0,0 0 0 4 4,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:1,32,2,8.0,4.0,12.0,16.0,12 4,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:2,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:2,16,5,0.8,0.0,2.4,4.0,0 0 0 0 4,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:2,32,2,3.0,0.0,6.0,6.0,6 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:4,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:4,16,5,1.2,0.0,2.8,6.0,0 0 0 4 2,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 1:4,32,1,8.0,8.0,8.0,8.0,8,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 2:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 2:1,16,5,2.0,0.0,4.4,10.0,0 0 0 4 6,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 2:1,32,1,14.0,14.0,14.0,14.0,14,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 4:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 4:1,16,5,2.0,0.0,4.4,10.0,0 0 0 4 6,linear
+redesign_xi_run_level_by_omega,ordering_errors,ω₁:ω₂ = 4:1,32,3,10.0,0.0,16.0,30.0,14 16 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,mixed speed,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,mixed speed,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,ordering_errors,mixed speed,32,5,3.6,0.2,8.8,18.0,0 14 3 0 1,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:1,32,2,0.0,0.0,0.0,0.0,0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:2,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:2,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:2,32,2,0.0,0.0,0.0,0.0,0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:4,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:4,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 1:4,32,1,0.0,0.0,0.0,0.0,0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 2:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 2:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 2:1,32,1,0.0,0.0,0.0,0.0,0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 4:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 4:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,ω₁:ω₂ = 4:1,32,3,0.0,0.0,0.0,0.0,0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,mixed speed,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,mixed speed,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,fov_errors,mixed speed,32,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:2,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:2,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:4,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 1:4,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 2:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 2:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 4:1,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,ω₁:ω₂ = 4:1,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,mixed speed,8,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,mixed speed,16,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear
+redesign_xi_run_level_by_omega,physical_relevant_ordering_errors,mixed speed,32,5,0.0,0.0,0.0,0.0,0 0 0 0 0,linear

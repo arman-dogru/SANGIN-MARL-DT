@@ -1,0 +1,98 @@
+condition,num_agents,panel,aoi_lo_delta,aoi_hi_delta,episodes,pair_decisions,errors,pr_error
+ideal network,8,All active pairs,0.75,1.0,20,15380,0,0.0
+ideal network,8,All active pairs,1.5,1.75,20,954,48,0.050314465408805034
+ideal network,8,All active pairs,1.75,2.0,20,734,40,0.05449591280653951
+ideal network,8,Coordination-relevant pairs,0.75,1.0,20,92,0,0.0
+ideal network,8,Coordination-relevant pairs,1.5,1.75,20,4,0,0.0
+ideal network,8,Coordination-relevant pairs,1.75,2.0,20,9,0,0.0
+ideal network,16,All active pairs,0.5,0.75,20,2,0,0.0
+ideal network,16,All active pairs,0.75,1.0,20,64336,0,0.0
+ideal network,16,All active pairs,1.5,1.75,20,4114,133,0.03232863393291201
+ideal network,16,All active pairs,1.75,2.0,20,3071,113,0.036795831976554866
+ideal network,16,Coordination-relevant pairs,0.75,1.0,20,727,0,0.0
+ideal network,16,Coordination-relevant pairs,1.5,1.75,20,67,4,0.05970149253731343
+ideal network,16,Coordination-relevant pairs,1.75,2.0,20,57,6,0.10526315789473684
+ideal network,32,All active pairs,0.5,0.75,20,2,0,0.0
+ideal network,32,All active pairs,0.75,1.0,20,288377,0,0.0
+ideal network,32,All active pairs,1.5,1.75,20,17052,701,0.04110954726718274
+ideal network,32,All active pairs,1.75,2.0,20,11998,464,0.038673112185364227
+ideal network,32,Coordination-relevant pairs,0.5,0.75,20,2,0,0.0
+ideal network,32,Coordination-relevant pairs,0.75,1.0,20,3822,0,0.0
+ideal network,32,Coordination-relevant pairs,1.5,1.75,20,147,2,0.013605442176870748
+ideal network,32,Coordination-relevant pairs,1.75,2.0,20,141,7,0.04964539007092199
+nominal LEO,8,All active pairs,0.75,1.0,20,15290,0,0.0
+nominal LEO,8,All active pairs,1.5,1.75,20,945,48,0.050793650793650794
+nominal LEO,8,All active pairs,1.75,2.0,20,738,38,0.051490514905149054
+nominal LEO,8,Coordination-relevant pairs,0.75,1.0,20,76,0,0.0
+nominal LEO,8,Coordination-relevant pairs,1.5,1.75,20,4,0,0.0
+nominal LEO,8,Coordination-relevant pairs,1.75,2.0,20,6,0,0.0
+nominal LEO,16,All active pairs,0.5,0.75,20,6,0,0.0
+nominal LEO,16,All active pairs,0.75,1.0,20,67232,0,0.0
+nominal LEO,16,All active pairs,1.5,1.75,20,4367,140,0.03205862147927639
+nominal LEO,16,All active pairs,1.75,2.0,20,3206,119,0.03711790393013101
+nominal LEO,16,Coordination-relevant pairs,0.5,0.75,20,2,0,0.0
+nominal LEO,16,Coordination-relevant pairs,0.75,1.0,20,1417,0,0.0
+nominal LEO,16,Coordination-relevant pairs,1.5,1.75,20,285,5,0.017543859649122806
+nominal LEO,16,Coordination-relevant pairs,1.75,2.0,20,176,5,0.028409090909090908
+nominal LEO,32,All active pairs,0.5,0.75,19,6,0,0.0
+nominal LEO,32,All active pairs,0.75,1.0,19,265538,0,0.0
+nominal LEO,32,All active pairs,1.5,1.75,19,18888,708,0.03748411689961881
+nominal LEO,32,All active pairs,1.75,2.0,19,14467,498,0.034423169973042095
+nominal LEO,32,All active pairs,2.5,2.75,19,38,0,0.0
+nominal LEO,32,All active pairs,2.75,3.0,19,406,11,0.027093596059113302
+nominal LEO,32,Coordination-relevant pairs,0.5,0.75,19,2,0,0.0
+nominal LEO,32,Coordination-relevant pairs,0.75,1.0,19,4375,0,0.0
+nominal LEO,32,Coordination-relevant pairs,1.5,1.75,19,381,2,0.005249343832020997
+nominal LEO,32,Coordination-relevant pairs,1.75,2.0,19,283,4,0.014134275618374558
+nominal LEO,32,Coordination-relevant pairs,2.5,2.75,19,1,0,0.0
+nominal LEO,32,Coordination-relevant pairs,2.75,3.0,19,4,0,0.0
+100 ms deadline,8,All active pairs,0.75,1.0,20,15262,0,0.0
+100 ms deadline,8,All active pairs,1.5,1.75,20,945,48,0.050793650793650794
+100 ms deadline,8,All active pairs,1.75,2.0,20,738,38,0.051490514905149054
+100 ms deadline,8,All active pairs,2.5,2.75,20,28,0,0.0
+100 ms deadline,8,Coordination-relevant pairs,0.75,1.0,20,76,0,0.0
+100 ms deadline,8,Coordination-relevant pairs,1.5,1.75,20,4,0,0.0
+100 ms deadline,8,Coordination-relevant pairs,1.75,2.0,20,6,0,0.0
+100 ms deadline,16,All active pairs,0.5,0.75,20,10,0,0.0
+100 ms deadline,16,All active pairs,0.75,1.0,20,39969,0,0.0
+100 ms deadline,16,All active pairs,1.5,1.75,20,22392,544,0.024294390853876385
+100 ms deadline,16,All active pairs,1.75,2.0,20,20393,537,0.026332565095866227
+100 ms deadline,16,All active pairs,2.5,2.75,20,1600,19,0.011875
+100 ms deadline,16,All active pairs,2.75,3.0,20,843,9,0.010676156583629894
+100 ms deadline,16,Coordination-relevant pairs,0.5,0.75,20,4,0,0.0
+100 ms deadline,16,Coordination-relevant pairs,0.75,1.0,20,3231,0,0.0
+100 ms deadline,16,Coordination-relevant pairs,1.5,1.75,20,449,11,0.024498886414253896
+100 ms deadline,16,Coordination-relevant pairs,1.75,2.0,20,452,6,0.01327433628318584
+100 ms deadline,16,Coordination-relevant pairs,2.5,2.75,20,15,0,0.0
+100 ms deadline,16,Coordination-relevant pairs,2.75,3.0,20,18,0,0.0
+100 ms deadline,32,All active pairs,0.5,0.75,20,118,0,0.0
+100 ms deadline,32,All active pairs,0.75,1.0,20,97851,0,0.0
+100 ms deadline,32,All active pairs,1.5,1.75,20,269481,3404,0.012631688319399141
+100 ms deadline,32,All active pairs,1.75,2.0,20,181786,2427,0.01335086310276919
+100 ms deadline,32,All active pairs,2.5,2.75,20,24850,433,0.017424547283702213
+100 ms deadline,32,All active pairs,2.75,3.0,20,24793,406,0.01637558988424152
+100 ms deadline,32,Coordination-relevant pairs,0.5,0.75,20,6,0,0.0
+100 ms deadline,32,Coordination-relevant pairs,0.75,1.0,20,3729,0,0.0
+100 ms deadline,32,Coordination-relevant pairs,1.5,1.75,20,12085,16,0.001323955316508068
+100 ms deadline,32,Coordination-relevant pairs,1.75,2.0,20,7306,18,0.0024637284423761293
+100 ms deadline,32,Coordination-relevant pairs,2.5,2.75,20,384,8,0.020833333333333332
+100 ms deadline,32,Coordination-relevant pairs,2.75,3.0,20,435,6,0.013793103448275862
+real time,8,All active pairs,0.75,1.0,20,1022,0,0.0
+real time,8,All active pairs,1.5,1.75,20,17378,111,0.006387386350558177
+real time,8,All active pairs,1.75,2.0,20,11445,62,0.005417212756662298
+real time,8,All active pairs,2.5,2.75,20,1930,26,0.013471502590673576
+real time,8,All active pairs,2.75,3.0,20,1661,12,0.007224563515954244
+real time,8,Coordination-relevant pairs,1.5,1.75,20,5452,0,0.0
+real time,8,Coordination-relevant pairs,1.75,2.0,20,3055,0,0.0
+real time,8,Coordination-relevant pairs,2.5,2.75,20,6,0,0.0
+real time,8,Coordination-relevant pairs,2.75,3.0,20,10,0,0.0
+real time,16,All active pairs,0.75,1.0,19,4170,0,0.0
+real time,16,All active pairs,1.5,1.75,19,285950,620,0.0021682112257387655
+real time,16,All active pairs,1.75,2.0,19,165998,505,0.0030422053277750333
+real time,16,All active pairs,2.5,2.75,19,58727,133,0.002264716399611763
+real time,16,All active pairs,2.75,3.0,19,61300,138,0.0022512234910277325
+real time,16,Coordination-relevant pairs,0.75,1.0,19,36,0,0.0
+real time,16,Coordination-relevant pairs,1.5,1.75,19,49489,6,0.00012123906322617147
+real time,16,Coordination-relevant pairs,1.75,2.0,19,27538,2,7.262691553489724e-05
+real time,16,Coordination-relevant pairs,2.5,2.75,19,8140,1,0.00012285012285012285
+real time,16,Coordination-relevant pairs,2.75,3.0,19,8700,0,0.0

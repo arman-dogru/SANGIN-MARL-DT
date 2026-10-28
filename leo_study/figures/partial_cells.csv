@@ -1,0 +1,16 @@
+group,treatment,route,downlink_ms,num_agents,episodes
+delay,A1,allocated,150,32,0
+delay,A1,allocated,300,16,0
+delay,A1,allocated,300,32,0
+delay,A2,allocated,150,32,8
+delay,A2,allocated,300,16,0
+delay,A2,allocated,300,32,0
+delay,A3,allocated,150,32,0
+delay,A3,allocated,300,32,0
+delay,A4,allocated,300,16,9
+delay,A4,allocated,300,32,0
+nominal,A3,allocated,0,32,9
+routes,A4,cloud,0,32,0
+routes,A4,edge,0,32,0
+routes_speed,A3,cloud,0,32,0
+routes_speed,A3,edge,0,32,0

@@ -1,0 +1,65 @@
+panel,condition,aoi_bin_low_s,aoi_bin_high_s,pair_decisions,e2e_errors,error_rate,ci_low,ci_high
+all active pairs,ideal network,0.0,0.3,139197,0,0.0,0.0,0.0
+all active pairs,ideal network,0.3,0.45,0,0,nan,nan,nan
+all active pairs,ideal network,0.45,0.7,37923,1499,0.0395274635445508,0.031154918857099007,0.048212729184862406
+all active pairs,ideal network,0.7,1.0,0,0,nan,nan,nan
+all active pairs,ideal network,1.0,1.4,0,0,nan,nan,nan
+all active pairs,ideal network,1.4,2.0,0,0,nan,nan,nan
+all active pairs,ideal network,2.0,3.0,0,0,nan,nan,nan
+all active pairs,ideal network,3.0,60.0,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,0.0,0.3,1287,0,0.0,0.0,0.0
+FoV-relevant pairs,ideal network,0.3,0.45,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,0.45,0.7,425,19,0.04470588235294118,0.004830626855247075,0.10451397672653677
+FoV-relevant pairs,ideal network,0.7,1.0,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,1.0,1.4,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,1.4,2.0,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,2.0,3.0,0,0,nan,nan,nan
+FoV-relevant pairs,ideal network,3.0,60.0,0,0,nan,nan,nan
+all active pairs,nominal LEO,0.0,0.3,142832,0,0.0,0.0,0.0
+all active pairs,nominal LEO,0.3,0.45,0,0,nan,nan,nan
+all active pairs,nominal LEO,0.45,0.7,39827,1499,0.03763778341326236,0.030905138530051997,0.044129391456295824
+all active pairs,nominal LEO,0.7,1.0,444,11,0.024774774774774775,0.0,0.029411764705882353
+all active pairs,nominal LEO,1.0,1.4,0,0,nan,nan,nan
+all active pairs,nominal LEO,1.4,2.0,0,0,nan,nan,nan
+all active pairs,nominal LEO,2.0,3.0,0,0,nan,nan,nan
+all active pairs,nominal LEO,3.0,60.0,0,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,0.0,0.3,4071,0,0.0,0.0,0.0
+FoV-relevant pairs,nominal LEO,0.3,0.45,0,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,0.45,0.7,1099,16,0.014558689717925387,0.002699349502683562,0.05797129461056934
+FoV-relevant pairs,nominal LEO,0.7,1.0,5,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,1.0,1.4,0,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,1.4,2.0,0,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,2.0,3.0,0,0,nan,nan,nan
+FoV-relevant pairs,nominal LEO,3.0,60.0,0,0,nan,nan,nan
+all active pairs,+150 ms DL,0.0,0.3,53415,0,0.0,0.0,0.0
+all active pairs,+150 ms DL,0.3,0.45,0,0,nan,nan,nan
+all active pairs,+150 ms DL,0.45,0.7,133340,2944,0.02207889605519724,0.019392949478745522,0.025880135247991525
+all active pairs,+150 ms DL,0.7,1.0,51528,859,0.01667054805154479,0.01451146932162544,0.019081195845064833
+all active pairs,+150 ms DL,1.0,1.4,0,0,nan,nan,nan
+all active pairs,+150 ms DL,1.4,2.0,0,0,nan,nan,nan
+all active pairs,+150 ms DL,2.0,3.0,0,0,nan,nan,nan
+all active pairs,+150 ms DL,3.0,60.0,0,0,nan,nan,nan
+FoV-relevant pairs,+150 ms DL,0.0,0.3,1260,0,0.0,0.0,0.0
+FoV-relevant pairs,+150 ms DL,0.3,0.45,0,0,nan,nan,nan
+FoV-relevant pairs,+150 ms DL,0.45,0.7,3095,27,0.008723747980613893,0.003647905975809879,0.01858424192743163
+FoV-relevant pairs,+150 ms DL,0.7,1.0,840,14,0.016666666666666666,0.0,0.06127587948156875
+FoV-relevant pairs,+150 ms DL,1.0,1.4,0,0,nan,nan,nan
+FoV-relevant pairs,+150 ms DL,1.4,2.0,0,0,nan,nan,nan
+FoV-relevant pairs,+150 ms DL,2.0,3.0,0,0,nan,nan,nan
+FoV-relevant pairs,+150 ms DL,3.0,60.0,0,0,nan,nan,nan
+all active pairs,+300 ms DL,0.0,0.3,2232,0,0.0,0.0,0.0
+all active pairs,+300 ms DL,0.3,0.45,0,0,nan,nan,nan
+all active pairs,+300 ms DL,0.45,0.7,115549,534,0.004621416022639746,0.0034860022625977016,0.006668286536286061
+all active pairs,+300 ms DL,0.7,1.0,123618,309,0.0024996359753433964,0.00179697406868939,0.003628333507764228
+all active pairs,+300 ms DL,1.0,1.4,0,0,nan,nan,nan
+all active pairs,+300 ms DL,1.4,2.0,0,0,nan,nan,nan
+all active pairs,+300 ms DL,2.0,3.0,0,0,nan,nan,nan
+all active pairs,+300 ms DL,3.0,60.0,0,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,0.0,0.3,14,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,0.3,0.45,0,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,0.45,0.7,19144,4,0.0002089427496865859,0.0,0.00041318561356941104
+FoV-relevant pairs,+300 ms DL,0.7,1.0,16856,1,5.932605600379687e-05,0.0,0.00023915149184586566
+FoV-relevant pairs,+300 ms DL,1.0,1.4,0,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,1.4,2.0,0,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,2.0,3.0,0,0,nan,nan,nan
+FoV-relevant pairs,+300 ms DL,3.0,60.0,0,0,nan,nan,nan

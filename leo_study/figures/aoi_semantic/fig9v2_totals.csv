@@ -1,0 +1,23 @@
+condition,num_agents,panel,episodes,pair_decisions,errors
+ideal network,8,all active pairs,20,17068,88
+nominal LEO,8,all active pairs,20,16973,86
+100 ms deadline,8,all active pairs,20,16973,86
+real time,8,all active pairs,20,33436,211
+ideal network,8,coordination-relevant pairs,20,105,0
+nominal LEO,8,coordination-relevant pairs,20,86,0
+100 ms deadline,8,coordination-relevant pairs,20,86,0
+real time,8,coordination-relevant pairs,20,8523,0
+ideal network,16,all active pairs,20,71523,246
+nominal LEO,16,all active pairs,20,74811,259
+100 ms deadline,16,all active pairs,20,85207,1109
+real time,16,all active pairs,19,576145,1396
+ideal network,16,coordination-relevant pairs,20,851,10
+nominal LEO,16,coordination-relevant pairs,20,1880,10
+100 ms deadline,16,coordination-relevant pairs,20,4169,17
+real time,16,coordination-relevant pairs,19,93903,9
+ideal network,32,all active pairs,20,317429,1165
+nominal LEO,32,all active pairs,19,299343,1217
+100 ms deadline,32,all active pairs,20,598879,6670
+ideal network,32,coordination-relevant pairs,20,4112,9
+nominal LEO,32,coordination-relevant pairs,19,5046,6
+100 ms deadline,32,coordination-relevant pairs,20,23945,48

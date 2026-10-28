@@ -1,0 +1,1 @@
+{"job": "smoke-A4-8-0-dl300", "success": true, "makespan_seconds": 20.9, "sim_wall_seconds": 6.2528011450049235, "speed_limited_nonmovement": 82, "cached_fallback_decisions": 273, "command_cutoff_misses": 248, "ordering_errors": 85, "missed_physical_conflicts": 7, "peak_rss_bytes": 515166208}

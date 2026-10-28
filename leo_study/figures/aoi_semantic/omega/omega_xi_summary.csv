@@ -1,0 +1,219 @@
+metric,series,num_agents,runs,zero_runs,errors,denominator,pooled_ratio_pct,mean_pct,ci_low_pct,ci_high_pct,median_pct,view
+R_E2E,ω₁:ω₂ = 1:1,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:1,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:1,8,4,4,0,8120,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:1,16,5,3,8,49680,0.01610305958132045,0.017934002869440458,0.0,0.037541846006695356,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:1,32,2,0,16,113088,0.014148273910582909,0.013632634275194108,0.007754342431761787,0.01951092611862643,0.013632634275194108,allocator by omega
+R_E2E,ω₁:ω₂ = 1:2,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:2,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:2,8,4,4,0,8120,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:2,16,5,4,4,50160,0.007974481658692184,0.007936507936507936,0.0,0.023809523809523808,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:2,32,2,1,6,98208,0.006109481915933529,0.0057060255629945225,0.0,0.011412051125989045,0.0057060255629945225,allocator by omega
+R_E2E,ω₁:ω₂ = 1:4,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:4,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:4,8,4,4,0,8120,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:4,16,5,3,6,48720,0.012315270935960592,0.013679890560875513,0.0,0.033287733698130414,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 1:4,32,1,0,8,53568,0.014934289127837515,0.014934289127837515,0.014934289127837515,0.014934289127837515,0.014934289127837515,allocator by omega
+R_E2E,ω₁:ω₂ = 2:1,2,5,5,0,308,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 2:1,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 2:1,8,4,4,0,8176,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 2:1,16,4,2,10,39840,0.025100401606425703,0.027135854341736695,0.0,0.05427170868347339,0.024509803921568627,allocator by omega
+R_E2E,ω₁:ω₂ = 2:1,32,1,0,14,54560,0.025659824046920823,0.025659824046920823,0.025659824046920823,0.025659824046920823,0.025659824046920823,allocator by omega
+R_E2E,ω₁:ω₂ = 4:1,2,5,5,0,308,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 4:1,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 4:1,8,4,4,0,8176,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,ω₁:ω₂ = 4:1,16,4,2,10,39840,0.025100401606425703,0.027135854341736695,0.0,0.05427170868347339,0.024509803921568627,allocator by omega
+R_E2E,ω₁:ω₂ = 4:1,32,3,1,30,158720,0.018901209677419355,0.018340270551508844,0.0,0.03225806451612903,0.0227627471383975,allocator by omega
+R_FoV,ω₁:ω₂ = 1:1,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:1,4,3,3,0,12,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:1,8,2,2,0,24,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:1,16,5,5,0,304,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:1,32,2,2,0,612,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:2,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:2,4,3,3,0,10,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:2,8,2,2,0,26,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:2,16,5,5,0,338,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:2,32,2,2,0,472,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:4,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:4,4,3,3,0,12,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:4,8,2,2,0,24,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:4,16,5,5,0,352,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 1:4,32,1,1,0,278,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 2:1,2,1,1,0,12,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 2:1,4,3,3,0,12,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 2:1,8,2,2,0,24,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 2:1,16,4,4,0,244,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 2:1,32,1,1,0,316,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 4:1,2,1,1,0,12,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 4:1,4,3,3,0,10,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 4:1,8,2,2,0,26,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 4:1,16,4,4,0,232,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_FoV,ω₁:ω₂ = 4:1,32,3,3,0,892,0.0,0.0,0.0,0.0,0.0,allocator by omega
+R_E2E,allocator,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,allocator,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,allocator,8,4,4,0,8120,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,allocator,16,5,3,8,49680,0.01610305958132045,0.017934002869440458,0.0,0.0392156862745098,0.0,"routes, omega 1:1"
+R_E2E,allocator,32,2,0,16,113088,0.014148273910582909,0.013632634275194108,0.007754342431761787,0.01951092611862643,0.013632634275194108,"routes, omega 1:1"
+R_E2E,all-cloud,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-cloud,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-cloud,8,4,4,0,8120,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-cloud,16,5,4,4,49440,0.008090614886731391,0.00980392156862745,0.0,0.029411764705882353,0.0,"routes, omega 1:1"
+R_E2E,all-cloud,32,3,0,32,202368,0.015812776723592662,0.0160825048216077,0.014066016504126028,0.017380422691879865,0.016801075268817207,"routes, omega 1:1"
+R_E2E,all-UAV,2,5,5,0,314,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-UAV,4,5,5,0,1992,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-UAV,8,4,4,0,7952,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_E2E,all-UAV,16,3,3,0,39600,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,allocator,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,allocator,4,3,3,0,12,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,allocator,8,2,2,0,24,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,allocator,16,5,5,0,304,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,allocator,32,2,2,0,612,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-cloud,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-cloud,4,3,3,0,10,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-cloud,8,2,2,0,32,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-cloud,16,5,5,0,340,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-cloud,32,3,3,0,952,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-UAV,2,1,1,0,14,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-UAV,4,3,3,0,12,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-UAV,8,2,2,0,32,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV,all-UAV,16,3,3,0,244,0.0,0.0,0.0,0.0,0.0,"routes, omega 1:1"
+R_FoV_UL,allocator ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:1,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:1,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:1,16,5,,0,304,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:1,16,5,,0,304,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:1,32,2,,0,612,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:1,32,2,,0,612,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:2,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:2,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:2,8,2,,0,26,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:2,8,2,,0,26,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:2,16,5,,0,338,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:2,16,5,,0,338,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:2,32,2,,0,472,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:2,32,2,,0,472,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:4,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:4,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:4,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:4,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:4,16,5,,0,352,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:4,16,5,,0,352,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 1:4,32,1,,0,278,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 1:4,32,1,,0,278,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 2:1,2,1,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 2:1,2,1,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 2:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 2:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 2:1,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 2:1,8,2,,0,24,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 2:1,16,4,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 2:1,16,4,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 2:1,32,1,,0,316,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 2:1,32,1,,0,316,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 4:1,2,1,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 4:1,2,1,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 4:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 4:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 4:1,8,2,,0,26,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 4:1,8,2,,0,26,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 4:1,16,4,,0,232,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 4:1,16,4,,0,232,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,allocator ω₁:ω₂ = 4:1,32,3,,0,892,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,allocator ω₁:ω₂ = 4:1,32,3,,0,892,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:2,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:2,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:2,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:2,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:2,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:2,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:2,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:2,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:4,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:4,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:4,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:4,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:4,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:4,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 1:4,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 1:4,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 2:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 2:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 2:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 2:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 2:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 2:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 2:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 2:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 2:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 2:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 4:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 4:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 4:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 4:1,4,3,,0,10,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 4:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 4:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 4:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 4:1,16,5,,0,340,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-cloud ω₁:ω₂ = 4:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-cloud ω₁:ω₂ = 4:1,32,3,,0,952,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:2,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:2,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:2,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:2,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:2,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:2,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:2,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:4,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:4,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:4,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:4,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:4,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 1:4,16,4,,0,368,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 1:4,16,4,,0,368,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 2:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 2:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 2:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 2:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 2:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 2:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 2:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 2:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 4:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 4:1,2,1,,0,14,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 4:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 4:1,4,3,,0,12,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 4:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 4:1,8,2,,0,32,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_UL,all-UAV ω₁:ω₂ = 4:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split
+R_FoV_DL,all-UAV ω₁:ω₂ = 4:1,16,3,,0,244,,0.0,0.0,0.0,,FoV UL/DL split

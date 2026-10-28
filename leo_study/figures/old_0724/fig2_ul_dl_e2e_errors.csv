@@ -1,0 +1,91 @@
+scope,error,condition,num_agents,episodes,errors,pairs,rate,ci_low,ci_high
+all directed pairs,UL (DT vs physical),ideal,2,10,4,773,0.00517464424320828,0.0013226206160988768,0.008982420762587933
+all directed pairs,UL (DT vs physical),ideal,4,10,20,5958,0.003356831151393085,0.001689680905535401,0.0052557809121374895
+all directed pairs,UL (DT vs physical),ideal,8,10,167,24899,0.006707096670549018,0.004082589917055883,0.010277059620053831
+all directed pairs,UL (DT vs physical),ideal,16,10,615,268140,0.0022935779816513763,0.0010701557201456334,0.004968013585148528
+all directed pairs,UL (DT vs physical),ideal,32,10,2907,2236092,0.0013000359555868006,0.0007560721893992906,0.002977305727714297
+all directed pairs,UL (DT vs physical),nominal,2,10,4,773,0.00517464424320828,0.0014121817576722847,0.009146441096763908
+all directed pairs,UL (DT vs physical),nominal,4,10,20,5958,0.003356831151393085,0.00163314637626487,0.005264165955383177
+all directed pairs,UL (DT vs physical),nominal,8,10,165,24948,0.006613756613756613,0.0038326134917343875,0.010492516906067995
+all directed pairs,UL (DT vs physical),nominal,16,10,631,393720,0.001602661790104643,0.0008623712008736016,0.004751467462913939
+all directed pairs,UL (DT vs physical),nominal,32,10,2881,3779830,0.0007622035911667985,0.0005328937761077234,0.001347925152444417
+all directed pairs,UL (DT vs physical),+150 ms,8,10,165,24948,0.006613756613756613,0.0038993821147429914,0.010564133176676812
+all directed pairs,UL (DT vs physical),+150 ms,16,10,641,517530,0.0012385755415145016,0.0006861978621714926,0.004640088593576965
+all directed pairs,UL (DT vs physical),+150 ms,32,10,2879,3321371,0.000866810723643941,0.0005802890339456367,0.0016231036457249625
+all directed pairs,UL (DT vs physical),+300 ms,8,10,191,84420,0.0022624970386164417,0.001117588895506278,0.008577435116379838
+all directed pairs,UL (DT vs physical),+300 ms,16,9,421,1129260,0.0003728105130793617,0.0002936587740509309,0.0005036636268771834
+all directed pairs,DL (cached vs DT),ideal,2,10,0,773,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),ideal,4,10,0,5958,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),ideal,8,10,0,24899,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),ideal,16,10,0,268140,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),ideal,32,10,0,2236092,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),nominal,2,10,0,773,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),nominal,4,10,0,5958,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),nominal,8,10,0,24948,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),nominal,16,10,0,393720,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),nominal,32,10,0,3779830,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),+150 ms,8,10,0,24948,0.0,0.0,0.0
+all directed pairs,DL (cached vs DT),+150 ms,16,10,250,517530,0.0004830637837420053,0.00026808347626258993,0.0011924764278566076
+all directed pairs,DL (cached vs DT),+150 ms,32,10,2992,3321371,0.0009008328187366001,0.0006020102194687664,0.0017457296798437058
+all directed pairs,DL (cached vs DT),+300 ms,8,10,843,84420,0.009985785358919688,0.004880720019403056,0.037781999413441215
+all directed pairs,DL (cached vs DT),+300 ms,16,9,2670,1129260,0.0023643802135912013,0.00196950290087545,0.0032575938024590537
+all directed pairs,E2E (cached vs physical),ideal,2,10,4,773,0.00517464424320828,0.0013060754604872252,0.009091204634117507
+all directed pairs,E2E (cached vs physical),ideal,4,10,20,5958,0.003356831151393085,0.0015128402408374408,0.005193372440053514
+all directed pairs,E2E (cached vs physical),ideal,8,10,167,24899,0.006707096670549018,0.004027734595224304,0.010590669082216543
+all directed pairs,E2E (cached vs physical),ideal,16,10,615,268140,0.0022935779816513763,0.0010464102832580373,0.004941833212325016
+all directed pairs,E2E (cached vs physical),ideal,32,10,2907,2236092,0.0013000359555868006,0.0007619224452485432,0.0026994579794301513
+all directed pairs,E2E (cached vs physical),nominal,2,10,4,773,0.00517464424320828,0.0012482458341465227,0.008998009037182307
+all directed pairs,E2E (cached vs physical),nominal,4,10,20,5958,0.003356831151393085,0.0015813466734491562,0.005224230096958011
+all directed pairs,E2E (cached vs physical),nominal,8,10,165,24948,0.006613756613756613,0.0038859157655476875,0.010699490263709394
+all directed pairs,E2E (cached vs physical),nominal,16,10,631,393720,0.001602661790104643,0.0008233221942008688,0.0046660387665990385
+all directed pairs,E2E (cached vs physical),nominal,32,10,2881,3779830,0.0007622035911667985,0.0005302465645832207,0.001319335261513789
+all directed pairs,E2E (cached vs physical),+150 ms,8,10,165,24948,0.006613756613756613,0.004049124495839575,0.010931746875537305
+all directed pairs,E2E (cached vs physical),+150 ms,16,10,839,517530,0.0016211620582381697,0.0009060633983112607,0.005543295237038474
+all directed pairs,E2E (cached vs physical),+150 ms,32,10,5121,3321371,0.0015418331767212998,0.0010340761592802913,0.002878949606124766
+all directed pairs,E2E (cached vs physical),+300 ms,8,10,872,84420,0.010329305851693912,0.005463388168193004,0.038276037733304374
+all directed pairs,E2E (cached vs physical),+300 ms,16,9,2831,1129260,0.0025069514549350904,0.0020397503730837066,0.0035073839662447255
+FoV-relevant pairs,UL (DT vs physical),ideal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),ideal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),ideal,8,10,0,91,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),ideal,16,10,11,641,0.0171606864274571,0.0,0.06407106516017633
+FoV-relevant pairs,UL (DT vs physical),ideal,32,10,17,2328,0.007302405498281787,0.002684354213938897,0.015098188197526051
+FoV-relevant pairs,UL (DT vs physical),nominal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),nominal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),nominal,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),nominal,16,10,11,1642,0.006699147381242387,0.0,0.050891047883414295
+FoV-relevant pairs,UL (DT vs physical),nominal,32,10,12,11159,0.0010753651760910476,0.00029212551629991635,0.004033342296316214
+FoV-relevant pairs,UL (DT vs physical),+150 ms,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),+150 ms,16,10,12,780,0.015384615384615385,0.0,0.05305207160330831
+FoV-relevant pairs,UL (DT vs physical),+150 ms,32,10,12,9281,0.0012929641202456632,0.0005342570594578267,0.002420384894775073
+FoV-relevant pairs,UL (DT vs physical),+300 ms,8,10,0,1501,0.0,0.0,0.0
+FoV-relevant pairs,UL (DT vs physical),+300 ms,16,9,5,40222,0.00012431007906121028,0.0,0.000389698481274995
+FoV-relevant pairs,DL (cached vs DT),ideal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),ideal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),ideal,8,10,0,91,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),ideal,16,10,0,641,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),ideal,32,10,0,2328,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),nominal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),nominal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),nominal,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),nominal,16,10,0,1642,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),nominal,32,10,0,11159,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),+150 ms,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,DL (cached vs DT),+150 ms,16,10,2,780,0.002564102564102564,0.0,0.008922571588322893
+FoV-relevant pairs,DL (cached vs DT),+150 ms,32,10,27,9281,0.002909169270552742,0.0006228284654604703,0.006392362806415592
+FoV-relevant pairs,DL (cached vs DT),+300 ms,8,10,2,1501,0.0013324450366422385,0.0,0.05714285714285714
+FoV-relevant pairs,DL (cached vs DT),+300 ms,16,9,18,40222,0.00044751628462035703,0.00015395927209583014,0.0007823094440458247
+FoV-relevant pairs,E2E (cached vs physical),ideal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),ideal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),ideal,8,10,0,91,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),ideal,16,10,11,641,0.0171606864274571,0.0,0.06301187419768933
+FoV-relevant pairs,E2E (cached vs physical),ideal,32,10,17,2328,0.007302405498281787,0.0024637404983526515,0.01568031358885017
+FoV-relevant pairs,E2E (cached vs physical),nominal,2,10,0,22,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),nominal,4,10,0,54,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),nominal,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),nominal,16,10,11,1642,0.006699147381242387,0.0,0.04864307086754411
+FoV-relevant pairs,E2E (cached vs physical),nominal,32,10,12,11159,0.0010753651760910476,0.0002949309366807971,0.004909791578859853
+FoV-relevant pairs,E2E (cached vs physical),+150 ms,8,10,0,93,0.0,0.0,0.0
+FoV-relevant pairs,E2E (cached vs physical),+150 ms,16,10,14,780,0.017948717948717947,0.0018300405268490375,0.056726973372693
+FoV-relevant pairs,E2E (cached vs physical),+150 ms,32,10,33,9281,0.0035556513306755737,0.0010941116195254668,0.0075653920654549
+FoV-relevant pairs,E2E (cached vs physical),+300 ms,8,10,2,1501,0.0013324450366422385,0.0,0.05883442265795206
+FoV-relevant pairs,E2E (cached vs physical),+300 ms,16,9,15,40222,0.00037293023718363086,0.00010073450502124592,0.0006549874442057906

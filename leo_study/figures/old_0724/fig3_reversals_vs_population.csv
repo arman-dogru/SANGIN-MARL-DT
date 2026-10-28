@@ -1,0 +1,61 @@
+metric,setting,num_agents,episodes,value,ci_low,ci_high
+movement reversals / episode,homogeneous (A3),2,10,0.0,0.0,0.0
+movement reversals / episode,homogeneous (A3),4,10,0.1,0.0,0.3
+movement reversals / episode,homogeneous (A3),8,10,0.9,0.3,1.6
+movement reversals / episode,homogeneous (A3),16,10,10.1,6.7975,13.6
+movement reversals / episode,homogeneous (A3),32,9,53.77777777777778,39.43888888888889,69.11666666666666
+reversals per 100 active pair-seconds,homogeneous (A3),2,10,0.0,0.0,0.0
+reversals per 100 active pair-seconds,homogeneous (A3),4,10,0.222890894906943,0.0,0.5611395217440273
+reversals per 100 active pair-seconds,homogeneous (A3),8,10,0.5453719133464628,0.16010522043083592,1.0502644113565618
+reversals per 100 active pair-seconds,homogeneous (A3),16,10,1.3793856953606147,0.9273366447029866,1.8721178597613772
+reversals per 100 active pair-seconds,homogeneous (A3),32,9,1.8034231505131746,1.3846875514210042,2.1779198150885164
+FoV-relevant reversals / episode,homogeneous (A3),2,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,homogeneous (A3),4,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,homogeneous (A3),8,10,0.1,0.0,0.3
+FoV-relevant reversals / episode,homogeneous (A3),16,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,homogeneous (A3),32,9,0.1111111111111111,0.0,0.3333333333333333
+movement reversals / episode,heterogeneous (A4),2,10,0.7,0.4,1.0
+movement reversals / episode,heterogeneous (A4),4,10,2.0,1.2,2.8
+movement reversals / episode,heterogeneous (A4),8,10,14.5,7.7,23.104999999999997
+movement reversals / episode,heterogeneous (A4),16,10,48.6,38.9,56.7025
+movement reversals / episode,heterogeneous (A4),32,10,231.5,200.4925,261.5175
+reversals per 100 active pair-seconds,heterogeneous (A4),2,10,7.963594994311719,4.123340693321473,13.66120218579235
+reversals per 100 active pair-seconds,heterogeneous (A4),4,10,4.517732098486559,2.7623812767909754,6.335294468104657
+reversals per 100 active pair-seconds,heterogeneous (A4),8,10,8.70713985468084,4.313305906052591,15.363515491787384
+reversals per 100 active pair-seconds,heterogeneous (A4),16,10,6.565260854294435,5.11629849362563,8.240570230269052
+reversals per 100 active pair-seconds,heterogeneous (A4),32,10,7.2870122777500494,6.566678878729323,7.8957133163208635
+FoV-relevant reversals / episode,heterogeneous (A4),2,10,0.1,0.0,0.3
+FoV-relevant reversals / episode,heterogeneous (A4),4,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,heterogeneous (A4),8,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,heterogeneous (A4),16,10,1.1,0.0,2.9
+FoV-relevant reversals / episode,heterogeneous (A4),32,10,1.9,1.1,2.7
+movement reversals / episode,"homogeneous, ideal net",2,10,0.0,0.0,0.0
+movement reversals / episode,"homogeneous, ideal net",4,10,0.1,0.0,0.3
+movement reversals / episode,"homogeneous, ideal net",8,10,0.9,0.3,1.5
+movement reversals / episode,"homogeneous, ideal net",16,10,8.8,5.0,12.802499999999998
+movement reversals / episode,"homogeneous, ideal net",32,10,54.4,39.2,70.4
+reversals per 100 active pair-seconds,"homogeneous, ideal net",2,10,0.0,0.0,0.0
+reversals per 100 active pair-seconds,"homogeneous, ideal net",4,10,0.222890894906943,0.0,0.5650874885963222
+reversals per 100 active pair-seconds,"homogeneous, ideal net",8,10,0.5410116918637854,0.16052989884149158,1.076318317697628
+reversals per 100 active pair-seconds,"homogeneous, ideal net",16,10,1.2622097276208748,0.7390169760526695,1.8189072344874575
+reversals per 100 active pair-seconds,"homogeneous, ideal net",32,10,1.7674704216749089,1.3533903699695404,2.113345089745886
+FoV-relevant reversals / episode,"homogeneous, ideal net",2,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,"homogeneous, ideal net",4,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,"homogeneous, ideal net",8,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,"homogeneous, ideal net",16,10,0.1,0.0,0.3
+FoV-relevant reversals / episode,"homogeneous, ideal net",32,10,0.3,0.0,0.6
+movement reversals / episode,"heterogeneous, ideal net",2,10,0.7,0.4,1.0
+movement reversals / episode,"heterogeneous, ideal net",4,10,2.0,1.2,2.8
+movement reversals / episode,"heterogeneous, ideal net",8,10,14.7,7.6,22.402499999999996
+movement reversals / episode,"heterogeneous, ideal net",16,10,48.6,39.995,57.2025
+movement reversals / episode,"heterogeneous, ideal net",32,10,230.4,188.3,281.1
+reversals per 100 active pair-seconds,"heterogeneous, ideal net",2,10,7.963594994311717,3.992972991106227,13.66891121801436
+reversals per 100 active pair-seconds,"heterogeneous, ideal net",4,10,4.517732098486559,2.7596588058203695,6.320834003703513
+reversals per 100 active pair-seconds,"heterogeneous, ideal net",8,10,8.805031446540882,4.4799329037653735,15.023591838493422
+reversals per 100 active pair-seconds,"heterogeneous, ideal net",16,10,6.842372022301048,5.473074350831422,8.462680594204594
+reversals per 100 active pair-seconds,"heterogeneous, ideal net",32,10,7.50321182407183,6.355798831554739,8.542476294957291
+FoV-relevant reversals / episode,"heterogeneous, ideal net",2,10,0.1,0.0,0.3
+FoV-relevant reversals / episode,"heterogeneous, ideal net",4,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,"heterogeneous, ideal net",8,10,0.0,0.0,0.0
+FoV-relevant reversals / episode,"heterogeneous, ideal net",16,10,1.1,0.0,2.8024999999999975
+FoV-relevant reversals / episode,"heterogeneous, ideal net",32,10,1.7,0.7975000000000002,2.9

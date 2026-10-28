@@ -1,0 +1,5 @@
+condition,route,priority,num_agents,episodes,commands,p50_ms,p95_ms,frac_le_250ms
+nominal LEO,allocator,high,16,10,1965,52.54739060887914,96.98400129322593,1.0
+nominal LEO,allocator,low,16,10,1503,63.96099476427253,113.97587050699798,1.0
+nominal LEO,all-cloud,all robots,16,10,4097,73.55977073050546,161.59221581529383,1.0
+nominal LEO,all-UAV,all robots,16,10,5092,71.71494903445108,224.71282943087357,0.9785938727415554

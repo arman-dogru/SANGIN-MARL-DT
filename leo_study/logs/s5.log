@@ -1,0 +1,1 @@
+{"job": "smoke-A4-8-0-cloud", "success": true, "makespan_seconds": 22.299999999999997, "sim_wall_seconds": 4.75297738500376, "speed_limited_nonmovement": 84, "cached_fallback_decisions": 0, "command_cutoff_misses": 0, "ordering_errors": 10, "missed_physical_conflicts": 0, "peak_rss_bytes": 425545728}

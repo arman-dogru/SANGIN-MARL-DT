@@ -1,0 +1,135 @@
+series,weight_id,source,route,num_agents,case_id,success,steps,delta_s,ordering_errors,ordering_pairs_verified,relevant_pairs,fov_errors,physical_relevant_pairs,physical_relevant_ordering_errors,R_E2E,R_FoV,R_phys
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,16,agents-16-case-000,True,51,0.35,0,12240,54,0,52,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,16,agents-16-case-001,False,714,0.35,0,171360,50,0,50,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,16,agents-16-case-002,True,47,0.35,0,11280,108,0,110,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,16,agents-16-case-003,True,41,0.35,0,9840,98,0,92,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,16,agents-16-case-004,True,41,0.35,0,9840,28,0,28,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,32,agents-32-case-000,False,714,0.35,0,708288,1632,0,2960,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,32,agents-32-case-001,False,714,0.35,14,708288,1630,0,3010,0,1.976597090449083e-05,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,32,agents-32-case-002,False,714,0.35,3,708288,248,0,1604,0,4.235565193819463e-06,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,32,agents-32-case-003,False,714,0.35,0,708288,1484,0,2868,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,32,agents-32-case-004,False,714,0.35,1,708288,1587,0,1586,0,1.4118550646064877e-06,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,8,agents-8-case-000,True,53,0.35,0,2968,10,0,10,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,8,agents-8-case-001,True,40,0.35,0,2240,18,0,16,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,8,agents-8-case-002,False,714,0.35,0,39984,1420,0,1420,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,8,agents-8-case-003,False,714,0.35,0,39984,4,0,4,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,allocated,8,agents-8-case-004,True,34,0.35,0,1904,0,0,0,0,0.0,,
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,16,agents-16-case-000,True,51,0.35,0,12240,64,0,62,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,16,agents-16-case-001,True,45,0.35,0,10800,36,0,36,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,16,agents-16-case-002,True,45,0.35,0,10800,90,0,92,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,16,agents-16-case-003,True,42,0.35,0,10080,68,0,66,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,16,agents-16-case-004,False,714,0.35,0,171360,22,0,22,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,32,agents-32-case-000,False,714,0.35,149,708288,2063,4,3400,14,0.00021036640462636667,0.0019389238972370335,0.00411764705882353
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,32,agents-32-case-001,False,714,0.35,118,708288,1599,4,1602,0,0.00016659889762356554,0.0025015634771732333,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,32,agents-32-case-002,False,714,0.35,96,708288,263,0,1624,0,0.0001355380862022228,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,32,agents-32-case-003,False,714,0.35,148,708288,4270,0,4272,2,0.00020895454956176019,0.0,0.00046816479400749064
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,32,agents-32-case-004,False,714,0.35,221,708288,2957,0,2942,0,0.0003120199692780338,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,8,agents-8-case-000,True,53,0.35,0,2968,10,0,10,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,8,agents-8-case-001,True,37,0.35,0,2072,14,0,12,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,8,agents-8-case-002,False,714,0.35,0,39984,1420,0,1420,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,8,agents-8-case-003,True,62,0.35,0,3472,4,0,4,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,cloud,8,agents-8-case-004,True,34,0.35,0,1904,0,0,0,0,0.0,,
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,16,agents-16-case-000,True,49,0.35,24,11760,58,2,54,2,0.0020408163265306124,0.034482758620689655,0.037037037037037035
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,16,agents-16-case-001,True,40,0.35,10,9600,40,0,38,0,0.0010416666666666667,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,16,agents-16-case-002,True,49,0.35,16,11760,116,0,126,0,0.0013605442176870747,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,16,agents-16-case-003,False,714,0.35,32,171360,1526,0,1524,0,0.00018674136321195143,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,16,agents-16-case-004,True,43,0.35,50,10320,72,0,76,0,0.0048449612403100775,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,8,agents-8-case-000,True,53,0.35,0,2968,10,0,10,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,8,agents-8-case-001,True,32,0.35,0,1792,0,0,0,0,0.0,,
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,8,agents-8-case-002,False,714,0.35,0,39984,1420,0,1420,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,8,agents-8-case-003,False,714,0.35,0,39984,4,0,4,0,0.0,0.0,0.0
+mixed,W1,redesign_20261027-004052 episodes.csv,edge,8,agents-8-case-004,True,34,0.35,0,1904,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),allocated,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),allocated,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),allocated,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),allocated,8,agents-8-case-003,True,38,1.0,0,2128,4,0,4,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),allocated,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),cloud,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),cloud,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),cloud,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),cloud,8,agents-8-case-003,True,38,1.0,0,2128,12,0,12,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),cloud,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),edge,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),edge,8,agents-8-case-001,True,28,1.0,0,1568,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n8),edge,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),edge,8,agents-8-case-003,True,38,1.0,0,2128,12,0,12,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n8),edge,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W1,omega archive replay (uav6_n16),allocated,16,agents-16-case-000,True,48,1.0,0,11520,32,0,30,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),allocated,16,agents-16-case-001,True,42,1.0,0,10080,64,0,64,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),allocated,16,agents-16-case-002,True,42,1.0,0,10080,110,0,104,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),allocated,16,agents-16-case-003,True,34,1.0,4,8160,78,0,70,0,0.0004901960784313725,0.0,0.0
+same,W1,omega archive replay (uav6_n16),allocated,16,agents-16-case-004,True,41,1.0,4,9840,20,0,20,0,0.0004065040650406504,0.0,0.0
+same,W1,omega archive replay (uav6_n16),cloud,16,agents-16-case-000,True,48,1.0,0,11520,28,0,28,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),cloud,16,agents-16-case-001,True,39,1.0,0,9360,76,0,76,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),cloud,16,agents-16-case-002,True,44,1.0,0,10560,84,0,78,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),cloud,16,agents-16-case-003,True,34,1.0,4,8160,110,0,102,0,0.0004901960784313725,0.0,0.0
+same,W1,omega archive replay (uav6_n16),cloud,16,agents-16-case-004,True,41,1.0,0,9840,42,0,42,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),edge,16,agents-16-case-000,True,59,1.0,0,14160,94,0,92,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),edge,16,agents-16-case-001,False,250,1.0,0,60000,2048,0,2048,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),edge,16,agents-16-case-002,True,57,1.0,0,13680,116,0,112,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),edge,16,agents-16-case-003,False,250,1.0,0,60000,122,0,122,0,0.0,0.0,0.0
+same,W1,omega archive replay (uav6_n16),edge,16,agents-16-case-004,True,49,1.0,0,11760,34,0,34,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,16,agents-16-case-000,True,48,1.0,0,11520,32,0,30,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,16,agents-16-case-001,True,41,1.0,0,9840,64,0,64,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,16,agents-16-case-002,True,45,1.0,0,10800,110,0,104,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,16,agents-16-case-003,True,33,1.0,0,7920,80,0,72,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,16,agents-16-case-004,True,42,1.0,4,10080,52,0,50,0,0.0003968253968253968,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W2,omega archive replay (omega_w25),allocated,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,8,agents-8-case-003,True,38,1.0,0,2128,6,0,6,0,0.0,0.0,0.0
+same,W2,omega archive replay (omega_w25),allocated,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W3,omega archive replay (omega_w25),allocated,16,agents-16-case-000,True,48,1.0,0,11520,32,0,30,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,16,agents-16-case-001,True,38,1.0,0,9120,66,0,68,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,16,agents-16-case-002,True,40,1.0,0,9600,80,0,76,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,16,agents-16-case-003,True,34,1.0,4,8160,106,0,96,0,0.0004901960784313725,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,16,agents-16-case-004,True,43,1.0,2,10320,68,0,66,0,0.0001937984496124031,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W3,omega archive replay (omega_w25),allocated,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,8,agents-8-case-003,True,38,1.0,0,2128,4,0,4,0,0.0,0.0,0.0
+same,W3,omega archive replay (omega_w25),allocated,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W4,omega archive replay (omega_w25),allocated,16,agents-16-case-000,True,48,1.0,0,11520,38,0,40,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,16,agents-16-case-001,True,42,1.0,0,10080,62,0,62,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,16,agents-16-case-002,False,250,1.0,0,60000,1258,0,1256,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,16,agents-16-case-003,True,34,1.0,4,8160,92,0,90,0,0.0004901960784313725,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,16,agents-16-case-004,True,42,1.0,6,10080,52,0,50,0,0.0005952380952380953,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W4,omega archive replay (omega_w25),allocated,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,8,agents-8-case-003,True,39,1.0,0,2184,4,0,4,0,0.0,0.0,0.0
+same,W4,omega archive replay (omega_w25),allocated,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W5,omega archive replay (omega_w25),allocated,16,agents-16-case-000,True,48,1.0,0,11520,36,0,36,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,16,agents-16-case-001,True,42,1.0,0,10080,58,0,58,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,16,agents-16-case-002,False,250,1.0,0,60000,1258,0,1256,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,16,agents-16-case-003,True,34,1.0,4,8160,86,0,80,0,0.0004901960784313725,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,16,agents-16-case-004,True,42,1.0,6,10080,52,0,50,0,0.0005952380952380953,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,8,agents-8-case-000,True,51,1.0,0,2856,20,0,16,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,8,agents-8-case-001,True,31,1.0,0,1736,0,0,0,0,0.0,,
+same,W5,omega archive replay (omega_w25),allocated,8,agents-8-case-002,False,250,1.0,0,14000,494,0,494,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,8,agents-8-case-003,True,39,1.0,0,2184,6,0,6,0,0.0,0.0,0.0
+same,W5,omega archive replay (omega_w25),allocated,8,agents-8-case-004,True,25,1.0,0,1400,0,0,0,0,0.0,,
+same,W1,omega_sensitivity episodes.csv,allocated,32,agents-32-case-000,True,62,1.0,12,61504,400,0,,,0.0001951092611862643,0.0,
+same,W1,omega_sensitivity episodes.csv,allocated,32,agents-32-case-003,True,52,1.0,4,51584,212,0,,,7.754342431761787e-05,0.0,
+same,W1,omega_sensitivity episodes.csv,cloud,32,agents-32-case-000,True,86,1.0,12,85312,440,0,,,0.0001406601650412603,0.0,
+same,W1,omega_sensitivity episodes.csv,cloud,32,agents-32-case-003,True,58,1.0,10,57536,230,0,,,0.00017380422691879867,0.0,
+same,W1,omega_sensitivity episodes.csv,cloud,32,agents-32-case-004,True,60,1.0,10,59520,282,0,,,0.00016801075268817206,0.0,
+same,W2,omega_sensitivity episodes.csv,allocated,32,agents-32-case-001,True,53,1.0,6,52576,272,0,,,0.00011412051125989045,0.0,
+same,W2,omega_sensitivity episodes.csv,allocated,32,agents-32-case-003,True,46,1.0,0,45632,200,0,,,0.0,0.0,
+same,W2,omega_sensitivity episodes.csv,cloud,32,agents-32-case-000,True,86,1.0,12,85312,440,0,,,0.0001406601650412603,0.0,
+same,W2,omega_sensitivity episodes.csv,cloud,32,agents-32-case-003,True,58,1.0,10,57536,230,0,,,0.00017380422691879867,0.0,
+same,W2,omega_sensitivity episodes.csv,cloud,32,agents-32-case-004,True,60,1.0,10,59520,282,0,,,0.00016801075268817206,0.0,
+same,W3,omega_sensitivity episodes.csv,allocated,32,agents-32-case-001,True,54,1.0,8,53568,278,0,,,0.00014934289127837514,0.0,
+same,W3,omega_sensitivity episodes.csv,cloud,32,agents-32-case-000,True,86,1.0,12,85312,440,0,,,0.0001406601650412603,0.0,
+same,W3,omega_sensitivity episodes.csv,cloud,32,agents-32-case-003,True,58,1.0,10,57536,230,0,,,0.00017380422691879867,0.0,
+same,W3,omega_sensitivity episodes.csv,cloud,32,agents-32-case-004,True,60,1.0,10,59520,282,0,,,0.00016801075268817206,0.0,
+same,W4,omega_sensitivity episodes.csv,allocated,32,agents-32-case-001,True,55,1.0,14,54560,316,0,,,0.0002565982404692082,0.0,
+same,W4,omega_sensitivity episodes.csv,cloud,32,agents-32-case-000,True,86,1.0,12,85312,440,0,,,0.0001406601650412603,0.0,
+same,W4,omega_sensitivity episodes.csv,cloud,32,agents-32-case-003,True,58,1.0,10,57536,230,0,,,0.00017380422691879867,0.0,
+same,W4,omega_sensitivity episodes.csv,cloud,32,agents-32-case-004,True,60,1.0,10,59520,282,0,,,0.00016801075268817206,0.0,
+same,W5,omega_sensitivity episodes.csv,allocated,32,agents-32-case-000,True,62,1.0,14,61504,414,0,,,0.00022762747138397503,0.0,
+same,W5,omega_sensitivity episodes.csv,allocated,32,agents-32-case-001,True,50,1.0,16,49600,256,0,,,0.0003225806451612903,0.0,
+same,W5,omega_sensitivity episodes.csv,allocated,32,agents-32-case-003,True,48,1.0,0,47616,222,0,,,0.0,0.0,
+same,W5,omega_sensitivity episodes.csv,cloud,32,agents-32-case-000,True,86,1.0,12,85312,440,0,,,0.0001406601650412603,0.0,
+same,W5,omega_sensitivity episodes.csv,cloud,32,agents-32-case-003,True,58,1.0,10,57536,230,0,,,0.00017380422691879867,0.0,
+same,W5,omega_sensitivity episodes.csv,cloud,32,agents-32-case-004,True,60,1.0,10,59520,282,0,,,0.00016801075268817206,0.0,

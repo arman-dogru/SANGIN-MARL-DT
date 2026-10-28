@@ -1,0 +1,5 @@
+condition,num_agents,panel,aoi_lo_delta,aoi_hi_delta,episodes,pair_decisions,errors,pr_error
+allocated__interruption-1,8,All active pairs,0,1,1,1440,0,0.0
+allocated__interruption-1,8,All active pairs,1,2,1,162,0,0.0
+cloud__interruption-1,8,All active pairs,0,1,1,1384,0,0.0
+cloud__interruption-1,8,All active pairs,1,2,1,130,0,0.0

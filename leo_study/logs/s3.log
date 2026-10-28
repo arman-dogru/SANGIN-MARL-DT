@@ -1,0 +1,1 @@
+{"job": "smoke-A4-8-0-ideal", "success": true, "makespan_seconds": 23.349999999999998, "sim_wall_seconds": 6.103238404997683, "speed_limited_nonmovement": 84, "cached_fallback_decisions": 0, "command_cutoff_misses": 0, "ordering_errors": 11, "missed_physical_conflicts": 1, "peak_rss_bytes": 510074880}

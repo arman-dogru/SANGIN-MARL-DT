@@ -1,0 +1,1502 @@
+[
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+20,
+false,
+0
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+20,
+false,
+0
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+20,
+false,
+0
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+20,
+false,
+0
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+20,
+false,
+0
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+20,
+false,
+1
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+20,
+false,
+1
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+20,
+false,
+1
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+20,
+false,
+1
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+20,
+false,
+1
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+20,
+false,
+2
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+20,
+false,
+2
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+20,
+false,
+2
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+20,
+false,
+2
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+20,
+false,
+2
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+20,
+false,
+3
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+20,
+false,
+3
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+20,
+false,
+3
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+20,
+false,
+3
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+20,
+false,
+3
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+20,
+false,
+4
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+20,
+false,
+4
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+20,
+false,
+4
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+20,
+false,
+4
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+20,
+false,
+4
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+20,
+true,
+5
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+20,
+true,
+5
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+20,
+true,
+5
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+20,
+true,
+5
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+20,
+true,
+5
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+20,
+true,
+6
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+20,
+true,
+6
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+20,
+true,
+6
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+20,
+true,
+6
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+20,
+true,
+6
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+20,
+true,
+7
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+20,
+true,
+7
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+20,
+true,
+7
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+20,
+true,
+7
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+20,
+true,
+7
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+20,
+true,
+8
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+20,
+true,
+8
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+20,
+true,
+8
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+20,
+true,
+8
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+20,
+true,
+8
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+20,
+true,
+9
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n2__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+20,
+true,
+9
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n4__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+20,
+true,
+9
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n8__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+20,
+true,
+9
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n16__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+20,
+true,
+9
+],
+"job_id": "routes_speed__A3__edge__physical__dl0__n32__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+21,
+false,
+0
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+21,
+false,
+0
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+21,
+false,
+0
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+21,
+false,
+0
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+21,
+false,
+0
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c00"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+21,
+false,
+1
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+21,
+false,
+1
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+21,
+false,
+1
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+21,
+false,
+1
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+21,
+false,
+1
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c01"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+21,
+false,
+2
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+21,
+false,
+2
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+21,
+false,
+2
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+21,
+false,
+2
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+21,
+false,
+2
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c02"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+21,
+false,
+3
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+21,
+false,
+3
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+21,
+false,
+3
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+21,
+false,
+3
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+21,
+false,
+3
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c03"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+21,
+false,
+4
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+21,
+false,
+4
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+21,
+false,
+4
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+21,
+false,
+4
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+21,
+false,
+4
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c04"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+21,
+true,
+5
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+21,
+true,
+5
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+21,
+true,
+5
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+21,
+true,
+5
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+21,
+true,
+5
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c05"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+21,
+true,
+6
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+21,
+true,
+6
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+21,
+true,
+6
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+21,
+true,
+6
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+21,
+true,
+6
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c06"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+21,
+true,
+7
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+21,
+true,
+7
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+21,
+true,
+7
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+21,
+true,
+7
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+21,
+true,
+7
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c07"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+21,
+true,
+8
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+21,
+true,
+8
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+21,
+true,
+8
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+21,
+true,
+8
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+21,
+true,
+8
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c08"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+21,
+true,
+9
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n2__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+21,
+true,
+9
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n4__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+21,
+true,
+9
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n8__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+21,
+true,
+9
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n16__c09"
+},
+{
+"group": "routes_speed",
+"treatment": "A3",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+21,
+true,
+9
+],
+"job_id": "routes_speed__A3__cloud__physical__dl0__n32__c09"
+}
+]

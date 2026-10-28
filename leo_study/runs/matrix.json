@@ -1,0 +1,9602 @@
+[
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+0,
+false,
+0
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c00"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+0,
+false,
+0
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c00"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+0,
+false,
+0
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c00"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+0,
+false,
+0
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c00"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+0,
+false,
+0
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c00"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+0,
+false,
+1
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c01"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+0,
+false,
+1
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c01"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+0,
+false,
+1
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c01"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+0,
+false,
+1
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c01"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+0,
+false,
+1
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c01"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+0,
+false,
+2
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c02"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+0,
+false,
+2
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c02"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+0,
+false,
+2
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c02"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+0,
+false,
+2
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c02"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+0,
+false,
+2
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c02"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+0,
+false,
+3
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c03"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+0,
+false,
+3
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c03"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+0,
+false,
+3
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c03"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+0,
+false,
+3
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c03"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+0,
+false,
+3
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c03"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+0,
+false,
+4
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c04"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+0,
+false,
+4
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c04"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+0,
+false,
+4
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c04"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+0,
+false,
+4
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c04"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+0,
+false,
+4
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c04"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+0,
+true,
+5
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c05"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+0,
+true,
+5
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c05"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+0,
+true,
+5
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c05"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+0,
+true,
+5
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c05"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+0,
+true,
+5
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c05"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+0,
+true,
+6
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c06"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+0,
+true,
+6
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c06"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+0,
+true,
+6
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c06"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+0,
+true,
+6
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c06"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+0,
+true,
+6
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c06"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+0,
+true,
+7
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c07"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+0,
+true,
+7
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c07"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+0,
+true,
+7
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c07"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+0,
+true,
+7
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c07"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+0,
+true,
+7
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c07"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+0,
+true,
+8
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c08"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+0,
+true,
+8
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c08"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+0,
+true,
+8
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c08"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+0,
+true,
+8
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c08"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+0,
+true,
+8
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c08"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+0,
+true,
+9
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n2__c09"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+0,
+true,
+9
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n4__c09"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+0,
+true,
+9
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n8__c09"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+0,
+true,
+9
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n16__c09"
+},
+{
+"group": "nominal",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+0,
+true,
+9
+],
+"job_id": "nominal__A4__allocated__physical__dl0__n32__c09"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+1,
+false,
+0
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c00"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+1,
+false,
+0
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c00"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+1,
+false,
+0
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c00"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+1,
+false,
+0
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c00"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+1,
+false,
+0
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c00"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+1,
+false,
+1
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c01"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+1,
+false,
+1
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c01"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+1,
+false,
+1
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c01"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+1,
+false,
+1
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c01"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+1,
+false,
+1
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c01"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+1,
+false,
+2
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c02"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+1,
+false,
+2
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c02"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+1,
+false,
+2
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c02"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+1,
+false,
+2
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c02"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+1,
+false,
+2
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c02"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+1,
+false,
+3
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c03"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+1,
+false,
+3
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c03"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+1,
+false,
+3
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c03"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+1,
+false,
+3
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c03"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+1,
+false,
+3
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c03"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+1,
+false,
+4
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c04"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+1,
+false,
+4
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c04"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+1,
+false,
+4
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c04"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+1,
+false,
+4
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c04"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+1,
+false,
+4
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c04"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+1,
+true,
+5
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c05"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+1,
+true,
+5
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c05"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+1,
+true,
+5
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c05"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+1,
+true,
+5
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c05"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+1,
+true,
+5
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c05"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+1,
+true,
+6
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c06"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+1,
+true,
+6
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c06"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+1,
+true,
+6
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c06"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+1,
+true,
+6
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c06"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+1,
+true,
+6
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c06"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+1,
+true,
+7
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c07"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+1,
+true,
+7
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c07"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+1,
+true,
+7
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c07"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+1,
+true,
+7
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c07"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+1,
+true,
+7
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c07"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+1,
+true,
+8
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c08"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+1,
+true,
+8
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c08"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+1,
+true,
+8
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c08"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+1,
+true,
+8
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c08"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+1,
+true,
+8
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c08"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+1,
+true,
+9
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n2__c09"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+1,
+true,
+9
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n4__c09"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+1,
+true,
+9
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n8__c09"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+1,
+true,
+9
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n16__c09"
+},
+{
+"group": "nominal",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+1,
+true,
+9
+],
+"job_id": "nominal__A2__allocated__physical__dl0__n32__c09"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+2,
+false,
+0
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c00"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+2,
+false,
+0
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c00"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+2,
+false,
+0
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c00"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+2,
+false,
+0
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c00"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+2,
+false,
+0
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c00"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+2,
+false,
+1
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c01"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+2,
+false,
+1
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c01"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+2,
+false,
+1
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c01"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+2,
+false,
+1
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c01"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+2,
+false,
+1
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c01"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+2,
+false,
+2
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c02"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+2,
+false,
+2
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c02"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+2,
+false,
+2
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c02"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+2,
+false,
+2
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c02"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+2,
+false,
+2
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c02"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+2,
+false,
+3
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c03"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+2,
+false,
+3
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c03"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+2,
+false,
+3
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c03"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+2,
+false,
+3
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c03"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+2,
+false,
+3
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c03"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+2,
+false,
+4
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c04"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+2,
+false,
+4
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c04"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+2,
+false,
+4
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c04"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+2,
+false,
+4
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c04"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+2,
+false,
+4
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c04"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+2,
+true,
+5
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c05"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+2,
+true,
+5
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c05"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+2,
+true,
+5
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c05"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+2,
+true,
+5
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c05"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+2,
+true,
+5
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c05"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+2,
+true,
+6
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c06"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+2,
+true,
+6
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c06"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+2,
+true,
+6
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c06"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+2,
+true,
+6
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c06"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+2,
+true,
+6
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c06"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+2,
+true,
+7
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c07"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+2,
+true,
+7
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c07"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+2,
+true,
+7
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c07"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+2,
+true,
+7
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c07"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+2,
+true,
+7
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c07"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+2,
+true,
+8
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c08"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+2,
+true,
+8
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c08"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+2,
+true,
+8
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c08"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+2,
+true,
+8
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c08"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+2,
+true,
+8
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c08"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+2,
+true,
+9
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n2__c09"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+2,
+true,
+9
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n4__c09"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+2,
+true,
+9
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n8__c09"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+2,
+true,
+9
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n16__c09"
+},
+{
+"group": "nominal",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+2,
+true,
+9
+],
+"job_id": "nominal__A3__allocated__physical__dl0__n32__c09"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+3,
+false,
+0
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c00"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+3,
+false,
+0
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c00"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+3,
+false,
+0
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c00"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+3,
+false,
+0
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c00"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+3,
+false,
+0
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c00"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+3,
+false,
+1
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c01"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+3,
+false,
+1
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c01"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+3,
+false,
+1
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c01"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+3,
+false,
+1
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c01"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+3,
+false,
+1
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c01"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+3,
+false,
+2
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c02"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+3,
+false,
+2
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c02"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+3,
+false,
+2
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c02"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+3,
+false,
+2
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c02"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+3,
+false,
+2
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c02"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+3,
+false,
+3
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c03"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+3,
+false,
+3
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c03"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+3,
+false,
+3
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c03"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+3,
+false,
+3
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c03"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+3,
+false,
+3
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c03"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+3,
+false,
+4
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c04"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+3,
+false,
+4
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c04"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+3,
+false,
+4
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c04"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+3,
+false,
+4
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c04"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+3,
+false,
+4
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c04"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+3,
+true,
+5
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c05"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+3,
+true,
+5
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c05"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+3,
+true,
+5
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c05"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+3,
+true,
+5
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c05"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+3,
+true,
+5
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c05"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+3,
+true,
+6
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c06"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+3,
+true,
+6
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c06"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+3,
+true,
+6
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c06"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+3,
+true,
+6
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c06"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+3,
+true,
+6
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c06"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+3,
+true,
+7
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c07"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+3,
+true,
+7
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c07"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+3,
+true,
+7
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c07"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+3,
+true,
+7
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c07"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+3,
+true,
+7
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c07"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+3,
+true,
+8
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c08"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+3,
+true,
+8
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c08"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+3,
+true,
+8
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c08"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+3,
+true,
+8
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c08"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+3,
+true,
+8
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c08"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+3,
+true,
+9
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n2__c09"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+3,
+true,
+9
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n4__c09"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+3,
+true,
+9
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n8__c09"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+3,
+true,
+9
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n16__c09"
+},
+{
+"group": "nominal",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+3,
+true,
+9
+],
+"job_id": "nominal__A1__allocated__physical__dl0__n32__c09"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+4,
+false,
+0
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c00"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+4,
+false,
+0
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c00"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+4,
+false,
+0
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c00"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+4,
+false,
+0
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c00"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+4,
+false,
+0
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c00"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+4,
+false,
+1
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c01"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+4,
+false,
+1
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c01"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+4,
+false,
+1
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c01"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+4,
+false,
+1
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c01"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+4,
+false,
+1
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c01"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+4,
+false,
+2
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c02"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+4,
+false,
+2
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c02"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+4,
+false,
+2
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c02"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+4,
+false,
+2
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c02"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+4,
+false,
+2
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c02"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+4,
+false,
+3
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c03"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+4,
+false,
+3
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c03"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+4,
+false,
+3
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c03"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+4,
+false,
+3
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c03"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+4,
+false,
+3
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c03"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+4,
+false,
+4
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c04"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+4,
+false,
+4
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c04"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+4,
+false,
+4
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c04"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+4,
+false,
+4
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c04"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+4,
+false,
+4
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c04"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+4,
+true,
+5
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c05"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+4,
+true,
+5
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c05"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+4,
+true,
+5
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c05"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+4,
+true,
+5
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c05"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+4,
+true,
+5
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c05"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+4,
+true,
+6
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c06"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+4,
+true,
+6
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c06"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+4,
+true,
+6
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c06"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+4,
+true,
+6
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c06"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+4,
+true,
+6
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c06"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+4,
+true,
+7
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c07"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+4,
+true,
+7
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c07"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+4,
+true,
+7
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c07"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+4,
+true,
+7
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c07"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+4,
+true,
+7
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c07"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+4,
+true,
+8
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c08"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+4,
+true,
+8
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c08"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+4,
+true,
+8
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c08"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+4,
+true,
+8
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c08"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+4,
+true,
+8
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c08"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+4,
+true,
+9
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n2__c09"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+4,
+true,
+9
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n4__c09"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+4,
+true,
+9
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n8__c09"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+4,
+true,
+9
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n16__c09"
+},
+{
+"group": "baseline",
+"treatment": "A4",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+4,
+true,
+9
+],
+"job_id": "baseline__A4__allocated__ideal__dl0__n32__c09"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+5,
+false,
+0
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c00"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+5,
+false,
+0
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c00"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+5,
+false,
+0
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c00"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+5,
+false,
+0
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c00"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+5,
+false,
+0
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c00"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+5,
+false,
+1
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c01"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+5,
+false,
+1
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c01"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+5,
+false,
+1
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c01"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+5,
+false,
+1
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c01"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+5,
+false,
+1
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c01"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+5,
+false,
+2
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c02"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+5,
+false,
+2
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c02"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+5,
+false,
+2
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c02"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+5,
+false,
+2
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c02"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+5,
+false,
+2
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c02"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+5,
+false,
+3
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c03"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+5,
+false,
+3
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c03"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+5,
+false,
+3
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c03"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+5,
+false,
+3
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c03"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+5,
+false,
+3
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c03"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+5,
+false,
+4
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c04"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+5,
+false,
+4
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c04"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+5,
+false,
+4
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c04"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+5,
+false,
+4
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c04"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+5,
+false,
+4
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c04"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+5,
+true,
+5
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c05"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+5,
+true,
+5
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c05"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+5,
+true,
+5
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c05"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+5,
+true,
+5
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c05"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+5,
+true,
+5
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c05"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+5,
+true,
+6
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c06"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+5,
+true,
+6
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c06"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+5,
+true,
+6
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c06"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+5,
+true,
+6
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c06"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+5,
+true,
+6
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c06"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+5,
+true,
+7
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c07"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+5,
+true,
+7
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c07"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+5,
+true,
+7
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c07"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+5,
+true,
+7
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c07"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+5,
+true,
+7
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c07"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+5,
+true,
+8
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c08"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+5,
+true,
+8
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c08"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+5,
+true,
+8
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c08"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+5,
+true,
+8
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c08"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+5,
+true,
+8
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c08"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+5,
+true,
+9
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n2__c09"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+5,
+true,
+9
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n4__c09"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+5,
+true,
+9
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n8__c09"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+5,
+true,
+9
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n16__c09"
+},
+{
+"group": "baseline",
+"treatment": "A3",
+"route": "allocated",
+"network": "ideal",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+5,
+true,
+9
+],
+"job_id": "baseline__A3__allocated__ideal__dl0__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 0,
+"priority": [
+6,
+false,
+0
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 1,
+"priority": [
+6,
+false,
+1
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 2,
+"priority": [
+6,
+false,
+2
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 3,
+"priority": [
+6,
+false,
+3
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 4,
+"priority": [
+6,
+false,
+4
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 5,
+"priority": [
+6,
+true,
+5
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 6,
+"priority": [
+6,
+true,
+6
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 7,
+"priority": [
+6,
+true,
+7
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 8,
+"priority": [
+6,
+true,
+8
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl150__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl150__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl150__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl300__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl300__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A4",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 9,
+"priority": [
+6,
+true,
+9
+],
+"job_id": "delay__A4__allocated__physical__dl300__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 0,
+"priority": [
+7,
+false,
+0
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 1,
+"priority": [
+7,
+false,
+1
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 2,
+"priority": [
+7,
+false,
+2
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 3,
+"priority": [
+7,
+false,
+3
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 4,
+"priority": [
+7,
+false,
+4
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 5,
+"priority": [
+7,
+true,
+5
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 6,
+"priority": [
+7,
+true,
+6
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 7,
+"priority": [
+7,
+true,
+7
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 8,
+"priority": [
+7,
+true,
+8
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl150__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl150__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl150__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl300__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl300__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A2",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 9,
+"priority": [
+7,
+true,
+9
+],
+"job_id": "delay__A2__allocated__physical__dl300__n32__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+8,
+false,
+0
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+8,
+false,
+0
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+8,
+false,
+0
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+8,
+false,
+0
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+8,
+false,
+0
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+8,
+false,
+1
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+8,
+false,
+1
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+8,
+false,
+1
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+8,
+false,
+1
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+8,
+false,
+1
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+8,
+false,
+2
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+8,
+false,
+2
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+8,
+false,
+2
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+8,
+false,
+2
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+8,
+false,
+2
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+8,
+false,
+3
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+8,
+false,
+3
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+8,
+false,
+3
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+8,
+false,
+3
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+8,
+false,
+3
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+8,
+false,
+4
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+8,
+false,
+4
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+8,
+false,
+4
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+8,
+false,
+4
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+8,
+false,
+4
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+8,
+true,
+5
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+8,
+true,
+5
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+8,
+true,
+5
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+8,
+true,
+5
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+8,
+true,
+5
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+8,
+true,
+6
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+8,
+true,
+6
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+8,
+true,
+6
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+8,
+true,
+6
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+8,
+true,
+6
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+8,
+true,
+7
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+8,
+true,
+7
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+8,
+true,
+7
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+8,
+true,
+7
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+8,
+true,
+7
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+8,
+true,
+8
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+8,
+true,
+8
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+8,
+true,
+8
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+8,
+true,
+8
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+8,
+true,
+8
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+8,
+true,
+9
+],
+"job_id": "routes__A4__edge__physical__dl0__n2__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+8,
+true,
+9
+],
+"job_id": "routes__A4__edge__physical__dl0__n4__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+8,
+true,
+9
+],
+"job_id": "routes__A4__edge__physical__dl0__n8__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+8,
+true,
+9
+],
+"job_id": "routes__A4__edge__physical__dl0__n16__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "edge",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+8,
+true,
+9
+],
+"job_id": "routes__A4__edge__physical__dl0__n32__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 0,
+"priority": [
+9,
+false,
+0
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 0,
+"priority": [
+9,
+false,
+0
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 0,
+"priority": [
+9,
+false,
+0
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 0,
+"priority": [
+9,
+false,
+0
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 0,
+"priority": [
+9,
+false,
+0
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c00"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 1,
+"priority": [
+9,
+false,
+1
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 1,
+"priority": [
+9,
+false,
+1
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 1,
+"priority": [
+9,
+false,
+1
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 1,
+"priority": [
+9,
+false,
+1
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 1,
+"priority": [
+9,
+false,
+1
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c01"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 2,
+"priority": [
+9,
+false,
+2
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 2,
+"priority": [
+9,
+false,
+2
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 2,
+"priority": [
+9,
+false,
+2
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 2,
+"priority": [
+9,
+false,
+2
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 2,
+"priority": [
+9,
+false,
+2
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c02"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 3,
+"priority": [
+9,
+false,
+3
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 3,
+"priority": [
+9,
+false,
+3
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 3,
+"priority": [
+9,
+false,
+3
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 3,
+"priority": [
+9,
+false,
+3
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 3,
+"priority": [
+9,
+false,
+3
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c03"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 4,
+"priority": [
+9,
+false,
+4
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 4,
+"priority": [
+9,
+false,
+4
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 4,
+"priority": [
+9,
+false,
+4
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 4,
+"priority": [
+9,
+false,
+4
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 4,
+"priority": [
+9,
+false,
+4
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c04"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 5,
+"priority": [
+9,
+true,
+5
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 5,
+"priority": [
+9,
+true,
+5
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 5,
+"priority": [
+9,
+true,
+5
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 5,
+"priority": [
+9,
+true,
+5
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 5,
+"priority": [
+9,
+true,
+5
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c05"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 6,
+"priority": [
+9,
+true,
+6
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 6,
+"priority": [
+9,
+true,
+6
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 6,
+"priority": [
+9,
+true,
+6
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 6,
+"priority": [
+9,
+true,
+6
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 6,
+"priority": [
+9,
+true,
+6
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c06"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 7,
+"priority": [
+9,
+true,
+7
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 7,
+"priority": [
+9,
+true,
+7
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 7,
+"priority": [
+9,
+true,
+7
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 7,
+"priority": [
+9,
+true,
+7
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 7,
+"priority": [
+9,
+true,
+7
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c07"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 8,
+"priority": [
+9,
+true,
+8
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 8,
+"priority": [
+9,
+true,
+8
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 8,
+"priority": [
+9,
+true,
+8
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 8,
+"priority": [
+9,
+true,
+8
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 8,
+"priority": [
+9,
+true,
+8
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c08"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 2,
+"case": 9,
+"priority": [
+9,
+true,
+9
+],
+"job_id": "routes__A4__cloud__physical__dl0__n2__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 4,
+"case": 9,
+"priority": [
+9,
+true,
+9
+],
+"job_id": "routes__A4__cloud__physical__dl0__n4__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 8,
+"case": 9,
+"priority": [
+9,
+true,
+9
+],
+"job_id": "routes__A4__cloud__physical__dl0__n8__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 16,
+"case": 9,
+"priority": [
+9,
+true,
+9
+],
+"job_id": "routes__A4__cloud__physical__dl0__n16__c09"
+},
+{
+"group": "routes",
+"treatment": "A4",
+"route": "cloud",
+"network": "physical",
+"downlink_seconds": 0.0,
+"num_agents": 32,
+"case": 9,
+"priority": [
+9,
+true,
+9
+],
+"job_id": "routes__A4__cloud__physical__dl0__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 0,
+"priority": [
+10,
+false,
+0
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 1,
+"priority": [
+10,
+false,
+1
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 2,
+"priority": [
+10,
+false,
+2
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 3,
+"priority": [
+10,
+false,
+3
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 4,
+"priority": [
+10,
+false,
+4
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 5,
+"priority": [
+10,
+true,
+5
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 6,
+"priority": [
+10,
+true,
+6
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 7,
+"priority": [
+10,
+true,
+7
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 8,
+"priority": [
+10,
+true,
+8
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl150__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl150__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl150__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl300__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl300__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A3",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 9,
+"priority": [
+10,
+true,
+9
+],
+"job_id": "delay__A3__allocated__physical__dl300__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 0,
+"priority": [
+11,
+false,
+0
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c00"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 1,
+"priority": [
+11,
+false,
+1
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c01"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 2,
+"priority": [
+11,
+false,
+2
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c02"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 3,
+"priority": [
+11,
+false,
+3
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c03"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 4,
+"priority": [
+11,
+false,
+4
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c04"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 5,
+"priority": [
+11,
+true,
+5
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c05"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 6,
+"priority": [
+11,
+true,
+6
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c06"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 7,
+"priority": [
+11,
+true,
+7
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c07"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 8,
+"priority": [
+11,
+true,
+8
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c08"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 8,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl150__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 16,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl150__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.15,
+"num_agents": 32,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl150__n32__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 8,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl300__n8__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 16,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl300__n16__c09"
+},
+{
+"group": "delay",
+"treatment": "A1",
+"route": "allocated",
+"network": "physical",
+"downlink_seconds": 0.3,
+"num_agents": 32,
+"case": 9,
+"priority": [
+11,
+true,
+9
+],
+"job_id": "delay__A1__allocated__physical__dl300__n32__c09"
+}
+]

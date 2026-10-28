@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/SANGIN-dev/src/panama_uav/__main__.py", line 4, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/workspace/SANGIN-dev/src/panama_uav/cli.py", line 292, in main
+    summary = run_study(config, root, arguments.model, arguments.diagnostic,
+        arguments.cases, tuple(arguments.agents), not arguments.primary_only,
+        arguments.conditions, arguments.max_steps, arguments.device, arguments.workers, arguments.resume)
+  File "/workspace/SANGIN-dev/src/panama_uav/resource_study.py", line 495, in run_study
+    raise ValueError(f"Unknown resource conditions: {sorted(unknown)}")
+ValueError: Unknown resource conditions: ['up-0.25-cpu-1__priority']

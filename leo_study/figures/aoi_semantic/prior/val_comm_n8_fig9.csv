@@ -1,0 +1,4 @@
+panel,num_agents,aoi_lo_delta,aoi_hi_delta,aoi_mean_delta,pair_decisions,errors,pr_error,ci_low,ci_high,episodes
+All active pairs,8,0.0,0.5,0.27499999999999997,7822,0,0.0,0.0,0.0,5
+All active pairs,8,0.5,1.5,1.275,310,0,0.0,0.0,0.0,5
+Coordination-relevant pairs,8,0.0,1.5,0.275,20,0,0.0,0.0,0.0,5

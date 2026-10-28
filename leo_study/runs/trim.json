@@ -1,0 +1,39 @@
+{
+ "rules": [
+  {
+   "match": {
+    "num_agents": 32,
+    "downlink_seconds": 0.3
+   },
+   "reason": "6h budget + memory: +300 ms DL at N=32 needs ~10 min and ~9 GB per episode (N=16 already peaks at 4.5-6 GB and caused OOM kills on this 15 GB shared box); cell dropped for all treatments"
+  },
+  {
+   "match": {
+    "num_agents": 16,
+    "downlink_seconds": 0.3,
+    "treatment": [
+     "A1",
+     "A2"
+    ]
+   },
+   "reason": "memory: WAIT treatments at +300 ms never receive a command before the 250 ms cutoff, so robots never move, every episode runs the full 250 s and the trace grew past 6 GB (OOM kills); outcome is deterministic (0% success) and shown at N=8"
+  },
+  {
+   "match": {
+    "num_agents": 32,
+    "downlink_seconds": 0.15,
+    "treatment": [
+     "A1"
+    ]
+   },
+   "reason": "6h budget + memory: WAIT at +150 ms N=32 runs 6-27 min and grows to >8 GB per episode (A2 c04 was OOM-killed by the kernel at 8.3 GB); A1 was \"if budget\", so this cell is dropped; A2 at the same delay/N is kept"
+  },
+  {
+   "match": {
+    "num_agents": 32,
+    "route": "edge"
+   },
+   "reason": "time + memory (2026-10-27 07:15 ET): all-UAV route at N=32 runs for hours and grows past 8.6 GB (c01 ran ~3.3 h then OOM-killed; c03 hit 8.6 GB in 8 min); deferred to the one-at-a-time rerun pass"
+  }
+ ]
+}

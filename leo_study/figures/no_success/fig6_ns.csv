@@ -1,0 +1,57 @@
+metric,speed,policy,treatment,condition,num_agents,episodes,value,ci_low,ci_high
+Stalled decisions,mixed speed,WAIT,A2,nominal LEO,8,10,0.0,0.0,0.0
+Stalled decisions,mixed speed,cached fallback,A4,nominal LEO,8,10,0.0,0.0,0.0
+Stalled decisions,mixed speed,WAIT,A2,nominal LEO,16,10,0.0,0.0,0.0
+Stalled decisions,mixed speed,cached fallback,A4,nominal LEO,16,10,0.0,0.0,0.0
+Stalled decisions,mixed speed,WAIT,A2,nominal LEO,32,10,0.38087177316969956,0.0781522398211249,0.7957633286079546
+Stalled decisions,mixed speed,cached fallback,A4,nominal LEO,32,10,0.11173184357541899,0.0,0.29478352711930694
+Stalled decisions,mixed speed,WAIT,A2,100 ms deadline,8,10,1.9807583474816073,0.676416447924545,3.018030420760349
+Stalled decisions,mixed speed,cached fallback,A4,100 ms deadline,8,10,0.0,0.0,0.0
+Stalled decisions,mixed speed,WAIT,A2,100 ms deadline,16,10,17.10455764075067,11.55925538989915,23.498138957816376
+Stalled decisions,mixed speed,cached fallback,A4,100 ms deadline,16,10,2.635658914728682,1.7102127095575737,3.48504189883712
+Stalled decisions,mixed speed,WAIT,A2,100 ms deadline,32,8,61.485680190930786,54.59919857689591,69.39427800898012
+Stalled decisions,mixed speed,cached fallback,A4,100 ms deadline,32,10,22.665199663452203,14.285028371775887,33.99942877289672
+Stalled decisions,mixed speed,WAIT,A2,real time,8,10,100.0,100.0,100.0
+Stalled decisions,mixed speed,cached fallback,A4,real time,8,10,72.40215924426451,2.724948878759056,86.85303175990978
+Stalled decisions,mixed speed,cached fallback,A4,real time,16,9,94.43689343539118,91.02281538723727,96.13731679229778
+Collision attempts,mixed speed,WAIT,A2,nominal LEO,8,10,2.280501710376283,0.0,5.422993492407809
+Collision attempts,mixed speed,cached fallback,A4,nominal LEO,8,10,2.280501710376283,0.0,5.313637596943044
+Collision attempts,mixed speed,WAIT,A2,nominal LEO,16,10,3.8743882544861337,2.025085803538621,7.116429522822892
+Collision attempts,mixed speed,cached fallback,A4,nominal LEO,16,10,3.8743882544861337,1.971742106614187,7.028930305131164
+Collision attempts,mixed speed,WAIT,A2,nominal LEO,32,10,13.356127791430708,7.969383428399219,20.56388422575905
+Collision attempts,mixed speed,cached fallback,A4,nominal LEO,32,10,9.877923772248625,6.426173787712817,14.243372305379054
+Collision attempts,mixed speed,WAIT,A2,100 ms deadline,8,10,1.728110599078341,0.0,4.043110310302721
+Collision attempts,mixed speed,cached fallback,A4,100 ms deadline,8,10,2.280501710376283,0.0,5.283571962246314
+Collision attempts,mixed speed,WAIT,A2,100 ms deadline,16,10,17.687074829931973,3.0609794744654604,37.64430480395347
+Collision attempts,mixed speed,cached fallback,A4,100 ms deadline,16,10,15.130288596245446,4.493033834354215,32.10142904829872
+Collision attempts,mixed speed,WAIT,A2,100 ms deadline,32,8,258.99357601713064,135.18600343001543,358.0527209791818
+Collision attempts,mixed speed,cached fallback,A4,100 ms deadline,32,10,173.92732049036778,14.860911592271684,574.9753547447356
+Collision attempts,mixed speed,cached fallback,A4,real time,8,10,0.0,0.0,0.0
+Collision attempts,mixed speed,cached fallback,A4,real time,16,9,0.0,0.0,0.0
+Stalled decisions,same speed,WAIT,A1,nominal LEO,8,10,0.0,0.0,0.0
+Stalled decisions,same speed,cached fallback,A3,nominal LEO,8,10,0.0,0.0,0.0
+Stalled decisions,same speed,WAIT,A1,nominal LEO,16,10,0.0,0.0,0.0
+Stalled decisions,same speed,cached fallback,A3,nominal LEO,16,10,0.0,0.0,0.0
+Stalled decisions,same speed,WAIT,A1,nominal LEO,32,10,0.959776633801588,0.4394505735395371,1.6764806330944977
+Stalled decisions,same speed,cached fallback,A3,nominal LEO,32,9,0.24069092453631602,0.0,0.5909929917473402
+Stalled decisions,same speed,WAIT,A1,100 ms deadline,8,10,1.8028169014084507,0.5283581025199956,2.7641696014100434
+Stalled decisions,same speed,cached fallback,A3,100 ms deadline,8,10,0.0,0.0,0.0
+Stalled decisions,same speed,WAIT,A1,100 ms deadline,16,10,35.23204068658614,22.56993560596888,47.493236133980666
+Stalled decisions,same speed,cached fallback,A3,100 ms deadline,16,10,4.2444488111613285,2.0826124596562483,8.269867630193929
+Stalled decisions,same speed,cached fallback,A3,100 ms deadline,32,10,40.15262694452598,26.720311833261228,46.0155782252724
+Stalled decisions,same speed,WAIT,A1,real time,8,10,100.0,100.0,100.0
+Stalled decisions,same speed,cached fallback,A3,real time,8,10,81.6728452270621,48.08651271753681,89.46099073522721
+Stalled decisions,same speed,cached fallback,A3,real time,16,10,94.56746753654099,91.66964921266637,96.11006425538547
+Collision attempts,same speed,WAIT,A1,nominal LEO,8,10,0.0,0.0,0.0
+Collision attempts,same speed,cached fallback,A3,nominal LEO,8,10,0.0,0.0,0.0
+Collision attempts,same speed,WAIT,A1,nominal LEO,16,10,7.136975020587428,1.374353217789155,16.40580135010934
+Collision attempts,same speed,cached fallback,A3,nominal LEO,16,10,7.136975020587428,1.382058006431521,15.006298596536462
+Collision attempts,same speed,WAIT,A1,nominal LEO,32,10,4.587682073632298,2.949202135946401,6.577417076921141
+Collision attempts,same speed,cached fallback,A3,nominal LEO,32,9,7.060152499293984,4.593414459241868,9.706480823407277
+Collision attempts,same speed,WAIT,A1,100 ms deadline,8,10,0.0,0.0,0.0
+Collision attempts,same speed,cached fallback,A3,100 ms deadline,8,10,0.0,0.0,0.0
+Collision attempts,same speed,WAIT,A1,100 ms deadline,16,10,33.96329772665023,12.045819790981367,58.0245379081342
+Collision attempts,same speed,cached fallback,A3,100 ms deadline,16,10,260.36036036036035,9.004886210768564,608.6306575538199
+Collision attempts,same speed,cached fallback,A3,100 ms deadline,32,10,331.87438450596346,65.54384082629358,598.4750015038261
+Collision attempts,same speed,cached fallback,A3,real time,8,10,0.0,0.0,0.0
+Collision attempts,same speed,cached fallback,A3,real time,16,10,0.0,0.0,0.0

@@ -1,0 +1,96 @@
+metric,series,num_agents,runs,successful_runs,zero_runs,errors,denominator,pooled_ratio_pct,mean_pct,ci_low_pct,ci_high_pct,median_pct,sources,figure
+R_E2E,"allocator, same speed",8,5,4,5,0,22120,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_E2E,"allocator, same speed",16,5,5,3,8,49680,0.01610305958132045,0.017934002869440458,0.0,0.037541846006695356,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_E2E,"allocator, same speed",32,2,2,0,16,113088,0.014148273910582909,0.013632634275194108,0.007754342431761787,0.01951092611862643,0.013632634275194108,omega_sensitivity episodes.csv,redesign_xi_run_level
+R_E2E,"all-cloud, same speed",8,5,4,5,0,22120,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_E2E,"all-cloud, same speed",16,5,5,4,4,49440,0.008090614886731391,0.00980392156862745,0.0,0.029411764705882353,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_E2E,"all-cloud, same speed",32,3,3,0,32,202368,0.015812776723592662,0.0160825048216077,0.014066016504126028,0.017380422691879865,0.016801075268817207,omega_sensitivity episodes.csv,redesign_xi_run_level
+R_E2E,"all-UAV, same speed",8,5,4,5,0,21952,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_E2E,"all-UAV, same speed",16,5,3,5,0,159600,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_E2E,"allocator, mixed speed",8,5,3,5,0,87080,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"allocator, mixed speed",16,5,4,5,0,214560,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"allocator, mixed speed",32,5,0,2,18,3541440,0.0005082678232583356,0.0005082678232583356,2.8237101292129755e-05,0.0012706695581458389,0.00014118550646064878,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"all-cloud, mixed speed",8,5,4,5,0,50400,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"all-cloud, mixed speed",16,5,4,5,0,215280,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"all-cloud, mixed speed",32,5,0,0,732,3541440,0.02066955814583898,0.020669558145838977,0.016264570344266736,0.02626050420168067,0.020895454956176018,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"all-UAV, mixed speed",8,5,3,5,0,86632,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,"all-UAV, mixed speed",16,5,4,0,132,214800,0.061452513966480445,0.18949459628812765,0.07634720554888622,0.33874189210567945,0.13605442176870747,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"allocator, same speed",8,3,2,3,0,518,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_FoV,"allocator, same speed",16,5,5,5,0,304,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_FoV,"allocator, same speed",32,2,2,2,0,612,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level
+R_FoV,"all-cloud, same speed",8,3,2,3,0,526,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_FoV,"all-cloud, same speed",16,5,5,5,0,340,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_FoV,"all-cloud, same speed",32,3,3,3,0,952,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level
+R_FoV,"all-UAV, same speed",8,3,2,3,0,526,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_FoV,"all-UAV, same speed",16,5,3,5,0,2414,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_FoV,"allocator, mixed speed",8,4,2,4,0,1452,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"allocator, mixed speed",16,5,4,5,0,338,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"allocator, mixed speed",32,5,0,5,0,6581,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"all-cloud, mixed speed",8,4,3,4,0,1448,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"all-cloud, mixed speed",16,5,4,5,0,280,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"all-cloud, mixed speed",32,5,0,3,8,11152,0.07173601147776183,0.08880974748820533,0.0,0.18887228657513466,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"all-UAV, mixed speed",8,3,1,3,0,1434,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_FoV,"all-UAV, mixed speed",16,5,4,4,2,1812,0.11037527593818984,0.689655172413793,0.0,2.0689655172413794,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"allocator, same speed",8,3,2,3,0,514,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_phys,"allocator, same speed",16,5,5,5,0,288,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_phys,"all-cloud, same speed",8,3,2,3,0,522,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_phys,"all-cloud, same speed",16,5,5,5,0,326,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_phys,"all-UAV, same speed",8,3,2,3,0,522,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level
+R_phys,"all-UAV, same speed",16,5,3,5,0,2408,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level
+R_phys,"allocator, mixed speed",8,4,2,4,0,1450,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"allocator, mixed speed",16,5,4,5,0,332,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"allocator, mixed speed",32,5,0,5,0,12028,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"all-cloud, mixed speed",8,4,3,4,0,1446,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"all-cloud, mixed speed",16,5,4,5,0,278,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"all-cloud, mixed speed",32,5,0,3,16,13840,0.11560693641618497,0.09171623705662041,0.0,0.2564221194095616,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"all-UAV, mixed speed",8,3,1,3,0,1434,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_phys,"all-UAV, mixed speed",16,5,4,4,2,1818,0.11001100110011001,0.7407407407407407,0.0,2.2222222222222223,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level
+R_E2E,ω₁:ω₂ = 1:1,8,5,4,5,0,22120,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:1,16,5,5,3,8,49680,0.01610305958132045,0.017934002869440458,0.0,0.037541846006695356,0.0,omega archive replay (uav6_n16),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:1,32,2,2,0,16,113088,0.014148273910582909,0.013632634275194108,0.007754342431761787,0.01951092611862643,0.013632634275194108,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:2,8,5,4,5,0,22120,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:2,16,5,5,4,4,50160,0.007974481658692184,0.007936507936507936,0.0,0.023809523809523808,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:2,32,2,2,1,6,98208,0.006109481915933529,0.0057060255629945225,0.0,0.011412051125989045,0.0057060255629945225,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:4,8,5,4,5,0,22120,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:4,16,5,5,3,6,48720,0.012315270935960592,0.013679890560875513,0.0,0.031235750113999088,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 1:4,32,1,1,0,8,53568,0.014934289127837515,0.014934289127837515,0.014934289127837515,0.014934289127837515,0.014934289127837515,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 2:1,8,5,4,5,0,22176,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 2:1,16,5,4,3,10,99840,0.010016025641025642,0.021708683473389355,0.0,0.04551820728291317,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 2:1,32,1,1,0,14,54560,0.025659824046920823,0.025659824046920823,0.025659824046920823,0.025659824046920823,0.025659824046920823,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 4:1,8,5,4,5,0,22176,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 4:1,16,5,4,3,10,99840,0.010016025641025642,0.021708683473389355,0.0,0.04551820728291316,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_E2E,ω₁:ω₂ = 4:1,32,3,3,1,30,158720,0.018901209677419355,0.018340270551508844,0.0,0.03225806451612903,0.0227627471383975,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,mixed speed,8,5,3,5,0,87080,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,mixed speed,16,5,4,5,0,214560,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_E2E,mixed speed,32,5,0,2,18,3541440,0.0005082678232583356,0.0005082678232583356,2.8237101292129755e-05,0.0012706695581458389,0.00014118550646064878,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:1,8,3,2,3,0,518,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:1,16,5,5,5,0,304,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:1,32,2,2,2,0,612,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:2,8,3,2,3,0,520,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:2,16,5,5,5,0,338,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:2,32,2,2,2,0,472,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:4,8,3,2,3,0,518,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:4,16,5,5,5,0,352,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 1:4,32,1,1,1,0,278,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 2:1,8,3,2,3,0,518,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 2:1,16,5,4,5,0,1502,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 2:1,32,1,1,1,0,316,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 4:1,8,3,2,3,0,520,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 4:1,16,5,4,5,0,1490,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_FoV,ω₁:ω₂ = 4:1,32,3,3,3,0,892,0.0,0.0,0.0,0.0,0.0,omega_sensitivity episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,mixed speed,8,4,2,4,0,1452,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,mixed speed,16,5,4,5,0,338,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_FoV,mixed speed,32,5,0,5,0,6581,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:1,8,3,2,3,0,514,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n8),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:1,16,5,5,5,0,288,0.0,0.0,0.0,0.0,0.0,omega archive replay (uav6_n16),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:2,8,3,2,3,0,516,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:2,16,5,5,5,0,320,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:4,8,3,2,3,0,514,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 1:4,16,5,5,5,0,336,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 2:1,8,3,2,3,0,514,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 2:1,16,5,4,5,0,1498,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 4:1,8,3,2,3,0,516,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,ω₁:ω₂ = 4:1,16,5,4,5,0,1480,0.0,0.0,0.0,0.0,0.0,omega archive replay (omega_w25),redesign_xi_run_level_by_omega
+R_phys,mixed speed,8,4,2,4,0,1450,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_phys,mixed speed,16,5,4,5,0,332,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega
+R_phys,mixed speed,32,5,0,5,0,12028,0.0,0.0,0.0,0.0,0.0,redesign_20261027-004052 episodes.csv,redesign_xi_run_level_by_omega

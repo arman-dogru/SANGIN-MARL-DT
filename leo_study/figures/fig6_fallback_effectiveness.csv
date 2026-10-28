@@ -1,0 +1,37 @@
+speed,policy,treatment,condition,num_agents,episodes,successes,success,ci_low,ci_high,cutoff_waits_mean,fallback_moves_mean
+mixed speed,WAIT,A2,nominal LEO,8,10,10,1.0,0.7224598312333834,1.0,0.0,0.0
+mixed speed,cached fallback,A4,nominal LEO,8,10,10,1.0,0.7224598312333834,1.0,0.0,0.0
+mixed speed,WAIT,A2,100 ms deadline,8,10,10,1.0,0.7224598312333834,1.0,3.5,0.0
+mixed speed,cached fallback,A4,100 ms deadline,8,10,10,1.0,0.7224598312333834,1.0,0.0,3.5
+mixed speed,WAIT,A2,real time,8,10,0,0.0,-2.7755575615628914e-17,0.2775401687666166,6069.0,0.0
+mixed speed,cached fallback,A4,real time,8,10,8,0.8,0.49015684672072335,0.9433190520193067,429.2,163.6
+mixed speed,WAIT,A2,nominal LEO,16,10,8,0.8,0.49015684672072335,0.9433190520193067,0.0,0.0
+mixed speed,cached fallback,A4,nominal LEO,16,10,8,0.8,0.49015684672072335,0.9433190520193067,0.0,0.0
+mixed speed,WAIT,A2,100 ms deadline,16,10,8,0.8,0.49015684672072335,0.9433190520193067,95.7,0.0
+mixed speed,cached fallback,A4,100 ms deadline,16,10,7,0.7,0.39677321997956516,0.892210712513788,15.3,54.5
+mixed speed,WAIT,A2,real time,16,0,0,nan,nan,nan,,
+mixed speed,cached fallback,A4,real time,16,9,1,0.1111111111111111,0.019890371327130535,0.4350062147680601,4400.444444444444,259.22222222222223
+mixed speed,WAIT,A2,nominal LEO,32,10,4,0.4,0.16817758120350967,0.6873304525498135,4.5,0.0
+mixed speed,cached fallback,A4,nominal LEO,32,10,4,0.4,0.16817758120350967,0.6873304525498135,1.4,3.1
+mixed speed,WAIT,A2,100 ms deadline,32,8,3,0.375,0.13684175946152105,0.6942621454161981,2833.875,0.0
+mixed speed,cached fallback,A4,100 ms deadline,32,10,5,0.5,0.23658959361548731,0.7634104063845126,350.2,348.7
+mixed speed,WAIT,A2,real time,32,0,0,nan,nan,nan,,
+mixed speed,cached fallback,A4,real time,32,0,0,nan,nan,nan,,
+same speed,WAIT,A1,nominal LEO,8,10,10,1.0,0.7224598312333834,1.0,0.0,0.0
+same speed,cached fallback,A3,nominal LEO,8,10,10,1.0,0.7224598312333834,1.0,0.0,0.0
+same speed,WAIT,A1,100 ms deadline,8,10,10,1.0,0.7224598312333834,1.0,3.2,0.0
+same speed,cached fallback,A3,100 ms deadline,8,10,10,1.0,0.7224598312333834,1.0,0.0,3.2
+same speed,WAIT,A1,real time,8,10,0,0.0,-2.7755575615628914e-17,0.2775401687666166,5712.0,0.0
+same speed,cached fallback,A3,real time,8,10,6,0.6,0.3126695474501864,0.8318224187964902,705.0,158.2
+same speed,WAIT,A1,nominal LEO,16,10,7,0.7,0.39677321997956516,0.892210712513788,0.0,0.0
+same speed,cached fallback,A3,nominal LEO,16,10,7,0.7,0.39677321997956516,0.892210712513788,0.0,0.0
+same speed,WAIT,A1,100 ms deadline,16,10,9,0.9,0.5958436145024278,0.9821242504842788,277.1,0.0
+same speed,cached fallback,A3,100 ms deadline,16,10,5,0.5,0.23658959361548731,0.7634104063845126,43.2,117.6
+same speed,WAIT,A1,real time,16,0,0,nan,nan,nan,,
+same speed,cached fallback,A3,real time,16,10,1,0.1,0.01787574951572113,0.4041563854975721,4522.5,259.8
+same speed,WAIT,A1,nominal LEO,32,10,7,0.7,0.39677321997956516,0.892210712513788,11.0,0.0
+same speed,cached fallback,A3,nominal LEO,32,9,9,1.0,0.7008472464490407,1.0,1.8888888888888888,9.666666666666666
+same speed,WAIT,A1,100 ms deadline,32,0,0,nan,nan,nan,,
+same speed,cached fallback,A3,100 ms deadline,32,10,7,0.7,0.39677321997956516,0.892210712513788,957.6,409.6
+same speed,WAIT,A1,real time,32,0,0,nan,nan,nan,,
+same speed,cached fallback,A3,real time,32,0,0,nan,nan,nan,,

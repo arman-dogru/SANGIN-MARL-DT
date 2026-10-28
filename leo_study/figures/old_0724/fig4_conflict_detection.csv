@@ -1,0 +1,61 @@
+metric,condition,num_agents,episodes,value,ci_low,ci_high,missed_original_def,missed_active_def,fp_original_def,fp_active_def,physical_active,active_pair_decisions
+missed conflicts per 1k active pair-decisions,ideal,2,10,0.0,0.0,0.0,0,0,3,3,19,380
+missed conflicts per 1k active pair-decisions,ideal,4,10,1.1350737797956867,0.0,3.2198871920852143,4,2,12,4,16,1762
+missed conflicts per 1k active pair-decisions,ideal,8,10,0.27019724398811135,0.0,0.5659451495470219,3,2,21,13,32,7402
+missed conflicts per 1k active pair-decisions,ideal,16,10,1.0968095745024034,0.6341089869864144,1.6316892636816116,47,34,75,43,414,30999
+missed conflicts per 1k active pair-decisions,ideal,32,10,0.720881782596472,0.6094114122088459,0.8261993651576681,2539,100,311,122,1224,138719
+false-positive conflicts per 1k active pair-decisions,ideal,2,10,7.894736842105263,0.0,20.062630682258185,0,0,3,3,19,380
+false-positive conflicts per 1k active pair-decisions,ideal,4,10,2.2701475595913734,0.0,5.172488152128651,4,2,12,4,16,1762
+false-positive conflicts per 1k active pair-decisions,ideal,8,10,1.7562820859227235,0.4254915676572277,3.014119684204096,3,2,21,13,32,7402
+false-positive conflicts per 1k active pair-decisions,ideal,16,10,1.387141520694216,0.8424596636358802,1.9783962930386905,47,34,75,43,414,30999
+false-positive conflicts per 1k active pair-decisions,ideal,32,10,0.8794757747676959,0.6993065797871,1.0640438025506953,2539,100,311,122,1224,138719
+detection recall (cached ∧ physical / physical),ideal,2,10,1.0,1.0,1.0,0,0,3,3,19,380
+detection recall (cached ∧ physical / physical),ideal,4,10,0.875,0.0,1.0,4,2,12,4,16,1762
+detection recall (cached ∧ physical / physical),ideal,8,10,0.9375,0.896551724137931,1.0,3,2,21,13,32,7402
+detection recall (cached ∧ physical / physical),ideal,16,10,0.9178743961352657,0.8761293433985126,0.9494524560612888,47,34,75,43,414,30999
+detection recall (cached ∧ physical / physical),ideal,32,10,0.9183006535947712,0.8991861332893905,0.9336026166591491,2539,100,311,122,1224,138719
+actual attempted movement conflicts / episode,ideal,2,10,0.0,0.0,0.0,0,0,3,3,19,380
+actual attempted movement conflicts / episode,ideal,4,10,0.1,0.0,0.3,4,2,12,4,16,1762
+actual attempted movement conflicts / episode,ideal,8,10,0.5,0.09750000000000014,1.2,3,2,21,13,32,7402
+actual attempted movement conflicts / episode,ideal,16,10,1.2,0.3,2.4,47,34,75,43,414,30999
+actual attempted movement conflicts / episode,ideal,32,10,78.0,8.8975,213.5,2539,100,311,122,1224,138719
+missed conflicts per 1k active pair-decisions,nominal,2,10,0.0,0.0,0.0,0,0,3,3,19,380
+missed conflicts per 1k active pair-decisions,nominal,4,10,1.1350737797956867,0.0,3.0845157310302285,4,2,12,4,16,1762
+missed conflicts per 1k active pair-decisions,nominal,8,10,0.27089259108763375,0.0,0.5611571875337457,3,2,21,10,30,7383
+missed conflicts per 1k active pair-decisions,nominal,16,10,0.7433332300926069,0.37393752840024086,1.2501524576167826,43,24,57,34,1416,32287
+missed conflicts per 1k active pair-decisions,nominal,32,10,0.5926111843160221,0.5296443368398581,0.6649370536764755,3499,85,273,116,3680,143433
+false-positive conflicts per 1k active pair-decisions,nominal,2,10,7.894736842105263,0.0,20.167462146148775,0,0,3,3,19,380
+false-positive conflicts per 1k active pair-decisions,nominal,4,10,2.2701475595913734,0.4074442791547696,5.6369984419852015,4,2,12,4,16,1762
+false-positive conflicts per 1k active pair-decisions,nominal,8,10,1.3544629554381689,0.0,2.824536048843413,3,2,21,10,30,7383
+false-positive conflicts per 1k active pair-decisions,nominal,16,10,1.05305540929786,0.642187547397113,1.5288350991039694,43,24,57,34,1416,32287
+false-positive conflicts per 1k active pair-decisions,nominal,32,10,0.8087399691842184,0.6183345066988845,0.9803216350435613,3499,85,273,116,3680,143433
+detection recall (cached ∧ physical / physical),nominal,2,10,1.0,1.0,1.0,0,0,3,3,19,380
+detection recall (cached ∧ physical / physical),nominal,4,10,0.875,0.2750000000000009,1.0,4,2,12,4,16,1762
+detection recall (cached ∧ physical / physical),nominal,8,10,0.9333333333333333,0.8695652173913043,1.0,3,2,21,10,30,7383
+detection recall (cached ∧ physical / physical),nominal,16,10,0.9830508474576272,0.9073551437284587,0.9945598572477201,43,24,57,34,1416,32287
+detection recall (cached ∧ physical / physical),nominal,32,10,0.9769021739130435,0.929935451196548,0.9882045744317809,3499,85,273,116,3680,143433
+actual attempted movement conflicts / episode,nominal,2,10,0.0,0.0,0.0,0,0,3,3,19,380
+actual attempted movement conflicts / episode,nominal,4,10,0.1,0.0,0.3,4,2,12,4,16,1762
+actual attempted movement conflicts / episode,nominal,8,10,0.4,0.0,1.0024999999999977,3,2,21,10,30,7383
+actual attempted movement conflicts / episode,nominal,16,10,1.9,0.8975000000000002,3.1,43,24,57,34,1416,32287
+actual attempted movement conflicts / episode,nominal,32,10,10.6,6.7,15.302499999999998,3499,85,273,116,3680,143433
+missed conflicts per 1k active pair-decisions,+150 ms,8,10,0.27089259108763375,0.0,0.5595517078810038,3,2,21,10,30,7383
+missed conflicts per 1k active pair-decisions,+150 ms,16,10,2.7437802509479914,1.3392774548384672,4.18988231008431,111,89,110,64,515,32437
+missed conflicts per 1k active pair-decisions,+150 ms,32,10,2.3984319495321547,2.0158218702709445,2.714244410555962,1500,476,710,452,4691,198463
+false-positive conflicts per 1k active pair-decisions,+150 ms,8,10,1.3544629554381689,0.0,2.7978012042586315,3,2,21,10,30,7383
+false-positive conflicts per 1k active pair-decisions,+150 ms,16,10,1.973055461355859,1.0053581221951684,3.034158150816341,111,89,110,64,515,32437
+false-positive conflicts per 1k active pair-decisions,+150 ms,32,10,2.2775026075389366,1.9726554289465936,2.62172351743237,1500,476,710,452,4691,198463
+detection recall (cached ∧ physical / physical),+150 ms,8,10,0.9333333333333333,0.8780487804878049,1.0,3,2,21,10,30,7383
+detection recall (cached ∧ physical / physical),+150 ms,16,10,0.8271844660194175,0.7831441647597254,0.8915415997977768,111,89,110,64,515,32437
+detection recall (cached ∧ physical / physical),+150 ms,32,10,0.8985290982732893,0.8411260396429572,0.9381886713782814,1500,476,710,452,4691,198463
+actual attempted movement conflicts / episode,+150 ms,8,10,0.4,0.0,1.0,3,2,21,10,30,7383
+actual attempted movement conflicts / episode,+150 ms,16,10,5.4,1.6,11.9,111,89,110,64,515,32437
+actual attempted movement conflicts / episode,+150 ms,32,10,158.9,14.0,436.1025,1500,476,710,452,4691,198463
+missed conflicts per 1k active pair-decisions,+300 ms,8,10,2.5074294205052006,1.1364566306793171,4.389768137971851,32,27,36,22,1466,10768
+missed conflicts per 1k active pair-decisions,+300 ms,16,9,0.5116398055768738,0.33460451854203277,0.8382780684914117,136,118,90,64,34607,230631
+false-positive conflicts per 1k active pair-decisions,+300 ms,8,10,2.0430906389301633,0.9100135988100533,3.9187944421934566,32,27,36,22,1466,10768
+false-positive conflicts per 1k active pair-decisions,+300 ms,16,9,0.27749955556711803,0.1386155131428163,0.5819364553340852,136,118,90,64,34607,230631
+detection recall (cached ∧ physical / physical),+300 ms,8,10,0.9815825375170532,0.2777777777777778,0.9951003266448903,32,27,36,22,1466,10768
+detection recall (cached ∧ physical / physical),+300 ms,16,9,0.9965902852024157,0.9951475841099896,0.9975332285988848,136,118,90,64,34607,230631
+actual attempted movement conflicts / episode,+300 ms,8,10,0.0,0.0,0.0,32,27,36,22,1466,10768
+actual attempted movement conflicts / episode,+300 ms,16,9,0.0,0.0,0.0,136,118,90,64,34607,230631

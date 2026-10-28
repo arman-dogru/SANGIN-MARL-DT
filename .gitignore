@@ -35,3 +35,28 @@ docs/
 /results/cached_fallback/**/mission_success.png
 /results/cached_fallback/**/mission_success.pdf
 /results/cached_fallback/**/mission_success.svg
+
+# --- SANGIN-MARL-DT additions ---
+# Secrets never enter the repo
+.env
+.env.*
+kaggle.json
+**/hosts.yml
+# Caches, archives, backups
+*.npz
+!leo_study/inputs/tremblant_full.npz
+*.zip
+*.bak_*
+*.pkl.gz
+# leo_study: raw episode dumps and scratch stay local (only top-level runs/*.json are tracked)
+leo_study/runs/*/
+leo_study/tmp/
+leo_study/smoke/
+leo_study/prior_val/
+leo_study/omega_archive/
+leo_study/redesign_archive/
+leo_study/repo/
+leo_study/inputs/paper.tex
+leo_study/redesign_aoi/*.pkl.gz
+# Kaggle job outputs pulled back locally
+kaggle_runs/

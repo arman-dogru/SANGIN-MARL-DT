@@ -1,0 +1,24 @@
+........................................................................ [ 15%]
+........................................................................ [ 30%]
+........................................................................ [ 45%]
+........................................................................ [ 60%]
+........................................................................ [ 75%]
+.................s...................................................... [ 90%]
+......................s......................                            [100%]
+=============================== warnings summary ===============================
+tests/test_communication_effects.py::test_workflow_freezes_inputs_exports_tables_and_rejects_tampering
+tests/test_controlled_staleness.py::test_bounded_workflow_archives_audits_and_pairing
+tests/test_priority_evaluation.py::test_report_audits_real_archives_and_rejects_case_tampering
+tests/test_priority_evaluation.py::test_report_audits_real_archives_and_rejects_case_tampering
+  /usr/lib/python3.13/multiprocessing/popen_fork.py:67: DeprecationWarning: This process (pid=247925) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+tests/test_leo_full.py::test_library_atmosphere_and_rf_units
+  /workspace/SANGIN-dev/.venv/lib/python3.13/site-packages/itur/models/itu676.py:300: RuntimeWarning: The approximated method to compute the gaseous attenuation in recommendation ITU-P 676-11 is only recommended for elevation angles between 5 and 90 degrees
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_redesign_workflow.py:43: Local historical assets unavailable
+SKIPPED [1] tests/test_training_transport.py:152: CUDA restore regression
+475 passed, 2 skipped, 5 warnings in 73.48s (0:01:13)

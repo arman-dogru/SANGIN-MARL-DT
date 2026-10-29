@@ -1,0 +1,9 @@
+protocol = "panama_mapf_curriculum_v1"
+populations = [2, 8, 32]
+episodes_per_stage = 2
+validation_interval_episodes = 2
+validation_episodes = 1
+train_maps = 4
+validation_maps = 2
+replay_capacity = 20000
+checkpoint_interval_episodes = 1

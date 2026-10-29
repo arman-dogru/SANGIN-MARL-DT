@@ -109,7 +109,8 @@ def load_model(path, config, device, require_qualified=False):
     compatible_hashes = {hashlib.sha256(raw).hexdigest()
                          for raw in (map_bytes, map_bytes.replace(b"\n", b"\r\n"))}
     scale16=payload.get("training_protocol")=="clean_mapf_phase1_v3_scale16"
-    phase1 = scale16 or payload.get("training_protocol") in {"clean_mapf_phase1_v1", "clean_mapf_phase1_v2"}
+    phase1 = scale16 or payload.get("training_protocol") in {
+        "clean_mapf_phase1_v1", "clean_mapf_phase1_v2", "panama_mapf_curriculum_v1"}
     if not phase1 and payload.get("map_sha256") not in compatible_hashes:
         raise ValueError("Model map mismatch")
     payload["map_compatibility"] = dict(checkpoint_sha256=payload.get("map_sha256"),

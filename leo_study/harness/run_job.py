@@ -16,7 +16,7 @@ from panama_uav.redesign_metrics import measure
 STUDY='/workspace/leo_study'
 CONFIG=STUDY+'/repo/configs/paper_remote_dt_250ms_uav6_cached.toml'
 TIMELINE=STUDY+'/inputs/tremblant_full.npz'
-MODEL='/workspace/panama_models/model8.pt'
+MODEL=os.environ.get('PANAMA_MODEL','/workspace/panama_models/model8.pt')
 
 def condition_for(job):
     route=job['route']

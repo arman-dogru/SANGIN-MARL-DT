@@ -1,0 +1,25 @@
+# Staged PANAMA MAPF curriculum (Arman, 2026-10-29). Random-obstacle maps only, paired swapped tasks.
+protocol = "panama_mapf_curriculum_v1"
+populations = [2, 4, 8, 16, 32]
+map_size = [32, 64]
+density = [0.10, 0.30]
+pair_distance = [4, 40]
+episodes_per_stage = 3000        # Arman asked ~10k; 5x10k needs ~300 Kaggle-hours, see plan. 3k keeps all 5 stages reachable in 3 sessions
+validation_interval_episodes = 500
+validation_episodes = 200
+graduation_success_rate = 0.95
+advance_on_cap = true            # at the cap, advance anyway with graduated=false in stage_history
+epsilon_reset_per_stage = true   # epsilon restarts at 1.0 when a stage starts
+reset_replay_on_graduation = true
+train_maps = 2000
+validation_maps = 100
+seed = 42
+learning_rate = 0.001
+gamma = 0.90
+epsilon_start = 1.0
+epsilon_end = 0.1
+epsilon_decay_steps = 20000      # e-folding steps, restarted every stage (model8 used 20k global)
+replay_capacity = 300000
+batch_size = 64
+torch_threads = 2
+session_wall_seconds = 37800     # 10.5 h: below the runner's 11 h guard minus setup (runner SIGKILLs at its guard)
